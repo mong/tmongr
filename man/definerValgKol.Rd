@@ -17,6 +17,3 @@ valg_en valg_to valg_tre
 \description{
 Title
 }
-\examples{
-TBA
-}

@@ -7,7 +7,6 @@
 #' @return valg_en valg_to valg_tre
 #' @export
 #'
-#' @examples TBA
 definerValgKol <- function(datasett, valgnr){
   valg_boomr <- c(
     "Boområde Sykehus" = "boomr_sykehus",

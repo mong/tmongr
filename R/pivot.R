@@ -22,7 +22,6 @@
 #' @return pivot
 #' @export
 #'
-#' @examples TBA
 makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi, 
                            aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2,
                            prosent, forenkling, keepNames, snitt, hdg, icd10){

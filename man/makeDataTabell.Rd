@@ -51,6 +51,3 @@ pivot
 \description{
 Title
 }
-\examples{
-TBA
-}

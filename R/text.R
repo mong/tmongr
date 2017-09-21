@@ -1,4 +1,11 @@
 
+#' Title
+#'
+#' @param tab 
+#'
+#' @return Tekst
+#' @export
+#'
 utvalgTekst <- function(tab){
   pretext = "Utvalg: "
   maintext = ""
@@ -22,6 +29,25 @@ utvalgTekst <- function(tab){
 
 # For å lage caption til tabell
 
+#' Title
+#'
+#' @param tab 
+#' @param rad 
+#' @param kol 
+#' @param verdi 
+#' @param aar 
+#' @param bo 
+#' @param beh 
+#' @param prosent 
+#' @param behandlingsniva 
+#' @param alder 
+#' @param kjonn 
+#' @param hastegrad2 
+#' @param forenkling 
+#'
+#' @return Tekst
+#' @export
+#'
 lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva, alder, kjonn, hastegrad2, forenkling){
   
   tmp_boomr = "..."

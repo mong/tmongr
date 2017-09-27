@@ -1,8 +1,8 @@
 
 #' Title
 #'
-#' @param datasett 
-#' @param valgnr 
+#' @param datasett TBA
+#' @param valgnr TBA
 #'
 #' @return valg_en valg_to valg_tre
 #' @export

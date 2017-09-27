@@ -1,23 +1,23 @@
 #' Title
 #'
-#' @param inpDatasett 
-#' @param fane 
-#' @param rad 
-#' @param kol 
-#' @param verdi 
-#' @param aar 
-#' @param bo 
-#' @param beh 
-#' @param behandlingsniva 
-#' @param alder 
-#' @param kjonn 
-#' @param hastegrad2 
-#' @param prosent 
-#' @param forenkling 
-#' @param keepNames 
-#' @param snitt 
-#' @param hdg 
-#' @param icd10 
+#' @param inpDatasett TBA
+#' @param fane TBA
+#' @param rad TBA
+#' @param kol TBA
+#' @param verdi TBA
+#' @param aar TBA
+#' @param bo TBA
+#' @param beh TBA
+#' @param behandlingsniva TBA
+#' @param alder TBA
+#' @param kjonn TBA
+#' @param hastegrad2 TBA
+#' @param prosent TBA
+#' @param forenkling TBA
+#' @param keepNames TBA
+#' @param snitt TBA
+#' @param hdg TBA
+#' @param icd10 TBA
 #'
 #' @return pivot
 #' @export

@@ -1,15 +1,17 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
-sudo: false
-cache: packages
+#sudo: false
+#cache: packages
 
-#sudo: required
+sudo: required
 
-#services:
-#  - docker
+services:
+  - docker
 
-#before_install:
+before_install:
+  - docker build -t rocker/r-base r-base
+  - docker build -t rocker/tidyverse tidyverse
 #  - docker pull rocker/tidyverse
 
 #r:

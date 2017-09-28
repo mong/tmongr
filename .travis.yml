@@ -4,8 +4,12 @@ language: r
 #sudo: false
 cache: packages
 
-r:
-  - release
+#r:
+#  - release
+
+branches:
+  only:
+    - master
 
 after_success:
   - Rscript -e 'covr::codecov()'

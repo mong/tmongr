@@ -11,6 +11,5 @@ LazyData: true
 Imports:
     rmarkdown,
     dplyr,
-    tidyr,
     lazyeval
 RoxygenNote: 6.0.1

@@ -1,7 +1,7 @@
 
 #' Title
 #'
-#' @param tab 
+#' @param tab
 #'
 #' @return Tekst
 #' @export
@@ -23,7 +23,7 @@ utvalgTekst <- function(tab){
     maintext = "ingen beskrivelse tilgjengelig"
   }
   teksten <- paste(pretext,maintext,sep="")
-  
+
   return(teksten)
 }
 
@@ -31,30 +31,30 @@ utvalgTekst <- function(tab){
 
 #' Title
 #'
-#' @param tab 
-#' @param rad 
-#' @param kol 
-#' @param verdi 
-#' @param aar 
-#' @param bo 
-#' @param beh 
-#' @param prosent 
-#' @param behandlingsniva 
-#' @param alder 
-#' @param kjonn 
-#' @param hastegrad2 
-#' @param forenkling 
+#' @param tab
+#' @param rad
+#' @param kol
+#' @param verdi
+#' @param aar
+#' @param bo
+#' @param beh
+#' @param prosent
+#' @param behandlingsniva
+#' @param alder
+#' @param kjonn
+#' @param hastegrad2
+#' @param forenkling
 #'
 #' @return Tekst
 #' @export
 #'
 lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva, alder, kjonn, hastegrad2, forenkling){
-  
+
   tmp_boomr = "..."
   aar_tekst = "..."
   extra = ""
   hjelpetekst = ""
-  
+
   if (!is.null(rad) & !is.null(aar) & !is.null(verdi)){
 
     if (tab == "alle"){
@@ -64,7 +64,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     } else {
       tabell = "Pasientstrømmer"
     }
-    
+
     overskrift <- paste("<h1>",tabell, ", Helse Nord RHF",'<img src="skde.png" align="right" width="150" style="padding-right:20px;"/>',"</h1>","<br/>",sep = "")
 
     if (verdi == "kontakter"){
@@ -84,18 +84,18 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     } else {
       verdi_tekst = verdi
     }
-    
+
     hjelpetekst <- paste(hjelpetekst,verdi_tekst,sep = "")
-    
-    
+
+
     if (prosent == TRUE){
       prs_txt = ", i prosent, "
     } else {
       prs_txt = ""
     }
-    
+
     hjelpetekst <- paste(hjelpetekst,prs_txt, " for pasienter ",sep = "")
-    
+
     if (bo == 2){
       hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Helse Nord RHF",sep = "")
     } else if (bo == 3){
@@ -114,7 +114,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       } else {
         hjelpetekst <- paste(hjelpetekst,", ",sep="")
       }
-    } 
+    }
 
     if (beh == 2){
       hjelpetekst <- paste(hjelpetekst, "behandlet av Helse Nord RHF",sep = "")
@@ -129,12 +129,12 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     } else if (beh == 7){
       hjelpetekst <- paste(hjelpetekst, "behandlet utenfor Helse Nord RHF",sep = "")
     }
-    
+
     if(beh %in% c(2,3,4,5,6,7)){
       hjelpetekst <- paste(hjelpetekst,", ",sep="")
     }
-      
-    
+
+
     tmp_behandl = FALSE
     if ("behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") {
       tmp_beh = "sykehus"
@@ -150,7 +150,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       tmp_behandl = TRUE
     }
     if (tmp_behandl){hjelpetekst <- paste(hjelpetekst, "behandlet ved ulike ", tmp_beh ,sep = "")}
-    
+
     tmp_bo = F
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
       tmp_bo = T
@@ -162,7 +162,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       tmp_bo = T
       tmp_boomr = "RHF-nivå"
     }
-    
+
     if (tmp_bo){
       if (tmp_behandl) {
 
@@ -199,7 +199,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       k = k + 1
       annet$hastegrd2 <- "hastegrad, innleggelser"
     }
-    
+
     if (k > 0){
       hjelpetekst <- paste(hjelpetekst, "fordelt på " ,sep = "")
       l = 0
@@ -214,7 +214,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
         }
       }
     }
-    
+
     if (length(aar) > 1 ){
       tmp1 = "årene "
       if (length(aar) == (as.numeric(aar[length(aar)])-as.numeric(aar[1])+1)){
@@ -226,18 +226,18 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
         tmp3 = paste(" og ", aar[length(aar)])
         aar_tekst = paste(tmp1, tmp2, tmp3)
       }
-      
+
     } else{
       aar_tekst = aar
     }
-    
-    hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst ,sep = "")
-    
-    all_tekst <- paste(overskrift, "<ul> <li>", hjelpetekst,"</li>", sep="")
-    
 
-    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
-    
+    hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst ,sep = "")
+
+    all_tekst <- paste(overskrift, "<ul> <li>", hjelpetekst,"</li>", sep="")
+
+
+#    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
+
     extra = F
     if ((length(alder) < 4)|(length(hastegrad2) < 4)|(length(behandlingsniva) < 3)|(forenkling && beh %in% c(1,7) && !("behandlende_RHF" %in% rad | kol == "behandlende_RHF"))){
       extra = T
@@ -246,7 +246,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if (extra){
       all_tekst <- paste(all_tekst, "<li>Annet: <ul>",sep = "")
     }
-        
+
     if (length(alder) != length(aldersgrupper)){
       if (length(alder) == 1){
         tmp1 = "<li>Kun aldersgruppen "
@@ -259,7 +259,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       }
       all_tekst <- paste(all_tekst, alder_tekst, sep="")
     }
-    
+
     if (length(hastegrad2) != length(hastegrd)){
       hast <- sapply(hastegrad2, tolower)
       if (length(hast) == 1){
@@ -273,7 +273,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       }
       all_tekst <- paste(all_tekst, hastegrad2_tekst, sep="")
     }
-    
+
     if (length(behandlingsniva) != length(behniva)){
      behnivaa <- sapply(behandlingsniva, tolower)
      behnivaa <- gsub("dagbehandling","dagbehandlinger",behnivaa)
@@ -289,7 +289,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       }
       all_tekst <- paste(all_tekst, behandlingsniva_tekst, sep="")
     }
-    
+
     if (forenkling && (beh %in% c(1,7)) && !("behandlende_RHF" %in% rad | kol == "behandlende_RHF")){
       all_tekst <- paste(all_tekst, "<li>", " Helseforetak utenfor Helse Nord RHF er slått sammen.","</li>", sep="")
     }
@@ -297,11 +297,11 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if(extra){
       all_tekst <- paste(all_tekst, "</ul></li>",sep = "")
     }
-        
+
     all_tekst <- paste(all_tekst, "</ul>", sep="")
 
     # LEGG INN ADVARSLER
-    
+
     if (verdi %in% c("rate" , "drgrate")){
       if ("alder" %in% rad | "alder" %in% kol | length(alder) != 4){
         warn <- paste("<font color=#b94a48>","ADVARSEL: ratene er beregnet ut i fra totalbefolkningen på ",tmp_boomr, ", og ikke for hver aldersgruppe!","</font>",sep="")
@@ -311,7 +311,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
         warn <- paste("<font color=#b94a48>","ADVARSEL: ratene er beregnet ut i fra totalbefolkningen på ",tmp_boomr, ", og ikke for hvert enkelt kjønn!","</font>",sep="")
         all_tekst <- paste(all_tekst, warn, sep = "")
      }
-     
+
     }
     if ("Behandler" %in% rad | kol == "Behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") {
       warn <- paste("<font color=#b94a48>","ADVARSEL: Feil i rapportering av behandlingssted for innlagte pasienter i 2016!","</font>",

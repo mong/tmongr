@@ -235,7 +235,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
     all_tekst <- paste(overskrift, "<ul> <li>", hjelpetekst,"</li>", sep="")
 
-
+    print(all_tektst)
 #    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
 
     extra = F

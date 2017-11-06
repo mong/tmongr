@@ -1,6 +1,6 @@
 Package: dynamiskTabellverk
 Title: Dynamisk tabellverk for Helse Nord RHF
-Version: 1.0.0
+Version: 1.0.1
 Date: 2017-09-20
 Authors@R: person("Steindal", "Arnfinn Hykkerud", email = "arnfinn.steindal@skde.no", role = c("aut", "cre"))
 Description: Rshinyappskode for å produsere https://skde.shinyapps.io/tabellverk/.

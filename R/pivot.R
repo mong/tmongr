@@ -1,39 +1,39 @@
 #' Title
 #'
-#' @param inpDatasett 
-#' @param fane 
-#' @param rad 
-#' @param kol 
-#' @param verdi 
-#' @param aar 
-#' @param bo 
-#' @param beh 
-#' @param behandlingsniva 
-#' @param alder 
-#' @param kjonn 
-#' @param hastegrad2 
-#' @param prosent 
-#' @param forenkling 
-#' @param keepNames 
-#' @param snitt 
-#' @param hdg 
-#' @param icd10 
+#' @param inpDatasett a
+#' @param fane a
+#' @param rad a
+#' @param kol a
+#' @param verdi a
+#' @param aar a
+#' @param bo a
+#' @param beh a
+#' @param behandlingsniva a
+#' @param alder a
+#' @param kjonn a
+#' @param hastegrad2 a
+#' @param prosent a
+#' @param forenkling a
+#' @param keepNames a
+#' @param snitt a
+#' @param hdg a
+#' @param icd10 a
 #'
 #' @return pivot
 #' @export
 #'
-makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi, 
+makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
                            aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2,
                            prosent, forenkling, keepNames, snitt, hdg, icd10){
-  
+
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding
-  
-  
+
+
   if (verdi == "drg_index"){
     prosent = FALSE
   }
-  
+
   tabell <- inpDatasett
 
   # for å slå sammen helseforetak i sør-norge
@@ -46,19 +46,19 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 #    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
 #    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
 #  }
-  
-  
+
+
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if(!nrow(tabell)){return()}
-  
+
   # Erstatte NA med null
   tabell[is.na(tabell)] <- 0
 
-  # lage pivot-tabell av det som er igjen. Rutinen ligger under.  
+  # lage pivot-tabell av det som er igjen. Rutinen ligger under.
   pivot <- makePivot(tabell, rad, kol, verdi)
   if(!nrow(pivot)){return()}
 
@@ -100,7 +100,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
   pivot <- gsub("Boomr ","", pivot)
   pivot <- gsub("[.]",",", pivot)
-  
+
   # sortere ualfabetisk, fra nord til sør
   pivot <- sorterDatasett(pivot)
 
@@ -108,7 +108,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   if (!keepNames & length(rad) != 1){
       pivot <- removeDoubleNames(pivot)
   }
-  
+
   if (verdi %in% c("kontakter", "liggetid")){
     pivot <- slashHeltall(pivot)
   }
@@ -120,7 +120,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
 # lager en pivot-tabell av sum av verdien "agg"
 makePivot <- function(data, rad, kol, agg){
-  
+
   # gruppere
   # Burde skrives om, uten if nesting (issue #6)
   if (length(rad) == 1){
@@ -132,7 +132,7 @@ makePivot <- function(data, rad, kol, agg){
   else{
     return(tomTabell())
   }
-  
+
   # Velge ut verdier. Rater avhengig av boområdet!
   if (agg == "rate"){
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
@@ -175,7 +175,7 @@ makePivot <- function(data, rad, kol, agg){
     tmp <- tmp %>% summarise(verdi = sum(drg_poeng))
     if (kol %in% rad){
       start = length(rad)+1
-    } 
+    }
     else {
       start = length(rad)+2
     }
@@ -195,7 +195,7 @@ makePivot <- function(data, rad, kol, agg){
     tmp <- tmp %>% summarise_(verdi=interp(~sum(var), var = as.name(agg)))
     tmp <- round_df(tmp, digits=1)
   }
-  
+
   tmp2 <- spread_(tmp, kol, "verdi")
 
   return(tmp2)
@@ -205,15 +205,15 @@ makePivot <- function(data, rad, kol, agg){
 # tatt fra http://stackoverflow.com/a/32930130
 round_df <- function(df, digits) {
   nums <- vapply(df, is.numeric, FUN.VALUE = logical(1))
-  
+
   df[,nums] <- round(df[,nums], digits = digits)
-  
+
   (df)
 }
 
 removeDoubleNames <- function(datasett){
   # rutine for å fjerne gjentagende navn nedover i tabellen
-  
+
   if (is.null(dim(datasett)[1])){return(datasett)}
 
   k <- "abc"
@@ -237,7 +237,7 @@ sorterDatasett <- function(datasett){
 
   names1 <- c(
     "Eget lokalsykehus", "Annet sykehus i eget HF", "UNN Troms", "NLSH Bod", "Annet HF i HN", "HF i andre RHF",
-    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", 
+    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj",
     "Finnmark", "Klinikk", "UNN", "Nordland", "Helgeland", "HF i S",
     "Bor utenfor","Resterende", "Private",
     "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S",
@@ -254,13 +254,13 @@ sorterDatasett <- function(datasett){
     "aea","aeb","aec","aed",
     "zzz", "mmm", "nnn")
   tmp <- datasett
-  
+
   for(i in seq_along(names1)) tmp <- gsub(names1[i], names2[i], tmp)
-  
+
   tmp <- tmp[order(tmp[,1], tmp[,2]),]
-  
+
   for(i in seq_along(names1)) tmp <- gsub(names2[i], names1[i], tmp)
-  
+
   return(tmp)
 }
 
@@ -293,8 +293,8 @@ prosentFunc <- function(tabell, rad, kol){
     }
     tabell <- round_df(tabell, digits=1)
   }
-  
-  return(tabell)    
+
+  return(tabell)
 }
 
 
@@ -303,10 +303,10 @@ addTotal <- function(tabell, rad, kol){
   if("aar" %in% colnames(tabell)){
     tabell$aar = as.character(tabell$aar)
   }
-  
+
   new_tab <- tabell
   myname = "tmp"
-  
+
   k = 0
   num_val = 0
 
@@ -338,7 +338,7 @@ addTotal <- function(tabell, rad, kol){
   }
   new_row = tail(new_tab,1)
   new_row[length(rad)] = "Sum"
-  
+
   if (num_val != 0){
     tabell <- rbind(tabell[1:k,],new_row,tabell[-(1:k),])
   }
@@ -347,7 +347,7 @@ addTotal <- function(tabell, rad, kol){
 }
 
 renameColumns <- function(tabell){
-  
+
   names(tabell) <- sub("behandlende_sykehus", "Behandlende sykehus", names(tabell))
   names(tabell) <- sub("behandlende_HF_HN", "Behandlende HF", names(tabell))
   names(tabell) <- sub("behandlende_HF", "Behandlende HF", names(tabell))
@@ -360,9 +360,9 @@ renameColumns <- function(tabell){
 #  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
-  
+
   return(tabell)
-  
+
 }
 
 addLastColumn <- function(pivot,rad,kol,verdi){
@@ -375,7 +375,7 @@ addLastColumn <- function(pivot,rad,kol,verdi){
   } else {
     rund = 1
   }
-  
+
   if (((length(names(pivot))-length(rad)) != 1)){
     if ("aar" %in% kol){
       pivot$Snitt <- rowMeans(pivot[,-seq_len(length(rad))], na.rm = TRUE)
@@ -385,7 +385,7 @@ addLastColumn <- function(pivot,rad,kol,verdi){
       pivot$Sum <- round(pivot$Sum, rund)
     }
   }
-  
+
   return(pivot)
 }
 
@@ -397,5 +397,5 @@ slashHeltall <- function(tabell){
   # erstatte tall mellom 1 og 4 med "-"
   tabell[suppressWarnings(as.numeric(tabell)) < 5 & suppressWarnings(as.numeric(tabell)) > 0] <- "-"
   return(tabell)
-  
+
 }

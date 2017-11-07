@@ -1,8 +1,8 @@
 
 #' Title
 #'
-#' @param datasett 
-#' @param valgnr 
+#' @param datasett Datasett
+#' @param valgnr Hvilket valg
 #'
 #' @return valg_en valg_to valg_tre
 #' @export
@@ -12,9 +12,9 @@ definerValgKol <- function(datasett, valgnr){
     "Boområde Sykehus" = "boomr_sykehus",
     "Boområde HF" = "boomr_HF",
     "Boområde RHF" = "boomr_RHF")
-  
+
   valg_aar <- c("År" = "aar")
-  
+
   valg_alder <- c()
   valg_kjonn <- c()
   valg_behandlingsniva <- c()
@@ -27,7 +27,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_alder <- c()
   valg_hdg <- c()
   valg_icd10 <- c()
-  
+
   if ("alder" %in% colnames(datasett)){
     valg_alder <- c("Alder" = "alder")
   }
@@ -59,7 +59,7 @@ definerValgKol <- function(datasett, valgnr){
   if ("ICD10Kap" %in% colnames(datasett)){
     valg_icd10 <- c("ICD10-kapittel" = "ICD10Kap")
   }
-  
+
   valg_en <- c(
     valg_boomr,
     valg_aar,
@@ -74,7 +74,7 @@ definerValgKol <- function(datasett, valgnr){
     valg_behhf,
     valg_behrhf
   )
-  
+
   valg_to <- c(
     valg_Behandler,
     valg_behsh,
@@ -90,7 +90,7 @@ definerValgKol <- function(datasett, valgnr){
     valg_boomr,
     "Tom" = "ingen"
   )
-  
+
   valg_tre <- c(
     valg_aar,
     valg_alder,
@@ -104,5 +104,5 @@ definerValgKol <- function(datasett, valgnr){
   else if (valgnr == 2){return(valg_to)}
   else if (valgnr == 3){return(valg_tre)}
   else {return()}
-  
+
 }

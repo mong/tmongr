@@ -3,7 +3,7 @@
 #' Filtrerer ut data fra datasett som ikke skal tabuleres
 #' 
 #' @param tabell Datasettet som skal filtreres.
-#' @param rad,kol,verdi,aar,bo,beh,behandlingsniva,alder,kjonn,hastegrad2 Filtreringsvalg.
+#' @param fane,rad,kol,verdi,aar,bo,beh,behandlingsniva,alder,kjonn,hastegrad2,hdg,icd10 Filteringsvalg.
 #' 
 filtrerUt <- function(tabell, fane, rad, kol, verdi,
           aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10){

@@ -7,7 +7,7 @@
 utvalgTekst(tab)
 }
 \arguments{
-\item{tab}{}
+\item{tab}{Utvalg}
 }
 \value{
 Tekst

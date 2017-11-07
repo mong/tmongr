@@ -10,7 +10,7 @@ filtrerUt(tabell, fane, rad, kol, verdi, aar, bo, beh, behandlingsniva, alder,
 \arguments{
 \item{tabell}{Datasettet som skal filtreres.}
 
-\item{rad, kol, verdi, aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2}{Filtreringsvalg.}
+\item{fane, rad, kol, verdi, aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10}{Filteringsvalg.}
 }
 \description{
 Filtrerer ut data fra datasett som ikke skal tabuleres

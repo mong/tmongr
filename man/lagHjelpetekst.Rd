@@ -8,31 +8,7 @@ lagHjelpetekst(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva,
   alder, kjonn, hastegrad2, forenkling)
 }
 \arguments{
-\item{tab}{}
-
-\item{rad}{}
-
-\item{kol}{}
-
-\item{verdi}{}
-
-\item{aar}{}
-
-\item{bo}{}
-
-\item{beh}{}
-
-\item{prosent}{}
-
-\item{behandlingsniva}{}
-
-\item{alder}{}
-
-\item{kjonn}{}
-
-\item{hastegrad2}{}
-
-\item{forenkling}{}
+\item{tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva, alder, kjonn, hastegrad2, forenkling}{Beskrivelse}
 }
 \value{
 Tekst

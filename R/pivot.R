@@ -103,6 +103,10 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   # sortere ualfabetisk, fra nord til sør
   pivot <- sorterDatasett(pivot)
 
+  # Remove rows with only NA
+  # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
+  pivot <- pivot[rowSums(is.na(pivot)) != ncol(pivot),]
+  
   # Ta bort tekst hvis tekst under er lik
   if (!keepNames & length(rad) != 1){
       pivot <- removeDoubleNames(pivot)
@@ -112,6 +116,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
     pivot <- slashHeltall(pivot)
   }
 
+  
   return(pivot)
 }
 
@@ -217,6 +222,10 @@ removeDoubleNames <- function(datasett){
 
   k <- "abc"
   for (i in 1:dim(datasett)[1]){
+    if(is.na(datasett[i,1])){
+        # just in case
+        next
+    }
     if(datasett[i,1] == k){
       datasett[i,1] <- ""
     }

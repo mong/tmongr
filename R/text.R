@@ -87,11 +87,11 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if (bo == 2){
       hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Helse Nord RHF",sep = "")
     } else if (bo == 3){
-      hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Finnmark HF",sep = "")
+      hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Finnmarkssykehuset HF",sep = "")
     } else if (bo == 4){
       hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for UNN HF",sep = "")
     } else if (bo == 5){
-      hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Helgeland HF",sep = "")
+      hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Helgelandssykehuset HF",sep = "")
     } else if (bo == 6){
       hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Nordlandssykehuset HF",sep = "")
     }
@@ -107,11 +107,11 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if (beh == 2){
       hjelpetekst <- paste(hjelpetekst, "behandlet av Helse Nord RHF",sep = "")
     } else if (beh == 3){
-      hjelpetekst <- paste(hjelpetekst, "behandlet av Helse Finnmark HF",sep = "")
+      hjelpetekst <- paste(hjelpetekst, "behandlet av Finnmarkssykehuset HF",sep = "")
     } else if (beh == 4){
       hjelpetekst <- paste(hjelpetekst, "behandlet av UNN HF",sep = "")
     } else if (beh == 5){
-      hjelpetekst <- paste(hjelpetekst, "behandlet av Helgeland HF",sep = "")
+      hjelpetekst <- paste(hjelpetekst, "behandlet av Helgelandssykehuset HF",sep = "")
     } else if (beh == 6){
       hjelpetekst <- paste(hjelpetekst, "behandlet av Nordlandsykehuset HF",sep = "")
     } else if (beh == 7){
@@ -156,7 +156,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
                 hjelpetekst <- paste(hjelpetekst, " og ", sep = "")
       }
-      hjelpetekst <- paste(hjelpetekst, "bosatt i ulike boområder på ", tmp_boomr ,", ",sep = "")
+      hjelpetekst <- paste(hjelpetekst, "bosatt i ulike opptaksområder på ", tmp_boomr ,", ",sep = "")
     } else if (tmp_behandl){
       hjelpetekst <- paste(hjelpetekst, ", ",sep = "")
     }

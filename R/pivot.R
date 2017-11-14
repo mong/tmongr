@@ -37,23 +37,16 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   tabell <- inpDatasett
 
   # for å slå sammen helseforetak i sør-norge
-  print("BEFORE LOOP")
-  print(("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))
   if (( forenkling & ("behandlende_HF" %in% colnames(tabell))) | (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))){
     rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
-    print("INSIDE IF LOOP?")
     kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
   }
-
-  print("AFTER LOOP")
-  print(("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))
 
 #  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
 #    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
 #    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
 #  }
 
-  print(tabell)
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10)

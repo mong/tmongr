@@ -9,9 +9,9 @@
 #'
 definerValgKol <- function(datasett, valgnr){
   valg_boomr <- c(
-    "Boområde Sykehus" = "boomr_sykehus",
-    "Boområde HF" = "boomr_HF",
-    "Boområde RHF" = "boomr_RHF")
+    "Opptaksområde Sykehus" = "boomr_sykehus",
+    "Opptaksområde HF" = "boomr_HF",
+    "Opptaksområde RHF" = "boomr_RHF")
 
   valg_aar <- c("År" = "aar")
 

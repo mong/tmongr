@@ -37,10 +37,16 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   tabell <- inpDatasett
 
   # for å slå sammen helseforetak i sør-norge
+  print("BEFORE LOOP")
+  print(("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))
   if (( forenkling & ("behandlende_HF" %in% colnames(tabell))) | (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))){
     rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
+    print("INSIDE IF LOOP?")
     kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
   }
+
+  print("AFTER LOOP")
+  print(("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))
 
 #  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
 #    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)

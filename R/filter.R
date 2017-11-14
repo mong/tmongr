@@ -84,7 +84,7 @@ filterBeh <- function(datasett, beh){
     # ingen filtrering
     return(datasett)
   }
-  else if("Behandler" %in% colnames(datasett)){
+  else if(FALSE){
     if (beh == 2){
       tmpsett <- filter(datasett, Behandler %in% c("Eget lokalsykehus","UNN Tromsø","NLSH Bodø","Annet sykehus i eget HF","Annet HF i HN"))
       return(tmpsett)

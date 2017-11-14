@@ -47,7 +47,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 #    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
 #  }
 
-
+  print(tabell)
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10)

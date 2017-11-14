@@ -120,19 +120,19 @@ filterBeh <- function(datasett, beh){
       return(tmpsett)
     }
     else if (beh == 3){
-      tmpsett <- filter(datasett, behandlende_HF == "Finnmarkssykehuset HF")
+      tmpsett <- filter(datasett, behandlende_HF_HN == "Finnmarkssykehuset HF")
       return(tmpsett)
     }
     else if (beh == 4){
-      tmpsett <- filter(datasett, behandlende_HF == "UNN HF")
+      tmpsett <- filter(datasett, behandlende_HF_HN == "UNN HF")
       return(tmpsett)
     }
     else if (beh == 5){
-      tmpsett <- filter(datasett, behandlende_HF == "Nordlandssykehuset HF")
+      tmpsett <- filter(datasett, behandlende_HF_HN == "Nordlandssykehuset HF")
       return(tmpsett)
     }
     else if (beh == 6){
-      tmpsett <- filter(datasett, behandlende_HF == "Helgelandssykehuset HF")
+      tmpsett <- filter(datasett, behandlende_HF_HN == "Helgelandssykehuset HF")
       return(tmpsett)
     }
     else if (beh == 7){

@@ -1,3 +1,5 @@
+[![Status](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk.svg?branch=master)](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk/builds)
+
 # How to install the package
 
 ```

@@ -301,11 +301,12 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
      }
 
     }
-    if ("Behandler" %in% rad | kol == "Behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") {
+
+    if (("Behandler" %in% rad | kol == "Behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") & ("2016" %in% aar)) {
       warn <- paste("<font color=#b94a48>","ADVARSEL: Feil i rapportering av behandlingssted for innlagte pasienter i 2016!","</font>",
                     ' <a href="https://helsedirektoratet.no/nyheter/feil-i-rapportering-av-behandlingssted-for-innlagte-pasienter-i-2016">',
                     '<font color=#b94a48>Se pressemelding fra Helsedirektoratet.</font></a> ',
-                    " De innlagte pasientene ved UNN HF sine tre sykehus (Tromsø, Narvik og Harstad) er alle rapportert som innlagt ved UNN Tromsø. Tallene for UNN Tromsø i 2016 vil derfor være kunstig høye.",
+                    " De innlagte pasientene ved UNN HF sine tre sykehus (Tromsø, Narvik og Harstad) ble alle rapportert som innlagt ved UNN Tromsø. I tabellen er disse lagt til UNN HF.",
                     sep="")
       all_tekst <- paste(all_tekst, warn, sep = "")
     }

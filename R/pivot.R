@@ -257,29 +257,37 @@ removeDoubleNames <- function(datasett){
 
 sorterDatasett <- function(datasett){
   # Sortere datasett i forhold til boområdet og behandlingsområdet
-  # fungerer ikke med ø-hjelp
 
   # Hvis det kun er en rad, vil denne rutinen "ødelegge" tabellen.
   if (nrow(datasett) == 1){return(datasett)}
 
   names1 <- c(
-    "Eget lokalsykehus", "Annet sykehus i eget HF", "UNN Troms", "NLSH Bod", "Annet HF i HN", "HF i andre RHF",
-    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj",
-    "Finnmark", "Klinikk", "UNN", "Nordland", "Helgeland", "HF i S",
-    "Bor utenfor","Resterende", "Private",
-    "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S",
-    "Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialister", "Avtalespesialist",
-    "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi",
-    "Sum", "Akutt", "Planlagt")
+    "Eget lokalsykehus", # 1
+    "Annet sykehus i eget HF", # 2 
+    "UNN Troms", # 3
+    "UNN HF", # 4
+    "NLSH Bod", # 5
+    "Nordlandssyk", # 6
+    "Annet HF i HN", # 7 
+    "HF i andre RHF", # 8 #A
+    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", # B
+    "Finnmark", "Klinikk", "Helgeland", "HF i S", # C
+    "Bor utenfor","Resterende", "Private", # D
+    "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S", # E
+    "Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialister", "Avtalespesialist", # F
+    "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", # G
+    "Sum", "Akutt", "Planlagt" # H
+    )
   names2 <- c(
-    "baa","bab","bac","bad","bae","baf",
-    "aaa","aab","aac","aad","aae","aaf","aag","aah","aai","aaj",
-    "aba","abb","abc","abd","abe","abf",
-    "xaa","xbb","xxx",
-    "aca","acb","acc","acd",
-    "ada","adb","adc","yyy","add",
-    "aea","aeb","aec","aed",
-    "zzz", "mmm", "nnn")
+    "aaa","aab","aac","baa","bab","bac","caa","cab", #A
+    "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", #B
+    "aba","abb","cba","cbb", #C
+    "xaa","xbb","xxx", # D
+    "aca","acb","acc","acd", # E
+    "ada","adb","adc","yyy","add", # F
+    "aea","aeb","aec","aed", # G
+    "zzz", "mmm", "nnn" # H
+    )
   tmp <- datasett
 
   for(i in seq_along(names1)) tmp <- gsub(names1[i], names2[i], tmp)

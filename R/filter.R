@@ -24,7 +24,7 @@ filtrerUt <- function(tabell, fane, rad, kol, verdi,
   
   tabell <- filterAar(tabell, aar)
 
-  if (verdi == "liggedognrate"){
+  if (verdi == "liggedognindex"){
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
   }
 

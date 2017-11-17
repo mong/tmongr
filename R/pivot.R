@@ -68,11 +68,11 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
   regnetTotal = FALSE
 
-  # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognrate?
+  # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognindex?
   if(snitt | prosent){
-    if (!("drg_index" %in% verdi | "liggedognrate" %in% verdi) & !(verdi %in% c("rate","drgrate") & length(rad) == 1)){
+    if (!("drg_index" %in% verdi | "liggedognindex" %in% verdi) & !(verdi %in% c("rate", "drgrate", "liggedognrate") & length(rad) == 1)){
       # ikke regn ut total på rater når en rad er bohf og den andre rad er bosh
-      if (!( (verdi %in% c("rate","drgrate")) & ('boomr_HF' %in% rad) & ('boomr_sykehus' %in% rad))){
+      if (!( (verdi %in% c("rate", "drgrate", "liggedognrate")) & ('boomr_HF' %in% rad) & ('boomr_sykehus' %in% rad))){
         regnetTotal = TRUE
         pivot <- addTotal(pivot, rad, kol)
       }
@@ -170,6 +170,22 @@ makePivot <- function(data, rad, kol, agg){
     else {
       return(tomTabell())
     }
+  } else if (agg == "liggedognrate"){
+    if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
+      tmp <- tmp %>% summarise(verdi=sum(bosh_liggerate))
+      tmp <- round_df(tmp, digits=1)
+    }
+    else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
+      tmp <- tmp %>% summarise(verdi=sum(bohf_liggerate))
+      tmp <- round_df(tmp, digits=1)
+    }
+    else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
+      tmp <- tmp %>% summarise(verdi=sum(borhf_liggerate))
+      tmp <- round_df(tmp, digits=1)
+    }
+    else {
+      return(tomTabell())
+    }
   } else if (agg == "drg_poeng"){
 #    valg = as.name(agg)
     tmp <- tmp %>% summarise(verdi=sum(drg_poeng))
@@ -187,7 +203,7 @@ makePivot <- function(data, rad, kol, agg){
       tmp[,i] <- tmp[,i]/tmp_kontakt[,i]
       tmp <- round_df(tmp, digits=3)
     }
-  } else if(agg == "liggedognrate"){
+  } else if(agg == "liggedognindex"){
     tmp_kontakt <- tmp %>% summarise(verdi = sum(kontakter))
     tmp <- tmp %>% summarise(verdi = sum(liggetid))
     for (i in (length(rad)+2):length(names(tmp))){

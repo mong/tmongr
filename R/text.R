@@ -61,8 +61,10 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       verdi_tekst = "Kjønns- og aldersjusterte rater (antall kontakter pr. 1000 innbygger)"
     } else if (verdi == "liggetid"){
       verdi_tekst = "Antall liggedøgn"
-    } else if (verdi == "liggedognrate"){
+    } else if (verdi == "liggedognindex"){
       verdi_tekst = "Gjennomsnittlig antall liggedøgn pr. innleggelse"
+    } else if (verdi == "liggedognrate"){
+      verdi_tekst = "Liggedøgnsrater (antall liggedøgn pr. 1000 innbyggere)"
     } else if (verdi == "drg_poeng"){
       verdi_tekst = "Antall DRG-poeng"
     } else if (verdi == "drgrate"){

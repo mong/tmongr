@@ -27,7 +27,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_alder <- c()
   valg_hdg <- c()
   valg_icd10 <- c()
-  
+
   # Verdier
   valg_kontakter <- c("Kontakter"="kontakter")
   valg_rate <- c("Rater"="rate")
@@ -37,7 +37,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_drg <- c("DRG-poeng"="drg_poeng")
   valg_drgrate <- c("DRG-poengrater"="drgrate")
   valg_drgindex <- c("DRG-index"="drg_index")
-  
+
   col_names <- colnames(datasett)
 
   if ("alder" %in% col_names){
@@ -114,17 +114,17 @@ definerValgKol <- function(datasett, valgnr){
     valg_DRGtypeHastegrad,
     valg_hdg,
     valg_icd10
-    )
+  )
 
   valg_fire <- c(
-   valg_kontakter,
-   valg_rate,
-   valg_liggetid,
-   valg_liggerate,
-   valg_liggeindex,
-   valg_drg,
-   valg_drgrate,
-   valg_drgindex
+    valg_kontakter,
+    valg_rate,
+    valg_liggetid,
+    valg_liggerate,
+    valg_liggeindex,
+    valg_drg,
+    valg_drgrate,
+    valg_drgindex
   )
 
   if (valgnr == 1){return(valg_en)}

@@ -1,12 +1,12 @@
 #' Filtrere ut data fra datasett
-#' 
+#'
 #' Filtrerer ut data fra datasett som ikke skal tabuleres
-#' 
+#'
 #' @param tabell Datasettet som skal filtreres.
 #' @param fane,rad,kol,verdi,aar,bo,beh,behandlingsniva,alder,kjonn,hastegrad2,hdg,icd10 Filteringsvalg.
-#' 
+#'
 filtrerUt <- function(tabell, fane, rad, kol, verdi,
-          aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10){
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10){
 
   if (fane == "dogn"){
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
@@ -17,11 +17,11 @@ filtrerUt <- function(tabell, fane, rad, kol, verdi,
   else if (fane == "poli"){
     tabell <- filterBehandlingsniva(tabell, c("Poliklinikk"))
   }
-  
+
   tabell <- filterHDG(tabell, hdg)
 
   tabell <- filterICD10(tabell, icd10)
-  
+
   tabell <- filterAar(tabell, aar)
 
   if (verdi == "liggedognindex"){
@@ -31,22 +31,22 @@ filtrerUt <- function(tabell, fane, rad, kol, verdi,
   if (verdi == "drg_index"){# ta ut avtalespesialistene
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold","Dagbehandling","Poliklinikk"))
   }
-#  if ("hastegrad" %in% rad | "hastegrad" %in% kol){
-#    tabell <- filter(tabell, hastegrad !="Ukjent")
-#  }
-  
+  #  if ("hastegrad" %in% rad | "hastegrad" %in% kol){
+  #    tabell <- filter(tabell, hastegrad !="Ukjent")
+  #  }
+
   tabell <- filterBo(tabell,bo)
-  
-  tabell <- filterBeh(tabell,beh)  
-  
+
+  tabell <- filterBeh(tabell,beh)
+
   tabell <- filterBehandlingsniva(tabell, behandlingsniva)
-  
+
   tabell <- filterAlder(tabell,alder)
-  
+
   tabell <- filterKjonn(tabell,kjonn)
-  
+
   tabell <- filterHastegrad2(tabell, hastegrad2)
-  
+
   return(tabell)
 }
 

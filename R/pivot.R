@@ -43,10 +43,10 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
     kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
   }
 
-#  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
-#    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
-#    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
-#  }
+  #  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
+  #    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
+  #    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
+  #  }
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
@@ -107,17 +107,17 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   # Remove rows with only NA
   # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
   pivot <- pivot[rowSums(is.na(pivot)) != ncol(pivot),]
-  
+
   # Ta bort tekst hvis tekst under er lik
   if (!keepNames & length(rad) != 1){
-      pivot <- removeDoubleNames(pivot)
+    pivot <- removeDoubleNames(pivot)
   }
 
   if (verdi %in% c("kontakter", "liggetid")){
     pivot <- slashHeltall(pivot)
   }
 
-  
+
   return(pivot)
 }
 
@@ -189,7 +189,7 @@ makePivot <- function(data, rad, kol, agg){
       return(tomTabell())
     }
   } else if (agg == "drg_poeng"){
-#    valg = as.name(agg)
+    #    valg = as.name(agg)
     tmp <- tmp %>% dplyr::summarise(verdi=sum(drg_poeng))
     tmp <- round_df(tmp, digits=0)
   } else if(agg == "drg_index"){
@@ -213,7 +213,7 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- round_df(tmp, digits=1)
     }
   } else{
-#    valg = as.name(agg)
+    #    valg = as.name(agg)
     tmp <- tmp %>% dplyr::summarise_(verdi=lazyeval::interp(~sum(var), var = as.name(agg)))
     tmp <- round_df(tmp, digits=1)
   }
@@ -242,8 +242,8 @@ removeDoubleNames <- function(datasett){
   k <- "abc"
   for (i in 1:dim(datasett)[1]){
     if(is.na(datasett[i,1])){
-        # just in case
-        next
+      # just in case
+      next
     }
     if(datasett[i,1] == k){
       datasett[i,1] <- ""
@@ -263,12 +263,12 @@ sorterDatasett <- function(datasett){
 
   names1 <- c(
     "Eget lokalsykehus", # 1
-    "Annet sykehus i eget HF", # 2 
+    "Annet sykehus i eget HF", # 2
     "UNN Troms", # 3
     "UNN HF", # 4
     "NLSH Bod", # 5
     "Nordlandssyk", # 6
-    "Annet HF i HN", # 7 
+    "Annet HF i HN", # 7
     "HF i andre RHF", # 8 #A
     "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", # B
     "Finnmark", "Klinikk", "Helgeland", "HF i S", # C
@@ -277,7 +277,7 @@ sorterDatasett <- function(datasett){
     "Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialister", "Avtalespesialist", # F
     "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", # G
     "Sum", "Akutt", "Planlagt" # H
-    )
+  )
   names2 <- c(
     "aaa","aab","aac","baa","bab","bac","caa","cab", #A
     "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", #B
@@ -287,7 +287,7 @@ sorterDatasett <- function(datasett){
     "ada","adb","adc","yyy","add", # F
     "aea","aeb","aec","aed", # G
     "zzz", "mmm", "nnn" # H
-    )
+  )
   tmp <- datasett
 
   for(i in seq_along(names1)) tmp <- gsub(names1[i], names2[i], tmp)
@@ -359,7 +359,7 @@ addTotal <- function(tabell, rad, kol){
         new_row = new_tab[i-1,]
         new_row[2] = "Sum"
         if (num_val != 1){
-           tabell <- dplyr::bind_rows(tabell[1:k-1,],new_row,tabell[-(1:k-1),])
+          tabell <- dplyr::bind_rows(tabell[1:k-1,],new_row,tabell[-(1:k-1),])
         } else {num_val = 0}
         k = k + 1
       }
@@ -392,7 +392,7 @@ renameColumns <- function(tabell){
   names(tabell) <- sub("boomr_RHF", "Opptaksområde", names(tabell))
   names(tabell) <- sub("alder", "Alder", names(tabell))
   names(tabell) <- sub("behandlingsniva", "Behandlingsnivå", names(tabell))
-#  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
+  #  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
 

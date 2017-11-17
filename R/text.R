@@ -156,7 +156,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if (tmp_bo){
       if (tmp_behandl) {
 
-                hjelpetekst <- paste(hjelpetekst, " og ", sep = "")
+        hjelpetekst <- paste(hjelpetekst, " og ", sep = "")
       }
       hjelpetekst <- paste(hjelpetekst, "bosatt i ulike opptaksområder på ", tmp_boomr ,", ",sep = "")
     } else if (tmp_behandl){
@@ -226,7 +226,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     all_tekst <- paste(overskrift, "<ul> <li>", hjelpetekst,"</li>", sep="")
 
 
-#    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
+    #    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
 
     extra = F
     if ((length(alder) < 4)|(length(hastegrad2) < 4)|(length(behandlingsniva) < 3)|(forenkling && beh %in% c(1,7) && !("behandlende_RHF" %in% rad | kol == "behandlende_RHF"))){
@@ -265,10 +265,10 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     }
 
     if (length(behandlingsniva) != length(behniva)){
-     behnivaa <- sapply(behandlingsniva, tolower)
-     behnivaa <- gsub("dagbehandling","dagbehandlinger",behnivaa)
-     behnivaa <- gsub("konsultasjon","konsultasjoner",behnivaa)
-     if (length(behnivaa) == 1){
+      behnivaa <- sapply(behandlingsniva, tolower)
+      behnivaa <- gsub("dagbehandling","dagbehandlinger",behnivaa)
+      behnivaa <- gsub("konsultasjon","konsultasjoner",behnivaa)
+      if (length(behnivaa) == 1){
         tmp1 = "<li>Kun "
         behandlingsniva_tekst = paste(tmp1, behnivaa[length(behnivaa)],"</li>",sep="")
       } else {
@@ -297,10 +297,10 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
         warn <- paste("<font color=#b94a48>","ADVARSEL: ratene er beregnet ut i fra totalbefolkningen på ",tmp_boomr, ", og ikke for hver aldersgruppe!","</font>",sep="")
         all_tekst <- paste(all_tekst, warn, sep = "")
       }
-        if ("kjonn" %in% rad | "kjonn" %in% kol | length(kjonn) == 1){
+      if ("kjonn" %in% rad | "kjonn" %in% kol | length(kjonn) == 1){
         warn <- paste("<font color=#b94a48>","ADVARSEL: ratene er beregnet ut i fra totalbefolkningen på ",tmp_boomr, ", og ikke for hvert enkelt kjønn!","</font>",sep="")
         all_tekst <- paste(all_tekst, warn, sep = "")
-     }
+      }
 
     }
 

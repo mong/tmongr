@@ -223,7 +223,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
     hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst ,sep = "")
 
-    all_tekst <- paste(overskrift,"<br>", hjelpetekst,"<br>", sep="")
+    all_tekst <- paste(overskrift, "<h4>", hjelpetekst,"</h4>","<br>", sep="")
 
 
     #    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")

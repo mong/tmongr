@@ -12,7 +12,8 @@ Imports:
     rmarkdown,
     dplyr,
     tidyr,
-    lazyeval
+    lazyeval,
+    magrittr
 RoxygenNote: 6.0.1
 Suggests: 
     testthat

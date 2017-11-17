@@ -371,7 +371,7 @@ addTotal <- function(tabell, rad, kol){
     }
     myname = new_tab[i,1]
   }
-  new_row = tail(new_tab,1)
+  new_row = utils::tail(new_tab,1)
   new_row[length(rad)] = "Sum"
 
   if (num_val != 0){

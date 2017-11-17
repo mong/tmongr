@@ -223,7 +223,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
     hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst ,sep = "")
 
-    all_tekst <- paste(overskrift, "<ul> <li>", hjelpetekst,"</li>", sep="")
+    all_tekst <- paste(overskrift,"<br>", hjelpetekst,"<br>", sep="")
 
 
     #    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
@@ -234,7 +234,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     }
 
     if (extra){
-      all_tekst <- paste(all_tekst, "<li>Annet: <ul>",sep = "")
+      all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>",sep = "")
     }
 
     if (length(alder) != length(aldersgrupper)){
@@ -285,10 +285,10 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     }
 
     if(extra){
-      all_tekst <- paste(all_tekst, "</ul></li>",sep = "")
+      all_tekst <- paste(all_tekst, "</ul></li></ul>",sep = "")
     }
 
-    all_tekst <- paste(all_tekst, "</ul>", sep="")
+#    all_tekst <- paste(all_tekst, "</ul>", sep="")
 
     # LEGG INN ADVARSLER
 

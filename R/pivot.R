@@ -29,6 +29,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding
 
+  if(length(rad) == length(kol)){if(rad == kol){return(NULL)}}
 
   if (verdi == "drg_index"){
     prosent = FALSE

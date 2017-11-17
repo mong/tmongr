@@ -146,8 +146,6 @@ filterBeh <- function(datasett, beh){
 
 # Disse filter-rutinene burde legges sammen til en rutine
 filterAar <- function(datasett, filter){
-  print(filter)
-  print(datasett)
   tabell <- dplyr::filter(datasett, aar %in% as.numeric(filter))
   return(tabell)
 }

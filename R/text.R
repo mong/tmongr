@@ -221,7 +221,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       aar_tekst = aar
     }
 
-    hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst ,sep = "")
+    hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst, ".", sep = "")
 
     all_tekst <- paste(overskrift, "<font size='+1'>", hjelpetekst,"</font>","<br>", sep="")
 
@@ -305,10 +305,19 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     }
 
     if (("Behandler" %in% rad | kol == "Behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") & ("2016" %in% aar)) {
-      warn <- paste("<font color=#b94a48>","ADVARSEL: Feil i rapportering av behandlingssted for innlagte pasienter i 2016!","</font>",
+      warn <- paste("<font color=#b94a48>","ADVARSEL: Feil i rapportering av behandlingssted for innlagte pasienter ved UNN i 2016!","</font>",
                     ' <a href="https://helsedirektoratet.no/nyheter/feil-i-rapportering-av-behandlingssted-for-innlagte-pasienter-i-2016">',
-                    '<font color=#b94a48>Se pressemelding fra Helsedirektoratet.</font></a> ',
-                    " De innlagte pasientene ved UNN HF sine tre sykehus (Tromsø, Narvik og Harstad) ble alle rapportert som innlagt ved UNN Tromsø. I tabellen er disse lagt til UNN HF.",
+                    'Se pressemelding fra Helsedirektoratet.</a> ',
+                    "De innlagte pasientene ved UNN HF sine tre sykehus (Tromsø, Narvik og Harstad) ble alle rapportert som innlagt ved UNN Tromsø. I tabellen er disse lagt til UNN HF.",
+                    sep="")
+      if("2015" %in% aar){
+      warn <- paste(warn, " I tillegg er det ikke rapportert behandlende sykehus for de fleste pasienter behandlet ved Nordlandssykehuset i 2015. Disse pasientene er rapportert som behandlet ved Nordlandssykehuset HF.")
+      }
+      all_tekst <- paste(all_tekst, warn, sep = "")
+    }
+    else if (("Behandler" %in% rad | kol == "Behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") & ("2015" %in% aar)) {
+      warn <- paste("<font color=#b94a48>","ADVARSEL: Mangler ved rapportering av behandlingssted for pasienter behandlet ved Nordlandssykehuset i 2015!","</font>",
+                    "Det er ikke rapportert behandlende sykehus for de fleste pasienter behandlet ved Nordlandssykehuset i 2015. Disse pasientene er rapportert som behandlet ved Nordlandssykehuset HF.",
                     sep="")
       all_tekst <- paste(all_tekst, warn, sep = "")
     }

@@ -96,6 +96,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   # bedre navn i kolonneoverskrift
   pivot <- renameColumns(pivot)
 
+  # Hvorfor gjøres den om til matrix?
   pivot <- as.matrix(pivot)
 
   pivot <- gsub("Boomr ","", pivot)
@@ -106,7 +107,9 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
   # Remove rows with only NA
   # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
-  pivot <- pivot[rowSums(is.na(pivot)) != ncol(pivot),]
+  if (nrow(pivot) > 1){ # Denne feiler hvis man kun har en rad. Se issue #6 på github
+    pivot <- pivot[rowSums(is.na(pivot)) != ncol(pivot),]
+  }
 
   # Ta bort tekst hvis tekst under er lik
   if (!keepNames & length(rad) != 1){
@@ -116,7 +119,6 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   if (verdi %in% c("kontakter", "liggetid")){
     pivot <- slashHeltall(pivot)
   }
-
 
   return(pivot)
 }

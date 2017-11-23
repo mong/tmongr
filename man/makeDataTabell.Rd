@@ -9,41 +9,41 @@ makeDataTabell(inpDatasett, fane, rad, kol, verdi, aar, bo, beh,
   snitt, hdg, icd10)
 }
 \arguments{
-\item{inpDatasett}{}
+\item{inpDatasett}{a}
 
-\item{fane}{}
+\item{fane}{a}
 
-\item{rad}{}
+\item{rad}{a}
 
-\item{kol}{}
+\item{kol}{a}
 
-\item{verdi}{}
+\item{verdi}{a}
 
-\item{aar}{}
+\item{aar}{a}
 
-\item{bo}{}
+\item{bo}{a}
 
-\item{beh}{}
+\item{beh}{a}
 
-\item{behandlingsniva}{}
+\item{behandlingsniva}{a}
 
-\item{alder}{}
+\item{alder}{a}
 
-\item{kjonn}{}
+\item{kjonn}{a}
 
-\item{hastegrad2}{}
+\item{hastegrad2}{a}
 
-\item{prosent}{}
+\item{prosent}{a}
 
-\item{forenkling}{}
+\item{forenkling}{a}
 
-\item{keepNames}{}
+\item{keepNames}{a}
 
-\item{snitt}{}
+\item{snitt}{a}
 
-\item{hdg}{}
+\item{hdg}{a}
 
-\item{icd10}{}
+\item{icd10}{a}
 }
 \value{
 pivot

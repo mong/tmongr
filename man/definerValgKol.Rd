@@ -7,9 +7,9 @@
 definerValgKol(datasett, valgnr)
 }
 \arguments{
-\item{datasett}{}
+\item{datasett}{Datasett}
 
-\item{valgnr}{}
+\item{valgnr}{Hvilket valg}
 }
 \value{
 valg_en valg_to valg_tre

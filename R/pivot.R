@@ -22,18 +22,19 @@
 #' @return pivot
 #' @export
 #'
-makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi, 
+makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
                            aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2,
                            prosent, forenkling, keepNames, snitt, hdg, icd10){
-  
+
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding
-  
-  
+
+  if(length(rad) == length(kol)){if(rad == kol){return(NULL)}}
+
   if (verdi == "drg_index"){
     prosent = FALSE
   }
-  
+
   tabell <- inpDatasett
 
   # for å slå sammen helseforetak i sør-norge
@@ -42,23 +43,22 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
     kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
   }
 
-#  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
-#    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
-#    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
-#  }
-  
-  
+  #  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
+  #    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
+  #    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
+  #  }
+
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if(!nrow(tabell)){return()}
-  
+
   # Erstatte NA med null
   tabell[is.na(tabell)] <- 0
 
-  # lage pivot-tabell av det som er igjen. Rutinen ligger under.  
+  # lage pivot-tabell av det som er igjen. Rutinen ligger under.
   pivot <- makePivot(tabell, rad, kol, verdi)
   if(!nrow(pivot)){return()}
 
@@ -69,11 +69,11 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
   regnetTotal = FALSE
 
-  # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognrate?
+  # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognindex?
   if(snitt | prosent){
-    if (!("drg_index" %in% verdi | "liggedognrate" %in% verdi) & !(verdi %in% c("rate","drgrate") & length(rad) == 1)){
+    if (!("drg_index" %in% verdi | "liggedognindex" %in% verdi) & !(verdi %in% c("rate", "drgrate", "liggedognrate") & length(rad) == 1)){
       # ikke regn ut total på rater når en rad er bohf og den andre rad er bosh
-      if (!( (verdi %in% c("rate","drgrate")) & ('boomr_HF' %in% rad) & ('boomr_sykehus' %in% rad))){
+      if (!( (verdi %in% c("rate", "drgrate", "liggedognrate")) & ('boomr_HF' %in% rad) & ('boomr_sykehus' %in% rad))){
         regnetTotal = TRUE
         pivot <- addTotal(pivot, rad, kol)
       }
@@ -96,19 +96,26 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
   # bedre navn i kolonneoverskrift
   pivot <- renameColumns(pivot)
 
+  # Hvorfor gjøres den om til matrix?
   pivot <- as.matrix(pivot)
 
   pivot <- gsub("Boomr ","", pivot)
   pivot <- gsub("[.]",",", pivot)
-  
+
   # sortere ualfabetisk, fra nord til sør
   pivot <- sorterDatasett(pivot)
 
+  # Remove rows with only NA
+  # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
+  if (nrow(pivot) > 1){ # Denne feiler hvis man kun har en rad. Se issue #6 på github
+    pivot <- pivot[rowSums(is.na(pivot)) != ncol(pivot),]
+  }
+
   # Ta bort tekst hvis tekst under er lik
   if (!keepNames & length(rad) != 1){
-      pivot <- removeDoubleNames(pivot)
+    pivot <- removeDoubleNames(pivot)
   }
-  
+
   if (verdi %in% c("kontakter", "liggetid")){
     pivot <- slashHeltall(pivot)
   }
@@ -120,31 +127,32 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
 # lager en pivot-tabell av sum av verdien "agg"
 makePivot <- function(data, rad, kol, agg){
-  
+
+  #' @importFrom magrittr "%>%"
   # gruppere
   # Burde skrives om, uten if nesting (issue #6)
   if (length(rad) == 1){
-    tmp <- data %>% group_by_(rad, kol)
+    tmp <- data %>% dplyr::group_by_(rad, kol)
   }
   else if (length(rad) == 2){
-    tmp <- data %>% group_by_(rad[1], rad[2], kol)
+    tmp <- data %>% dplyr::group_by_(rad[1], rad[2], kol)
   }
   else{
     return(tomTabell())
   }
-  
+
   # Velge ut verdier. Rater avhengig av boområdet!
   if (agg == "rate"){
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
-      tmp <- tmp %>% summarise(verdi=sum(bosh_rate))
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(bosh_rate))
       tmp <- round_df(tmp, digits=1)
     }
     else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
-      tmp <- tmp %>% summarise(verdi=sum(bohf_rate))
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(bohf_rate))
       tmp <- round_df(tmp, digits=1)
     }
     else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
-      tmp <- tmp %>% summarise(verdi=sum(borhf_rate))
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(borhf_rate))
       tmp <- round_df(tmp, digits=1)
     }
     else {
@@ -152,30 +160,46 @@ makePivot <- function(data, rad, kol, agg){
     }
   } else if (agg == "drgrate"){
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
-      tmp <- tmp %>% summarise(verdi=sum(bosh_drgrate))
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(bosh_drgrate))
       tmp <- round_df(tmp, digits=1)
     }
     else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
-      tmp <- tmp %>% summarise(verdi=sum(bohf_drgrate))
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(bohf_drgrate))
       tmp <- round_df(tmp, digits=1)
     }
     else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
-      tmp <- tmp %>% summarise(verdi=sum(borhf_drgrate))
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(borhf_drgrate))
+      tmp <- round_df(tmp, digits=1)
+    }
+    else {
+      return(tomTabell())
+    }
+  } else if (agg == "liggedognrate"){
+    if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(bosh_liggerate))
+      tmp <- round_df(tmp, digits=1)
+    }
+    else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(bohf_liggerate))
+      tmp <- round_df(tmp, digits=1)
+    }
+    else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
+      tmp <- tmp %>% dplyr::summarise(verdi=sum(borhf_liggerate))
       tmp <- round_df(tmp, digits=1)
     }
     else {
       return(tomTabell())
     }
   } else if (agg == "drg_poeng"){
-#    valg = as.name(agg)
-    tmp <- tmp %>% summarise(verdi=sum(drg_poeng))
+    #    valg = as.name(agg)
+    tmp <- tmp %>% dplyr::summarise(verdi=sum(drg_poeng))
     tmp <- round_df(tmp, digits=0)
   } else if(agg == "drg_index"){
-    tmp_kontakt <- tmp %>% summarise(verdi = sum(kontakter))
-    tmp <- tmp %>% summarise(verdi = sum(drg_poeng))
+    tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(kontakter))
+    tmp <- tmp %>% dplyr::summarise(verdi = sum(drg_poeng))
     if (kol %in% rad){
       start = length(rad)+1
-    } 
+    }
     else {
       start = length(rad)+2
     }
@@ -183,41 +207,46 @@ makePivot <- function(data, rad, kol, agg){
       tmp[,i] <- tmp[,i]/tmp_kontakt[,i]
       tmp <- round_df(tmp, digits=3)
     }
-  } else if(agg == "liggedognrate"){
-    tmp_kontakt <- tmp %>% summarise(verdi = sum(kontakter))
-    tmp <- tmp %>% summarise(verdi = sum(liggetid))
+  } else if(agg == "liggedognindex"){
+    tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(kontakter))
+    tmp <- tmp %>% dplyr::summarise(verdi = sum(liggetid))
     for (i in (length(rad)+2):length(names(tmp))){
       tmp[,i] <- tmp[,i]/tmp_kontakt[,i]
       tmp <- round_df(tmp, digits=1)
     }
   } else{
-#    valg = as.name(agg)
-    tmp <- tmp %>% summarise_(verdi=interp(~sum(var), var = as.name(agg)))
+    #    valg = as.name(agg)
+    tmp <- tmp %>% dplyr::summarise_(verdi=lazyeval::interp(~sum(var), var = as.name(agg)))
     tmp <- round_df(tmp, digits=1)
   }
-  
-  tmp2 <- spread_(tmp, kol, "verdi")
+
+  tmp2 <- tidyr::spread_(tmp, kol, "verdi")
 
   return(tmp2)
-}
+} # makePivot
+
 
 # rund av alle tall i tabell
 # tatt fra http://stackoverflow.com/a/32930130
 round_df <- function(df, digits) {
   nums <- vapply(df, is.numeric, FUN.VALUE = logical(1))
-  
+
   df[,nums] <- round(df[,nums], digits = digits)
-  
+
   (df)
 }
 
 removeDoubleNames <- function(datasett){
   # rutine for å fjerne gjentagende navn nedover i tabellen
-  
+
   if (is.null(dim(datasett)[1])){return(datasett)}
 
   k <- "abc"
   for (i in 1:dim(datasett)[1]){
+    if(is.na(datasett[i,1])){
+      # just in case
+      next
+    }
     if(datasett[i,1] == k){
       datasett[i,1] <- ""
     }
@@ -230,37 +259,45 @@ removeDoubleNames <- function(datasett){
 
 sorterDatasett <- function(datasett){
   # Sortere datasett i forhold til boområdet og behandlingsområdet
-  # fungerer ikke med ø-hjelp
 
   # Hvis det kun er en rad, vil denne rutinen "ødelegge" tabellen.
   if (nrow(datasett) == 1){return(datasett)}
 
   names1 <- c(
-    "Eget lokalsykehus", "Annet sykehus i eget HF", "UNN Troms", "NLSH Bod", "Annet HF i HN", "HF i andre RHF",
-    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", 
-    "Finnmark", "Klinikk", "UNN", "Nordland", "Helgeland", "HF i S",
-    "Bor utenfor","Resterende", "Private",
-    "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S",
-    "Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialister", "Avtalespesialist",
-    "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi",
-    "Sum", "Akutt", "Planlagt")
+    "Eget lokalsykehus", # 1
+    "Annet sykehus i eget HF", # 2
+    "UNN Troms", # 3
+    "UNN HF", # 4
+    "NLSH Bod", # 5
+    "Nordlandssyk", # 6
+    "Annet HF i HN", # 7
+    "HF i andre RHF", # 8 #A
+    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", # B
+    "Finnmark", "Klinikk", "UNN", "Nordland", "Helgeland", "HF i S", # C
+    "Bor utenfor","Resterende", "Private", # D
+    "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S", # E
+    "Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialister", "Avtalespesialist", # F
+    "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", # G
+    "Sum", "Akutt", "Planlagt" # H
+  )
   names2 <- c(
-    "baa","bab","bac","bad","bae","baf",
-    "aaa","aab","aac","aad","aae","aaf","aag","aah","aai","aaj",
-    "aba","abb","abc","abd","abe","abf",
-    "xaa","xbb","xxx",
-    "aca","acb","acc","acd",
-    "ada","adb","adc","yyy","add",
-    "aea","aeb","aec","aed",
-    "zzz", "mmm", "nnn")
+    "aaa","aab","aac","baa","bab","bac","caa","cab", #A
+    "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", #B
+    "aba","abb","abc","abd","cba","cbb", #C
+    "xaa","xbb","xxx", # D
+    "aca","acb","acc","acd", # E
+    "ada","adb","adc","yyy","add", # F
+    "aea","aeb","aec","aed", # G
+    "zzz", "mmm", "nnn" # H
+  )
   tmp <- datasett
-  
+
   for(i in seq_along(names1)) tmp <- gsub(names1[i], names2[i], tmp)
-  
+
   tmp <- tmp[order(tmp[,1], tmp[,2]),]
-  
+
   for(i in seq_along(names1)) tmp <- gsub(names2[i], names1[i], tmp)
-  
+
   return(tmp)
 }
 
@@ -293,8 +330,8 @@ prosentFunc <- function(tabell, rad, kol){
     }
     tabell <- round_df(tabell, digits=1)
   }
-  
-  return(tabell)    
+
+  return(tabell)
 }
 
 
@@ -303,10 +340,10 @@ addTotal <- function(tabell, rad, kol){
   if("aar" %in% colnames(tabell)){
     tabell$aar = as.character(tabell$aar)
   }
-  
+
   new_tab <- tabell
   myname = "tmp"
-  
+
   k = 0
   num_val = 0
 
@@ -324,7 +361,7 @@ addTotal <- function(tabell, rad, kol){
         new_row = new_tab[i-1,]
         new_row[2] = "Sum"
         if (num_val != 1){
-           tabell <- bind_rows(tabell[1:k-1,],new_row,tabell[-(1:k-1),])
+          tabell <- dplyr::bind_rows(tabell[1:k-1,],new_row,tabell[-(1:k-1),])
         } else {num_val = 0}
         k = k + 1
       }
@@ -336,9 +373,9 @@ addTotal <- function(tabell, rad, kol){
     }
     myname = new_tab[i,1]
   }
-  new_row = tail(new_tab,1)
+  new_row = utils::tail(new_tab,1)
   new_row[length(rad)] = "Sum"
-  
+
   if (num_val != 0){
     tabell <- rbind(tabell[1:k,],new_row,tabell[-(1:k),])
   }
@@ -347,22 +384,22 @@ addTotal <- function(tabell, rad, kol){
 }
 
 renameColumns <- function(tabell){
-  
+
   names(tabell) <- sub("behandlende_sykehus", "Behandlende sykehus", names(tabell))
   names(tabell) <- sub("behandlende_HF_HN", "Behandlende HF", names(tabell))
   names(tabell) <- sub("behandlende_HF", "Behandlende HF", names(tabell))
   names(tabell) <- sub("behandlende_RHF", "Behandlende RHF", names(tabell))
-  names(tabell) <- sub("boomr_sykehus", "Bo-sykehus", names(tabell))
-  names(tabell) <- sub("boomr_HF", "Bo-HF", names(tabell))
-  names(tabell) <- sub("boomr_RHF", "Bo-RHF", names(tabell))
+  names(tabell) <- sub("boomr_sykehus", "Opptaksområde", names(tabell))
+  names(tabell) <- sub("boomr_HF", "Opptaksområde", names(tabell))
+  names(tabell) <- sub("boomr_RHF", "Opptaksområde", names(tabell))
   names(tabell) <- sub("alder", "Alder", names(tabell))
-  names(tabell) <- sub("behandlingsniva", "Behandlingsniva", names(tabell))
-#  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
+  names(tabell) <- sub("behandlingsniva", "Behandlingsnivå", names(tabell))
+  #  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
-  
+
   return(tabell)
-  
+
 }
 
 addLastColumn <- function(pivot,rad,kol,verdi){
@@ -375,7 +412,7 @@ addLastColumn <- function(pivot,rad,kol,verdi){
   } else {
     rund = 1
   }
-  
+
   if (((length(names(pivot))-length(rad)) != 1)){
     if ("aar" %in% kol){
       pivot$Snitt <- rowMeans(pivot[,-seq_len(length(rad))], na.rm = TRUE)
@@ -385,7 +422,7 @@ addLastColumn <- function(pivot,rad,kol,verdi){
       pivot$Sum <- round(pivot$Sum, rund)
     }
   }
-  
+
   return(pivot)
 }
 
@@ -397,5 +434,5 @@ slashHeltall <- function(tabell){
   # erstatte tall mellom 1 og 4 med "-"
   tabell[suppressWarnings(as.numeric(tabell)) < 5 & suppressWarnings(as.numeric(tabell)) > 0] <- "-"
   return(tabell)
-  
+
 }

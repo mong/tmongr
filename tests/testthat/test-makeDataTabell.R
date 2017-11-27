@@ -19,7 +19,7 @@ test_that("makeDataTabell returns a pivot table", {
                         aar=2016,
                         bo=2,
                         beh=1,
-                        behandlingsniva="Dagbehandling",
+                        behandlingsniva="Poliklinikk",
                         alder="tmp", #?
                         kjonn="tmp", #?
                         hastegrad2="tmp", #?
@@ -29,5 +29,6 @@ test_that("makeDataTabell returns a pivot table", {
                         snitt=T,
                         hdg="Alle",
                         icd10="Alle")
+  expect_equal_to_reference(tmp, "ref_pivot1")
 
 })

@@ -11,6 +11,7 @@ test_that("makeDataTable returns NULL and error", {
 })
 
 test_that("makeDataTabell returns a pivot table", {
+
   tmp <- makeDataTabell(inpDatasett = testdata,
                         fane = "tmp", #?
                         rad="boomr_HF",
@@ -29,6 +30,6 @@ test_that("makeDataTabell returns a pivot table", {
                         snitt=T,
                         hdg="Alle",
                         icd10="Alle")
-  expect_equal_to_reference(tmp, "ref_pivot1")
+  expect_equal_to_reference(tmp, "data/ref_pivot1")
 
 })

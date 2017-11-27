@@ -132,3 +132,42 @@ test_that("makeDataTabell returns a pivot table", {
   verdier <- originalverdier
   
 })
+
+test_that("text is returned", {
+  originalverdier <- list(inpDatasett = testdata,
+                          fane = "tmp", #?
+                          rad=c("boomr_HF","behandlende_HF"),
+                          kol= "aar",
+                          verdi="kontakter",
+                          aar=2016,
+                          bo=2,
+                          beh=1,
+                          behandlingsniva = c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist"), #"Poliklinikk",
+                          alder="tmp", #?
+                          kjonn="tmp", #?
+                          hastegrad2="tmp", #?
+                          prosent=F,
+                          forenkling=F,
+                          keepNames=F,
+                          snitt=T,
+                          hdg="Alle",
+                          icd10="Alle")
+  verdier <- originalverdier
+  hjelpetekst <- lagHjelpetekst(
+    verdier$fane, 
+    verdier$rader, 
+    verdier$kolonner, 
+    verdier$verdi, 
+    verdier$aar, 
+    verdier$bo, 
+    verdier$beh, 
+    verdier$prosent, 
+    verdier$behandlingsniva, 
+    verdier$alder, 
+    verdier$kjonn, 
+    verdier$hastegrad2, 
+    verdier$forenkling)
+  
+  expect_equal_to_reference(hjelpetekst, "data/ref_tekst1")
+  
+})

@@ -22,9 +22,25 @@
 #' @return pivot
 #' @export
 #'
-makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
-                           aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2,
-                           prosent, forenkling, keepNames, snitt, hdg, icd10){
+makeDataTabell <- function(inpDatasett,
+                           fane,
+                           rad,
+                           kol,
+                           verdi,
+                           aar,
+                           bo,
+                           beh,
+                           behandlingsniva,
+                           alder,
+                           kjonn,
+                           hastegrad2,
+                           prosent,
+                           forenkling,
+                           keepNames,
+                           snitt,
+                           hdg,
+                           icd10
+                           ){
 
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding

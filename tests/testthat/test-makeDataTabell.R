@@ -36,8 +36,8 @@ test_that("makeDataTabell returns a pivot table", {
   
   verdier <- list(inpDatasett = testdata,
                   fane = "tmp", #?
-                  rad="boomr_HF",
-                  kol="behandlende_HF",
+                  rad=c("boomr_HF","behandlende_HF"),
+                  kol= "aar",
                   verdi="kontakter",
                   aar=2016,
                   bo=2,

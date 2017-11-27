@@ -31,9 +31,6 @@ filtrerUt <- function(tabell, fane, rad, kol, verdi,
   if (verdi == "drg_index"){# ta ut avtalespesialistene
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold","Dagbehandling","Poliklinikk"))
   }
-  #  if ("hastegrad" %in% rad | "hastegrad" %in% kol){
-  #    tabell <- filter(tabell, hastegrad !="Ukjent")
-  #  }
 
   tabell <- filterBo(tabell,bo)
 
@@ -155,12 +152,9 @@ filterBehandlingsniva <- function(datasett, filter){
   if (!("behandlingsniva" %in% colnames(datasett))){
     return(datasett)
   }
-  if (length(filter) == length(behniva)){
-    return(datasett)
-  } else {
-    tabell <- dplyr::filter(datasett, behandlingsniva %in% filter)
-    return(tabell)
-  }
+
+  tabell <- dplyr::filter(datasett, behandlingsniva %in% filter)
+  return(tabell)
 }
 
 filterHastegrad1 <- function(datasett, filter){
@@ -179,12 +173,9 @@ filterHastegrad2 <- function(datasett, filter){
   if (!("DRGtypeHastegrad" %in% colnames(datasett))){
     return(datasett)
   }
-  if (length(filter) == length(hastegrd)){
-    return(datasett)
-  } else {
-    tabell <- dplyr::filter(datasett, DRGtypeHastegrad %in% filter)
-    return(tabell)
-  }
+
+  tabell <- dplyr::filter(datasett, DRGtypeHastegrad %in% filter)
+  return(tabell)
 }
 
 filterAlder <- function(datasett, filter){

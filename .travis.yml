@@ -8,9 +8,9 @@ warnings_are_errors: false
 #r:
 #  - release
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 
 before_install:
   - Rscript -e "if (!require('covr')) install.packages('covr')"

@@ -30,8 +30,8 @@ test_that("makeDataTable returns NULL and error", {
   expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_null(makeDataTabell(forenkling = NULL))
-  expect_null(makeDataTabell(aar = NULL))
-  expect_null(makeDataTabell(rad = "equal", kol = "equal"))
+  expect_null(makeDataTabell(forenkling = T, aar = NULL))
+  expect_null(makeDataTabell(forenkling = T, aar = T, rad = "equal", kol = "equal"))
 })
 
 test_that("makeDataTabell returns a pivot table", {
@@ -99,18 +99,28 @@ test_that("makeDataTabell returns a pivot table", {
 
   verdier <- originalverdier
   for (fane in c("dogn", "dag", "poli")){
-    verdier$fane <- "dogn"
+    verdier$fane <- fane
     tmp <- lag_pivot(verdier)
     expect_equal_to_reference(tmp, paste("data/ref_pivot4_", fane, sep = ""))
   }
 
+  # Check the same datasets, but with filter and not with fane
   verdier <- originalverdier
   verdier$behandlingsniva="Døgnopphold"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot4_dogn")
 
+  verdier$behandlingsniva="Dagbehandling"
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot4_dag")
+  
+  verdier$behandlingsniva="Poliklinikk"
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot4_poli")
+  
+  verdier <- originalverdier
   for (verdi in c("rate", "drgrate", "liggedognrate", "drg_poeng", "drg_index", "liggedognindex")){
-    for (boomr in c("boomr_sykehus", "boomr_HF", "boomr_RHF", "behandler")){
+    for (boomr in c("boomr_sykehus", "boomr_HF", "boomr_RHF", "Behandler")){
       verdier$verdi <- verdi
       verdier$rad <- boomr
       tmp <- lag_pivot(verdier)
@@ -118,18 +128,19 @@ test_that("makeDataTabell returns a pivot table", {
     }
   }
 
+  # Check Behandler alone
   verdier <- originalverdier
-  verdier$rad=c("behandler")
+  verdier$rad=c("Behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6a")
 
   # One too many rad elements
-  verdier$rad=c("boomr_HF","behandlende_HF","behandler")
+  verdier$rad=c("boomr_HF","behandlende_HF","Behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6b")
 
   # One of the rad elements equal kol
-  verdier$rad=c("boomr_HF","behandler")
+  verdier$rad=c("boomr_HF","Behandler")
   verdier$kol = "boomr_HF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6c")

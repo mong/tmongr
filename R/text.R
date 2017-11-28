@@ -237,7 +237,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>",sep = "")
     }
 
-    if (length(alder) != length(aldersgrupper)){
+    if (length(alder) != 4){
       if (length(alder) == 1){
         tmp1 = "<li>Kun aldersgruppen "
         alder_tekst = paste(tmp1, alder[length(alder)],"</li>",sep="")
@@ -250,7 +250,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       all_tekst <- paste(all_tekst, alder_tekst, sep="")
     }
 
-    if (length(hastegrad2) != length(hastegrd)){
+    if (length(hastegrad2) != 5){
       hast <- sapply(hastegrad2, tolower)
       if (length(hast) == 1){
         tmp1 = "<li>Kun hastegrad "
@@ -264,7 +264,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       all_tekst <- paste(all_tekst, hastegrad2_tekst, sep="")
     }
 
-    if (length(behandlingsniva) != length(behniva)){
+    if (length(behandlingsniva) != 4){
       behnivaa <- sapply(behandlingsniva, tolower)
       behnivaa <- gsub("dagbehandling","dagbehandlinger",behnivaa)
       behnivaa <- gsub("konsultasjon","konsultasjoner",behnivaa)

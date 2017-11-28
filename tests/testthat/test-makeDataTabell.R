@@ -33,7 +33,7 @@ test_that("makeDataTable returns NULL and error", {
 })
 
 test_that("makeDataTabell returns a pivot table", {
-  
+
   originalverdier <- list(inpDatasett = testdata,
                   fane = "tmp", #?
                   rad=c("boomr_HF","behandlende_HF"),
@@ -52,17 +52,17 @@ test_that("makeDataTabell returns a pivot table", {
                   snitt=T,
                   hdg="Alle",
                   icd10="Alle")
-  
+
   verdier <- originalverdier
-  
+
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot1")
-  
+
   verdier$bo <- 1
   verdier$beh <- 2
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2a")
-  
+
   verdier$bo <- 3
   verdier$beh <- 3
   tmp <- lag_pivot(verdier)
@@ -94,16 +94,18 @@ test_that("makeDataTabell returns a pivot table", {
   verdier$forenkling <- T
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot3")
-  
+
   verdier <- originalverdier
-  verdier$fane <- "dogn"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot4a")
+  for (fane in c("dogn", "dag", "poli")){
+    verdier$fane <- "dogn"
+    tmp <- lag_pivot(verdier)
+    expect_equal_to_reference(tmp, paste("data/ref_pivot4_", fane, sep = ""))
+  }
 
   verdier <- originalverdier
   verdier$behandlingsniva="Døgnopphold"
   tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot4b")
+  expect_equal_to_reference(tmp, "data/ref_pivot4_dogn")
 
   verdier$verdi <- "rate"
   tmp <- lag_pivot(verdier)
@@ -112,7 +114,7 @@ test_that("makeDataTabell returns a pivot table", {
   verdier$verdi <- "drgrate"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot5b")
-  
+
   verdier$verdi <- "liggedognrate"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot5c")
@@ -128,9 +130,9 @@ test_that("makeDataTabell returns a pivot table", {
   verdier$verdi <- "liggedognindex"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot5f")
-  
+
   verdier <- originalverdier
-  
+
 })
 
 
@@ -155,21 +157,21 @@ test_that("text is returned", {
                           icd10="Alle")
   verdier <- originalverdier
   hjelpetekst <- lagHjelpetekst(
-    tab =             verdier$fane, 
-    rad =             verdier$rader, 
-    kol =             verdier$kolonner, 
-    verdi =           verdier$verdi, 
-    aar =             verdier$aar, 
-    bo =              verdier$bo, 
-    beh =             verdier$beh, 
-    prosent =         verdier$prosent, 
-    behandlingsniva = verdier$behandlingsniva, 
-    alder =           verdier$alder, 
-    kjonn =           verdier$kjonn, 
-    hastegrad2 =      verdier$hastegrad2, 
+    tab =             verdier$fane,
+    rad =             verdier$rader,
+    kol =             verdier$kolonner,
+    verdi =           verdier$verdi,
+    aar =             verdier$aar,
+    bo =              verdier$bo,
+    beh =             verdier$beh,
+    prosent =         verdier$prosent,
+    behandlingsniva = verdier$behandlingsniva,
+    alder =           verdier$alder,
+    kjonn =           verdier$kjonn,
+    hastegrad2 =      verdier$hastegrad2,
     forenkling =      verdier$forenkling)
-  
+
   expect_equal_to_reference(hjelpetekst, "data/ref_tekst1")
-  
+
 })
 

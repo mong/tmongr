@@ -30,6 +30,8 @@ test_that("makeDataTable returns NULL and error", {
   expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_null(makeDataTabell(forenkling = NULL))
+  expect_null(makeDataTabell(aar = NULL))
+  expect_null(makeDataTabell(rad = "equal", kol = "equal"))
 })
 
 test_that("makeDataTabell returns a pivot table", {
@@ -107,32 +109,37 @@ test_that("makeDataTabell returns a pivot table", {
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot4_dogn")
 
-  verdier$verdi <- "rate"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot5a")
-
-  verdier$verdi <- "drgrate"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot5b")
-
-  verdier$verdi <- "liggedognrate"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot5c")
-
-  verdier$verdi <- "drg_poeng"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot5d")
-
-  verdier$verdi <- "drg_index"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot5e")
-
-  verdier$verdi <- "liggedognindex"
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot5f")
+  for (verdi in c("rate", "drgrate", "liggedognrate", "drg_poeng", "drg_index", "liggedognindex")){
+    for (boomr in c("boomr_sykehus", "boomr_HF", "boomr_RHF", "behandler")){
+      verdier$verdi <- verdi
+      verdier$rad <- boomr
+      tmp <- lag_pivot(verdier)
+      expect_equal_to_reference(tmp, paste("data/ref_pivot5_", boomr, "_", verdi, sep = ""))
+    }
+  }
 
   verdier <- originalverdier
+  verdier$rad=c("behandler")
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot6a")
 
+  # One too many rad elements
+  verdier$rad=c("boomr_HF","behandlende_HF","behandler")
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot6b")
+
+  # One of the rad elements equal kol
+  verdier$rad=c("boomr_HF","behandler")
+  verdier$kol = "boomr_HF"
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot6c")
+
+  # Calculate percentage horizontal
+  verdier$rad=c("boomr_HF", "aar")
+  verdier$kol = "ICD10Kap"
+  verdier$prosent = T
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot6d")
 })
 
 

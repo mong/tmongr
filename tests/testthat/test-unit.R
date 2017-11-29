@@ -17,4 +17,14 @@ test_that("filterBeh is correct", {
   expect_null(filterBeh(testdata, "random_string"))
 })
 
+test_that("filterAar is correct", {
+  k = 0
+  for (aar in c("2013",c("2011","2016"), c("2010", "2011", "2016"))){
+    k = k + 1
+    expect_equal_to_reference(filterAar(testdata,filter = aar), paste0("data/unit_aar_", k))
+  }
+  expect_equal(nrow(filterAar(testdata,"2010")), 0)
+  expect_equal(filterAar(testdata,c("2011","2016")), filterAar(testdata,filter = c("2010", "2011", "2016")))
+})
+
 

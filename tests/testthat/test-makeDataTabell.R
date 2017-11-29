@@ -151,7 +151,14 @@ test_that("makeDataTabell returns a pivot table", {
   verdier$prosent = T
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6d")
-})
+
+  # Check dataset with more variables
+  verdier <- originalverdier
+  verdier$inpDatasett <- testdata2
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot7")
+  
+  })
 
 
 

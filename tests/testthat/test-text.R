@@ -106,7 +106,7 @@ test_that("correct text is returned", {
   for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("aar","behandlende_sykehus"),
+      rad =             c("aar","hastegrad"),
       kol =             "kjonn",
       verdi =           verdi,
       aar =             c("2011", "2013", "2014", "2015"),
@@ -121,21 +121,21 @@ test_that("correct text is returned", {
     expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_verdi_",  verdi, sep = ""))
   }
   
-  for (bo in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
-    hjelpetekst <- lagHjelpetekst(
-      tab =             verdier$fane,
-      rad =             c("aar","behandlende_RHF"),
-      kol =             "alder",
-      verdi =           verdier$verdi,
-      aar =             verdier$aar,
-      bo =              bo,
-      beh =             verdier$beh,
-      prosent =         verdier$prosent,
-      behandlingsniva = c("dag"),
-      alder =           verdier$alder,
-      kjonn =           verdier$kjonn,
-      hastegrad2 =      verdier$hastegrad2,
-      forenkling =      verdier$forenkling)
-    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_bo_",  bo, sep = ""))
-  }
+#  for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
+#    hjelpetekst <- lagHjelpetekst(
+#      tab =             verdier$fane,
+#      rad =             c("aar","behandlende_RHF"),
+#      kol =             "alder",
+#      verdi =           verdi,
+#      aar =             c("2011", "2012", "2013", "2014", "2015", "2016"),
+#      bo =              verdier$bo,
+#      beh =             verdier$beh,
+#      prosent =         verdier$prosent,
+#      behandlingsniva = c("dag"),
+#      alder =           "0-16",
+#      kjonn =           verdier$kjonn,
+#      hastegrad2 =      "Akutt",
+#      forenkling =      verdier$forenkling)
+#    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_verdi_",  verdi, sep = ""))
+#  }
 })

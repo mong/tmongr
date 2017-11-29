@@ -70,7 +70,7 @@ test_that("correct text is returned", {
   for (bohf in c(1,2,3,4,5,6)){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             verdier$rad,
+      rad =             c("boomr_sykehus","Behandler"),
       kol =             "hastegrad",
       verdi =           verdier$verdi,
       aar =             c("2016", "2015", "2014"),
@@ -88,10 +88,10 @@ test_that("correct text is returned", {
   for (behhf in c(1,2,3,4,5,6,7)){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             verdier$rad,
+      rad =             c("boomr_RHF","Behandler"),
       kol =             "behandlingsniva",
       verdi =           verdier$verdi,
-      aar =             verdier$aar,
+      aar =             "2015",
       bo =              verdier$bo,
       beh =             behhf,
       prosent =         T,
@@ -106,10 +106,10 @@ test_that("correct text is returned", {
   for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             verdier$rad,
+      rad =             c("aar","behandlende_sykehus"),
       kol =             "kjonn",
       verdi =           verdi,
-      aar =             verdier$aar,
+      aar =             c("2011", "2013", "2014", "2015"),
       bo =              verdier$bo,
       beh =             verdier$beh,
       prosent =         verdier$prosent,
@@ -124,7 +124,7 @@ test_that("correct text is returned", {
   for (bo in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             verdier$rad,
+      rad =             c("aar","behandlende_RHF"),
       kol =             "alder",
       verdi =           verdier$verdi,
       aar =             verdier$aar,

@@ -4,7 +4,7 @@ test_that("filterBo is correct", {
   for (bo in c(1,2,3,4,5,6)){
     expect_equal_to_reference(filterBo(testdata, bo), paste("data/unit_bo_",bo,sep = ""))
   }
-  for (i in 7:1000) expect_null(filterBo(testdata, i))
+  for (i in 7:24) expect_null(filterBo(testdata, i))
   expect_null(filterBo(testdata, "random_string"))
 })
 
@@ -12,19 +12,76 @@ test_that("filterBeh is correct", {
   for (beh in c(1,2,3,4,5,6,7)){
     expect_equal_to_reference(filterBeh(testdata, beh), paste("data/unit_beh_",beh,sep = ""))
   }
-  random_number <- floor(runif(1, min=8, max=1000))
-  expect_null(filterBeh(testdata, random_number))
+  for (i in 8:24) expect_null(filterBeh(testdata, i))
   expect_null(filterBeh(testdata, "random_string"))
 })
 
 test_that("filterAar is correct", {
   k = 0
-  for (aar in c("2013",c("2011","2016"), c("2010", "2011", "2016"))){
+  for (aar in list("2013",list("2011","2016"), list("2010", "2011", "2016"))){
     k = k + 1
     expect_equal_to_reference(filterAar(testdata,filter = aar), paste0("data/unit_aar_", k))
   }
   expect_equal(nrow(filterAar(testdata,"2010")), 0)
-  expect_equal(filterAar(testdata,c("2011","2016")), filterAar(testdata,filter = c("2010", "2011", "2016")))
+  expect_equal(filterAar(testdata,list("2011","2016")), filterAar(testdata,filter = c("2010", "2011", "2016")))
 })
 
+test_that("filterBehandlingsniva is correct", {
+  k = 0
+  for (behniva in list("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist",list("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist"), list("Dagbehandling","Poliklinikk","Avtalespesialist"), list("Døgnopphold","Dagbehandling","Poliklinikk"))){
+    k = k + 1
+    expect_equal_to_reference(filterBehandlingsniva(testdata, behniva), paste0("data/unit_behniva_",k))
+    expect_equal_to_reference(filterBehandlingsniva(testdata2, behniva), paste0("data/unit_behnivaalt_",k))
+  }
+  df <- data.frame(File=character(), 
+                   User=character(), 
+                   stringsAsFactors=FALSE) 
+  expect_equal(filterBehandlingsniva(df, "random"), df)
+})
 
+test_that("filterHastegrad2 is correct", {
+  k = 0
+  for (hastegrad in list("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent", list("Planlagt medisin","Akutt medisin"), list("Planlagt kirurgi", "Akutt kirurgi"))){
+    k = k + 1
+    expect_equal_to_reference(filterHastegrad2(testdata2, hastegrad), paste0("data/unit_hastegrad2_",k))
+    expect_equal(filterHastegrad2(testdata, hastegrad), testdata)
+  }
+  expect_equal(nrow(filterHastegrad2(testdata2, "random")),0)
+})
+
+test_that("filterAlder is correct", {
+  k = 0
+  for (alder in list("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over", list("50 - 74 år", "75 år og over"), list("0 - 17 år","18 - 49 år"))){
+    k = k + 1
+    expect_equal_to_reference(filterAlder(testdata2, alder), paste0("data/unit_alder_", k))
+  }
+  expect_equal(filterAlder(testdata2,c("a","b","c","d")), testdata2)
+  expect_equal(filterAlder(testdata,c("a")), testdata)
+})
+
+test_that("filterKjonn is correct", {
+  for (kjonn in list("Kvinner", "Menn")){
+    expect_equal_to_reference(filterKjonn(testdata2, kjonn), paste0("data/unit_kjonn_", kjonn))
+    expect_equal(filterKjonn(testdata, kjonn), testdata)
+  }
+  expect_equal(nrow(filterKjonn(testdata2, "random")),0)
+})
+
+test_that("filterHDG is correct", {
+  expect_equal(filterHDG(testdata, "Alle"), testdata)
+  expect_error(filterHDG(testdata, "random"))
+})
+
+test_that("filterICD10 is correct", {
+  expect_equal(filterICD10(testdata, "Alle"), testdata)
+  expect_error(filterICD10(testdata2, "random"))
+  k = 0
+  for (icd10 in list("Visse infeksjonssykd og parasittsykd", 
+                     "Svulster", 
+                     "Sykd i blod og bloddannende organer",
+                     "Endokrine sykd, ernæringssykd",
+                     "Psyk lidelser og atferdsforstyrrelser")){
+    k = k + 1
+    expect_equal_to_reference(filterICD10(testdata,icd10), paste0("data/unit_icd10_", k))
+  }
+})

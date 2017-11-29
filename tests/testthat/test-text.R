@@ -1,5 +1,10 @@
 context("text")
 
+test_that("utvalgTekst is correct", {
+  for (fane in c("alle", "menisk", "dogn", "dag", "poli", "random")){
+    expect_equal_to_reference(utvalgTekst(fane), paste0("data/ref_txt_",fane))
+  }
+})
 
 test_that("correct text is returned", {
   originalverdier <- list(inpDatasett = testdata,
@@ -11,9 +16,9 @@ test_that("correct text is returned", {
                           bo=2,
                           beh=1,
                           behandlingsniva = c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist"), #"Poliklinikk",
-                          alder="tmp", #?
-                          kjonn="tmp", #?
-                          hastegrad2="tmp", #?
+                          alder=c("tmp", "tmp", "tmp", "tmp"),
+                          kjonn=c("tmp", "tmp"), #?
+                          hastegrad2=c("tmp", "tmp", "tmp", "tmp", "tmp"),
                           prosent=F,
                           forenkling=F,
                           keepNames=F,
@@ -47,7 +52,7 @@ test_that("correct text is returned", {
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,
     rad =             verdier$rad,
-    kol =             verdier$kol,
+    kol =             "hastegrad_drgtype_dogn",
     verdi =           verdier$verdi,
     aar =             verdier$aar,
     bo =              verdier$bo,
@@ -61,13 +66,14 @@ test_that("correct text is returned", {
   expect_equal_to_reference(hjelpetekst, "data/ref_tekst2")
   
   verdier <- originalverdier
+  verdier$fane <- "random"
   for (bohf in c(1,2,3,4,5,6)){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
       rad =             verdier$rad,
-      kol =             verdier$kol,
+      kol =             "hastegrad",
       verdi =           verdier$verdi,
-      aar =             verdier$aar,
+      aar =             c("2016", "2015", "2014"),
       bo =              bohf,
       beh =             verdier$beh,
       prosent =         verdier$prosent,
@@ -83,18 +89,53 @@ test_that("correct text is returned", {
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
       rad =             verdier$rad,
-      kol =             verdier$kol,
+      kol =             "behandlingsniva",
       verdi =           verdier$verdi,
       aar =             verdier$aar,
       bo =              verdier$bo,
       beh =             behhf,
-      prosent =         verdier$prosent,
+      prosent =         T,
       behandlingsniva = verdier$behandlingsniva,
-      alder =           verdier$alder,
-      kjonn =           verdier$kjonn,
+      alder =           c("1", "2", "3"),
+      kjonn =           "mann",
       hastegrad2 =      verdier$hastegrad2,
       forenkling =      verdier$forenkling)
     expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_beh",  behhf, sep = ""))
   }
   
+  for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
+    hjelpetekst <- lagHjelpetekst(
+      tab =             verdier$fane,
+      rad =             verdier$rad,
+      kol =             "kjonn",
+      verdi =           verdi,
+      aar =             verdier$aar,
+      bo =              verdier$bo,
+      beh =             verdier$beh,
+      prosent =         verdier$prosent,
+      behandlingsniva = c("dag", "dogn"),
+      alder =           verdier$alder,
+      kjonn =           verdier$kjonn,
+      hastegrad2 =      c("en", "to", "tre"),
+      forenkling =      verdier$forenkling)
+    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_verdi_",  verdi, sep = ""))
+  }
+  
+  for (bo in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
+    hjelpetekst <- lagHjelpetekst(
+      tab =             verdier$fane,
+      rad =             verdier$rad,
+      kol =             "alder",
+      verdi =           verdier$verdi,
+      aar =             verdier$aar,
+      bo =              bo,
+      beh =             verdier$beh,
+      prosent =         verdier$prosent,
+      behandlingsniva = c("dag"),
+      alder =           verdier$alder,
+      kjonn =           verdier$kjonn,
+      hastegrad2 =      verdier$hastegrad2,
+      forenkling =      verdier$forenkling)
+    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_bo_",  bo, sep = ""))
+  }
 })

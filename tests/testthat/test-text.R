@@ -51,7 +51,7 @@ test_that("correct text is returned", {
   verdier$snitt <- F
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,
-    rad =              c("aar","behandlende_RHF"),
+    rad =              c("aar","behandlende_RHF","alder"),
     kol =             "hastegrad_drgtype_dogn",
     verdi =           verdier$verdi,
     aar =             verdier$aar,
@@ -117,7 +117,7 @@ test_that("correct text is returned", {
       alder =           "0-16",
       kjonn =           verdier$kjonn,
       hastegrad2 =      c("en", "to", "tre"),
-      forenkling =      verdier$forenkling)
+      forenkling =      T)
     expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_verdi_",  verdi, sep = ""))
   }
   

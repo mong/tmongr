@@ -51,7 +51,7 @@ test_that("correct text is returned", {
   verdier$snitt <- F
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,
-    rad =             verdier$rad,
+    rad =              c("aar","behandlende_RHF"),
     kol =             "hastegrad_drgtype_dogn",
     verdi =           verdier$verdi,
     aar =             verdier$aar,
@@ -70,10 +70,10 @@ test_that("correct text is returned", {
   for (bohf in c(1,2,3,4,5,6)){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("boomr_sykehus","Behandler"),
+      rad =             c("boomr_sykehus","behandlende_sykehus"),
       kol =             "hastegrad",
       verdi =           verdier$verdi,
-      aar =             c("2016", "2015", "2014"),
+      aar =             c("2014", "2015", "2016"),
       bo =              bohf,
       beh =             verdier$beh,
       prosent =         verdier$prosent,
@@ -88,17 +88,17 @@ test_that("correct text is returned", {
   for (behhf in c(1,2,3,4,5,6,7)){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("boomr_RHF","Behandler"),
+      rad =             c("boomr_RHF","aar"),
       kol =             "behandlingsniva",
       verdi =           verdier$verdi,
       aar =             "2015",
       bo =              verdier$bo,
       beh =             behhf,
       prosent =         T,
-      behandlingsniva = verdier$behandlingsniva,
+      behandlingsniva = c("dag"),
       alder =           c("1", "2", "3"),
       kjonn =           "mann",
-      hastegrad2 =      verdier$hastegrad2,
+      hastegrad2 =      "Akutt",
       forenkling =      verdier$forenkling)
     expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_beh",  behhf, sep = ""))
   }
@@ -106,7 +106,7 @@ test_that("correct text is returned", {
   for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("aar","hastegrad"),
+      rad =             c("Behandler","hastegrad"),
       kol =             "kjonn",
       verdi =           verdi,
       aar =             c("2011", "2013", "2014", "2015"),
@@ -114,7 +114,7 @@ test_that("correct text is returned", {
       beh =             verdier$beh,
       prosent =         verdier$prosent,
       behandlingsniva = c("dag", "dogn"),
-      alder =           verdier$alder,
+      alder =           "0-16",
       kjonn =           verdier$kjonn,
       hastegrad2 =      c("en", "to", "tre"),
       forenkling =      verdier$forenkling)

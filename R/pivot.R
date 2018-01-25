@@ -288,7 +288,7 @@ sorterDatasett <- function(datasett){
     "Nordlandssyk", # 6
     "Annet HF i HN", # 7
     "HF i andre RHF", # 8 #A
-    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", # B
+    "Kirkenes", "Hammerfest", "Troms", "Harstad", "Narvik", "Vester", "Lofoten", "Bod", "Rana", "Mosj", "Sandnessj", # B
     "Finnmark", "Klinikk", "UNN", "Nordland", "Helgeland", "HF i S", # C
     "Bor utenfor","Resterende", "Private", # D
     "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S", # E
@@ -298,7 +298,7 @@ sorterDatasett <- function(datasett){
   )
   names2 <- c(
     "aaa","aab","aac","baa","bab","bac","caa","cab", #A
-    "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", #B
+    "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", "dak", #B
     "aba","abb","abc","abd","cba","cbb", #C
     "xaa","xbb","xxx", # D
     "aca","acb","acc","acd", # E

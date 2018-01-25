@@ -15,6 +15,7 @@ warnings_are_errors: false
 before_install:
   - Rscript -e "if (!require('covr')) install.packages('covr')"
   - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
+  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
   - Rscript -e "if (!require('pkgdown')) devtools::install_github('hadley/pkgdown')"
 
 script:

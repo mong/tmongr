@@ -6,7 +6,7 @@
 #' @param fane,rad,kol,verdi,aar,bo,beh,behandlingsniva,alder,kjonn,hastegrad2,hdg,icd10 Filteringsvalg.
 #'
 filtrerUt <- function(tabell, fane, rad, kol, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10){
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag){
 
   if (fane == "dogn"){
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
@@ -21,6 +21,8 @@ filtrerUt <- function(tabell, fane, rad, kol, verdi,
   tabell <- filterHDG(tabell, hdg)
 
   tabell <- filterICD10(tabell, icd10)
+
+  tabell <- filterFag(tabell, fag)
 
   tabell <- filterAar(tabell, aar)
 
@@ -210,5 +212,13 @@ filterICD10 <- function(datasett, filter){
     return(datasett)
   } else {
     tabell <- dplyr::filter(datasett, ICD10Kap %in% filter)
+  }
+}
+
+filterFag <- function(datasett, filter){
+  if (filter == "Alle"){
+    return(datasett)
+  } else {
+    tabell <- dplyr::filter(datasett, episodeFag %in% filter)
   }
 }

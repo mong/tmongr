@@ -39,7 +39,8 @@ makeDataTabell <- function(inpDatasett,
                            keepNames,
                            snitt,
                            hdg,
-                           icd10
+                           icd10,
+                           fag
                            ){
 
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
@@ -66,7 +67,7 @@ makeDataTabell <- function(inpDatasett,
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10)
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if(!nrow(tabell)){return()}
@@ -120,7 +121,7 @@ makeDataTabell <- function(inpDatasett,
 
   # sortere ualfabetisk, fra nord til sør
   pivot <- sorterDatasett(pivot)
-
+  
   # Remove rows with only NA
   # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
   if (nrow(pivot) > 1){ # Denne feiler hvis man kun har en rad. Se issue #6 på github
@@ -296,6 +297,7 @@ sorterDatasett <- function(datasett){
     "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", # G
     "Sum", "Akutt", "Planlagt" # H
   )
+  
   names2 <- c(
     "aaa","aab","baa","bab","bac", "bae" ,"caa","cab", #A
     "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", "dak", #B

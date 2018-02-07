@@ -2,52 +2,54 @@
 % Please edit documentation in R/pivot.R
 \name{makeDataTabell}
 \alias{makeDataTabell}
-\title{Title}
+\title{Make a pivot table}
 \usage{
 makeDataTabell(inpDatasett, fane, rad, kol, verdi, aar, bo, beh,
   behandlingsniva, alder, kjonn, hastegrad2, prosent, forenkling, keepNames,
   snitt, hdg, icd10, fag)
 }
 \arguments{
-\item{inpDatasett}{a}
+\item{inpDatasett}{The dataset that is going to be tabulated}
 
-\item{fane}{a}
+\item{fane}{The active tab (for filtering; effect if "dogn", "dag" or "poli")}
 
-\item{rad}{a}
+\item{rad}{What to tabulate on the row}
 
-\item{kol}{a}
+\item{kol}{What to tabulate on the column}
 
-\item{verdi}{a}
+\item{verdi}{The value that is going to be tabulated}
 
-\item{aar}{a}
+\item{aar}{The years to be tabulated}
 
-\item{bo}{a}
+\item{bo}{Living area. Possible values 1:6}
 
-\item{beh}{a}
+\item{beh}{Hospital Health Trust. Possible values 1:7}
 
-\item{behandlingsniva}{a}
+\item{behandlingsniva}{Type of contact (admissions, outpatient consultations or day patient treatments)}
 
-\item{alder}{a}
+\item{alder}{Age group}
 
-\item{kjonn}{a}
+\item{kjonn}{Gender}
 
-\item{hastegrad2}{a}
+\item{hastegrad2}{Degree of urgency}
 
-\item{prosent}{a}
+\item{prosent}{Show percentage}
 
-\item{forenkling}{a}
+\item{forenkling}{Merge all health trust outside northern norway}
 
-\item{keepNames}{a}
+\item{keepNames}{Tabulate all names in first row}
 
-\item{snitt}{a}
+\item{snitt}{Add average/sums to the table}
 
-\item{hdg}{a}
+\item{hdg}{Main diagnostic group (for filtering)}
 
-\item{icd10}{a}
+\item{icd10}{ICD10 chapter (for filtering)}
+
+\item{fag}{Medical fields (for filtering)}
 }
 \value{
-pivot
+pivot Pivot table
 }
 \description{
-Title
+Make a pivot table
 }

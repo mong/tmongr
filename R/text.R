@@ -1,7 +1,7 @@
 
 #' Title
 #'
-#' @param tab Utvalg
+#' @param tab The active tab
 #'
 #' @return Tekst
 #' @export
@@ -30,10 +30,21 @@ utvalgTekst <- function(tab){
 # For å lage caption til tabell
 
 #' Title
+#' @param tab The active tab
+#' @param rad What to tabulate on the row
+#' @param kol What to tabulate on the column
+#' @param verdi The value that is going to be tabulated
+#' @param aar The years to be tabulated
+#' @param bo Living area. Possible values 1:6
+#' @param beh Hospital Health Trust. Possible values 1:7
+#' @param behandlingsniva Type of contact (admissions, outpatient consultations or day patient treatments)
+#' @param alder Age group
+#' @param kjonn Gender
+#' @param hastegrad2 Degree of urgency
+#' @param prosent Show percentage
+#' @param forenkling Merge all health trust outside northern norway
 #'
-#' @param tab,rad,kol,verdi,aar,bo,beh,prosent,behandlingsniva,alder,kjonn,hastegrad2,forenkling Beskrivelse
-#'
-#' @return Tekst
+#' @return Tekst Some text that describe the selection made by the user.
 #' @export
 #'
 lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva, alder, kjonn, hastegrad2, forenkling){

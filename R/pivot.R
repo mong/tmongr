@@ -1,25 +1,26 @@
-#' Title
+#' Make a pivot table
 #'
-#' @param inpDatasett a
-#' @param fane a
-#' @param rad a
-#' @param kol a
-#' @param verdi a
-#' @param aar a
-#' @param bo a
-#' @param beh a
-#' @param behandlingsniva a
-#' @param alder a
-#' @param kjonn a
-#' @param hastegrad2 a
-#' @param prosent a
-#' @param forenkling a
-#' @param keepNames a
-#' @param snitt a
-#' @param hdg a
-#' @param icd10 a
+#' @param inpDatasett The dataset that is going to be tabulated
+#' @param fane The active tab (for filtering; effect if "dogn", "dag" or "poli")
+#' @param rad What to tabulate on the row
+#' @param kol What to tabulate on the column
+#' @param verdi The value that is going to be tabulated
+#' @param aar The years to be tabulated
+#' @param bo Living area. Possible values 1:6
+#' @param beh Hospital Health Trust. Possible values 1:7
+#' @param behandlingsniva Type of contact (admissions, outpatient consultations or day patient treatments)
+#' @param alder Age group
+#' @param kjonn Gender
+#' @param hastegrad2 Degree of urgency
+#' @param prosent Show percentage
+#' @param forenkling Merge all health trust outside northern norway
+#' @param keepNames Tabulate all names in first row
+#' @param snitt Add average/sums to the table
+#' @param hdg Main diagnostic group (for filtering)
+#' @param icd10 ICD10 chapter (for filtering)
+#' @param fag Medical fields (for filtering)
 #'
-#' @return pivot
+#' @return pivot Pivot table
 #' @export
 #'
 makeDataTabell <- function(inpDatasett,

@@ -6,7 +6,7 @@
 \usage{
 makeDataTabell(inpDatasett, fane, rad, kol, verdi, aar, bo, beh,
   behandlingsniva, alder, kjonn, hastegrad2, prosent, forenkling, keepNames,
-  snitt, hdg, icd10)
+  snitt, hdg, icd10, fag)
 }
 \arguments{
 \item{inpDatasett}{a}

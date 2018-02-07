@@ -5,7 +5,7 @@
 #' @param tabell Datasettet som skal filtreres.
 #' @param fane,rad,kol,verdi,aar,bo,beh,behandlingsniva,alder,kjonn,hastegrad2,hdg,icd10 Filteringsvalg.
 #'
-filtrerUt <- function(tabell, fane, rad, kol, verdi,
+filtrerUt <- function(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag){
 
   if (fane == "dogn"){

@@ -22,9 +22,26 @@
 #' @return pivot
 #' @export
 #'
-makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
-                           aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2,
-                           prosent, forenkling, keepNames, snitt, hdg, icd10){
+makeDataTabell <- function(inpDatasett,
+                           fane,
+                           rad,
+                           kol,
+                           verdi,
+                           aar,
+                           bo,
+                           beh,
+                           behandlingsniva,
+                           alder,
+                           kjonn,
+                           hastegrad2,
+                           prosent,
+                           forenkling,
+                           keepNames,
+                           snitt,
+                           hdg,
+                           icd10,
+                           fag
+                           ){
 
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding
@@ -50,7 +67,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10)
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if(!nrow(tabell)){return()}
@@ -104,7 +121,7 @@ makeDataTabell <- function(inpDatasett, fane, rad, kol, verdi,
 
   # sortere ualfabetisk, fra nord til sør
   pivot <- sorterDatasett(pivot)
-
+  
   # Remove rows with only NA
   # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
   if (nrow(pivot) > 1){ # Denne feiler hvis man kun har en rad. Se issue #6 på github
@@ -272,19 +289,20 @@ sorterDatasett <- function(datasett){
     "Nordlandssyk", # 6
     "Annet HF i HN", # 7
     "HF i andre RHF", # 8 #A
-    "Kirkenes", "Hammerfest", "Troms", "Narvik", "Harstad", "Vester", "Lofoten", "Bod", "Rana", "Sandnessj", # B
+    "Kirkenes", "Hammerfest", "Troms", "Harstad", "Narvik", "Vester", "Lofoten", "Bod", "Rana", "Mosj", "Sandnessj", # B
     "Finnmark", "Klinikk", "UNN", "Nordland", "Helgeland", "HF i S", # C
-    "Bor utenfor","Resterende", "Private", # D
+    "Bor utenfor","Resterende", "Andre offentlige", "Private", # D
     "Helse Nord RHF", "Helse Midt-Norge", "Helse Vest RHF", "Helse S", # E
     "Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialister", "Avtalespesialist", # F
     "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", # G
     "Sum", "Akutt", "Planlagt" # H
   )
+  
   names2 <- c(
-    "aaa","aab","aac","baa","bab","bac","caa","cab", #A
-    "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", #B
-    "aba","abb","abc","abd","cba","cbb", #C
-    "xaa","xbb","xxx", # D
+    "aaa","aab","baa","bab","bac", "bae" ,"caa","cab", #A
+    "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", "dak", #B
+    "aba","abb","baf","bag","cba","cbb", #C
+    "xaa","xbb","xcc","xxx", # D
     "aca","acb","acc","acd", # E
     "ada","adb","adc","yyy","add", # F
     "aea","aeb","aec","aed", # G

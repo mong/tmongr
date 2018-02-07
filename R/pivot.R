@@ -66,7 +66,7 @@ makeDataTabell <- function(inpDatasett,
   #  }
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
-  tabell <- filtrerUt(tabell, fane, rad, kol, verdi,
+  tabell <- filtrerUt(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag)
 
   # Returnere ingenting hvis hele tabellen filtreres bort

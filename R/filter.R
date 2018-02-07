@@ -4,8 +4,6 @@
 #' 
 #' @param tabell Datasettet som skal filtreres.
 #' @param fane Fanen som vises (effekt hvis dogn, dag eller poli)
-#' @param rad  TBA
-#' @param kol  TBA
 #' @param verdi  TBA
 #' @param aar  TBA
 #' @param bo  TBA
@@ -16,7 +14,8 @@
 #' @param hastegrad2 TBA 
 #' @param hdg  TBA
 #' @param icd10  TBA
-filtrerUt <- function(tabell, fane, rad, kol, verdi,
+#'
+filtrerUt <- function(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag){
 
   if (fane == "dogn"){

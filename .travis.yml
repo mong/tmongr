@@ -19,7 +19,8 @@ before_install:
   - Rscript -e "if (!require('pkgdown')) devtools::install_github('hadley/pkgdown')"
 
 script:
-  - Rscript -e 'devtools::test()'
+  - R CMD build .
+  - R CMD check *tar.gz
 
 after_success:
   - Rscript -e 'covr::codecov()'

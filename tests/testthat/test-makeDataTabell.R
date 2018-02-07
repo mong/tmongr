@@ -18,7 +18,8 @@ lag_pivot <- function(verdier){
                           keepNames = verdier$keepNames,
                           snitt = verdier$snitt,
                           hdg = verdier$hdg,
-                          icd10 = verdier$icd10
+                          icd10 = verdier$icd10,
+                          fag = verdier$fag
   )
   return(pivot)
 }
@@ -28,7 +29,8 @@ test_that("makeDataTable returns NULL and error", {
   expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
-  expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
+  expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
+  expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
   expect_null(makeDataTabell(forenkling = NULL))
   expect_null(makeDataTabell(forenkling = T, aar = NULL))
   expect_null(makeDataTabell(forenkling = T, aar = T, rad = "equal", kol = "equal"))
@@ -53,7 +55,8 @@ test_that("makeDataTabell returns a pivot table", {
                   keepNames=F,
                   snitt=T,
                   hdg="Alle",
-                  icd10="Alle")
+                  icd10="Alle",
+                  fag="Alle")
 
   verdier <- originalverdier
 

@@ -2,7 +2,8 @@
 #'
 #' Filtrerer ut data fra datasett som ikke skal tabuleres
 #' 
-#' @param fane TBA
+#' @param tabell Datasettet som skal filtreres.
+#' @param fane Fanen som vises (effekt hvis dogn, dag eller poli)
 #' @param rad  TBA
 #' @param kol  TBA
 #' @param verdi  TBA
@@ -15,7 +16,6 @@
 #' @param hastegrad2 TBA 
 #' @param hdg  TBA
 #' @param icd10  TBA
-#' @param tabell Datasettet som skal filtreres.
 filtrerUt <- function(tabell, fane, rad, kol, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag){
 

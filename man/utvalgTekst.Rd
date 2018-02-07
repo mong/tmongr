@@ -7,7 +7,7 @@
 utvalgTekst(tab)
 }
 \arguments{
-\item{tab}{Utvalg}
+\item{tab}{The active tab}
 }
 \value{
 Tekst

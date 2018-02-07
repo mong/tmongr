@@ -1,19 +1,20 @@
-#' Filtrere ut data fra datasett
+#' Filter out data from dataset
 #'
-#' Filtrerer ut data fra datasett som ikke skal tabuleres
+#' Filter out data from the dataset that is not going to be tabulated
 #' 
-#' @param tabell Datasettet som skal filtreres.
-#' @param fane Fanen som vises (effekt hvis dogn, dag eller poli)
-#' @param verdi  TBA
-#' @param aar  TBA
-#' @param bo  TBA
-#' @param beh  TBA
-#' @param behandlingsniva  TBA
-#' @param alder  TBA
-#' @param kjonn  TBA
-#' @param hastegrad2 TBA 
-#' @param hdg  TBA
-#' @param icd10  TBA
+#' @param tabell The dataset that is going to be filtred.
+#' @param fane The active tab (effect if "dogn", "dag" or "poli")
+#' @param verdi The value that is going to be tabulated (only an effect if "liggedognindex" or "drg_index")
+#' @param aar The years to be tabulated
+#' @param bo Possible values 1:6
+#' @param beh  Possible values 1:7
+#' @param behandlingsniva Type of contact (admissions, outpatient consultations or day patient treatments)
+#' @param alder Age group 
+#' @param kjonn Gender
+#' @param hastegrad2 Degree of urgency
+#' @param hdg  Main diagnostic group
+#' @param icd10 ICD10 chapter
+#' @param fag Medical fields
 #'
 filtrerUt <- function(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag){

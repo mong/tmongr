@@ -2,16 +2,38 @@
 % Please edit documentation in R/filter.R
 \name{filtrerUt}
 \alias{filtrerUt}
-\title{Filtrere ut data fra datasett}
+\title{Filter out data from dataset}
 \usage{
 filtrerUt(tabell, fane, verdi, aar, bo, beh, behandlingsniva, alder, kjonn,
   hastegrad2, hdg, icd10, fag)
 }
 \arguments{
-\item{tabell}{Datasettet som skal filtreres.}
+\item{tabell}{The dataset that is going to be filtred.}
 
-\item{fane, rad, kol, verdi, aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10}{Filteringsvalg.}
+\item{fane}{The active tab (effect if "dogn", "dag" or "poli")}
+
+\item{verdi}{The value that is going to be tabulated (only an effect if "liggedognindex" or "drg_index")}
+
+\item{aar}{The years to be tabulated}
+
+\item{bo}{Possible values 1:6}
+
+\item{beh}{Possible values 1:7}
+
+\item{behandlingsniva}{Type of contact (admissions, outpatient consultations or day patient treatments)}
+
+\item{alder}{Age group}
+
+\item{kjonn}{Gender}
+
+\item{hastegrad2}{Degree of urgency}
+
+\item{hdg}{Main diagnostic group}
+
+\item{icd10}{ICD10 chapter}
+
+\item{fag}{Medical fields}
 }
 \description{
-Filtrerer ut data fra datasett som ikke skal tabuleres
+Filter out data from the dataset that is not going to be tabulated
 }

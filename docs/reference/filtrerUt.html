@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filtrere ut data fra datasett � filtrerUt • dynamiskTabellverk</title>
+<title>Filter out data from dataset — filtrerUt • dynamiskTabellverk</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -75,26 +75,70 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filtrere ut data fra datasett</h1>
+    <h1>Filter out data from dataset</h1>
     </div>
 
     
-    <p>Filtrerer ut data fra datasett som ikke skal tabuleres</p>
+    <p>Filter out data from the dataset that is not going to be tabulated</p>
     
 
-    <pre class="usage"><span class='fu'>filtrerUt</span>(<span class='no'>tabell</span>, <span class='no'>fane</span>, <span class='no'>rad</span>, <span class='no'>kol</span>, <span class='no'>verdi</span>, <span class='no'>aar</span>, <span class='no'>bo</span>, <span class='no'>beh</span>, <span class='no'>behandlingsniva</span>, <span class='no'>alder</span>,
-  <span class='no'>kjonn</span>, <span class='no'>hastegrad2</span>, <span class='no'>hdg</span>, <span class='no'>icd10</span>)</pre>
+    <pre class="usage"><span class='fu'>filtrerUt</span>(<span class='no'>tabell</span>, <span class='no'>fane</span>, <span class='no'>verdi</span>, <span class='no'>aar</span>, <span class='no'>bo</span>, <span class='no'>beh</span>, <span class='no'>behandlingsniva</span>, <span class='no'>alder</span>, <span class='no'>kjonn</span>,
+  <span class='no'>hastegrad2</span>, <span class='no'>hdg</span>, <span class='no'>icd10</span>, <span class='no'>fag</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tabell</th>
-      <td><p>Datasettet som skal filtreres.</p></td>
+      <td><p>The dataset that is going to be filtred.</p></td>
     </tr>
     <tr>
-      <th>fane, rad, kol, verdi, aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10</th>
-      <td><p>Filteringsvalg.</p></td>
+      <th>fane</th>
+      <td><p>The active tab (effect if "dogn", "dag" or "poli")</p></td>
+    </tr>
+    <tr>
+      <th>verdi</th>
+      <td><p>The value that is going to be tabulated (only an effect if "liggedognindex" or "drg_index")</p></td>
+    </tr>
+    <tr>
+      <th>aar</th>
+      <td><p>The years to be tabulated</p></td>
+    </tr>
+    <tr>
+      <th>bo</th>
+      <td><p>Possible values 1:6</p></td>
+    </tr>
+    <tr>
+      <th>beh</th>
+      <td><p>Possible values 1:7</p></td>
+    </tr>
+    <tr>
+      <th>behandlingsniva</th>
+      <td><p>Type of contact (admissions, outpatient consultations or day patient treatments)</p></td>
+    </tr>
+    <tr>
+      <th>alder</th>
+      <td><p>Age group</p></td>
+    </tr>
+    <tr>
+      <th>kjonn</th>
+      <td><p>Gender</p></td>
+    </tr>
+    <tr>
+      <th>hastegrad2</th>
+      <td><p>Degree of urgency</p></td>
+    </tr>
+    <tr>
+      <th>hdg</th>
+      <td><p>Main diagnostic group</p></td>
+    </tr>
+    <tr>
+      <th>icd10</th>
+      <td><p>ICD10 chapter</p></td>
+    </tr>
+    <tr>
+      <th>fag</th>
+      <td><p>Medical fields</p></td>
     </tr>
     </table>
     
@@ -115,7 +159,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

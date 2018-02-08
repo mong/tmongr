@@ -49,17 +49,20 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="how-to-install-the-package" class="section level1">
+    
+
+<div id="how-to-install-the-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#how-to-install-the-package" class="anchor"></a>How to install the package</h1></div>
 <pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("SKDE-Analyse/dynamiskTabellverk")</a></code></pre>
 <div id="if-behind-helse-nord-proxy" class="section level2">
 <h2 class="hasAnchor">
 <a href="#if-behind-helse-nord-proxy" class="anchor"></a>If behind Helse-Nord proxy</h2>
-<pre><code>library(httr)
-set_config(use_proxy(url="http://www-proxy.helsenord.no", port=8080))</code></pre>
+<pre><code><a href="http://www.rdocumentation.org/packages/httr/topics/set_config">httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080))
+devtools::install_github("SKDE-Analyse/dynamiskTabellverk")</a></code></pre>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3" id="sidebar">
@@ -68,6 +71,11 @@ set_config(use_proxy(url="http://www-proxy.helsenord.no", port=8080))</code></pr
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Steindal Arnfinn Hykkerud <br><small class="roles"> Author, maintainer </small> </li>
+</ul>
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk/builds"><img src="https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk.svg?branch=master" alt="Status"></a></li>
+<li><a href="https://codecov.io/github/SKDE-Analyse/dynamiskTabellverk?branch=master"><img src="https://img.shields.io/codecov/c/github/SKDE-Analyse/dynamiskTabellverk/master.svg" alt="Coverage Status"></a></li>
 </ul>
 </div>
 </div>
@@ -78,7 +86,7 @@ set_config(use_proxy(url="http://www-proxy.helsenord.no", port=8080))</code></pr
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

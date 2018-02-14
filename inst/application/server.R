@@ -4,7 +4,6 @@ behniva <<-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
 hastegrd <<- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
 
 
-minedata <- NULL
 #minedata$c <- readRDS("data/fag_avd_behsh.rds")
 #minedata$a <- readRDS("data/behandler_avd_behsh.rds")
 #minedata$d <- readRDS("data/agg_max_avd.rds")
@@ -29,8 +28,8 @@ shinyServer(
                      tabPanel("Dagbehandling", tableOutput("dag"), value="dag"),
                      tabPanel("Poliklinikk", tableOutput("poli"), value="poli"),
                      tabPanel("Informasjon", fluidPage(
-                       includeMarkdown("Rmd/info.Rmd")
-                     ))
+                       includeMarkdown("Rmd/info.Rmd")))
+#        )
         )
         )#, width = 800
       )

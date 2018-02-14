@@ -7,7 +7,7 @@ shinyUI(function(request){
                                  #                                 tags$style(type = "text/css", "a{color: #C0C0C0;}"), # Farge på linker, samt text inaktive faner
                                  tags$style(type = "text/css", "h1{color: #003A8C;}"), # Farge på tittel
                                  tags$style(type="text/css", ".container-fluid {  max-width: 1200px;}") # max bredde på side
-
+                                 
             )
             ),
             

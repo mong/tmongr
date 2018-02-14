@@ -16,17 +16,9 @@ meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
 valg_aar <- tail(alle_aar, n=3)
 
-##pswrd Hvis man vil ha innlogging: fjern alle #pswrd
-#pswrd Logged = FALSE;
-#pswrd PASSWORD <- data.frame(Brukernavn = "test", Passord = "098f6bcd4621d373cade4e832627b4f6")
-
 shinyServer(
   
   function(input, output) {
-    
-    #pswrd    source("www/Login.R",  local = TRUE)
-    #pswrd    observe({
-    #pswrd      if (USER$Logged == TRUE) {
     
     output$tabeller <- renderUI({
       
@@ -423,7 +415,4 @@ shinyServer(
         return(param)
       }
     }
-    
-    #pswrd      }
-    #pswrd    })
   })

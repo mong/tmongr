@@ -11,19 +11,6 @@ shinyUI(function(request){
             )
             ),
             
-            ##pswrd Hvis man vil ha innlogging: fjern alle #pswrd
-            #pswrd  tagList(
-            #pswrd    tags$head(
-            #pswrd      tags$script(type="text/javascript", src = "md5.js"),
-            #pswrd      tags$script(type="text/javascript", src = "passwdInputBinding.js")
-            #pswrd    )
-            #pswrd  ),
-            ## Login module;
-            #pswrd  div(class = "login",
-            #pswrd  uiOutput("uiLogin"),
-            #pswrd  textOutput("pass")
-            #pswrd  ),
-            
             uiOutput('figurtekst'),
             uiOutput('lastned'),
             br(),

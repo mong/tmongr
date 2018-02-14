@@ -1,12 +1,12 @@
 #' @export
-launch_application <- function(minedata = NULL){
-  print(minedata)
-  minedata <<- minedata
+launch_application <- function(datasett = NULL){
+  minedata <<- datasett
   shiny::runApp(appDir = system.file("application", package = "dynamiskTabellverk"))
+  rm(list = ls())
 }
 
 #' @export
-submit_application <- function(minedata = NULL){
-  minedata <<- minedata
+submit_application <- function(datasett = NULL){
+  minedata <<- datasett
   rsconnect::deployApp(appDir = system.file("application", package = "dynamiskTabellverk"))
 }

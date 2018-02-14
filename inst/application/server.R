@@ -3,12 +3,7 @@ aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
 behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
 hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
 
-
-#minedata$c <- readRDS("data/fag_avd_behsh.rds")
-#minedata$a <- readRDS("data/behandler_avd_behsh.rds")
-#minedata$d <- readRDS("data/agg_max_avd.rds")
-#minedata$b <- readRDS("data/behandler_avd_behrhf.rds")
-listeDatasett <- c("Original"=1,"Just. overføringer"=2, "Fagområde"=3)
+listeDatasett <- names(minedata)
 
 datasett <- reactiveValues(A=NULL)
 meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
@@ -71,21 +66,8 @@ shinyServer(
       if (is.null(input$datasett)){
         datasett$A <- NULL
       } else {
-        if (input$datasett == 1){
-          datasett$A <- minedata$a
-        }
-        else if (input$datasett == 2){
-          datasett$A <- minedata$b
-        }
-        else if (input$datasett == 3){
-          datasett$A <- minedata$c
-        }
-        else if (input$datasett == 4){
-          mydata <- minedata$d
-        }
-        else {
-          datasett$A <- NULL
-        }
+        dsnavn = input$datasett
+        datasett$A <- minedata[[dsnavn]]
       }
 
     })
@@ -213,7 +195,7 @@ shinyServer(
       radioButtons("datasett", 
                    label = "Datasett",
                    choices = listeDatasett,
-                   selected = 1
+                   selected = listeDatasett[1]
       )
     })
     

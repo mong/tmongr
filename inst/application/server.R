@@ -1,7 +1,7 @@
-alle_aar <<- c("2012", "2013", "2014", "2015", "2016")
-aldersgrupper <<- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
-behniva <<-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
-hastegrd <<- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
+alle_aar <- c("2012", "2013", "2014", "2015", "2016")
+aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
+behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
+hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
 
 
 #minedata$c <- readRDS("data/fag_avd_behsh.rds")
@@ -46,7 +46,7 @@ shinyServer(
         if (!("behandlende_HF" %in% colnames(datasett$A)) & !("behandlende_HF_HN" %in% colnames(datasett$A))){
           meny$default <<- "Behandler"
         }
-        valgBeh <<- c("Alle"=1,
+        valgBeh <- c("Alle"=1,
                       "Helse Nord"=2,
                       "Eget lokalsykehus"=3,
                       "UNN Tromsø"=4,
@@ -54,16 +54,16 @@ shinyServer(
                       "Annet sykehus i eget HF"=6,
                       "Annet HF i Helse Nord"=7,
                       "Utenfor Helse Nord"=8)
-        labelBeh <<- "Behandlende sykehus"
+        labelBeh <- "Behandlende sykehus"
       } else {
-        valgBeh <<- c("Alle"=1,
+        valgBeh <- c("Alle"=1,
                       "Helse Nord"=2,
                       "Finnmarkssykehuset"=3,
                       "UNN"=4,
                       "Nordlandssykehuset"=5,
                       "Helgelandssykehuset"=6,
                       "Utenfor Helse Nord"=7)
-        labelBeh <<- "Behandlende foretak"
+        labelBeh <- "Behandlende foretak"
       }
       
     })

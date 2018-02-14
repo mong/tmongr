@@ -12,6 +12,7 @@ Imports:
     shiny,
     shinythemes,
     rsconnect,
+    markdown,
     dplyr,
     tidyr,
     lazyeval,

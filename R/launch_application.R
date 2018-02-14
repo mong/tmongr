@@ -1,5 +1,6 @@
 #' @export
-launch_application <- function(){
+launch_application <- function(minedata=NULL){
+  print(minedata)
   shiny::runApp(appDir = system.file("application", package = "dynamiskTabellverk"))
 }
 

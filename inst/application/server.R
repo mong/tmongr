@@ -192,11 +192,13 @@ shinyServer(
     })
     
     output$datasett <- renderUI({
-      radioButtons("datasett", 
-                   label = "Datasett",
-                   choices = listeDatasett,
-                   selected = listeDatasett[1]
-      )
+      if (length(listeDatasett)>1){
+        radioButtons("datasett", 
+                     label = "Datasett",
+                     choices = listeDatasett,
+                     selected = listeDatasett[1]
+        )
+      }
     })
     
     output$hastegrad2 <- renderUI({

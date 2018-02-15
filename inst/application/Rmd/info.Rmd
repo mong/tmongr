@@ -1,0 +1,16 @@
+---
+title: "info"
+author: "Arnfinn Hykkerud Steindal"
+date: "29. februar 2016"
+output: html_document
+runtime: shiny
+---
+
+
+-	Bakgrunnstallene er hentet fra sykehusoppholdsfiler fra NPR og inneholder alle kontakter med somatisk spesialisttjeneste ved sykehusene i Helse Nord RHF, samt alle kontakter for bosatte i Helse Nord RHF sitt opptaksområde.
+- Tallene er ikke korrigert for overføringer.
+- Ratene er beregnet ut i fra befolkningstall fra SSB for hvert opptaktsområdet på HF-nivå eller sykehus-nivå, og er justert for kjønns- og alderssammensetningen i opptaktsområdet.
+- Det er lagt opp til høy fleksibilitet, som i enkelte tilfeller kan gi ikke-intuitive resultater. Tabellverket burde derfor brukes med omhu.
+- Tabell som lages kan lagres som en csv-fil, som så kan åpnes i Excel for videre analyse.
+- Fraskrivelse: Publikasjonen har benyttet data fra Norsk pasientregister (NPR). Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
+- Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/SKDE-Analyse/dynamiskTabellverk/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no

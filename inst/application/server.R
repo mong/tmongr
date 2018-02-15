@@ -1,18 +1,18 @@
-alle_aar <- c("2012", "2013", "2014", "2015", "2016")
-aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
-behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
-hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
-
-listeDatasett <- names(minedata)
-
-datasett <- reactiveValues(A=NULL)
-meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
-
-valg_aar <- tail(alle_aar, n=3)
-
 shinyServer(
   
   function(input, output) {
+    
+    alle_aar <- c("2012", "2013", "2014", "2015", "2016")
+    valg_aar <- tail(alle_aar, n=3)
+    
+    aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
+    behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
+    hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
+    
+    listeDatasett <- names(minedata)
+    
+    datasett <- reactiveValues(A=NULL)
+    meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
     
     output$tabeller <- renderUI({
       

@@ -1,7 +1,6 @@
-library(testthat)
 library(dynamiskTabellverk)
 
 data("testdata")
 data("testdata2")
 
-test_check("dynamiskTabellverk")
+testthat::test_check("dynamiskTabellverk")

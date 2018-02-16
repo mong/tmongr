@@ -1,0 +1,10 @@
+reference:
+  - title: "Running the app"
+    desc: >
+      Will run the app locally.
+    contents: 
+      - launch_application
+  - title: "Submitting the app"
+    desc: "Has not been tested"
+    contents:
+      - submit_application

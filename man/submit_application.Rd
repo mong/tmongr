@@ -7,7 +7,7 @@
 submit_application(datasett = NULL)
 }
 \arguments{
-\item{datasett}{}
+\item{datasett}{The data set to be loaded into the application}
 }
 \description{
 Submit the application to shinyapp.io

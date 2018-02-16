@@ -1,0 +1,15 @@
+# Producing the documentation for this package
+
+The web page for this package has been produced using `pkgdown`. The following command has to be run before pushing to github:
+```
+pkgdown::build_site()
+```
+
+
+## How to install pkgdown
+
+```
+httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080)) # Behind HN proxy
+devtools::install_github("r-lib/pkgdown")
+```
+

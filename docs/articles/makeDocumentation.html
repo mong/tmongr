@@ -5,17 +5,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dynamisk tabellverk for Helse Nord RHF • dynamiskTabellverk</title>
+<title> • dynamiskTabellverk</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-vignette">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -24,18 +24,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">dynamiskTabellverk</a>
+      <a class="navbar-brand" href="../index.html">dynamiskTabellverk</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -45,7 +45,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/makeDocumentation.html">UNKNOWN TITLE</a>
+      <a href="../articles/makeDocumentation.html">UNKNOWN TITLE</a>
     </li>
   </ul>
 </li>
@@ -60,36 +60,44 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9">
+    <div class="page-header toc-ignore">
+      <h1></h1>
+            
+          </div>
+
     
-
-<div id="how-to-install-the-package" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#how-to-install-the-package" class="anchor"></a>How to install the package</h1></div>
-<pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("SKDE-Analyse/dynamiskTabellverk")</a></code></pre>
-<div id="if-behind-helse-nord-proxy" class="section level2">
+    
+<div class="contents">
+<div id="producing-the-documentation-for-this-package" class="section level1">
+<h1 class="hasAnchor">
+<a href="#producing-the-documentation-for-this-package" class="anchor"></a>Producing the documentation for this package</h1>
+<p>The web page for this package has been produced using <code>pkgdown</code>. The following command has to be run before pushing to github:</p>
+<pre><code><a href="http://pkgdown.r-lib.org/reference/build_site.html">pkgdown::build_site()</a></code></pre>
+<div id="how-to-install-pkgdown" class="section level2">
 <h2 class="hasAnchor">
-<a href="#if-behind-helse-nord-proxy" class="anchor"></a>If behind Helse-Nord proxy</h2>
-<pre><code><a href="http://www.rdocumentation.org/packages/httr/topics/set_config">httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080))
-devtools::install_github("SKDE-Analyse/dynamiskTabellverk")</a></code></pre>
+<a href="#how-to-install-pkgdown" class="anchor"></a>How to install pkgdown</h2>
+<pre><code><a href="http://www.rdocumentation.org/packages/httr/topics/set_config">httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080)) # Behind HN proxy
+devtools::install_github("r-lib/pkgdown")</a></code></pre>
 </div>
 </div>
-
+</div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
-    <h2>License</h2>
-<p>file <a href="LICENSE.html">LICENSE</a></p>
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Steindal Arnfinn Hykkerud <br><small class="roles"> Author, maintainer </small> </li>
-</ul>
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk/builds"><img src="https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk.svg?branch=master" alt="Status"></a></li>
-<li><a href="https://codecov.io/github/SKDE-Analyse/dynamiskTabellverk?branch=master"><img src="https://img.shields.io/codecov/c/github/SKDE-Analyse/dynamiskTabellverk/master.svg" alt="Coverage Status"></a></li>
-</ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li>
+<a href="#producing-the-documentation-for-this-package">Producing the documentation for this package</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#how-to-install-pkgdown">How to install pkgdown</a></li>
+      </ul>
+</li>
+      </ul>
 </div>
+      </div>
+
 </div>
 
 

@@ -12,7 +12,7 @@ launch_application <- function(datasett = NULL){
 #' @param datasett The data set to be loaded into the application
 #'
 #' @export
-submit_application <- function(datasett = NULL){
+submit_application <- function(datasett = NULL, name = "experimental"){
   minedata <<- datasett
-  rsconnect::deployApp(appDir = system.file("application", package = "dynamiskTabellverk"))
+  rsconnect::deployApp(appDir = system.file("application", package = "dynamiskTabellverk"), appName = name)
 }

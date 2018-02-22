@@ -17,6 +17,6 @@ submit_application <- function(datasett = NULL, name = "experimental"){
 #  print(minedata)
   load(datasett)
   appfolder = system.file("application", package = "dynamiskTabellverk")
-  rsconnect::deployApp(appDir = appfolder, appName = name, appFiles = c(appfolder, datasett))
+#  rsconnect::deployApp(appDir = appfolder, appName = name, appFiles = c(appfolder, datasett))
   rsconnect::deployApp(appDir = appfolder, appName = name)
 }

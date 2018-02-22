@@ -7,7 +7,8 @@ shinyServer(
     behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
     hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
     
-    listeDatasett <- names(minedata)
+    listeDatasett <- NULL
+    if (exists("minedata")){listeDatasett <- names(minedata)}
     
     datasett <- reactiveValues(A=NULL)
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)

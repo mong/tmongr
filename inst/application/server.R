@@ -1,4 +1,6 @@
 
+load("data/data.RData")
+
 shinyServer(
   
   function(input, output) {

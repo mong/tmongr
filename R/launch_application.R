@@ -16,11 +16,13 @@ submit_application <- function(datasett = NULL, name = "experimental"){
   # Put app and data file in temp folder
   shinydir = paste0(tempdir(),"/shiny")
   dir.create(shinydir)
-  file.copy(datasett, paste0(shinydir,"/data/data.RData"))
   file.copy(system.file("application", package = "dynamiskTabellverk"), shinydir, recursive = TRUE)
+  dir.create(paste0(shinydir, "application/data"))
+  file.copy(datasett, paste0(shinydir,"application/data/data.RData"))
+  
   
   print(shinydir)
   print(list.files(path = shinydir))
   print(list.dirs(path = shinydir))
-  rsconnect::deployApp(appDir = shinydir, appName = name)
+  rsconnect::deployApp(appDir = paste0(shinydir, "application"), appName = name)
 }

@@ -13,10 +13,11 @@ launch_application <- function(datasett = NULL){
 #'
 #' @export
 submit_application <- function(datasett = NULL, name = "experimental"){
-#  minedata <<- datasett
-#  print(minedata)
-  load(datasett)
-  appfolder = system.file("application", package = "dynamiskTabellverk")
-#  rsconnect::deployApp(appDir = appfolder, appName = name, appFiles = c(appfolder, datasett))
-  rsconnect::deployApp(appDir = appfolder, appName = name)
+  # Put app and data file in temp folder
+  shinydir = paste0(tempdir(),"/shiny")
+  dir.create(shinydir)
+  file.copy(datasett, paste0(shinydir,"/data/data.RData"))
+  file.copy(system.file("application", package = "dynamiskTabellverk"), shinydir, recursive = TRUE)
+  
+  rsconnect::deployApp(appDir = shinydir, appName = name)
 }

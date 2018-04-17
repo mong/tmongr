@@ -5,6 +5,7 @@ reference:
     contents: 
       - launch_application
   - title: "Submitting the app"
-    desc: "Has not been tested"
+    desc: >
+     Will deploy the app to shinyapps.io.
     contents:
       - submit_application

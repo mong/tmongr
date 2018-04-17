@@ -4,10 +4,13 @@
 \alias{submit_application}
 \title{Submit the application to shinyapp.io}
 \usage{
-submit_application(datasett = NULL)
+submit_application(datasett = NULL, name = "experimental")
 }
 \arguments{
-\item{datasett}{The data set to be loaded into the application}
+\item{datasett}{The data set file (.RData) to be loaded into the application.
+The absolute path has to be given}
+
+\item{name}{The appName of the deployed shiny application}
 }
 \description{
 Submit the application to shinyapp.io

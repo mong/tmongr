@@ -3,7 +3,7 @@
 #'
 #' @export
 launch_application <- function(datasett = NULL){
-  shinydir <- create_appDir(datafile = datasett)
+  shinydir <- create_appDir(data = datasett)
   shiny::runApp(appDir = shinydir)
 }
 
@@ -14,22 +14,33 @@ launch_application <- function(datasett = NULL){
 #'
 #' @export
 submit_application <- function(datasett = NULL, name = "experimental"){
-  shinydir <- create_appDir(datafile = datasett)
+  shinydir <- create_appDir(data = datasett)
   rsconnect::deployApp(appDir = shinydir, appName = name)
 }
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
 #'
-#' @param datafile The data set file used by the app
+#' Create a directory in tempdir() where the installed version of 
+#' dynamiskTabellverk package is copied and the data is saved.
+#' This directory, with its content, will be deployd to or ran by shiny.
+#' 
+#' @param data The data to be saved in the directory, to be used by the app
 #'
 #' @return The created directory
 #'
-create_appDir <- function(datafile = NULL){
+create_appDir <- function(data = NULL){
+  # Name the directory
   tmpshinydir <- paste0(tempdir(),"/shiny")
+  # Delete old content in directory
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)
+  # Create main directory
   dir.create(tmpshinydir)
+  # Copy the installed version of the dynamiskTabellverk package to the directory
   file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
+  # Create data folder
   dir.create(paste0(tmpshinydir, "/application/data"))
-  file.copy(datafile, paste0(tmpshinydir,"/application/data/data.RData"))
+  # Save the data to a .RData file
+  save(data, file = paste0(tmpshinydir,"/application/data/data.RData"))
+  # Return the name of the main directory
   return(paste0(tmpshinydir, "/application"))
 }

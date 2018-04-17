@@ -23,9 +23,7 @@ submit_application <- function(datasett = NULL, name = "experimental"){
 #' @param datafile The data set file used by the app
 #'
 #' @return The created directory
-#' @export
 #'
-#' @examples
 create_appDir <- function(datafile = NULL){
   tmpshinydir <- paste0(tempdir(),"/shiny")
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)

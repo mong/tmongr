@@ -12,11 +12,12 @@ Imports:
     shiny,
     shinythemes,
     rsconnect,
-    markdown,
+    rmarkdown,
     dplyr,
     tidyr,
     lazyeval,
-    magrittr
+    magrittr,
+    knitr
 RoxygenNote: 6.0.1
 Suggests:
     testthat,

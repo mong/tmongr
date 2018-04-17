@@ -11,9 +11,14 @@ launch_application <- function(datasett = NULL){
 #' @param datasett The data set file (.RData) to be loaded into the application.
 #' The absolute path has to be given
 #' @param name The appName of the deployed shiny application
+#' @param HNproxy If TRUE: deploy app through proxy
 #'
 #' @export
-submit_application <- function(datasett = NULL, name = "experimental"){
+submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE){
+  if (HNproxy){
+    options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
+    options(shinyapps.http = "rcurl")
+  }
   shinydir <- create_appDir(data = datasett)
   rsconnect::deployApp(appDir = shinydir, appName = name)
 }

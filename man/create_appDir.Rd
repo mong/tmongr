@@ -4,14 +4,16 @@
 \alias{create_appDir}
 \title{Create an appDir for shiny::runApp and rsconnect::deployApp}
 \usage{
-create_appDir(datafile = NULL)
+create_appDir(data = NULL)
 }
 \arguments{
-\item{datafile}{The data set file used by the app}
+\item{data}{The data to be saved in the directory, to be used by the app}
 }
 \value{
 The created directory
 }
 \description{
-Create an appDir for shiny::runApp and rsconnect::deployApp
+Create a directory in tempdir() where the installed version of 
+dynamiskTabellverk package is copied and the data is saved.
+This directory, with its content, will be deployd to or ran by shiny.
 }

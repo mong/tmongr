@@ -40,7 +40,9 @@ create_appDir <- function(datafile = NULL){
   dir.create(paste0(tmpshinydir, "/application/data"))
   print("#6")
   print(datafile)
-  file.copy(datafile, paste0(tmpshinydir,"/application/data/data.RData"))
+#  for (i in datafile) {
+    save(datafile, file = paste0(tmpshinydir,"/application/data/data.RData"))
+#  }
   print("#7")
   print("Innhold 1")
   print(list.files(path = paste0(tmpshinydir, "/application/")))

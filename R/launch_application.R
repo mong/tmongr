@@ -14,7 +14,10 @@ launch_application <- function(datasett = NULL){
 #'
 #' @export
 submit_application <- function(datasett = NULL, name = "experimental"){
+  print("TEST")
   shinydir <- create_appDir(datafile = datasett)
+  print("shinydir")
+  print(shinydir)
   rsconnect::deployApp(appDir = shinydir, appName = name)
 }
 
@@ -25,11 +28,24 @@ submit_application <- function(datasett = NULL, name = "experimental"){
 #' @return The created directory
 #'
 create_appDir <- function(datafile = NULL){
+  print("#1")
   tmpshinydir <- paste0(tempdir(),"/shiny")
+  print("#2")
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)
+  print("#3")
   dir.create(tmpshinydir)
+  print("#4")
   file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
+  print("#5")
   dir.create(paste0(tmpshinydir, "/application/data"))
+  print("#6")
+  print(datafile)
   file.copy(datafile, paste0(tmpshinydir,"/application/data/data.RData"))
+  print("#7")
+  print("Innhold 1")
+  print(list.files(path = paste0(tmpshinydir, "/application/")))
+  print("Innhold 2")
+  print(list.files(path = paste0(tmpshinydir,"/application/data/")))
+
   return(paste0(tmpshinydir, "/application"))
 }

@@ -14,12 +14,9 @@ launch_application <- function(datasett = NULL){
 #'
 #' @export
 submit_application <- function(datasett = NULL, name = "experimental"){
-  
   shinydir <- create_appDir(datafile = datasett)
-  
   rsconnect::deployApp(appDir = shinydir, appName = name)
 }
-
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
 #'
@@ -30,12 +27,11 @@ submit_application <- function(datasett = NULL, name = "experimental"){
 #'
 #' @examples
 create_appDir <- function(datafile = NULL){
-  # Put app and data file in temp folder
-  shinydir = paste0(tempdir(),"/shiny")
-  unlink(shinydir, recursive = TRUE, force = TRUE)
-  dir.create(shinydir)
-  file.copy(system.file("application", package = "dynamiskTabellverk"), shinydir, recursive = TRUE)
-  dir.create(paste0(shinydir, "/application/data"))
-  file.copy(datafile, paste0(shinydir,"/application/data/data.RData"))
-  return(paste0(shinydir, "/application"))
+  tmpshinydir <- paste0(tempdir(),"/shiny")
+  unlink(tmpshinydir, recursive = TRUE, force = TRUE)
+  dir.create(tmpshinydir)
+  file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
+  dir.create(paste0(tmpshinydir, "/application/data"))
+  file.copy(datafile, paste0(tmpshinydir,"/application/data/data.RData"))
+  return(paste0(tmpshinydir, "/application"))
 }

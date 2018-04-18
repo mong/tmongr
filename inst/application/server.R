@@ -73,7 +73,12 @@ shinyServer(
     })
     obsB <- observe({
       if (is.null(input$datasett)){
-        datasett$A <- NULL
+        if (length(minedata) == 1){
+          dsnavn = names(minedata[1])
+          datasett$A <- minedata[[dsnavn]]
+        } else {
+          datasett$A <- NULL
+        }
       } else {
         dsnavn = input$datasett
         datasett$A <- minedata[[dsnavn]]

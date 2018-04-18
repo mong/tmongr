@@ -104,9 +104,9 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     } else if (bo == 4){
       hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for UNN HF",sep = "")
     } else if (bo == 5){
-      hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Helgelandssykehuset HF",sep = "")
-    } else if (bo == 6){
       hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Nordlandssykehuset HF",sep = "")
+    } else if (bo == 6){
+      hjelpetekst <- paste(hjelpetekst, "bosatt i opptaktsområdet for Helgelandssykehuset HF",sep = "")
     }
 
     if (bo %in% c(2,3,4,5,6)){
@@ -124,9 +124,9 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     } else if (beh == 4){
       hjelpetekst <- paste(hjelpetekst, "behandlet av UNN HF",sep = "")
     } else if (beh == 5){
-      hjelpetekst <- paste(hjelpetekst, "behandlet av Helgelandssykehuset HF",sep = "")
-    } else if (beh == 6){
       hjelpetekst <- paste(hjelpetekst, "behandlet av Nordlandsykehuset HF",sep = "")
+    } else if (beh == 6){
+      hjelpetekst <- paste(hjelpetekst, "behandlet av Helgelandssykehuset HF",sep = "")
     } else if (beh == 7){
       hjelpetekst <- paste(hjelpetekst, "behandlet utenfor Helse Nord RHF",sep = "")
     }

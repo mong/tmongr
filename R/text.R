@@ -66,20 +66,36 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
     overskrift <- paste("<h1>",tabell, ", Helse Nord RHF",'<img src="skde.png" align="right" width="150" style="padding-right:20px;"/>',"</h1>","<br/>",sep = "")
 
+    if (tab == 'Informasjon'){
+      # Do not print details about the selection when the user look at the information tab (not relevant).
+      infofane = paste(overskrift, "<font size='+1'>", "Informasjonsfane" ,"</font>","<br>","<br>", sep="")
+      return(infofane)
+    }
+    
+    if (tab == "poli"){
+      type = "polikliniske konsultasjoner"
+    } else if (tab == "dag"){
+      type = "dagbehandlinger"
+    } else if (tab == "dogn"){
+      type = "innleggelser"
+    } else {
+      type = "kontakter"
+    }
+    
     if (verdi == "kontakter"){
-      verdi_tekst = "Antall kontakter"
+      verdi_tekst = paste0("Antall ",type)
     } else if (verdi == "rate"){
-      verdi_tekst = "Kjønns- og aldersjusterte rater (antall kontakter pr. 1000 innbygger)"
+      verdi_tekst = paste0("Kjønns- og aldersjusterte rater (antall ",type, " pr. 1 000 innbygger)")
     } else if (verdi == "liggetid"){
       verdi_tekst = "Antall liggedøgn"
     } else if (verdi == "liggedognindex"){
       verdi_tekst = "Gjennomsnittlig antall liggedøgn pr. innleggelse"
     } else if (verdi == "liggedognrate"){
-      verdi_tekst = "Liggedøgnsrater (antall liggedøgn pr. 1000 innbyggere)"
+      verdi_tekst = "Liggedøgnsrater (antall liggedøgn pr. 1 000 innbyggere)"
     } else if (verdi == "drg_poeng"){
       verdi_tekst = "Antall DRG-poeng"
     } else if (verdi == "drgrate"){
-      verdi_tekst = "Kjønns- og aldersjusterte DRG-poeng-rater (antall DRG-poeng pr. 1000 innbygger)"
+      verdi_tekst = "Kjønns- og aldersjusterte DRG-poeng-rater (antall DRG-poeng pr. 1 000 innbygger)"
     } else if (verdi == "drg_index"){
       verdi_tekst = "DRG-index (antall DRG-poeng pr. pasient)"
     } else {
@@ -236,11 +252,8 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
     all_tekst <- paste(overskrift, "<font size='+1'>", hjelpetekst,"</font>","<br>","<br>", sep="")
 
-
-    #    all_tekst <- paste(all_tekst, "<li>",utvalgTekst(tab),"</li>",sep="")
-
     extra = F
-    if ((length(alder) < 4)|(length(hastegrad2) < 4)|(length(behandlingsniva) < 3)|(forenkling && beh %in% c(1,7) && !("behandlende_RHF" %in% rad | kol == "behandlende_RHF"))){
+    if ((length(alder) < 4)|(length(hastegrad2) < 4)|(length(behandlingsniva) < 3)|(tab %in% c('dag', 'dogn', 'poli'))){
       extra = T
     }
 
@@ -275,7 +288,13 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       all_tekst <- paste(all_tekst, hastegrad2_tekst, sep="")
     }
 
-    if (length(behandlingsniva) != 4){
+    if (tab == "dag"){
+      all_tekst <- paste0(all_tekst, "<li>Kun dagbehandlinger</li>")
+    } else if (tab == "dogn"){
+      all_tekst <- paste0(all_tekst, "<li>Kun døgnopphold</li>")
+    } else if (tab == "poli"){
+      all_tekst <- paste0(all_tekst, "<li>Kun polikliniske konsultasjoner</li>")
+    } else if (length(behandlingsniva) != 3){
       behnivaa <- sapply(behandlingsniva, tolower)
       behnivaa <- gsub("dagbehandling","dagbehandlinger",behnivaa)
       behnivaa <- gsub("konsultasjon","konsultasjoner",behnivaa)
@@ -291,15 +310,9 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       all_tekst <- paste(all_tekst, behandlingsniva_tekst, sep="")
     }
 
-    if (forenkling && (beh %in% c(1,7)) && !("behandlende_RHF" %in% rad | kol == "behandlende_RHF")){
-      all_tekst <- paste(all_tekst, "<li>", " Helseforetak utenfor Helse Nord RHF er slått sammen.","</li>", sep="")
-    }
-
     if(extra){
       all_tekst <- paste(all_tekst, "</ul></li></ul>",sep = "")
     }
-
-#    all_tekst <- paste(all_tekst, "</ul>", sep="")
 
     # LEGG INN ADVARSLER
 

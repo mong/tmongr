@@ -19,6 +19,7 @@ shinyUI(function(request){
               tags$div(title='Velg hvilket datagrunnlag som skal tabuleres. Se informasjonsfane til høyre for forklaring.',
                        uiOutput('datasett')
               ),
+              br(),
               uiOutput('valg'),
               uiOutput('rad1'),
               uiOutput('rad2'),

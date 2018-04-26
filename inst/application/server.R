@@ -205,10 +205,15 @@ shinyServer(
       }
     })
     
+    output$datasetttekst <- renderUI({
+      if (length(listeDatasett)>1){
+        HTML("<h4>Datagrunnlag</h4>")
+      }
+    })
+    
     output$datasett <- renderUI({
       if (length(listeDatasett)>1){
         radioButtons("datasett", 
-                     label = "Datasett",
                      choices = listeDatasett,
                      selected = listeDatasett[1]
         )
@@ -357,7 +362,7 @@ shinyServer(
     })
     
     output$valg <- renderUI({
-      HTML("<h4>Valg, tabell</h4>")
+      HTML("<h4>Variabler</h4>")
     })
     
     output$filter <- renderUI({

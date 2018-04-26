@@ -14,8 +14,8 @@ shinyUI(function(request){
             uiOutput('figurtekst'),
             uiOutput('lastned'),
             br(),
-              uiOutput('datasetttekst'),
             sidebarPanel(
+              uiOutput('datasetttekst'),
               tags$div(title='Velg hvilket datagrunnlag som skal tabuleres. Se informasjonsfane til høyre for forklaring.',
                        uiOutput('datasett')
               ),

@@ -28,6 +28,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_hdg <- c()
   valg_icd10 <- c()
   valg_fag <- c()
+  valg_fagavtspes <- c()
   
   # Verdier
   valg_kontakter <- c("Kontakter"="kontakter")
@@ -80,6 +81,10 @@ definerValgKol <- function(datasett, valgnr){
     valg_fag <- c("Fagområde" = "episodeFag")
   }
   
+  if ("Fag_SKDE" %in% col_names){
+    valg_fagavtspes <- c("Fagfelt avtalespesialist" = "Fag_SKDE")
+  }
+  
   valg_en <- c(
     valg_boomr,
     valg_aar,
@@ -90,6 +95,7 @@ definerValgKol <- function(datasett, valgnr){
     valg_hdg,
     valg_icd10,
     valg_fag,
+    valg_fagavtspes,
     valg_Behandler,
     valg_behsh,
     valg_behhf,
@@ -109,6 +115,7 @@ definerValgKol <- function(datasett, valgnr){
     valg_hdg,
     valg_icd10,
     valg_fag,
+    valg_fagavtspes,
     valg_boomr,
     "Tom" = "ingen"
   )
@@ -121,7 +128,8 @@ definerValgKol <- function(datasett, valgnr){
     valg_DRGtypeHastegrad,
     valg_hdg,
     valg_icd10,
-    valg_fag
+    valg_fag,
+    valg_fagavtspes
   )
 
   valg_fire <- c(

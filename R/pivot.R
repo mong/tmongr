@@ -408,10 +408,11 @@ renameColumns <- function(tabell){
   names(tabell) <- sub("boomr_RHF", "Opptaksområde", names(tabell))
   names(tabell) <- sub("alder", "Alder", names(tabell))
   names(tabell) <- sub("behandlingsniva", "Behandlingsnivå", names(tabell))
-  #  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
-
+  names(tabell) <- sub("Fag_SKDE", "Fagfelt avtalespesialist", names(tabell))
+  names(tabell) <- sub("episodeFag", "Fagområde for episode", names(tabell))
+  
   return(tabell)
 
 }

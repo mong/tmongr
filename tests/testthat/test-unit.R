@@ -9,10 +9,10 @@ test_that("filterBo is correct", {
 })
 
 test_that("filterBeh is correct", {
-  for (beh in c(1,2,3,4,5,6,7)){
+  for (beh in c(1,2,3,4,5,6,7,8,9)){
     expect_equal_to_reference(filterBeh(testdata, beh), paste("data/unit_beh_",beh,sep = ""))
   }
-  for (i in 8:24) expect_null(filterBeh(testdata, i))
+  for (i in 10:24) expect_null(filterBeh(testdata, i))
   expect_null(filterBeh(testdata, "random_string"))
 })
 

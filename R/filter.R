@@ -147,7 +147,15 @@ filterBeh <- function(datasett, beh){
       return(tmpsett)
     }
     else if (beh == 7){
-      tmpsett <- dplyr::filter(datasett, behandlende_RHF != "Helse Nord RHF")
+      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "HF utenfor Helse Nord RHF")
+      return(tmpsett)
+    }
+    else if (beh == 8){
+      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Avtalespesialister")
+      return(tmpsett)
+    }
+    else if (beh == 9){
+      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Private sykehus")
       return(tmpsett)
     }
   }

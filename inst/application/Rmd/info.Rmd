@@ -16,8 +16,9 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
   - **Fagområde (sykehusopphold)**: Alle kontakter er delt inn i fagområde. Oppholdene er aggregert som *Sykehusopphold* (se over). Kontaktene er ikke delt inn i behandlende sykehus, kjønn, alder og DRGTypeHastegrad, av hensyn til personvernet.
 - Ratene er beregnet ut i fra befolkningstall fra SSB for hvert opptaktsområde på RHF, HF eller sykehus-nivå, og er justert for kjønns- og alderssammensetningen i opptaktsområdene.
 - Det er lagt opp til høy fleksibilitet, som i enkelte tilfeller kan gi ikke-intuitive resultater. Tabellverket burde derfor brukes med omhu.
+- Hvis antall kontaker eller antall liggedøgn er mindre enn 5 i en celle er tallet erstattet med strek, av hensyn til personvernet.
 - Tabell som lages kan lagres som en csv-fil, som så kan åpnes i Excel for videre analyse.
-- Fraskrivelse: Publikasjonen har benyttet data fra Norsk pasientregister (NPR). Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
+- Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
 - Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/SKDE-Analyse/dynamiskTabellverk/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
 Versjon: 30.04.2018

@@ -14,13 +14,13 @@ launch_application <- function(datasett = NULL){
 #' @param HNproxy If TRUE: deploy app through proxy
 #'
 #' @export
-submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE){
+submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde"){
   if (HNproxy){
     options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
     options(shinyapps.http = "rcurl")
   }
   shinydir <- create_appDir(data = datasett)
-  rsconnect::deployApp(appDir = shinydir, appName = name)
+  rsconnect::deployApp(appDir = shinydir, appName = name, account = shiny_account)
 }
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp

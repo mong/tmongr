@@ -280,6 +280,8 @@ shinyServer(
                               "UNN"=4,
                               "Nordlandssykehuset"=5,
                               "Helgelandssykehuset"=6,
+                              "Avtalespesialister" = 8,
+                              "Private sykehus" = 9,
                               "Utenfor Helse Nord"=7),
                   label = "Behandler",
                   selected = 1

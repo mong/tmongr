@@ -15,7 +15,11 @@ shinyUI(function(request){
             uiOutput('lastned'),
             br(),
             sidebarPanel(
-              uiOutput('datasett'),
+              uiOutput('datasetttekst'),
+              tags$div(title='Velg hvilket datagrunnlag som skal tabuleres. Se informasjonsfane til høyre for forklaring.',
+                       uiOutput('datasett')
+              ),
+              br(),
               uiOutput('valg'),
               uiOutput('rad1'),
               uiOutput('rad2'),
@@ -38,7 +42,9 @@ shinyUI(function(request){
               br(),
               uiOutput('instilling'),
               uiOutput('knappProsent'),
-              uiOutput('knappBeholdNavn'),
+              tags$div(title='Legg på tekst i alle celler i første kolonne. Bør gjøres før man laster ned data hvis man vil etterbehandle dataene eksternt (f.eks i Excel).',
+                       uiOutput('knappBeholdNavn')
+              ),
               uiOutput('knappForenkling'),
               uiOutput('knappSnitt'),
               #    hr(),

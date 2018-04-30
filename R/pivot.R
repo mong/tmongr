@@ -61,11 +61,6 @@ makeDataTabell <- function(inpDatasett,
     kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
   }
 
-  #  if (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell)))){
-  #    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
-  #    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
-  #  }
-
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag)
@@ -413,10 +408,11 @@ renameColumns <- function(tabell){
   names(tabell) <- sub("boomr_RHF", "Opptaksområde", names(tabell))
   names(tabell) <- sub("alder", "Alder", names(tabell))
   names(tabell) <- sub("behandlingsniva", "Behandlingsnivå", names(tabell))
-  #  names(tabell) <- sub("hastegrad_drgtype_dogn", "Hastegrad - innleggelser", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
-
+  names(tabell) <- sub("Fag_SKDE", "Fagfelt avtalespesialist", names(tabell))
+  names(tabell) <- sub("episodeFag", "Fagområde for episode", names(tabell))
+  
   return(tabell)
 
 }

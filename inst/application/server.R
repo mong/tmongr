@@ -12,7 +12,7 @@ shinyServer(
     
     alle_aar <- c("2012", "2013", "2014", "2015", "2016")
     aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
-    behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist")
+    behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk")
     hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
     
     listeDatasett <- NULL
@@ -205,10 +205,16 @@ shinyServer(
       }
     })
     
+    output$datasetttekst <- renderUI({
+      if (length(listeDatasett)>1){
+        HTML("<h4>Datagrunnlag</h4>")
+      }
+    })
+    
     output$datasett <- renderUI({
       if (length(listeDatasett)>1){
         radioButtons("datasett", 
-                     label = "Datasett",
+                     label = NULL,
                      choices = listeDatasett,
                      selected = listeDatasett[1]
         )
@@ -274,6 +280,8 @@ shinyServer(
                               "UNN"=4,
                               "Nordlandssykehuset"=5,
                               "Helgelandssykehuset"=6,
+                              "Avtalespesialister" = 8,
+                              "Private sykehus" = 9,
                               "Utenfor Helse Nord"=7),
                   label = "Behandler",
                   selected = 1
@@ -357,7 +365,7 @@ shinyServer(
     })
     
     output$valg <- renderUI({
-      HTML("<h4>Valg, tabell</h4>")
+      HTML("<h4>Variabler</h4>")
     })
     
     output$filter <- renderUI({

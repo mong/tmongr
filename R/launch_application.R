@@ -10,8 +10,9 @@ launch_application <- function(datasett = NULL){
 #' Submit the application to shinyapp.io
 #' @param datasett The data set file (.RData) to be loaded into the application.
 #' The absolute path has to be given
-#' @param name The appName of the deployed shiny application
+#' @param name The appName of the deployed shiny application (default = "experimental")
 #' @param HNproxy If TRUE: deploy app through proxy
+#' @param shiny_account Which shiny account on shinyapps.io (default = "skde")
 #'
 #' @export
 submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde"){

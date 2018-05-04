@@ -175,7 +175,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     } else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
       tmp_bo = T
       tmp_boomr = "HF-nivå"
-    } else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
+    } else if (("boomr_RHF" %in% rad | kol == "boomr_RHF") & (bo == 1)) {
       tmp_bo = T
       tmp_boomr = "RHF-nivå"
     }
@@ -216,6 +216,19 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       k = k + 1
       annet$hastegrd2 <- "hastegrad, innleggelser"
     }
+    if ("episodeFag" %in% rad | kol == "episodeFag"){
+      k = k + 1
+      annet$episodeFag <- "fagområde for episoden"
+    }
+    if ("Fag_SKDE" %in% rad | kol == "Fag_SKDE"){
+      k = k + 1
+      annet$fagskde <- "fagfelt til avtalespesialist"
+    }
+    if ("DRGtypeHastegrad" %in% rad | kol == "DRGtypeHastegrad"){
+      k = k + 1
+      annet$fagskde <- "DRGtypeHastegrad"
+    }
+    
 
     if (k > 0){
       hjelpetekst <- paste(hjelpetekst, "fordelt på " ,sep = "")
@@ -256,11 +269,19 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if ((length(alder) < 4)|(length(hastegrad2) < 4)|(length(behandlingsniva) < 3)|(tab %in% c('dag', 'dogn', 'poli'))){
       extra = T
     }
+    
+    if ("episodeFag" %in% rad | kol == "episodeFag"){
+      extra = T
+    }
 
     if (extra){
       all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>",sep = "")
     }
 
+    if ("episodeFag" %in% rad | kol == "episodeFag"){
+      all_tekst <- paste0(all_tekst, "<li> For en del konsultasjoner hos avtalespesialister er ikke fagområde for episoden rapport inn til NPR. Disse konsultasjonene har fått definert fagområde for episoden basert på fagområde til avtalespesialisten.</li>")
+    }
+    
     if (length(alder) != 4){
       if (length(alder) == 1){
         tmp1 = "<li>Kun aldersgruppen "

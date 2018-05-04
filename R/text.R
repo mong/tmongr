@@ -1,5 +1,5 @@
 
-#' Title
+#' Obsolete routine
 #'
 #' @param tab The active tab
 #'
@@ -27,9 +27,7 @@ utvalgTekst <- function(tab){
   return(teksten)
 }
 
-# For å lage caption til tabell
-
-#' Title
+#' Make caption above the table
 #' @param tab The active tab
 #' @param rad What to tabulate on the row
 #' @param kol What to tabulate on the column

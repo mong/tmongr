@@ -1,11 +1,4 @@
-reference:
-  - title: "Running the app"
-    desc: >
-      Will run the app locally.
-    contents: 
-      - launch_application
-  - title: "Submitting the app"
-    desc: >
-     Will deploy the app to shinyapps.io.
-    contents:
-      - submit_application
+url: https://skde-analyse.github.io/dynamiskTabellverk
+
+news:
+  - one page: false

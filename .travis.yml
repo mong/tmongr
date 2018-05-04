@@ -37,5 +37,4 @@ deploy:
     branch: master
 
 notifications:
-  slack:
-    on_success: change
+  email: false

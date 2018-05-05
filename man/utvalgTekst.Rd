@@ -2,7 +2,7 @@
 % Please edit documentation in R/text.R
 \name{utvalgTekst}
 \alias{utvalgTekst}
-\title{Title}
+\title{Obsolete routine}
 \usage{
 utvalgTekst(tab)
 }
@@ -13,5 +13,5 @@ utvalgTekst(tab)
 Tekst
 }
 \description{
-Title
+Obsolete routine
 }

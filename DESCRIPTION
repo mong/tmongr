@@ -8,6 +8,8 @@ Depends: R (>= 3.2.3)
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
+BugReports: https://github.com/SKDE-Analyse/dynamiskTabellverk/issues
+URL: https://skde-analyse.github.io/dynamiskTabellverk
 Imports:
     shiny,
     shinythemes,

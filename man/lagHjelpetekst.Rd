@@ -2,7 +2,7 @@
 % Please edit documentation in R/text.R
 \name{lagHjelpetekst}
 \alias{lagHjelpetekst}
-\title{Title}
+\title{Make caption above the table}
 \usage{
 lagHjelpetekst(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva,
   alder, kjonn, hastegrad2, forenkling)
@@ -38,5 +38,5 @@ lagHjelpetekst(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva,
 Tekst Some text that describe the selection made by the user.
 }
 \description{
-Title
+Make caption above the table
 }

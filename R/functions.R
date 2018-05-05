@@ -1,5 +1,7 @@
 
-#' Title
+#' Define the possible selections
+#'
+#' Based on the content of the data
 #'
 #' @param datasett Datasett
 #' @param valgnr Hvilket valg

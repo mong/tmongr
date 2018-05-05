@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{definerValgKol}
 \alias{definerValgKol}
-\title{Title}
+\title{Define the possible selections}
 \usage{
 definerValgKol(datasett, valgnr)
 }
@@ -15,5 +15,5 @@ definerValgKol(datasett, valgnr)
 valg_en valg_to valg_tre
 }
 \description{
-Title
+Based on the content of the data
 }

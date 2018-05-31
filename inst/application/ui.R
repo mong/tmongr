@@ -7,10 +7,10 @@ shinyUI(function(request){
                                  #                                 tags$style(type = "text/css", "a{color: #C0C0C0;}"), # Farge på linker, samt text inaktive faner
                                  tags$style(type = "text/css", "h1{color: #003A8C;}"), # Farge på tittel
                                  tags$style(type="text/css", ".container-fluid {  max-width: 1200px;}") # max bredde på side
-                                 
+
             )
             ),
-            
+
             uiOutput('figurtekst'),
             uiOutput('lastned'),
             br(),
@@ -19,7 +19,7 @@ shinyUI(function(request){
               tags$div(title='Velg hvilket datagrunnlag som skal tabuleres. Se informasjonsfane til høyre for forklaring.',
                        uiOutput('datasett')
               ),
-              br(),
+              uiOutput('br_datasett'),
               uiOutput('valg'),
               uiOutput('rad1'),
               uiOutput('rad2'),
@@ -34,7 +34,7 @@ shinyUI(function(request){
               uiOutput('beh'),
               uiOutput('aar'),
               #    hr(),
-              
+
               uiOutput('behandlingsniva'),
               uiOutput('hastegrad2'),
               uiOutput('alder'),

@@ -10,7 +10,7 @@ shinyServer(
       minedata <- NULL
     }
 
-    alle_aar <- c("2012", "2013", "2014", "2015", "2016")
+    alle_aar <- c("2012", "2013", "2014", "2015", "2016", "2017")
     aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
     behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk")
     hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")

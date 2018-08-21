@@ -1,3 +1,9 @@
+# dynamiskTabellverk 2.1.2
+
+## Minor Features
+
+- Included year 2017.
+
 # dynamiskTabellverk 2.1.1
 
 ## Bug fixes

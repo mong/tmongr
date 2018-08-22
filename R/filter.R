@@ -67,23 +67,23 @@ filterBo <- function(datasett, bo){
     return(datasett)
   }
   else if (bo == 2){
-    tmpsett <- dplyr::filter(datasett, boomr_RHF == "Boomr Helse Nord RHF")
+    tmpsett <- dplyr::filter(datasett, boomr_rhf == "Boomr Helse Nord RHF")
     return(tmpsett)
   }
   else if (bo == 3){
-    tmpsett <- dplyr::filter(datasett, boomr_HF == "Finnmark")
+    tmpsett <- dplyr::filter(datasett, boomr_hf == "Finnmark")
     return(tmpsett)
   }
   else if (bo == 4){
-    tmpsett <- dplyr::filter(datasett, boomr_HF == "UNN")
+    tmpsett <- dplyr::filter(datasett, boomr_hf == "UNN")
     return(tmpsett)
   }
   else if (bo == 5){
-    tmpsett <- dplyr::filter(datasett, boomr_HF == "Nordland")
+    tmpsett <- dplyr::filter(datasett, boomr_hf == "Nordland")
     return(tmpsett)
   }
   else if (bo == 6){
-    tmpsett <- dplyr::filter(datasett, boomr_HF == "Helgeland")
+    tmpsett <- dplyr::filter(datasett, boomr_hf == "Helgeland")
     return(tmpsett)
   }
 }
@@ -127,35 +127,35 @@ filterBeh <- function(datasett, beh){
 #  }
   else {
     if (beh == 2){
-      tmpsett <- dplyr::filter(datasett, behandlende_RHF == "Helse Nord RHF")
+      tmpsett <- dplyr::filter(datasett, behandlende_rhf == "Helse Nord RHF")
       return(tmpsett)
     }
     else if (beh == 3){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Finnmarkssykehuset HF")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "Finnmarkssykehuset HF")
       return(tmpsett)
     }
     else if (beh == 4){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "UNN HF")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "UNN HF")
       return(tmpsett)
     }
     else if (beh == 5){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Nordlandssykehuset HF")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "Nordlandssykehuset HF")
       return(tmpsett)
     }
     else if (beh == 6){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Helgelandssykehuset HF")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "Helgelandssykehuset HF")
       return(tmpsett)
     }
     else if (beh == 7){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "HF utenfor Helse Nord RHF")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "HF utenfor Helse Nord RHF")
       return(tmpsett)
     }
     else if (beh == 8){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Avtalespesialister")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "Avtalespesialister")
       return(tmpsett)
     }
     else if (beh == 9){
-      tmpsett <- dplyr::filter(datasett, behandlende_HF_HN == "Private sykehus")
+      tmpsett <- dplyr::filter(datasett, behandlende_hf_hn == "Private sykehus")
       return(tmpsett)
     }
   }
@@ -190,11 +190,11 @@ filterBehandlingsniva <- function(datasett, filter){
 #}
 
 filterHastegrad2 <- function(datasett, filter){
-  if (!("DRGtypeHastegrad" %in% colnames(datasett))){
+  if (!("drgtypehastegrad" %in% colnames(datasett))){
     return(datasett)
   }
 
-  tabell <- dplyr::filter(datasett, DRGtypeHastegrad %in% filter)
+  tabell <- dplyr::filter(datasett, drgtypehastegrad %in% filter)
   return(tabell)
 }
 
@@ -222,7 +222,7 @@ filterHDG <- function(datasett, filter){
   if (filter == "Alle"){
     return(datasett)
   } else {
-    tabell <- dplyr::filter(datasett, Hoveddiagnosegruppe %in% filter)
+    tabell <- dplyr::filter(datasett, hoveddiagnosegruppe %in% filter)
   }
 }
 
@@ -230,7 +230,7 @@ filterICD10 <- function(datasett, filter){
   if (filter == "Alle"){
     return(datasett)
   } else {
-    tabell <- dplyr::filter(datasett, ICD10Kap %in% filter)
+    tabell <- dplyr::filter(datasett, icd10kap %in% filter)
   }
 }
 
@@ -238,6 +238,6 @@ filterFag <- function(datasett, filter){
   if (filter == "Alle"){
     return(datasett)
   } else {
-    tabell <- dplyr::filter(datasett, episodeFag %in% filter)
+    tabell <- dplyr::filter(datasett, episodefag %in% filter)
   }
 }

@@ -45,10 +45,10 @@ shinyServer(
       meny$tre <- dynamiskTabellverk::definerValgKol(datasett$A, 3)
       meny$fire <- dynamiskTabellverk::definerValgKol(datasett$A, 4)
 
-      meny$to_default <<- "behandlende_HF"
-      if("Behandler" %in% colnames(datasett$A)){
-        if (!("behandlende_HF" %in% colnames(datasett$A)) & !("behandlende_HF_HN" %in% colnames(datasett$A))){
-          meny$default <<- "Behandler"
+      meny$to_default <<- "behandlende_hf"
+      if("behandler" %in% colnames(datasett$A)){
+        if (!("behandlende_hf" %in% colnames(datasett$A)) & !("behandlende_hf_hn" %in% colnames(datasett$A))){
+          meny$default <<- "behandler"
         }
         valgBeh <- c("Alle"=1,
                       "Helse Nord"=2,
@@ -101,30 +101,30 @@ shinyServer(
 
     # valg hoveddiagnosegruppe
     output$hdg <- renderUI({
-      if ("Hoveddiagnosegruppe" %in% colnames(datasett$A)){
+      if ("hoveddiagnosegruppe" %in% colnames(datasett$A)){
         selectInput("hdg",
                     label = "Hoveddiagnosegruppe",
-                    choices = c("Alle", unique(datasett$A$Hoveddiagnosegruppe)),
+                    choices = c("Alle", unique(datasett$A$hoveddiagnosegruppe)),
                     selected = "Alle")
       }
     })
 
     # valg ICD10-kapittel
     output$icd10 <- renderUI({
-      if ("ICD10Kap" %in% colnames(datasett$A)){
+      if ("icd10kap" %in% colnames(datasett$A)){
         selectInput("icd10",
                     label = "ICD10-kapittel",
-                    choices = c("Alle", unique(datasett$A$ICD10Kap)),
+                    choices = c("Alle", unique(datasett$A$icd10kap)),
                     selected = "Alle")
       }
     })
 
     # valg fagområde
     output$fag <- renderUI({
-      if ("episodeFag" %in% colnames(datasett$A)){
+      if ("episodefag" %in% colnames(datasett$A)){
         selectInput("fag",
                     label = "Fagområde",
-                    choices = c("Alle", unique(datasett$A$episodeFag)),
+                    choices = c("Alle", unique(datasett$A$episodefag)),
                     selected = "Alle")
       }
     })
@@ -154,7 +154,7 @@ shinyServer(
       selectInput("xcol1",
                   label = "Grupperingsvariabel en",
                   choices = meny$en,
-                  selected = "boomr_RHF"
+                  selected = "boomr_rhf"
       )
     })
 
@@ -229,7 +229,7 @@ shinyServer(
     })
 
     output$hastegrad2 <- renderUI({
-      if ("DRGtypeHastegrad" %in% colnames(datasett$A)){
+      if ("drgtypehastegrad" %in% colnames(datasett$A)){
         checkboxGroupInput("hastegrad2",
                            label = "DRGtypeHastegrad",
                            choices = hastegrd,

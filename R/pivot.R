@@ -56,9 +56,9 @@ makeDataTabell <- function(inpDatasett,
   tabell <- inpDatasett
 
   # for å slå sammen helseforetak i sør-norge
-  if (( forenkling & ("behandlende_HF" %in% colnames(tabell))) | (!("behandlende_HF" %in% colnames(tabell)&("behandlende_HF_HN" %in% colnames(tabell))))){
-    rad <- gsub("behandlende_HF", "behandlende_HF_HN", rad)
-    kol <- gsub("behandlende_HF", "behandlende_HF_HN", kol)
+  if (( forenkling & ("behandlende_hf" %in% colnames(tabell))) | (!("behandlende_hf" %in% colnames(tabell)&("behandlende_hf_hn" %in% colnames(tabell))))){
+    rad <- gsub("behandlende_hf", "behandlende_hf_hn", rad)
+    kol <- gsub("behandlende_hf", "behandlende_hf_hn", kol)
   }
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
@@ -86,7 +86,7 @@ makeDataTabell <- function(inpDatasett,
   if(snitt | prosent){
     if (!("drg_index" %in% verdi | "liggedognindex" %in% verdi) & !(verdi %in% c("rate", "drgrate", "liggedognrate") & length(rad) == 1)){
       # ikke regn ut total på rater når en rad er bohf og den andre rad er bosh
-      if (!( (verdi %in% c("rate", "drgrate", "liggedognrate")) & ('boomr_HF' %in% rad) & ('boomr_sykehus' %in% rad))){
+      if (!( (verdi %in% c("rate", "drgrate", "liggedognrate")) & ('boomr_hf' %in% rad) & ('boomr_sykehus' %in% rad))){
         regnetTotal = TRUE
         pivot <- addTotal(pivot, rad, kol)
       }
@@ -160,11 +160,11 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- tmp %>% dplyr::summarise(verdi=sum(bosh_rate))
       tmp <- round_df(tmp, digits=1)
     }
-    else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
+    else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
       tmp <- tmp %>% dplyr::summarise(verdi=sum(bohf_rate))
       tmp <- round_df(tmp, digits=1)
     }
-    else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
+    else if ("boomr_rhf" %in% rad | kol == "boomr_rhf") {
       tmp <- tmp %>% dplyr::summarise(verdi=sum(borhf_rate))
       tmp <- round_df(tmp, digits=1)
     }
@@ -176,11 +176,11 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- tmp %>% dplyr::summarise(verdi=sum(bosh_drgrate))
       tmp <- round_df(tmp, digits=1)
     }
-    else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
+    else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
       tmp <- tmp %>% dplyr::summarise(verdi=sum(bohf_drgrate))
       tmp <- round_df(tmp, digits=1)
     }
-    else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
+    else if ("boomr_rhf" %in% rad | kol == "boomr_rhf") {
       tmp <- tmp %>% dplyr::summarise(verdi=sum(borhf_drgrate))
       tmp <- round_df(tmp, digits=1)
     }
@@ -192,11 +192,11 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- tmp %>% dplyr::summarise(verdi=sum(bosh_liggerate))
       tmp <- round_df(tmp, digits=1)
     }
-    else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
+    else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
       tmp <- tmp %>% dplyr::summarise(verdi=sum(bohf_liggerate))
       tmp <- round_df(tmp, digits=1)
     }
-    else if ("boomr_RHF" %in% rad | kol == "boomr_RHF") {
+    else if ("boomr_rhf" %in% rad | kol == "boomr_rhf") {
       tmp <- tmp %>% dplyr::summarise(verdi=sum(borhf_liggerate))
       tmp <- round_df(tmp, digits=1)
     }
@@ -400,18 +400,23 @@ addTotal <- function(tabell, rad, kol){
 renameColumns <- function(tabell){
 
   names(tabell) <- sub("behandlende_sykehus", "Behandlende sykehus", names(tabell))
-  names(tabell) <- sub("behandlende_HF_HN", "Behandlende HF", names(tabell))
-  names(tabell) <- sub("behandlende_HF", "Behandlende HF", names(tabell))
-  names(tabell) <- sub("behandlende_RHF", "Behandlende RHF", names(tabell))
+  names(tabell) <- sub("behandlende_hf_hn", "Behandlende HF", names(tabell))
+  names(tabell) <- sub("behandlende_hf", "Behandlende HF", names(tabell))
+  names(tabell) <- sub("behandlende_rhf", "Behandlende RHF", names(tabell))
+  names(tabell) <- sub("behandler", "Behandler", names(tabell))
   names(tabell) <- sub("boomr_sykehus", "Opptaksområde", names(tabell))
-  names(tabell) <- sub("boomr_HF", "Opptaksområde", names(tabell))
-  names(tabell) <- sub("boomr_RHF", "Opptaksområde", names(tabell))
+  names(tabell) <- sub("boomr_hf", "Opptaksområde", names(tabell))
+  names(tabell) <- sub("boomr_rhf", "Opptaksområde", names(tabell))
   names(tabell) <- sub("alder", "Alder", names(tabell))
+  names(tabell) <- sub("kjonn", "Kjønn", names(tabell))
   names(tabell) <- sub("behandlingsniva", "Behandlingsnivå", names(tabell))
+  names(tabell) <- sub("drgtypehastegrad", "DRGtypeHastegrad", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
+  names(tabell) <- sub("hoveddiagnosegruppe", "Hoveddiagnosegruppe", names(tabell))
+  names(tabell) <- sub("icd10kap", "ICD10-kapittel", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
-  names(tabell) <- sub("Fag_SKDE", "Fagfelt avtalespesialist", names(tabell))
-  names(tabell) <- sub("episodeFag", "Fagområde for episode", names(tabell))
+  names(tabell) <- sub("fag_skde", "Fagfelt avtalespesialist", names(tabell))
+  names(tabell) <- sub("episodefag", "Fagområde for episode", names(tabell))
   
   return(tabell)
 

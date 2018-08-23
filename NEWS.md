@@ -1,3 +1,9 @@
+# dynamiskTabellverk 2.1.3
+
+## Bug fixes
+
+- Use lower case column names in data, to make it easier to merge new and old data sets.
+
 # dynamiskTabellverk 2.1.2
 
 ## Minor Features

@@ -42,7 +42,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_drgrate <- c("DRG-poengrater"="drgrate")
   valg_drgindex <- c("DRG-index"="drg_index")
 
-  col_names <- colnames(datasett)
+  col_names <- tolower(colnames(datasett))
 
   if ("alder" %in% col_names){
     valg_alder <- c("Alder" = "alder")

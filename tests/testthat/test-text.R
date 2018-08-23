@@ -9,7 +9,7 @@ test_that("utvalgTekst is correct", {
 test_that("correct text is returned", {
   originalverdier <- list(inpDatasett = testdata,
                           fane = "alle", #?
-                          rad=c("boomr_HF","behandlende_HF"),
+                          rad=c("boomr_hf","behandlende_hf"),
                           kol= "aar",
                           verdi="kontakter",
                           aar=2016,
@@ -51,7 +51,7 @@ test_that("correct text is returned", {
   verdier$snitt <- F
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,
-    rad =              c("aar","behandlende_RHF","alder"),
+    rad =              c("aar","behandlende_rhf","alder"),
     kol =             "hastegrad_drgtype_dogn",
     verdi =           verdier$verdi,
     aar =             verdier$aar,
@@ -88,7 +88,7 @@ test_that("correct text is returned", {
   for (behhf in c(1,2,3,4,5,6,7)){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("boomr_RHF","aar"),
+      rad =             c("boomr_rhf","aar"),
       kol =             "behandlingsniva",
       verdi =           verdier$verdi,
       aar =             "2015",
@@ -106,7 +106,7 @@ test_that("correct text is returned", {
   for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("Behandler","hastegrad"),
+      rad =             c("behandler","hastegrad"),
       kol =             "kjonn",
       verdi =           verdi,
       aar =             c("2011", "2013", "2014", "2015"),

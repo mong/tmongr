@@ -40,7 +40,7 @@ test_that("makeDataTabell returns a pivot table", {
 
   originalverdier <- list(inpDatasett = testdata,
                   fane = "tmp", #?
-                  rad=c("boomr_HF","behandlende_HF"),
+                  rad=c("boomr_hf","behandlende_hf"),
                   kol= "aar",
                   verdi="kontakter",
                   aar=2016,
@@ -123,7 +123,7 @@ test_that("makeDataTabell returns a pivot table", {
   
   verdier <- originalverdier
   for (verdi in c("rate", "drgrate", "liggedognrate", "drg_poeng", "drg_index", "liggedognindex")){
-    for (boomr in c("boomr_sykehus", "boomr_HF", "boomr_RHF", "Behandler")){
+    for (boomr in c("boomr_sykehus", "boomr_hf", "boomr_rhf", "behandler")){
       verdier$verdi <- verdi
       verdier$rad <- boomr
       tmp <- lag_pivot(verdier)
@@ -133,24 +133,24 @@ test_that("makeDataTabell returns a pivot table", {
 
   # Check Behandler alone
   verdier <- originalverdier
-  verdier$rad=c("Behandler")
+  verdier$rad=c("behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6a")
 
   # One too many rad elements
-  verdier$rad=c("boomr_HF","behandlende_HF","Behandler")
+  verdier$rad=c("boomr_hf","behandlende_hf","behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6b")
 
   # One of the rad elements equal kol
-  verdier$rad=c("boomr_HF","Behandler")
-  verdier$kol = "boomr_HF"
+  verdier$rad=c("boomr_hf","behandler")
+  verdier$kol = "boomr_hf"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6c")
 
   # Calculate percentage horizontal
-  verdier$rad=c("boomr_HF", "aar")
-  verdier$kol = "ICD10Kap"
+  verdier$rad=c("boomr_hf", "aar")
+  verdier$kol = "icd10kap"
   verdier$prosent = T
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6d")

@@ -154,13 +154,13 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if ("behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") {
       tmp_beh = "sykehus"
       tmp_behandl = TRUE
-    } else if ("behandlende_HF" %in% rad | kol == "behandlende_HF") {
+    } else if ("behandlende_hf" %in% rad | kol == "behandlende_hf") {
       tmp_beh = "HF"
       tmp_behandl = TRUE
-    } else if ("behandlende_RHF" %in% rad | kol == "behandlende_RHF") {
+    } else if ("behandlende_rhf" %in% rad | kol == "behandlende_rhf") {
       tmp_beh = "RHF"
       tmp_behandl = TRUE
-    } else if ("Behandler" %in% rad | kol == "Behandler") {
+    } else if ("behandler" %in% rad | kol == "behandler") {
       tmp_beh = "sykehus"
       tmp_behandl = TRUE
     }
@@ -170,10 +170,10 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
       tmp_bo = T
       tmp_boomr = "sykehusnivå"
-    } else if ("boomr_HF" %in% rad | kol == "boomr_HF") {
+    } else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
       tmp_bo = T
       tmp_boomr = "HF-nivå"
-    } else if (("boomr_RHF" %in% rad | kol == "boomr_RHF") & (bo == 1)) {
+    } else if (("boomr_rhf" %in% rad | kol == "boomr_rhf") & (bo == 1)) {
       tmp_bo = T
       tmp_boomr = "RHF-nivå"
     }
@@ -214,15 +214,15 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       k = k + 1
       annet$hastegrd2 <- "hastegrad, innleggelser"
     }
-    if ("episodeFag" %in% rad | kol == "episodeFag"){
+    if ("episodefag" %in% rad | kol == "episodefag"){
       k = k + 1
       annet$episodeFag <- "fagområde for episoden"
     }
-    if ("Fag_SKDE" %in% rad | kol == "Fag_SKDE"){
+    if ("fag_skde" %in% rad | kol == "fag_skde"){
       k = k + 1
       annet$fagskde <- "fagfelt til avtalespesialist"
     }
-    if ("DRGtypeHastegrad" %in% rad | kol == "DRGtypeHastegrad"){
+    if ("drgtypehastegrad" %in% rad | kol == "drgtypehastegrad"){
       k = k + 1
       annet$fagskde <- "DRGtypeHastegrad"
     }
@@ -268,7 +268,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       extra = T
     }
     
-    if ("episodeFag" %in% rad | kol == "episodeFag"){
+    if ("episodefag" %in% rad | kol == "episodefag"){
       extra = T
     }
 
@@ -276,7 +276,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
       all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>",sep = "")
     }
 
-    if ("episodeFag" %in% rad | kol == "episodeFag"){
+    if ("episodefag" %in% rad | kol == "episodefag"){
       all_tekst <- paste0(all_tekst, "<li> For en del konsultasjoner hos avtalespesialister er ikke fagområde for episoden rapport inn til NPR. Disse konsultasjonene har fått definert fagområde for episoden basert på fagområde til avtalespesialisten.</li>")
     }
     
@@ -347,7 +347,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
 
     }
 
-    if (("Behandler" %in% rad | kol == "Behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") & ("2016" %in% aar)) {
+    if (("behandler" %in% rad | kol == "behandler" | "behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") & ("2016" %in% aar)) {
       warn <- paste("<font color=#b94a48>","ADVARSEL: Feil i rapportering av behandlingssted for innlagte pasienter ved UNN i 2016!","</font>",
                     ' <a href="https://helsedirektoratet.no/nyheter/feil-i-rapportering-av-behandlingssted-for-innlagte-pasienter-i-2016" target="_blank">',
                     'Se pressemelding fra Helsedirektoratet.</a> ',

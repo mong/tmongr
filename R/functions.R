@@ -12,8 +12,8 @@
 definerValgKol <- function(datasett, valgnr){
   valg_boomr <- c(
     "Opptaksområde Sykehus" = "boomr_sykehus",
-    "Opptaksområde HF" = "boomr_HF",
-    "Opptaksområde RHF" = "boomr_RHF")
+    "Opptaksområde HF" = "boomr_hf",
+    "Opptaksområde RHF" = "boomr_rhf")
 
   valg_aar <- c("År" = "aar")
 
@@ -42,7 +42,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_drgrate <- c("DRG-poengrater"="drgrate")
   valg_drgindex <- c("DRG-index"="drg_index")
 
-  col_names <- colnames(datasett)
+  col_names <- tolower(colnames(datasett))
 
   if ("alder" %in% col_names){
     valg_alder <- c("Alder" = "alder")
@@ -53,38 +53,38 @@ definerValgKol <- function(datasett, valgnr){
   if ("behandlingsniva" %in% col_names){
     valg_behandlingsniva <- c("Behandlingsnivå" = "behandlingsniva")
   }
-  if ("DRGtypeHastegrad" %in% col_names){
-    valg_DRGtypeHastegrad <- c("DRGtypeHastegrad")
+  if ("drgtypehastegrad" %in% col_names){
+    valg_DRGtypeHastegrad <- c("DRGtypeHastegrad" = "drgtypehastegrad")
   }
-  if ("Behandler" %in% col_names){
-    valg_Behandler <- c("Behandler")
+  if ("behandler" %in% col_names){
+    valg_Behandler <- c("Behandler" = "behandler")
   }
   if ("behandlende_sykehus" %in% col_names){
     valg_behsh <- c("Behandlende sykehus" = "behandlende_sykehus")
   }
-  if (("behandlende_HF" %in% col_names) | ("behandlende_HF_HN" %in% col_names)){
-    valg_behhf <- c("Behandlende HF" = "behandlende_HF")
+  if (("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names)){
+    valg_behhf <- c("Behandlende HF" = "behandlende_hf")
   }
-  if ("behandlende_RHF" %in% col_names){
-    valg_behrhf <- c("Behandlende RHF" = "behandlende_RHF")
+  if ("behandlende_rhf" %in% col_names){
+    valg_behrhf <- c("Behandlende RHF" = "behandlende_rhf")
   }
-  if ("Hoveddiagnosegruppe" %in% col_names){
-    valg_hdg <- c("Hoveddiagnosegruppe")
+  if ("hoveddiagnosegruppe" %in% col_names){
+    valg_hdg <- c("Hoveddiagnosegruppe" = "hoveddiagnosegruppe")
   }
   if ("bosh_liggerate" %in% col_names & "bohf_liggerate" %in% col_names & "borhf_liggerate" %in% col_names){
     valg_liggerate <- c("Liggedøgnsrate" = "liggedognrate")
   }
 
-  if ("ICD10Kap" %in% col_names){
-    valg_icd10 <- c("ICD10-kapittel" = "ICD10Kap")
+  if ("icd10kap" %in% col_names){
+    valg_icd10 <- c("ICD10-kapittel" = "icd10kap")
   }
 
-  if ("episodeFag" %in% col_names){
-    valg_fag <- c("Fagområde" = "episodeFag")
+  if ("episodefag" %in% col_names){
+    valg_fag <- c("Fagområde" = "episodefag")
   }
   
-  if ("Fag_SKDE" %in% col_names){
-    valg_fagavtspes <- c("Fagfelt avtalespesialist" = "Fag_SKDE")
+  if ("fag_skde" %in% col_names){
+    valg_fagavtspes <- c("Fagfelt avtalespesialist" = "fag_skde")
   }
   
   valg_en <- c(

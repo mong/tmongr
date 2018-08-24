@@ -2,26 +2,24 @@ shinyServer(
 
   function(input, output) {
 
+    # The data has to be located in the data folder with the name data.RData
+    minedata <- NULL
     if (file.exists("data/data.RData")){
       minedata <- get(load("data/data.RData"))
     }
 
-    if (!exists("minedata")){
-      minedata <- NULL
+    if (exists("minedata")){
+      # get the names of the data sets in data.RData
+      listeDatasett <- names(minedata)
+      # More to come?
+      
     }
-
-    alle_aar <- c("2012", "2013", "2014", "2015", "2016", "2017")
-    aldersgrupper <- c("0 - 17 år","18 - 49 år","50 - 74 år", "75 år og over")
-    behniva <-  c("Døgnopphold","Dagbehandling","Poliklinikk")
-    hastegrd <- c("Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", "Ukjent")
-
+    
     listeDatasett <- NULL
     if (exists("minedata")){listeDatasett <- names(minedata)}
 
     datasett <- reactiveValues(A=NULL)
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
-
-    valg_aar <- tail(alle_aar, n=3)
 
     output$tabeller <- renderUI({
 
@@ -187,8 +185,8 @@ shinyServer(
       if ("behandlingsniva" %in% colnames(datasett$A)){
         checkboxGroupInput("behandlingsniva",
                            label = "Behandlingsnivå",
-                           choices = behniva,
-                           selected = behniva
+                           choices = unique(datasett$A$behandlingsniva),
+                           selected = unique(datasett$A$behandlingsniva)
         )
       }
     })
@@ -197,7 +195,7 @@ shinyServer(
       if ("hastegrad" %in% colnames(datasett$A)){
         radioButtons("hastegrad1",
                      label = "Hastegrad",
-                     choices = c("Alle", "Akutt","Planlagt"),
+                     choices = c("Alle", unique(datasett$A$hastegrad)),
                      selected = "Alle"
         )
       }
@@ -230,8 +228,8 @@ shinyServer(
       if ("drgtypehastegrad" %in% colnames(datasett$A)){
         checkboxGroupInput("hastegrad2",
                            label = "DRGtypeHastegrad",
-                           choices = hastegrd,
-                           selected = hastegrd
+                           choices = unique(datasett$A$drgtypehastegrad),
+                           selected = unique(datasett$A$drgtypehastegrad)
         )
       }
     })
@@ -240,8 +238,8 @@ shinyServer(
       if ("alder" %in% colnames(datasett$A)){
         checkboxGroupInput("alder",
                            label = "Alder",
-                           choices = aldersgrupper,
-                           selected = aldersgrupper
+                           choices = unique(datasett$A$alder),
+                           selected = unique(datasett$A$alder)
         )
       }
     })
@@ -250,8 +248,8 @@ shinyServer(
       if ("kjonn" %in% colnames(datasett$A)){
         checkboxGroupInput("kjonn",
                            label = "Kjønn",
-                           choices = c("Kvinner", "Menn"),
-                           selected = c("Kvinner", "Menn")
+                           choices = unique(datasett$A$kjonn),
+                           selected = unique(datasett$A$kjonn)
         )
       }
     })
@@ -259,8 +257,8 @@ shinyServer(
     output$aar <- renderUI({
       checkboxGroupInput("ar",
                          label = "År",
-                         choices = alle_aar,
-                         selected = valg_aar
+                         choices = unique(datasett$A$aar),
+                         selected = tail(unique(datasett$A$aar),3)
       )
     })
 
@@ -402,12 +400,12 @@ shinyServer(
       beh <- parameterDefinert(input$beh, 1)
       verdi <- parameterDefinert(input$verdi, "kontakter")
       prosent <- parameterDefinert(input$prosent, FALSE)
-      aar <- parameterDefinert(input$ar, alle_aar)
+      aar <- parameterDefinert(input$ar, unique(datasett$A$aar))
       kolonner <- parameterDefinert(input$ycol, "aar")
-      alder <- parameterDefinert(input$alder, aldersgrupper)
-      kjonn <- parameterDefinert(input$kjonn, c("Kvinner", "Menn"))
-      hastegrad2 <- parameterDefinert(input$hastegrad2, hastegrd)
-      behandlingsniva <- parameterDefinert(input$behandlingsniva, behniva)
+      alder <- parameterDefinert(input$alder, unique(datasett$A$alder))
+      kjonn <- parameterDefinert(input$kjonn, unique(datasett$A$kjonn))
+      hastegrad2 <- parameterDefinert(input$hastegrad2, unique(datasett$A$drgtypehastegrad))
+      behandlingsniva <- parameterDefinert(input$behandlingsniva, unique(datasett$A$behandlingsniva))
       hdg <- parameterDefinert(input$hdg, "Alle")
       icd10 <- parameterDefinert(input$icd10, "Alle")
       fag <- parameterDefinert(input$fag, "Alle")

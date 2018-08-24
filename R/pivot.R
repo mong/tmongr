@@ -25,25 +25,27 @@
 #'
 makeDataTabell <- function(inpDatasett,
                            fane,
-                           rad,
-                           kol,
-                           verdi,
-                           aar,
-                           bo,
-                           beh,
-                           behandlingsniva,
-                           alder,
-                           kjonn,
-                           hastegrad2,
-                           prosent,
-                           forenkling,
+                           verdier,
                            keepNames,
-                           snitt,
-                           hdg,
-                           icd10,
-                           fag
-                           ){
-
+                           snitt){
+  
+  
+  rad <- verdier$rader
+  kol <- verdier$kolonner
+  verdi <- verdier$verdi
+  aar <- verdier$aar
+  bo <- verdier$bo
+  beh <- verdier$beh
+  behandlingsniva <- verdier$behandlingsniva
+  alder <- verdier$alder
+  kjonn <- verdier$kjonn
+  hastegrad2 <- verdier$hastegrad2
+  prosent <- verdier$prosent
+  forenkling <- verdier$forenkling
+  hdg <- verdier$hdg
+  icd10 <- verdier$icd10
+  fag <- verdier$fag
+  
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding
 

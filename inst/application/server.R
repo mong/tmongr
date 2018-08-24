@@ -90,9 +90,7 @@ shinyServer(
       verdier <- lageParametere()
       if (is.null(verdier$forenkling)){verdier$forenkling <- TRUE}
       if (is.null(datasett$A)){return(NULL)}
-      pivot <- dynamiskTabellverk::makeDataTabell(datasett$A, input$tab, verdier$rader, verdier$kolonner, verdier$verdi,
-                                                  verdier$aar, verdier$bo, verdier$beh, verdier$behandlingsniva, verdier$alder, verdier$kjonn, verdier$hastegrad2,
-                                                  verdier$prosent, verdier$forenkling, input$keepNames, input$snitt, verdier$hdg, verdier$icd10, verdier$fag)
+      pivot <- dynamiskTabellverk::makeDataTabell(datasett$A, input$tab, verdier, input$keepNames, input$snitt)
       return(pivot)
     })
 

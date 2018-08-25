@@ -1,47 +1,32 @@
 context("makeDataTabell")
 
 lag_pivot <- function(verdier){
-  pivot <- makeDataTabell(inpDatasett = verdier$inpDatasett,
-                          fane = verdier$fane,
-                          rad = verdier$rad,
-                          kol = verdier$kol,
-                          verdi = verdier$verdi,
-                          aar = verdier$aar,
-                          bo = verdier$bo,
-                          beh = verdier$beh,
-                          behandlingsniva = verdier$behandlingsniva,
-                          alder = verdier$alder,
-                          kjonn = verdier$kjonn,
-                          hastegrad2 = verdier$hastegrad2,
-                          prosent = verdier$prosent,
-                          forenkling = verdier$forenkling,
-                          keepNames = verdier$keepNames,
-                          snitt = verdier$snitt,
-                          hdg = verdier$hdg,
-                          icd10 = verdier$icd10,
-                          fag = verdier$fag
+  pivot <- makeDataTabell(verdier$inpDatasett,
+                          verdier$fane,
+                          verdier,
+                          verdier$keepNames,
+                          verdier$snitt
   )
   return(pivot)
 }
 
 test_that("makeDataTable returns NULL and error", {
   expect_error(makeDataTabell())
-  expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
-  expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
-  expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
-  expect_null(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
-  expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
-  expect_null(makeDataTabell(forenkling = NULL))
-  expect_null(makeDataTabell(forenkling = T, aar = NULL))
-  expect_null(makeDataTabell(forenkling = T, aar = T, rad = "equal", kol = "equal"))
+  # Error if "verdier" is not defined
+  expect_error(makeDataTabell(NULL,NULL))
+  expect_null(makeDataTabell(NULL,NULL,NULL))
+  expect_null(makeDataTabell(NULL,NULL,NULL,NULL))
+  # Too many arguments
+  expect_error(makeDataTabell(NULL,NULL,NULL,NULL,NULL,NULL))
+  expect_null(makeDataTabell(verdier = NULL))
 })
 
 test_that("makeDataTabell returns a pivot table", {
 
   originalverdier <- list(inpDatasett = testdata,
                   fane = "tmp", #?
-                  rad=c("boomr_hf","behandlende_hf"),
-                  kol= "aar",
+                  rader=c("boomr_hf","behandlende_hf"),
+                  kolonner= "aar",
                   verdi="kontakter",
                   aar=2016,
                   bo=2,
@@ -125,7 +110,7 @@ test_that("makeDataTabell returns a pivot table", {
   for (verdi in c("rate", "drgrate", "liggedognrate", "drg_poeng", "drg_index", "liggedognindex")){
     for (boomr in c("boomr_sykehus", "boomr_hf", "boomr_rhf", "behandler")){
       verdier$verdi <- verdi
-      verdier$rad <- boomr
+      verdier$rader <- boomr
       tmp <- lag_pivot(verdier)
       expect_equal_to_reference(tmp, paste("data/ref_pivot5_", boomr, "_", verdi, sep = ""))
     }
@@ -133,24 +118,24 @@ test_that("makeDataTabell returns a pivot table", {
 
   # Check Behandler alone
   verdier <- originalverdier
-  verdier$rad=c("behandler")
+  verdier$rader=c("behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6a")
 
   # One too many rad elements
-  verdier$rad=c("boomr_hf","behandlende_hf","behandler")
+  verdier$rader=c("boomr_hf","behandlende_hf","behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6b")
 
   # One of the rad elements equal kol
-  verdier$rad=c("boomr_hf","behandler")
-  verdier$kol = "boomr_hf"
+  verdier$rader=c("boomr_hf","behandler")
+  verdier$kolonner = "boomr_hf"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6c")
 
   # Calculate percentage horizontal
-  verdier$rad=c("boomr_hf", "aar")
-  verdier$kol = "icd10kap"
+  verdier$rader=c("boomr_hf", "aar")
+  verdier$kolonner = "icd10kap"
   verdier$prosent = T
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6d")

@@ -1,3 +1,10 @@
+# dynamiskTabellverk 2.2.0
+
+## Minor Features
+
+- Send less values to makeDataTabell by sending `verdier` directly (packed with 16 values)
+- Use `unique()` instead of hard coded choices. For instance, if the dataset consist of data from 2014-2016,  then these years will be pickable, but not other years. 
+roxygen2::roxygenise()
 # dynamiskTabellverk 2.1.3
 
 ## Bug fixes

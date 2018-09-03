@@ -8,11 +8,8 @@ shinyServer(
       minedata <- get(load("data/data.RData"))
     }
 
-    if (exists("minedata")){
-      # get the names of the data sets in data.RData
-      listeDatasett <- names(minedata)
-      # More to come?
-      
+    if (!exists("minedata")){
+      minedata <- NULL
     }
     
     listeDatasett <- NULL

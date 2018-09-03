@@ -145,6 +145,14 @@ test_that("makeDataTabell returns a pivot table", {
   verdier$inpDatasett <- testdata2
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot7")
+
+  # Check "aar" %in% kol
+  verdier <- originalverdier
+  verdier$rader = c("aar", "behandlende_hf")
+  verdier$kolonner = c("aar")
+  verdier$aar=c(2014,2015,2016)
+  tmp <- lag_pivot(verdier)
+  expect_equal_to_reference(tmp, "data/ref_pivot8")
   
   })
 

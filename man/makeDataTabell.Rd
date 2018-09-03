@@ -4,48 +4,18 @@
 \alias{makeDataTabell}
 \title{Make a pivot table}
 \usage{
-makeDataTabell(inpDatasett, fane, rad, kol, verdi, aar, bo, beh,
-  behandlingsniva, alder, kjonn, hastegrad2, prosent, forenkling, keepNames,
-  snitt, hdg, icd10, fag)
+makeDataTabell(inpDatasett, fane, verdier, keepNames, snitt)
 }
 \arguments{
 \item{inpDatasett}{The dataset that is going to be tabulated}
 
 \item{fane}{The active tab (for filtering; effect if "dogn", "dag" or "poli")}
 
-\item{rad}{What to tabulate on the row}
-
-\item{kol}{What to tabulate on the column}
-
-\item{verdi}{The value that is going to be tabulated}
-
-\item{aar}{The years to be tabulated}
-
-\item{bo}{Living area. Possible values 1:6}
-
-\item{beh}{Hospital Health Trust. Possible values 1:7}
-
-\item{behandlingsniva}{Type of contact (admissions, outpatient consultations or day patient treatments)}
-
-\item{alder}{Age group}
-
-\item{kjonn}{Gender}
-
-\item{hastegrad2}{Degree of urgency}
-
-\item{prosent}{Show percentage}
-
-\item{forenkling}{Merge all health trust outside northern norway}
+\item{verdier}{Consist of data specific filter values, such as "rader", "kolonner", "aar", "bo", "beh" etc.}
 
 \item{keepNames}{Tabulate all names in first row}
 
 \item{snitt}{Add average/sums to the table}
-
-\item{hdg}{Main diagnostic group (for filtering)}
-
-\item{icd10}{ICD10 chapter (for filtering)}
-
-\item{fag}{Medical fields (for filtering)}
 }
 \value{
 pivot Pivot table

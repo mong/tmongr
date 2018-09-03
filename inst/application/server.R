@@ -345,13 +345,6 @@ shinyServer(
       HTML(paste("<h4>",hjelpetekst,"</h4>",sep=""))
     })
 
-    output$utvalg <- renderUI({
-      hjelpetekst <- utvalgTekst(input$tab)
-      if (.Platform$OS.type == "windows"){
-        hjelpetekst <- iconv(hjelpetekst, "UTF-8", "latin1")}
-      hjelpetekst
-    })
-
     output$lastned <- renderUI({
       downloadButton('downloadData', 'Last ned data')
     })

@@ -1,11 +1,5 @@
 context("text")
 
-test_that("utvalgTekst is correct", {
-  for (fane in c("alle", "menisk", "dogn", "dag", "poli", "random")){
-    expect_equal_to_reference(utvalgTekst(fane), paste0("data/ref_txt_",fane))
-  }
-})
-
 test_that("correct text is returned", {
   originalverdier <- list(inpDatasett = testdata,
                           fane = "alle", #?

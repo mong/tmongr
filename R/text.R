@@ -1,32 +1,3 @@
-
-#' Obsolete routine
-#'
-#' @param tab The active tab
-#'
-#' @return Tekst
-#' @export
-#'
-utvalgTekst <- function(tab){
-  pretext = "Utvalg: "
-  maintext = ""
-  if (tab == "alle"){
-    maintext = "alle somatiske kontakter i spesialisthelsetjenesten for beboere i Helse Nord og kontakter med sykehus i Helse Nord RHF"
-  } else if (tab == "menisk"){
-    maintext = "hoved- eller bidiagnose (ICD-10) M23.2, M23.3 eller S83.2 i kombinasjon med prosedyrekodene (NCSP) i kategoriblokken NGD for ISF-finansierte sykehus, og de samme diagnosekodene i kombinasjon med taksten K05b for avtalespesialister."
-  } else if (tab == "dogn"){
-    maintext = "alle somatiske døgninnleggelser i spesialisthelsetjenesten for beboere i Helse Nord og kontakter med sykehus i Helse Nord RHF"
-  } else if (tab == "dag"){
-    maintext = "alle somatiske dagbehandlinger i spesialisthelsetjenesten for beboere i Helse Nord og kontakter med sykehus i Helse Nord RHF"
-  } else if (tab == "poli"){
-    maintext = "alle somatiske polikliniske kontakter i spesialisthelsetjenesten for beboere i Helse Nord og kontakter med sykehus i Helse Nord RHF"
-  } else {
-    maintext = "ingen beskrivelse tilgjengelig"
-  }
-  teksten <- paste(pretext,maintext,sep="")
-
-  return(teksten)
-}
-
 #' Make caption above the table
 #' @param tab The active tab
 #' @param rad What to tabulate on the row

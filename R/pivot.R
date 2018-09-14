@@ -2,7 +2,7 @@
 #'
 #' @param inpDatasett The dataset that is going to be tabulated
 #' @param fane The active tab (for filtering; effect if "dogn", "dag" or "poli")
-#' @param verdier Consist of data specific filter values, such as "rader", "kolonner", "aar", "bo", "beh" etc. 
+#' @param verdier Consist of data specific filter values, such as "rader", "kolonner", "aar", "bo", "beh" etc.
 #' @param keepNames Tabulate all names in first row
 #' @param snitt Add average/sums to the table
 #'
@@ -14,8 +14,8 @@ makeDataTabell <- function(inpDatasett,
                            verdier,
                            keepNames,
                            snitt){
-  
-  
+
+
   rad <- verdier$rader
   kol <- verdier$kolonner
   verdi <- verdier$verdi
@@ -25,13 +25,14 @@ makeDataTabell <- function(inpDatasett,
   behandlingsniva <- verdier$behandlingsniva
   alder <- verdier$alder
   kjonn <- verdier$kjonn
+  hastegrad1 <- verdier$hastegrad1
   hastegrad2 <- verdier$hastegrad2
   prosent <- verdier$prosent
   forenkling <- verdier$forenkling
   hdg <- verdier$hdg
   icd10 <- verdier$icd10
   fag <- verdier$fag
-  
+
   if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
   if (is.null(aar)){return(NULL)} # for å unngå feilmelding
 
@@ -51,7 +52,7 @@ makeDataTabell <- function(inpDatasett,
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag)
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, hdg, icd10, fag)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if(!nrow(tabell)){return()}
@@ -105,7 +106,7 @@ makeDataTabell <- function(inpDatasett,
 
   # sortere ualfabetisk, fra nord til sør
   pivot <- sorterDatasett(pivot)
-  
+
   # Remove rows with only NA
   # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r
   if (nrow(pivot) > 1){ # Denne feiler hvis man kun har en rad. Se issue #6 på github
@@ -281,7 +282,7 @@ sorterDatasett <- function(datasett){
     "Planlagt medisin","Akutt medisin", "Planlagt kirurgi", "Akutt kirurgi", # G
     "Sum", "Akutt", "Planlagt" # H
   )
-  
+
   names2 <- c(
     "aaa","aab","baa","bab","bac", "bae" ,"caa","cab", #A
     "daa","dab","dac","dad","dae","daf","dag","dah","dai","daj", "dak", #B
@@ -405,7 +406,7 @@ renameColumns <- function(tabell){
   names(tabell) <- sub("aar", "År", names(tabell))
   names(tabell) <- sub("fag_skde", "Fagfelt avtalespesialist", names(tabell))
   names(tabell) <- sub("episodefag", "Fagområde for episode", names(tabell))
-  
+
   return(tabell)
 
 }

@@ -20,6 +20,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_alder <- c()
   valg_kjonn <- c()
   valg_behandlingsniva <- c()
+  valg_Hastegrad <- c()
   valg_DRGtypeHastegrad <- c()
   valg_Behandler <- c()
   valg_behsh <- c()
@@ -31,7 +32,7 @@ definerValgKol <- function(datasett, valgnr){
   valg_icd10 <- c()
   valg_fag <- c()
   valg_fagavtspes <- c()
-  
+
   # Verdier
   valg_kontakter <- c("Kontakter"="kontakter")
   valg_rate <- c("Rater"="rate")
@@ -52,6 +53,9 @@ definerValgKol <- function(datasett, valgnr){
   }
   if ("behandlingsniva" %in% col_names){
     valg_behandlingsniva <- c("Behandlingsnivå" = "behandlingsniva")
+  }
+  if ("hastegrad" %in% col_names){
+    valg_Hastegrad <- c("Hastegrad" = "hastegrad")
   }
   if ("drgtypehastegrad" %in% col_names){
     valg_DRGtypeHastegrad <- c("DRGtypeHastegrad" = "drgtypehastegrad")
@@ -82,17 +86,18 @@ definerValgKol <- function(datasett, valgnr){
   if ("episodefag" %in% col_names){
     valg_fag <- c("Fagområde" = "episodefag")
   }
-  
+
   if ("fag_skde" %in% col_names){
     valg_fagavtspes <- c("Fagfelt avtalespesialist" = "fag_skde")
   }
-  
+
   valg_en <- c(
     valg_boomr,
     valg_aar,
     valg_alder,
     valg_kjonn,
     valg_behandlingsniva,
+    valg_Hastegrad,
     valg_DRGtypeHastegrad,
     valg_hdg,
     valg_icd10,
@@ -113,6 +118,7 @@ definerValgKol <- function(datasett, valgnr){
     valg_alder,
     valg_kjonn,
     valg_behandlingsniva,
+    valg_Hastegrad,
     valg_DRGtypeHastegrad,
     valg_hdg,
     valg_icd10,
@@ -127,6 +133,7 @@ definerValgKol <- function(datasett, valgnr){
     valg_alder,
     valg_kjonn,
     valg_behandlingsniva,
+    valg_Hastegrad,
     valg_DRGtypeHastegrad,
     valg_hdg,
     valg_icd10,

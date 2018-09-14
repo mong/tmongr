@@ -1,7 +1,7 @@
 #' Filter out data from dataset
 #'
 #' Filter out data from the dataset that is not going to be tabulated
-#' 
+#'
 #' @param tabell The dataset that is going to be filtred.
 #' @param fane The active tab (effect if "dogn", "dag" or "poli")
 #' @param verdi The value that is going to be tabulated (only an effect if "liggedognindex" or "drg_index")
@@ -9,7 +9,7 @@
 #' @param bo Possible values 1:6
 #' @param beh  Possible values 1:7
 #' @param behandlingsniva Type of contact (admissions, outpatient consultations or day patient treatments)
-#' @param alder Age group 
+#' @param alder Age group
 #' @param kjonn Gender
 #' @param hastegrad2 Degree of urgency
 #' @param hdg  Main diagnostic group
@@ -17,7 +17,7 @@
 #' @param fag Medical fields
 #'
 filtrerUt <- function(tabell, fane, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad2, hdg, icd10, fag){
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, hdg, icd10, fag){
 
   if (fane == "dogn"){
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
@@ -54,6 +54,8 @@ filtrerUt <- function(tabell, fane, verdi,
   tabell <- filterAlder(tabell,alder)
 
   tabell <- filterKjonn(tabell,kjonn)
+
+  tabell <- filterHastegrad1(tabell, hastegrad1)
 
   tabell <- filterHastegrad2(tabell, hastegrad2)
 
@@ -95,36 +97,36 @@ filterBeh <- function(datasett, beh){
     return(datasett)
   }
   # Gammel kode. For filtrering av Behandler
-#  else if(FALSE){
-#    if (beh == 2){
-#      tmpsett <- dplyr::filter(datasett, Behandler %in% c("Eget lokalsykehus","UNN Tromsø","NLSH Bodø","Annet sykehus i eget HF","Annet HF i HN"))
-#      return(tmpsett)
-#    }
-#    if (beh == 3){
-#      tmpsett <- dplyr::filter(datasett, Behandler == "Eget lokalsykehus")
-#      return(tmpsett)
-#    }
-#    if (beh == 4){
-#      tmpsett <- dplyr::filter(datasett, Behandler == "UNN Tromsø")
-#      return(tmpsett)
-#    }
-#    if (beh == 5){
-#      tmpsett <- dplyr::filter(datasett, Behandler == "NLSH Bodø")
-#      return(tmpsett)
-#    }
-#    if (beh == 6){
-#      tmpsett <- dplyr::filter(datasett, Behandler == "Annet sykehus i eget HF")
-#      return(tmpsett)
-#    }
-#    if (beh == 7){
-#      tmpsett <- dplyr::filter(datasett, Behandler == "Annet HF i HN")
-#      return(tmpsett)
-#    }
-#    if (beh == 8){
-#      tmpsett <- dplyr::filter(datasett, Behandler == "HF i andre RHF")
-#      return(tmpsett)
-#    }
-#  }
+  #  else if(FALSE){
+  #    if (beh == 2){
+  #      tmpsett <- dplyr::filter(datasett, Behandler %in% c("Eget lokalsykehus","UNN Tromsø","NLSH Bodø","Annet sykehus i eget HF","Annet HF i HN"))
+  #      return(tmpsett)
+  #    }
+  #    if (beh == 3){
+  #      tmpsett <- dplyr::filter(datasett, Behandler == "Eget lokalsykehus")
+  #      return(tmpsett)
+  #    }
+  #    if (beh == 4){
+  #      tmpsett <- dplyr::filter(datasett, Behandler == "UNN Tromsø")
+  #      return(tmpsett)
+  #    }
+  #    if (beh == 5){
+  #      tmpsett <- dplyr::filter(datasett, Behandler == "NLSH Bodø")
+  #      return(tmpsett)
+  #    }
+  #    if (beh == 6){
+  #      tmpsett <- dplyr::filter(datasett, Behandler == "Annet sykehus i eget HF")
+  #      return(tmpsett)
+  #    }
+  #    if (beh == 7){
+  #      tmpsett <- dplyr::filter(datasett, Behandler == "Annet HF i HN")
+  #      return(tmpsett)
+  #    }
+  #    if (beh == 8){
+  #      tmpsett <- dplyr::filter(datasett, Behandler == "HF i andre RHF")
+  #      return(tmpsett)
+  #    }
+  #  }
   else {
     if (beh == 2){
       tmpsett <- dplyr::filter(datasett, behandlende_rhf == "Helse Nord RHF")
@@ -177,17 +179,13 @@ filterBehandlingsniva <- function(datasett, filter){
   return(tabell)
 }
 
-#filterHastegrad1 <- function(datasett, filter){
-#  if (!("hastegrad" %in% colnames(datasett))){
-#    return(datasett)
-#  }
-#  if (filter == "Alle"){
-#    return(datasett)
-#  } else {
-#    tabell <- dplyr::filter(datasett, hastegrad == filter)
-#    return(tabell)
-#  }
-#}
+filterHastegrad1 <- function(datasett, filter){
+  if (!("hastegrad" %in% colnames(datasett))){
+    return(datasett)
+  }
+  tabell <- dplyr::filter(datasett, hastegrad %in% filter)
+  return(tabell)
+}
 
 filterHastegrad2 <- function(datasett, filter){
   if (!("drgtypehastegrad" %in% colnames(datasett))){

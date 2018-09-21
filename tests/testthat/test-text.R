@@ -35,7 +35,7 @@ test_that("correct text is returned", {
     kjonn =           verdier$kjonn,
     hastegrad2 =      verdier$hastegrad2,
     forenkling =      verdier$forenkling)
-  expect_equal_to_reference(hjelpetekst, "data/ref_tekst1")
+  expect_equal_to_reference(hjelpetekst, "data/ref_tekst1.rds")
   
   verdier$aar <- c(2011,2013,2014,2015)
   verdier$fane <- "menisk"
@@ -57,7 +57,7 @@ test_that("correct text is returned", {
     kjonn =           verdier$kjonn,
     hastegrad2 =      verdier$hastegrad2,
     forenkling =      verdier$forenkling)
-  expect_equal_to_reference(hjelpetekst, "data/ref_tekst2")
+  expect_equal_to_reference(hjelpetekst, "data/ref_tekst2.rds")
   
   verdier <- originalverdier
   verdier$fane <- "random"
@@ -76,7 +76,7 @@ test_that("correct text is returned", {
       kjonn =           verdier$kjonn,
       hastegrad2 =      verdier$hastegrad2,
       forenkling =      verdier$forenkling)
-    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_bo",  bohf, sep = ""))
+    expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_bo",  bohf, ".rds"))
   }
   
   for (behhf in c(1,2,3,4,5,6,7)){
@@ -94,7 +94,7 @@ test_that("correct text is returned", {
       kjonn =           "mann",
       hastegrad2 =      "Akutt",
       forenkling =      verdier$forenkling)
-    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_beh",  behhf, sep = ""))
+    expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_beh",  behhf, ".rds"))
   }
   
   for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
@@ -112,7 +112,7 @@ test_that("correct text is returned", {
       kjonn =           verdier$kjonn,
       hastegrad2 =      c("en", "to", "tre"),
       forenkling =      T)
-    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_verdi_",  verdi, sep = ""))
+    expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_verdi_",  verdi, ".rds"))
   }
   
   
@@ -131,6 +131,6 @@ test_that("correct text is returned", {
       kjonn =           verdier$kjonn,
       hastegrad2 =      verdier$hastegrad2,
       forenkling =      verdier$forenkling)
-    expect_equal_to_reference(hjelpetekst, paste("data/ref_tekst_tab_",  tab, sep = ""))
+    expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_tab_",  tab, ".rds"))
   }
 })

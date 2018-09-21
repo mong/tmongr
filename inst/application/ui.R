@@ -36,6 +36,7 @@ shinyUI(function(request){
               #    hr(),
 
               uiOutput('behandlingsniva'),
+              uiOutput('hastegrad1'),
               uiOutput('hastegrad2'),
               uiOutput('alder'),
               uiOutput('kjonn'),

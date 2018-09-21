@@ -11,7 +11,7 @@ shinyServer(
     if (!exists("minedata")){
       minedata <- NULL
     }
-    
+
     listeDatasett <- NULL
     if (exists("minedata")){listeDatasett <- names(minedata)}
 
@@ -190,10 +190,10 @@ shinyServer(
 
     output$hastegrad1 <- renderUI({
       if ("hastegrad" %in% colnames(datasett$A)){
-        radioButtons("hastegrad1",
+        checkboxGroupInput("hastegrad1",
                      label = "Hastegrad",
-                     choices = c("Alle", unique(datasett$A$hastegrad)),
-                     selected = "Alle"
+                     choices = c(unique(datasett$A$hastegrad)),
+                     selected = unique(datasett$A$hastegrad)
         )
       }
     })
@@ -394,12 +394,13 @@ shinyServer(
       kolonner <- parameterDefinert(input$ycol, "aar")
       alder <- parameterDefinert(input$alder, unique(datasett$A$alder))
       kjonn <- parameterDefinert(input$kjonn, unique(datasett$A$kjonn))
+      hastegrad1 <- parameterDefinert(input$hastegrad1, unique(datasett$A$hastegrad))
       hastegrad2 <- parameterDefinert(input$hastegrad2, unique(datasett$A$drgtypehastegrad))
       behandlingsniva <- parameterDefinert(input$behandlingsniva, unique(datasett$A$behandlingsniva))
       hdg <- parameterDefinert(input$hdg, "Alle")
       icd10 <- parameterDefinert(input$icd10, "Alle")
       fag <- parameterDefinert(input$fag, "Alle")
-      verdier <- list(forenkling = forenkling, bo = bo, beh = beh, verdi = verdi, rader = rader, prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva, hdg = hdg, icd10 = icd10, fag = fag)
+      verdier <- list(forenkling = forenkling, bo = bo, beh = beh, verdi = verdi, rader = rader, prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder, hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva, hdg = hdg, icd10 = icd10, fag = fag)
 
       return(verdier)
 

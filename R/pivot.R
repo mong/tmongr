@@ -240,22 +240,11 @@ round_df <- function(df, digits) {
 
 removeDoubleNames <- function(datasett){
   # rutine for å fjerne gjentagende navn nedover i tabellen
-
   if (is.null(dim(datasett)[1])){return(datasett)}
 
-  k <- "abc"
-  for (i in 1:dim(datasett)[1]){
-    if(is.na(datasett[i,1])){
-      # just in case
-      next
-    }
-    if(datasett[i,1] == k){
-      datasett[i,1] <- ""
-    }
-    if (datasett[i,1] != ""){
-      k <- datasett[i,1]
-    }
-  }
+  index <- !(1:dim(datasett)[1] %in% match(unique(datasett[,1]),datasett[,1]))
+  datasett[index,1] <- ""
+  
   return(datasett)
 }
 

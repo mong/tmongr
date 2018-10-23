@@ -239,12 +239,15 @@ round_df <- function(df, digits) {
 }
 
 removeDoubleNames <- function(datasett){
-  # rutine for å fjerne gjentagende navn nedover i tabellen
+  # Only keep unique names first row of the table.
+
   if (is.null(dim(datasett)[1])){return(datasett)}
 
-  index <- !(1:dim(datasett)[1] %in% match(unique(datasett[,1]),datasett[,1]))
-  datasett[index,1] <- ""
-  
+  # Find rows with unique names
+  uniqueNames <- match(unique(datasett[,1]),datasett[,1])
+  # Use negative index to find cells with non-unique names
+  datasett[-uniqueNames,1] <- ""
+
   return(datasett)
 }
 

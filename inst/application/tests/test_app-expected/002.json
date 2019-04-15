@@ -1,0 +1,322 @@
+{
+  "input": {
+    "alder": [
+      "0 - 17 år",
+      "18 - 49 år",
+      "50 - 74 år",
+      "75 år og over"
+    ],
+    "ar": [
+      "2014",
+      "2015",
+      "2016"
+    ],
+    "beh": "1",
+    "beh-selectized": "",
+    "behandlingsniva": [
+      "Døgnopphold",
+      "Dagbehandling",
+      "Poliklinikk",
+      "Avtalespesialist"
+    ],
+    "bo": "2",
+    "bo-selectized": "",
+    "hastegrad1": [
+      "Akutt",
+      "Planlagt",
+      "Ukjent"
+    ],
+    "hastegrad2": [
+      "Akutt medisin",
+      "Akutt kirurgi",
+      "Ukjent",
+      "Planlagt medisin",
+      "Planlagt kirurgi"
+    ],
+    "icd10": "Alle",
+    "icd10-selectized": "",
+    "keepNames": false,
+    "kjonn": [
+      "Kvinner",
+      "Menn"
+    ],
+    "prosent": false,
+    "snitt": true,
+    "tab": "alle",
+    "valg_datasett": "data2",
+    "verdi": "kontakter",
+    "verdi-selectized": "",
+    "xcol1": "boomr_rhf",
+    "xcol1-selectized": "",
+    "xcol2": "behandlende_hf",
+    "xcol2-selectized": "",
+    "ycol": "aar",
+    "ycol-selectized": ""
+  },
+  "output": {
+    "aar": {
+      "html": "<div id=\"ar\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"ar\">År<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2012\"/>\n        <span>2012<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2013\"/>\n        <span>2013<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2014\" checked=\"checked\"/>\n        <span>2014<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2015\" checked=\"checked\"/>\n        <span>2015<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2016\" checked=\"checked\"/>\n        <span>2016<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "alder": {
+      "html": "<div id=\"alder\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"alder\">Alder<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"alder\" value=\"0 - 17 år\" checked=\"checked\"/>\n        <span>0 - 17 år<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"alder\" value=\"18 - 49 år\" checked=\"checked\"/>\n        <span>18 - 49 år<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"alder\" value=\"50 - 74 år\" checked=\"checked\"/>\n        <span>50 - 74 år<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"alder\" value=\"75 år og over\" checked=\"checked\"/>\n        <span>75 år og over<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "alle": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksområde <\/th> <th style='text-align: left;'> Behandlende HF <\/th> <th style='text-align: left;'> 2014 <\/th> <th style='text-align: left;'> 2015 <\/th> <th style='text-align: left;'> 2016 <\/th> <th style='text-align: left;'> Snitt <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Helse Nord RHF <\/td> <td> Finnmarkssykehuset HF <\/td> <td>  75102 <\/td> <td>  78165 <\/td> <td>  76751 <\/td> <td>  76673 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> UNN HF <\/td> <td> 283647 <\/td> <td> 288355 <\/td> <td> 285515 <\/td> <td> 285839 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td> 168408 <\/td> <td> 167997 <\/td> <td> 180368 <\/td> <td> 172258 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Helgelandssykehuset HF <\/td> <td>  94836 <\/td> <td>  99636 <\/td> <td>  97812 <\/td> <td>  97428 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>  18321 <\/td> <td>  18761 <\/td> <td>  17560 <\/td> <td>  18214 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>   2567 <\/td> <td>   4109 <\/td> <td>   6312 <\/td> <td>   4329 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>  91859 <\/td> <td> 101720 <\/td> <td> 114697 <\/td> <td> 102759 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td> 734740 <\/td> <td> 758743 <\/td> <td> 779015 <\/td> <td> 757499 <\/td> <\/tr>\n   <\/tbody> <\/table>",
+    "beh": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"beh\">Behandler<\/label>\n  <div>\n    <select id=\"beh\"><option value=\"1\" selected>Alle<\/option>\n<option value=\"2\">Helse Nord<\/option>\n<option value=\"3\">Finnmarkssykehuset<\/option>\n<option value=\"4\">UNN<\/option>\n<option value=\"5\">Nordlandssykehuset<\/option>\n<option value=\"6\">Helgelandssykehuset<\/option>\n<option value=\"8\">Avtalespesialister<\/option>\n<option value=\"9\">Private sykehus<\/option>\n<option value=\"7\">Utenfor Helse Nord<\/option><\/select>\n    <script type=\"application/json\" data-for=\"beh\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "behandlingsniva": {
+      "html": "<div id=\"behandlingsniva\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"behandlingsniva\">Behandlingsnivå<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Døgnopphold\" checked=\"checked\"/>\n        <span>Døgnopphold<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Dagbehandling\" checked=\"checked\"/>\n        <span>Dagbehandling<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Poliklinikk\" checked=\"checked\"/>\n        <span>Poliklinikk<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Avtalespesialist\" checked=\"checked\"/>\n        <span>Avtalespesialist<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "bo": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"bo\">Opptaksområde<\/label>\n  <div>\n    <select id=\"bo\"><option value=\"1\">Alle<\/option>\n<option value=\"2\" selected>Helse Nord<\/option>\n<option value=\"3\">Finnmarkssykehuset<\/option>\n<option value=\"4\">UNN<\/option>\n<option value=\"5\">Nordlandssykehuset<\/option>\n<option value=\"6\">Helgelandssykehuset<\/option><\/select>\n    <script type=\"application/json\" data-for=\"bo\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "br_datasett": {
+      "html": "<br>",
+      "deps": [
+
+      ]
+    },
+    "datasett": {
+      "html": "<div id=\"valg_datasett\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n  <div class=\"shiny-options-group\">\n    <div class=\"radio\">\n      <label>\n        <input type=\"radio\" name=\"valg_datasett\" value=\"data1\" checked=\"checked\"/>\n        <span>data1<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"radio\">\n      <label>\n        <input type=\"radio\" name=\"valg_datasett\" value=\"data2\"/>\n        <span>data2<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "datasetttekst": {
+      "html": "<h4>Datagrunnlag<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "fag": null,
+    "figurtekst": {
+      "html": "<h4><h1>Pasientstrømmer, Helse Nord RHF<img src=\"skde.png\" align=\"right\" width=\"150\" style=\"padding-right:20px;\"/><\/h1><br/><font size='+1'>Antall kontakter for pasienter bosatt i opptaktsområdet for Helse Nord RHF, behandlet ved ulike HF, fordelt på år, for årene  2014 - 2016.<\/font><br><br><li>Kun døgnopphold, dagbehandlinger, poliklinikk  og avtalespesialist<\/li><\/h4>",
+      "deps": [
+
+      ]
+    },
+    "filter": {
+      "html": "<h4>Filter<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "hastegrad1": {
+      "html": "<div id=\"hastegrad1\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"hastegrad1\">Hastegrad<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad1\" value=\"Akutt\" checked=\"checked\"/>\n        <span>Akutt<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad1\" value=\"Planlagt\" checked=\"checked\"/>\n        <span>Planlagt<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad1\" value=\"Ukjent\" checked=\"checked\"/>\n        <span>Ukjent<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "hastegrad2": {
+      "html": "<div id=\"hastegrad2\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"hastegrad2\">DRGtypeHastegrad<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad2\" value=\"Akutt medisin\" checked=\"checked\"/>\n        <span>Akutt medisin<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad2\" value=\"Akutt kirurgi\" checked=\"checked\"/>\n        <span>Akutt kirurgi<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad2\" value=\"Ukjent\" checked=\"checked\"/>\n        <span>Ukjent<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad2\" value=\"Planlagt medisin\" checked=\"checked\"/>\n        <span>Planlagt medisin<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"hastegrad2\" value=\"Planlagt kirurgi\" checked=\"checked\"/>\n        <span>Planlagt kirurgi<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "hdg": null,
+    "icd10": null,
+    "instilling": {
+      "html": "<h4>Andre instillinger<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "kjonn": {
+      "html": "<div id=\"kjonn\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"kjonn\">Kjønn<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"kjonn\" value=\"Kvinner\" checked=\"checked\"/>\n        <span>Kvinner<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"kjonn\" value=\"Menn\" checked=\"checked\"/>\n        <span>Menn<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "knappBeholdNavn": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"keepNames\" type=\"checkbox\"/>\n      <span>Vis alle navn<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "knappForenkling": null,
+    "knappProsent": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"prosent\" type=\"checkbox\"/>\n      <span>Prosent<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "knappSnitt": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"snitt\" type=\"checkbox\" checked=\"checked\"/>\n      <span>Vis snitt/sum<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "kolonner": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"ycol\">Kolonner<\/label>\n  <div>\n    <select id=\"ycol\"><option value=\"aar\" selected>År<\/option>\n<option value=\"alder\">Alder<\/option>\n<option value=\"kjonn\">Kjønn<\/option>\n<option value=\"behandlingsniva\">Behandlingsnivå<\/option>\n<option value=\"hastegrad\">Hastegrad<\/option>\n<option value=\"drgtypehastegrad\">DRGtypeHastegrad<\/option><\/select>\n    <script type=\"application/json\" data-for=\"ycol\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "lastned": {
+      "html": "<a id=\"downloadData\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\"><\/i>\n  Last ned data\n<\/a>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "5.3.1",
+          "src": {
+            "href": "font-awesome-5.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "rad1": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"xcol1\">Grupperingsvariabel en<\/label>\n  <div>\n    <select id=\"xcol1\"><option value=\"boomr_sykehus\">Opptaksområde Sykehus<\/option>\n<option value=\"boomr_hf\">Opptaksområde HF<\/option>\n<option value=\"boomr_rhf\" selected>Opptaksområde RHF<\/option>\n<option value=\"aar\">År<\/option>\n<option value=\"alder\">Alder<\/option>\n<option value=\"kjonn\">Kjønn<\/option>\n<option value=\"behandlingsniva\">Behandlingsnivå<\/option>\n<option value=\"hastegrad\">Hastegrad<\/option>\n<option value=\"drgtypehastegrad\">DRGtypeHastegrad<\/option>\n<option value=\"behandler\">Behandler<\/option>\n<option value=\"behandlende_sykehus\">Behandlende sykehus<\/option>\n<option value=\"behandlende_hf\">Behandlende HF<\/option>\n<option value=\"behandlende_rhf\">Behandlende RHF<\/option><\/select>\n    <script type=\"application/json\" data-for=\"xcol1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "rad2": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"xcol2\">Grupperingsvariabel to<\/label>\n  <div>\n    <select id=\"xcol2\"><option value=\"behandler\">Behandler<\/option>\n<option value=\"behandlende_sykehus\">Behandlende sykehus<\/option>\n<option value=\"behandlende_hf\" selected>Behandlende HF<\/option>\n<option value=\"behandlende_rhf\">Behandlende RHF<\/option>\n<option value=\"aar\">År<\/option>\n<option value=\"alder\">Alder<\/option>\n<option value=\"kjonn\">Kjønn<\/option>\n<option value=\"behandlingsniva\">Behandlingsnivå<\/option>\n<option value=\"hastegrad\">Hastegrad<\/option>\n<option value=\"drgtypehastegrad\">DRGtypeHastegrad<\/option>\n<option value=\"boomr_sykehus\">Opptaksområde Sykehus<\/option>\n<option value=\"boomr_hf\">Opptaksområde HF<\/option>\n<option value=\"boomr_rhf\">Opptaksområde RHF<\/option>\n<option value=\"ingen\">Tom<\/option><\/select>\n    <script type=\"application/json\" data-for=\"xcol2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "tabeller": {
+      "html": "<div style=\"position:absolute;cursor:inherit;\">\n  <div class=\"tabbable\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"8165\">\n      <li class=\"active\">\n        <a href=\"#tab-8165-1\" data-toggle=\"tab\" data-value=\"alle\">Alle kontakter<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-8165-2\" data-toggle=\"tab\" data-value=\"dogn\">Døgnopphold<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-8165-3\" data-toggle=\"tab\" data-value=\"dag\">Dagbehandling<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-8165-4\" data-toggle=\"tab\" data-value=\"poli\">Poliklinikk<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-8165-5\" data-toggle=\"tab\" data-value=\"Informasjon\">Informasjon<\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"8165\">\n      <div class=\"tab-pane active\" data-value=\"alle\" id=\"tab-8165-1\">\n        <div id=\"alle\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"dogn\" id=\"tab-8165-2\">\n        <div id=\"dogn\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"dag\" id=\"tab-8165-3\">\n        <div id=\"dag\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"poli\" id=\"tab-8165-4\">\n        <div id=\"poli\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"Informasjon\" id=\"tab-8165-5\">\n        <div class=\"container-fluid\"><p><br><\/p>\n\n<p>Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle kontakter med somatisk spesialisttjeneste ved sykehusene i Helse Nord RHF, samt alle kontakter for bosatte i Helse Nord RHF sitt opptaksområde.<\/p>\n\n<ul>\n<li>Bakgrunnstallene er hentet fra avdelingsoppholdsfiler fra NPR og er aggregert på ulike nivå.\n\n<ul>\n<li><strong>Sykehusopphold<\/strong>: Avdelingsopphold som er kodet som døgnopphold eller dagbehandlings <em>ved samme sykehus<\/em> som har foregått nært i tid eller samtidig regnes som ett opphold. Nært i tid er mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til et nytt opphold. Antall DRG-poeng hentes fra det bærende oppholdet, som er det oppholdet med høyest DRG-poeng. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.<\/li>\n<li><strong>Justert for overføringer<\/strong>: Ved justering for overføringer er alle døgn- og dagopphold med mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til neste opphold regnet som ett opphold, <em>uavhengig av hvor pasienten er behandlet<\/em>. Liggetiden regnes som tiden fra innskrivelse ved første opphold til utskrivelse fra siste opphold. Behandlingssted og antall DRG-poeng hentes fra det bærende oppholdet, som er det oppholdet med høyest DRG-poeng. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.<\/li>\n<li><strong>Fagområde (sykehusopphold)<\/strong>: Alle kontakter er delt inn i fagområde. Oppholdene er aggregert som <em>Sykehusopphold<\/em> (se over). Kontaktene er ikke delt inn i behandlende sykehus, kjønn, alder og DRGTypeHastegrad, av hensyn til personvernet.<\/li>\n<\/ul><\/li>\n<li>Ratene er beregnet ut i fra befolkningstall fra SSB for hvert opptaktsområde på RHF, HF eller sykehus-nivå, og er justert for kjønns- og alderssammensetningen i opptaktsområdene.<\/li>\n<li>Det er lagt opp til høy fleksibilitet, som i enkelte tilfeller kan gi ikke-intuitive resultater. Tabellverket burde derfor brukes med omhu.<\/li>\n<li>Hvis antall kontaker eller antall liggedøgn er mindre enn 5 i en celle er tallet erstattet med strek, av hensyn til personvernet.<\/li>\n<li>Tabell som lages kan lagres som en csv-fil, som så kan åpnes i Excel for videre analyse.<\/li>\n<li>Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.<\/li>\n<li>Hvis man opplever feil eller problemer kan man rapportere dette som en <em>issue<\/em> <a href=\"https://github.com/SKDE-Analyse/dynamiskTabellverk/issues\" target=\"_blank\">her<\/a> . Eventuelt kan man sende en mail til <a href=\"mailto:arnfinn.steindal@skde.no\">arnfinn.steindal@skde.no<\/a><\/li>\n<\/ul>\n\n<p>Versjon: 21.09.2018<\/p>\n\n<p><\/br><\/p>\n<\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "bootstrap",
+          "version": "3.3.7",
+          "src": {
+            "href": "shared/bootstrap"
+          },
+          "meta": {
+            "viewport": "width=device-width, initial-scale=1"
+          },
+          "script": [
+            "js/bootstrap.min.js",
+            "shim/html5shiv.min.js",
+            "shim/respond.min.js"
+          ],
+          "stylesheet": "css/bootstrap.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "valg": {
+      "html": "<h4>Variabler<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "verdi": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"verdi\">Verdi<\/label>\n  <div>\n    <select id=\"verdi\"><option value=\"kontakter\" selected>Kontakter<\/option>\n<option value=\"rate\">Rater<\/option>\n<option value=\"liggetid\">Liggedøgn<\/option>\n<option value=\"liggedognindex\">Liggedøgn pr. pasient<\/option>\n<option value=\"drg_poeng\">DRG-poeng<\/option>\n<option value=\"drgrate\">DRG-poengrater<\/option>\n<option value=\"drg_index\">DRG-index<\/option><\/select>\n    <script type=\"application/json\" data-for=\"verdi\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

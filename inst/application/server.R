@@ -53,36 +53,7 @@ shinyServer(
       meny$to <- dynamiskTabellverk::definerValgKol(datasett(), 2)
       meny$tre <- dynamiskTabellverk::definerValgKol(datasett(), 3)
       meny$fire <- dynamiskTabellverk::definerValgKol(datasett(), 4)
-
       meny$to_default <<- "behandlende_hf"
-      if ("behandler" %in% colnames(datasett())) {
-        if (!("behandlende_hf" %in% colnames(datasett())) &
-            !("behandlende_hf_hn" %in% colnames(datasett()))) {
-          meny$default <<- "behandler"
-        }
-        valgBeh <- c(
-          "Alle" = 1,
-          "Helse Nord" = 2,
-          "Eget lokalsykehus" = 3,
-          "UNN Tromsø" = 4,
-          "NLSH Bodø" = 5,
-          "Annet sykehus i eget HF" = 6,
-          "Annet HF i Helse Nord" = 7,
-          "Utenfor Helse Nord" = 8
-        )
-        labelBeh <- "Behandlende sykehus"
-      } else {
-        valgBeh <- c(
-          "Alle" = 1,
-          "Helse Nord" = 2,
-          "Finnmarkssykehuset" = 3,
-          "UNN" = 4,
-          "Nordlandssykehuset" = 5,
-          "Helgelandssykehuset" = 6,
-          "Utenfor Helse Nord" = 7
-        )
-        labelBeh <- "Behandlende foretak"
-      }
     })
 
     makeTable <- reactive({

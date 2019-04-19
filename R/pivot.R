@@ -125,8 +125,6 @@ makeDataTabell <- function(inpDatasett,
   return(pivot)
 }
 
-
-
 # lager en pivot-tabell av sum av verdien "agg"
 makePivot <- function(data, rad, kol, agg){
 
@@ -140,7 +138,7 @@ makePivot <- function(data, rad, kol, agg){
     tmp <- data %>% dplyr::group_by_(rad[1], rad[2], kol)
   }
   else{
-    return(tomTabell())
+    return(data.frame())
   }
 
   # Velge ut verdier. Rater avhengig av boområdet!
@@ -158,7 +156,7 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- round_df(tmp, digits=1)
     }
     else {
-      return(tomTabell())
+      return(data.frame())
     }
   } else if (agg == "drgrate"){
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
@@ -174,7 +172,7 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- round_df(tmp, digits=1)
     }
     else {
-      return(tomTabell())
+      return(data.frame())
     }
   } else if (agg == "liggedognrate"){
     if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
@@ -190,7 +188,7 @@ makePivot <- function(data, rad, kol, agg){
       tmp <- round_df(tmp, digits=1)
     }
     else {
-      return(tomTabell())
+      return(data.frame())
     }
   } else if (agg == "drg_poeng"){
     #    valg = as.name(agg)
@@ -425,10 +423,6 @@ addLastColumn <- function(pivot,rad,kol,verdi){
   }
 
   return(pivot)
-}
-
-tomTabell <- function(){
-  return(data.frame())
 }
 
 slashHeltall <- function(tabell){

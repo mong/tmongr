@@ -23,4 +23,5 @@ Imports:
 RoxygenNote: 6.1.0
 Suggests:
     testthat,
+    shinytest,
     covr

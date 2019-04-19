@@ -50,10 +50,10 @@ before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
       brew update
+      brew install v8
       brew tap homebrew/cask
       brew cask install phantomjs
     fi
-
 
 script:
   - R CMD build .
@@ -81,6 +81,8 @@ deploy:
   local_dir: docs                         # Deploy the docs folder
   on:
     branch: master
+    dist: xenial
+    r: release
 
 notifications:
   email:

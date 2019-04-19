@@ -1,24 +1,11 @@
 {
   "input": {
-    "ar": [
-      "2014",
-      "2015",
-      "2016"
-    ],
+    "ar": null,
     "beh": "1",
     "beh-selectized": "",
-    "behandlingsniva": [
-      "Døgnopphold",
-      "Dagbehandling",
-      "Poliklinikk",
-      "Avtalespesialist"
-    ],
     "bo": "2",
     "bo-selectized": "",
-    "icd10": "Alle",
-    "icd10-selectized": "",
     "keepNames": false,
-    "prosent": false,
     "snitt": true,
     "tab": "alle",
     "valg_datasett": "data1",
@@ -26,7 +13,7 @@
     "verdi-selectized": "",
     "xcol1": "boomr_rhf",
     "xcol1-selectized": "",
-    "xcol2": "behandlende_hf",
+    "xcol2": "aar",
     "xcol2-selectized": "",
     "ycol": "aar",
     "ycol-selectized": ""
@@ -104,7 +91,7 @@
     },
     "fag": null,
     "figurtekst": {
-      "html": "<h4><h1>Pasientstrømmer, Helse Nord RHF<img src=\"skde.png\" align=\"right\" width=\"150\" style=\"padding-right:20px;\"/><\/h1><br/><font size='+1'>Antall kontakter for pasienter bosatt i opptaktsområdet for Helse Nord RHF, behandlet ved ulike HF, fordelt på år, for årene  2014 - 2016.<\/font><br><br><ul><li>Annet: <ul><li>Kun aldersgruppene   og <\/li><li>Kun hastegradene   og <\/li><li>Kun døgnopphold, dagbehandlinger, poliklinikk  og avtalespesialist<\/li><\/ul><\/li><\/ul><\/h4>",
+      "html": "<h4><h1>Pasientstrømmer, Helse Nord RHF<img src=\"skde.png\" align=\"right\" width=\"150\" style=\"padding-right:20px;\"/><\/h1><br/><font size='+1'>Antall kontakter for pasienter bosatt i opptaktsområdet for Helse Nord RHF, fordelt på år, for årene  2011 - 2016.<\/font><br><br><ul><li>Annet: <ul><li>Kun aldersgruppene   og <\/li><li>Kun hastegradene   og <\/li><li>Kun døgnopphold, dagbehandlinger, poliklinikk  og avtalespesialist<\/li><\/ul><\/li><\/ul><\/h4>",
       "deps": [
 
       ]

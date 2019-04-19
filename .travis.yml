@@ -1,16 +1,44 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: r
 sudo: false
 cache: packages
 warnings_are_errors: true
 
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      r: release
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=true
+    - os: linux
+      dist: xenial
+      r: devel
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=false
+    - os: linux
+      dist: trusty
+      r: release
+      env: 
+        - DIST=trusty
+        - RUN_LINTR=false
+    - os: osx
+      r: release
+      env: 
+        - DIST=osx
+        - RUN_LINTR=false
+    - os: windows
+      r: release
+      env: 
+        - DIST=windows
+        - RUN_LINTR=false
+  allow_failures:
+    - os: windows
+
 env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
-
-r:
-  - release
 
 before_install:
   - Rscript -e "if (!require('covr')) install.packages('covr')"

@@ -17,7 +17,7 @@
     "bo-selectized": "",
     "icd10": "Alle",
     "icd10-selectized": "",
-    "keepNames": false,
+    "keep_names": false,
     "prosent": false,
     "snitt": true,
     "tab": "alle",
@@ -144,20 +144,20 @@
       ]
     },
     "kjonn": null,
-    "knappBeholdNavn": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"keepNames\" type=\"checkbox\"/>\n      <span>Vis alle navn<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+    "knapp_behold_navn": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"keep_names\" type=\"checkbox\"/>\n      <span>Vis alle navn<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
-    "knappForenkling": null,
-    "knappProsent": {
+    "knapp_forenkling": null,
+    "knapp_prosent": {
       "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"prosent\" type=\"checkbox\"/>\n      <span>Prosent<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
-    "knappSnitt": {
+    "knapp_snitt": {
       "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"snitt\" type=\"checkbox\" checked=\"checked\"/>\n      <span>Vis snitt/sum<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
       "deps": [
 
@@ -183,7 +183,7 @@
       ]
     },
     "lastned": {
-      "html": "<a id=\"downloadData\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\"><\/i>\n  Last ned data\n<\/a>",
+      "html": "<a id=\"download_data\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\"><\/i>\n  Last ned data\n<\/a>",
       "deps": [
         {
           "name": "font-awesome",

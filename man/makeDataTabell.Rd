@@ -4,16 +4,16 @@
 \alias{makeDataTabell}
 \title{Make a pivot table}
 \usage{
-makeDataTabell(inpDatasett, fane, verdier, keepNames, snitt)
+makeDataTabell(inp_datasett, fane, verdier, keep_names, snitt)
 }
 \arguments{
-\item{inpDatasett}{The dataset that is going to be tabulated}
+\item{inp_datasett}{The dataset that is going to be tabulated}
 
 \item{fane}{The active tab (for filtering; effect if "dogn", "dag" or "poli")}
 
 \item{verdier}{Consist of data specific filter values, such as "rader", "kolonner", "aar", "bo", "beh" etc.}
 
-\item{keepNames}{Tabulate all names in first row}
+\item{keep_names}{Tabulate all names in first row}
 
 \item{snitt}{Add average/sums to the table}
 }

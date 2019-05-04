@@ -2,7 +2,7 @@
 #' @param datasett The data set to be loaded into the application
 #'
 #' @export
-launch_application <- function(datasett = NULL){
+launch_application <- function(datasett = NULL) {
   shinydir <- create_appDir(data = datasett)
   shiny::runApp(appDir = shinydir)
 }
@@ -15,8 +15,8 @@ launch_application <- function(datasett = NULL){
 #' @param shiny_account Which shiny account on shinyapps.io (default = "skde")
 #'
 #' @export
-submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde"){
-  if (HNproxy){
+submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde") {
+  if (HNproxy) {
     options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
     options(shinyapps.http = "rcurl")
   }
@@ -26,17 +26,17 @@ submit_application <- function(datasett = NULL, name = "experimental", HNproxy =
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
 #'
-#' Create a directory in tempdir() where the installed version of 
+#' Create a directory in tempdir() where the installed version of
 #' dynamiskTabellverk package is copied and the data is saved.
 #' This directory, with its content, will be deployd to or ran by shiny.
-#' 
+#'
 #' @param data The data to be saved in the directory, to be used by the app
 #'
 #' @return The created directory
 #'
-create_appDir <- function(data = NULL){
+create_appDir <- function(data = NULL) {
   # Name the directory
-  tmpshinydir <- paste0(tempdir(),"/shiny")
+  tmpshinydir <- paste0(tempdir(), "/", "shiny")
   # Delete old content in directory
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)
   # Create main directory
@@ -44,9 +44,9 @@ create_appDir <- function(data = NULL){
   # Copy the installed version of the dynamiskTabellverk package to the directory
   file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
   # Create data folder
-  dir.create(paste0(tmpshinydir, "/application/data"))
+  dir.create(paste0(tmpshinydir, "/", "application/data"))
   # Save the data to a .RData file
-  save(data, file = paste0(tmpshinydir,"/application/data/data.RData"))
+  save(data, file = paste0(tmpshinydir, "/", "application/data/data.RData"))
   # Return the name of the main directory
-  return(paste0(tmpshinydir, "/application"))
+  return(paste0(tmpshinydir, "/", "application"))
 }

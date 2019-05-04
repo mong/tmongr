@@ -1,4 +1,5 @@
-app <- ShinyDriver$new("../", seed = 100)
+# nolint start
+app <- shinytest::ShinyDriver$new("../", seed = 100)
 app$snapshotInit("app-test2")
 Sys.sleep(0.2)
 app$snapshot()
@@ -14,3 +15,4 @@ app$snapshot()
 #app$setInputs(xcol1 = "kjonn")
 #Sys.sleep(1)
 #app$snapshot()
+# nolint end

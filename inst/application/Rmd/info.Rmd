@@ -1,7 +1,7 @@
 ---
 title: "info"
 author: "Arnfinn Hykkerud Steindal"
-date: "23. august 2018"
+date: "21. september 2018"
 output: html_document
 runtime: shiny
 ---
@@ -21,6 +21,6 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
 - Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/SKDE-Analyse/dynamiskTabellverk/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: 03.09.2018
+Versjon: 21.09.2018
 
 </br>

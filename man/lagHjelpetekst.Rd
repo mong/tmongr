@@ -4,8 +4,8 @@
 \alias{lagHjelpetekst}
 \title{Make caption above the table}
 \usage{
-lagHjelpetekst(tab, rad, kol, verdi, aar, bo, beh, prosent, behandlingsniva,
-  alder, kjonn, hastegrad2, forenkling)
+lagHjelpetekst(tab, rad, kol, verdi, aar, bo, beh, prosent,
+  behandlingsniva, alder, kjonn, hastegrad2, forenkling)
 }
 \arguments{
 \item{tab}{The active tab}

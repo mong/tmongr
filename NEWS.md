@@ -1,3 +1,11 @@
+# dynamiskTabellverk 2.3.0
+
+## Minor Features
+
+- Reintroduced "Hastegrad"
+- More tests
+- Added ".rds" ending to all test data sets
+
 # dynamiskTabellverk 2.2.0
 
 ## Minor Features

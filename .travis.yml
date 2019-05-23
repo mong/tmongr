@@ -1,16 +1,44 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: r
 sudo: false
 cache: packages
 warnings_are_errors: true
 
-r:
-  - release
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      r: release
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=true
+    - os: linux
+      dist: xenial
+      r: devel
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=false
+    - os: linux
+      dist: trusty
+      r: release
+      env: 
+        - DIST=trusty
+        - RUN_LINTR=false
+    - os: osx
+      r: release
+      env: 
+        - DIST=osx
+        - RUN_LINTR=false
+    - os: windows
+      r: release
+      env: 
+        - DIST=windows
+        - RUN_LINTR=false
+  allow_failures:
+    - os: windows
 
-#branches:
-#  only:
-#    - master
+env:
+  global:
+    - _R_CHECK_TESTS_NLINES_=0
 
 before_install:
   - Rscript -e "if (!require('covr')) install.packages('covr')"
@@ -33,8 +61,12 @@ deploy:
   skip_cleanup: true                      # Don't remove files
   github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  on:
+  on: # Only deploy if master branch, xenial build and with latest released version of R.
     branch: master
+    dist: xenial
+    r: release
 
 notifications:
-  email: false
+  email:
+    on_success: change # default: change
+    on_failure: change # default: always 

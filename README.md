@@ -13,9 +13,9 @@ devtools::install_github("SKDE-Analyse/dynamiskTabellverk")
 
 ### If behind Helse-Nord proxy
 
-```
-httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080))
-devtools::install_github("SKDE-Analyse/dynamiskTabellverk")
-```
+Include the following in your `~/.Renviron` file before you install the package:
 
-
+```
+http_proxy=http://www-proxy.helsenord.no:8080
+https_proxy=http://www-proxy.helsenord.no:8080
+```

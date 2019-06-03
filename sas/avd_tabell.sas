@@ -62,6 +62,7 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    */
    if (hastegrad eq 5) then hastegrad = 4;
 
+   %boomraader;
 run;
 
 /*
@@ -135,6 +136,8 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    Meget få kontakter i 2017, så lager bare støy
    */
    if (hastegrad eq 5) then hastegrad = 4;
+
+   %boomraader;
 run;
 
 /*

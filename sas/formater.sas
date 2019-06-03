@@ -1,5 +1,5 @@
 
-%let filbane=\\tos-sas-skde-01\SKDE_SAS\felleskoder\arnfinn;
+%let filbane=\\tos-sas-skde-01\SKDE_SAS\felleskoder\master;
 options sasautos=("&filbane\Makroer" SASAUTOS);
 
 %include "&filbane\Formater\SKDE_somatikk.sas";

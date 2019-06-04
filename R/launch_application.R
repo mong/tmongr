@@ -36,22 +36,22 @@ submit_application <- function(datasett = NULL, name = "experimental", HNproxy =
 #'
 create_appDir <- function(data = NULL){
   # Name the directory
-  tmpshinydir <- paste0(tempdir(),"/shiny")
+  tmpshinydir <- paste0(tempdir(), "/", "shiny")
   # Delete old content in directory
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)
   # Create main directory
   dir.create(tmpshinydir)
-  
-  # Copy the application folder from the installed version of the 
+
+  # Copy the application folder from the installed version of the
   # dynamiskTabellverk package to the directory. This folder contains
   # ui.R, server.R www/ and Rmd/info.Rmd
   file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
 
   # Create data folder
-  dir.create(paste0(tmpshinydir, "/application/data"))
-  
+  dir.create(paste0(tmpshinydir, "/", "application/data"))
+
   # Save the data to a .RData file
-  save(data, file = paste0(tmpshinydir,"/application/data/data.RData"))
+  save(data, file = paste0(tmpshinydir, "/", "application/data/data.RData"))
   # Return the name of the main directory
-  return(paste0(tmpshinydir, "/application"))
+  return(paste0(tmpshinydir, "/", "application"))
 }

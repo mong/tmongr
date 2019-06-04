@@ -1,18 +1,18 @@
 #' Make a pivot table
 #'
-#' @param inpDatasett The dataset that is going to be tabulated
+#' @param input_dataset The dataset that is going to be tabulated
 #' @param fane The active tab (for filtering; effect if "dogn", "dag" or "poli")
 #' @param verdier Consist of data specific filter values, such as "rader", "kolonner", "aar", "bo", "beh" etc.
-#' @param keepNames Tabulate all names in first row
+#' @param keep_names Tabulate all names in first row
 #' @param snitt Add average/sums to the table
 #'
 #' @return pivot Pivot table
 #' @export
 #'
-makeDataTabell <- function(inpDatasett,
+makeDataTabell <- function(input_dataset,
                            fane,
                            verdier,
-                           keepNames,
+                           keep_names,
                            snitt){
 
 
@@ -33,16 +33,26 @@ makeDataTabell <- function(inpDatasett,
   icd10 <- verdier$icd10
   fag <- verdier$fag
 
-  if (is.null(forenkling)){return(NULL)} # for å unngå feilmelding
-  if (is.null(aar)){return(NULL)} # for å unngå feilmelding
+  if (is.null(forenkling)){
+    # for å unngå feilmelding
+    return(NULL)
+  }
+  if (is.null(aar)){
+    # for å unngå feilmelding
+    return(NULL)
+  }
 
-  if(length(rad) == length(kol)){if(rad == kol){return(NULL)}}
+  if(length(rad) == length(kol)){
+    if(rad == kol){
+      return(NULL)
+    }
+  }
 
   if (verdi == "drg_index"){
     prosent = FALSE
   }
 
-  tabell <- inpDatasett
+  tabell <- input_dataset
 
   # for å slå sammen helseforetak i sør-norge
   if (( forenkling & ("behandlende_hf" %in% colnames(tabell))) | (!("behandlende_hf" %in% colnames(tabell)&("behandlende_hf_hn" %in% colnames(tabell))))){
@@ -114,7 +124,7 @@ makeDataTabell <- function(inpDatasett,
   }
 
   # Ta bort tekst hvis tekst under er lik
-  if (!keepNames & length(rad) != 1){
+  if (!keep_names & length(rad) != 1){
     pivot <- removeDoubleNames(pivot)
   }
 

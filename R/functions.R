@@ -20,9 +20,9 @@ definerValgKol <- function(datasett, valgnr){
   valg_alder <- c()
   valg_kjonn <- c()
   valg_behandlingsniva <- c()
-  valg_Hastegrad <- c()
-  valg_DRGtypeHastegrad <- c()
-  valg_Behandler <- c()
+  valg_hastegrad <- c()
+  valg_drgtypehastegrad <- c()
+  valg_behandler <- c()
   valg_behsh <- c()
   valg_behhf <- c()
   valg_behrhf <- c()
@@ -34,14 +34,14 @@ definerValgKol <- function(datasett, valgnr){
   valg_fagavtspes <- c()
 
   # Verdier
-  valg_kontakter <- c("Kontakter"="kontakter")
-  valg_rate <- c("Rater"="rate")
+  valg_kontakter <- c("Kontakter" = "kontakter")
+  valg_rate <- c("Rater" = "rate")
   valg_liggetid <- c("Liggedøgn" = "liggetid")
   valg_liggerate <- c()
   valg_liggeindex <- c("Liggedøgn pr. pasient" = "liggedognindex")
-  valg_drg <- c("DRG-poeng"="drg_poeng")
-  valg_drgrate <- c("DRG-poengrater"="drgrate")
-  valg_drgindex <- c("DRG-index"="drg_index")
+  valg_drg <- c("DRG-poeng" = "drg_poeng")
+  valg_drgrate <- c("DRG-poengrater" = "drgrate")
+  valg_drgindex <- c("DRG-index" = "drg_index")
 
   col_names <- tolower(colnames(datasett))
 
@@ -55,18 +55,18 @@ definerValgKol <- function(datasett, valgnr){
     valg_behandlingsniva <- c("Behandlingsnivå" = "behandlingsniva")
   }
   if ("hastegrad" %in% col_names){
-    valg_Hastegrad <- c("Hastegrad" = "hastegrad")
+    valg_hastegrad <- c("Hastegrad" = "hastegrad")
   }
   if ("drgtypehastegrad" %in% col_names){
-    valg_DRGtypeHastegrad <- c("DRGtypeHastegrad" = "drgtypehastegrad")
+    valg_drgtypehastegrad <- c("DRGtypeHastegrad" = "drgtypehastegrad")
   }
   if ("behandler" %in% col_names){
-    valg_Behandler <- c("Behandler" = "behandler")
+    valg_behandler <- c("Behandler" = "behandler")
   }
   if ("behandlende_sykehus" %in% col_names){
     valg_behsh <- c("Behandlende sykehus" = "behandlende_sykehus")
   }
-  if (("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names)){
+  if ( ("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names) ){
     valg_behhf <- c("Behandlende HF" = "behandlende_hf")
   }
   if ("behandlende_rhf" %in% col_names){
@@ -97,20 +97,20 @@ definerValgKol <- function(datasett, valgnr){
     valg_alder,
     valg_kjonn,
     valg_behandlingsniva,
-    valg_Hastegrad,
-    valg_DRGtypeHastegrad,
+    valg_hastegrad,
+    valg_drgtypehastegrad,
     valg_hdg,
     valg_icd10,
     valg_fag,
     valg_fagavtspes,
-    valg_Behandler,
+    valg_behandler,
     valg_behsh,
     valg_behhf,
     valg_behrhf
   )
 
   valg_to <- c(
-    valg_Behandler,
+    valg_behandler,
     valg_behsh,
     valg_behhf,
     valg_behrhf,
@@ -118,8 +118,8 @@ definerValgKol <- function(datasett, valgnr){
     valg_alder,
     valg_kjonn,
     valg_behandlingsniva,
-    valg_Hastegrad,
-    valg_DRGtypeHastegrad,
+    valg_hastegrad,
+    valg_drgtypehastegrad,
     valg_hdg,
     valg_icd10,
     valg_fag,
@@ -133,8 +133,8 @@ definerValgKol <- function(datasett, valgnr){
     valg_alder,
     valg_kjonn,
     valg_behandlingsniva,
-    valg_Hastegrad,
-    valg_DRGtypeHastegrad,
+    valg_hastegrad,
+    valg_drgtypehastegrad,
     valg_hdg,
     valg_icd10,
     valg_fag,
@@ -152,10 +152,16 @@ definerValgKol <- function(datasett, valgnr){
     valg_drgindex
   )
 
-  if (valgnr == 1){return(valg_en)}
-  else if (valgnr == 2){return(valg_to)}
-  else if (valgnr == 3){return(valg_tre)}
-  else if (valgnr == 4){return(valg_fire)}
-  else {return()}
-
+  if (valgnr == 1){
+    return(valg_en)
+  } else if (valgnr == 2){
+    return(valg_to)
+  } else if (valgnr == 3){
+    return(valg_tre)
+  } else if (valgnr == 4){
+    return(valg_fire)
+  } else {
+    return()
+  }
+  
 }

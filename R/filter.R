@@ -16,8 +16,21 @@
 #' @param icd10 ICD10 chapter
 #' @param fag Medical fields
 #'
-filtrerUt <- function(tabell, fane, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, hdg, icd10, fag){
+filtrerUt <- function(tabell,
+                      fane,
+                      verdi,
+                      aar,
+                      bo,
+                      beh,
+                      behandlingsniva,
+                      alder,
+                      kjonn,
+                      hastegrad1,
+                      hastegrad2,
+                      hdg,
+                      icd10,
+                      fag
+                      ){
 
   if (fane == "dogn"){
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
@@ -41,19 +54,20 @@ filtrerUt <- function(tabell, fane, verdi,
     tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
   }
 
-  if (verdi == "drg_index"){# ta ut avtalespesialistene
-    tabell <- filterBehandlingsniva(tabell, c("Døgnopphold","Dagbehandling","Poliklinikk"))
+  if (verdi == "drg_index"){
+    # ta ut avtalespesialistene
+    tabell <- filterBehandlingsniva(tabell, c("Døgnopphold", "Dagbehandling", "Poliklinikk"))
   }
 
-  tabell <- filterBo(tabell,bo)
+  tabell <- filterBo(tabell, bo)
 
-  tabell <- filterBeh(tabell,beh)
+  tabell <- filterBeh(tabell, beh)
 
   tabell <- filterBehandlingsniva(tabell, behandlingsniva)
 
-  tabell <- filterAlder(tabell,alder)
+  tabell <- filterAlder(tabell, alder)
 
-  tabell <- filterKjonn(tabell,kjonn)
+  tabell <- filterKjonn(tabell, kjonn)
 
   tabell <- filterHastegrad1(tabell, hastegrad1)
 
@@ -95,39 +109,7 @@ filterBeh <- function(datasett, beh){
   if (beh == 1){
     # ingen filtrering
     return(datasett)
-  }
-  # Gammel kode. For filtrering av Behandler
-  #  else if(FALSE){
-  #    if (beh == 2){
-  #      tmpsett <- dplyr::filter(datasett, Behandler %in% c("Eget lokalsykehus","UNN Tromsø","NLSH Bodø","Annet sykehus i eget HF","Annet HF i HN"))
-  #      return(tmpsett)
-  #    }
-  #    if (beh == 3){
-  #      tmpsett <- dplyr::filter(datasett, Behandler == "Eget lokalsykehus")
-  #      return(tmpsett)
-  #    }
-  #    if (beh == 4){
-  #      tmpsett <- dplyr::filter(datasett, Behandler == "UNN Tromsø")
-  #      return(tmpsett)
-  #    }
-  #    if (beh == 5){
-  #      tmpsett <- dplyr::filter(datasett, Behandler == "NLSH Bodø")
-  #      return(tmpsett)
-  #    }
-  #    if (beh == 6){
-  #      tmpsett <- dplyr::filter(datasett, Behandler == "Annet sykehus i eget HF")
-  #      return(tmpsett)
-  #    }
-  #    if (beh == 7){
-  #      tmpsett <- dplyr::filter(datasett, Behandler == "Annet HF i HN")
-  #      return(tmpsett)
-  #    }
-  #    if (beh == 8){
-  #      tmpsett <- dplyr::filter(datasett, Behandler == "HF i andre RHF")
-  #      return(tmpsett)
-  #    }
-  #  }
-  else {
+  } else {
     if (beh == 2){
       tmpsett <- dplyr::filter(datasett, behandlende_rhf == "Helse Nord RHF")
       return(tmpsett)
@@ -221,6 +203,7 @@ filterHDG <- function(datasett, filter){
     return(datasett)
   } else {
     tabell <- dplyr::filter(datasett, hoveddiagnosegruppe %in% filter)
+    return(tabell)
   }
 }
 
@@ -229,6 +212,7 @@ filterICD10 <- function(datasett, filter){
     return(datasett)
   } else {
     tabell <- dplyr::filter(datasett, icd10kap %in% filter)
+    return(tabell)
   }
 }
 
@@ -237,5 +221,6 @@ filterFag <- function(datasett, filter){
     return(datasett)
   } else {
     tabell <- dplyr::filter(datasett, episodefag %in% filter)
+    return(tabell)
   }
 }

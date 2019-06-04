@@ -35,33 +35,52 @@ matrix:
         - RUN_LINTR=false
   allow_failures:
     - os: windows
+    - r: devel
+
+r_packages:
+  - covr
+  - lintr
+  - roxygen2
+  - pkgdown
 
 env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
 
 before_install:
-  - Rscript -e "if (!require('covr')) install.packages('covr')"
-  - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
-  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
-  - Rscript -e "if (!require('pkgdown')) devtools::install_github('hadley/pkgdown')"
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      brew update
+      brew install v8
+      brew tap homebrew/cask
+      brew cask install phantomjs
+    fi
 
 script:
   - R CMD build .
   - R CMD check *tar.gz
 
+after_script:
+  - |
+    if [[ "$RUN_LINTR" = true ]]; then
+      R CMD INSTALL $PKG_TARBALL
+      Rscript -e 'lintr::lint_package()'
+    fi
+
 after_success:
-  - Rscript -e 'covr::codecov()'
-  - Rscript -e 'devtools::document()'
-  - Rscript -e 'roxygen2::roxygenise()'
-  - Rscript -e 'pkgdown::build_site()'
+  - |
+    if [[ "$RUN_LINTR" = true ]]; then
+      Rscript -e 'covr::codecov()'
+      Rscript -e 'roxygen2::roxygenise()'
+      Rscript -e 'pkgdown::build_site()'
+    fi
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
   skip_cleanup: true                      # Don't remove files
   github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  on: # Only deploy if master branch, xenial build and with latest released version of R.
+  on:
     branch: master
     dist: xenial
     r: release
@@ -69,4 +88,4 @@ deploy:
 notifications:
   email:
     on_success: change # default: change
-    on_failure: change # default: always 
+    on_failure: change # default: always

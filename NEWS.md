@@ -1,3 +1,9 @@
+# dynamiskTabellverk 2.4.0
+
+## Minor Features
+
+- Included the SAS code. Copied directly from [06c88d](https://gitlab.com/skde/tabellverk/commit/06c88d91f3a41afda998fd29746208d0d752e39d) of [gitlab.com/skde/tabellverk](https://gitlab.com/skde/tabellverk) (private repository).
+
 # dynamiskTabellverk 2.3.0
 
 ## Minor Features

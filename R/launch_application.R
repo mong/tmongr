@@ -41,8 +41,12 @@ create_appDir <- function(data = NULL) {
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)
   # Create main directory
   dir.create(tmpshinydir)
-  # Copy the installed version of the dynamiskTabellverk package to the directory
+  
+  # Copy the application folder from the installed version of the 
+  # dynamiskTabellverk package to the directory. This folder contains
+  # ui.R, server.R www/ and Rmd/info.Rmd
   file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
+
   # Create data folder
   dir.create(paste0(tmpshinydir, "/", "application/data"))
   # Save the data to a .RData file

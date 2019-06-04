@@ -45,6 +45,13 @@ before_install:
   - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
   - Rscript -e "if (!require('devtools')) install.packages('devtools')"
   - Rscript -e "if (!require('pkgdown')) devtools::install_github('hadley/pkgdown')"
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      brew update
+      brew install v8
+      brew tap homebrew/cask
+      brew cask install phantomjs
+    fi
 
 script:
   - R CMD build .

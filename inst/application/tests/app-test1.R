@@ -1,0 +1,12 @@
+app <- ShinyDriver$new("../", seed = 100)
+app$snapshotInit("app-test1")
+Sys.sleep(1.0)
+
+app$snapshot()
+app$setInputs(xcol1 = "boomr_sykehus")
+Sys.sleep(0.2)
+app$snapshot()
+app$setInputs(keepNames = TRUE)
+app$setInputs(prosent = TRUE)
+Sys.sleep(0.4)
+app$snapshot()

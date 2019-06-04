@@ -8,6 +8,14 @@ shinyServer(
       minedata <- get(load("data/data.RData"))
     }
 
+    if (isTRUE(getOption("shiny.testmode"))) {
+      # Load static/dummy data if this is a test run
+      data <- dynamiskTabellverk::testdata
+      data2 <- dynamiskTabellverk::testdata2
+      minedata <- list(data, data2)
+      names(minedata) <- c("data1", "data2")
+    }
+
     if (!exists("minedata")){
       minedata <- NULL
     }

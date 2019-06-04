@@ -1,0 +1,298 @@
+{
+  "input": {
+    "ar": [
+      "2014",
+      "2015",
+      "2016"
+    ],
+    "beh": "1",
+    "beh-selectized": "",
+    "behandlingsniva": [
+      "Døgnopphold",
+      "Dagbehandling",
+      "Poliklinikk",
+      "Avtalespesialist"
+    ],
+    "bo": "2",
+    "bo-selectized": "",
+    "datasett": "data1",
+    "icd10": "Alle",
+    "icd10-selectized": "",
+    "keepNames": false,
+    "prosent": false,
+    "snitt": true,
+    "tab": "alle",
+    "verdi": "kontakter",
+    "verdi-selectized": "",
+    "xcol1": "boomr_sykehus",
+    "xcol1-selectized": "",
+    "xcol2": "behandlende_hf",
+    "xcol2-selectized": "",
+    "ycol": "aar",
+    "ycol-selectized": ""
+  },
+  "output": {
+    "aar": {
+      "html": "<div id=\"ar\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"ar\">År<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2011\"/>\n        <span>2011<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2012\"/>\n        <span>2012<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2013\"/>\n        <span>2013<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2014\" checked=\"checked\"/>\n        <span>2014<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2015\" checked=\"checked\"/>\n        <span>2015<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"ar\" value=\"2016\" checked=\"checked\"/>\n        <span>2016<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "alder": null,
+    "alle": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksområde <\/th> <th style='text-align: left;'> Behandlende HF <\/th> <th style='text-align: left;'> 2014 <\/th> <th style='text-align: left;'> 2015 <\/th> <th style='text-align: left;'> 2016 <\/th> <th style='text-align: left;'> Snitt <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Kirkenes <\/td> <td> Finnmarkssykehuset HF <\/td> <td>  30990 <\/td> <td>  32443 <\/td> <td>  30968 <\/td> <td>  31467 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> UNN HF <\/td> <td>   7674 <\/td> <td>   7139 <\/td> <td>   7119 <\/td> <td>   7311 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>     48 <\/td> <td>     62 <\/td> <td>     76 <\/td> <td>     62 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   1082 <\/td> <td>    766 <\/td> <td>    883 <\/td> <td>    910 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>     56 <\/td> <td>     38 <\/td> <td>    144 <\/td> <td>     79 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>    643 <\/td> <td>    502 <\/td> <td>    522 <\/td> <td>    556 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  40493 <\/td> <td>  40950 <\/td> <td>  39712 <\/td> <td>  40385 <\/td> <\/tr>\n  <tr> <td> Hammerfest <\/td> <td> Finnmarkssykehuset HF <\/td> <td>  44158 <\/td> <td>  45857 <\/td> <td>  46383 <\/td> <td>  45466 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> UNN HF <\/td> <td>  16251 <\/td> <td>  15151 <\/td> <td>  14868 <\/td> <td>  15423 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>    122 <\/td> <td>    136 <\/td> <td>    146 <\/td> <td>    135 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   1967 <\/td> <td>   2027 <\/td> <td>   1919 <\/td> <td>   1971 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>    609 <\/td> <td>    609 <\/td> <td>    764 <\/td> <td>    661 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   6859 <\/td> <td>   7197 <\/td> <td>   9868 <\/td> <td>   7975 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  69966 <\/td> <td>  70977 <\/td> <td>  73948 <\/td> <td>  71630 <\/td> <\/tr>\n  <tr> <td> Tromsø <\/td> <td> Finnmarkssykehuset HF <\/td> <td>    370 <\/td> <td>    329 <\/td> <td>    538 <\/td> <td>    412 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> UNN HF <\/td> <td> 151982 <\/td> <td> 154335 <\/td> <td> 153693 <\/td> <td> 153337 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>    290 <\/td> <td>    280 <\/td> <td>    272 <\/td> <td>    281 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Helgelandssykehuset HF <\/td> <td>      0 <\/td> <td>      0 <\/td> <td>     24 <\/td> <td>      8 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   4019 <\/td> <td>   4108 <\/td> <td>   4265 <\/td> <td>   4131 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>   1160 <\/td> <td>   1624 <\/td> <td>   2695 <\/td> <td>   1826 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>  27461 <\/td> <td>  33168 <\/td> <td>  35803 <\/td> <td>  32144 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td> 185282 <\/td> <td> 193844 <\/td> <td> 197290 <\/td> <td> 192139 <\/td> <\/tr>\n  <tr> <td> Harstad <\/td> <td> UNN HF <\/td> <td>  54498 <\/td> <td>  57653 <\/td> <td>  57180 <\/td> <td>  56444 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>    205 <\/td> <td>    278 <\/td> <td>    328 <\/td> <td>    270 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   1037 <\/td> <td>   1028 <\/td> <td>   1182 <\/td> <td>   1082 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>    150 <\/td> <td>    288 <\/td> <td>    340 <\/td> <td>    259 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   2638 <\/td> <td>   3293 <\/td> <td>   3659 <\/td> <td>   3197 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  58528 <\/td> <td>  62540 <\/td> <td>  62689 <\/td> <td>  61252 <\/td> <\/tr>\n  <tr> <td> Narvik <\/td> <td> UNN HF <\/td> <td>  35993 <\/td> <td>  37017 <\/td> <td>  36767 <\/td> <td>  36592 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>    456 <\/td> <td>    344 <\/td> <td>    396 <\/td> <td>    399 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>    622 <\/td> <td>    637 <\/td> <td>    715 <\/td> <td>    658 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>    140 <\/td> <td>    259 <\/td> <td>    294 <\/td> <td>    231 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   6006 <\/td> <td>   6416 <\/td> <td>   7748 <\/td> <td>   6723 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  43217 <\/td> <td>  44673 <\/td> <td>  45920 <\/td> <td>  44603 <\/td> <\/tr>\n  <tr> <td> Vesterålen <\/td> <td> Finnmarkssykehuset HF <\/td> <td>     45 <\/td> <td>     64 <\/td> <td>      0 <\/td> <td>     36 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> UNN HF <\/td> <td>   4500 <\/td> <td>   4561 <\/td> <td>   4336 <\/td> <td>   4466 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>  33905 <\/td> <td>  34521 <\/td> <td>  36747 <\/td> <td>  35058 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   1098 <\/td> <td>    975 <\/td> <td>   1010 <\/td> <td>   1028 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>    102 <\/td> <td>    144 <\/td> <td>    177 <\/td> <td>    141 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   4120 <\/td> <td>   8738 <\/td> <td>   8686 <\/td> <td>   7181 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  43770 <\/td> <td>  49003 <\/td> <td>  50956 <\/td> <td>  47910 <\/td> <\/tr>\n  <tr> <td> Lofoten <\/td> <td> UNN HF <\/td> <td>   2456 <\/td> <td>   2344 <\/td> <td>   1778 <\/td> <td>   2193 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>  29950 <\/td> <td>  28293 <\/td> <td>  29437 <\/td> <td>  29227 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>    871 <\/td> <td>    871 <\/td> <td>    894 <\/td> <td>    879 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>     73 <\/td> <td>    109 <\/td> <td>    165 <\/td> <td>    116 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   2152 <\/td> <td>   2503 <\/td> <td>   2332 <\/td> <td>   2329 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  35502 <\/td> <td>  34120 <\/td> <td>  34606 <\/td> <td>  34743 <\/td> <\/tr>\n  <tr> <td> Bodø <\/td> <td> UNN HF <\/td> <td>   7286 <\/td> <td>   6581 <\/td> <td>   6687 <\/td> <td>   6851 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>  92681 <\/td> <td>  93920 <\/td> <td> 102030 <\/td> <td>  96210 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Helgelandssykehuset HF <\/td> <td>    151 <\/td> <td>    143 <\/td> <td>    208 <\/td> <td>    167 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   3928 <\/td> <td>   4309 <\/td> <td>   3604 <\/td> <td>   3947 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>    188 <\/td> <td>    585 <\/td> <td>   1204 <\/td> <td>    659 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>  27271 <\/td> <td>  28111 <\/td> <td>  27678 <\/td> <td>  27687 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td> 131505 <\/td> <td> 133649 <\/td> <td> 141411 <\/td> <td> 135522 <\/td> <\/tr>\n  <tr> <td> Rana <\/td> <td> UNN HF <\/td> <td>   2412 <\/td> <td>   2819 <\/td> <td>   2050 <\/td> <td>   2427 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>   6093 <\/td> <td>   5993 <\/td> <td>   6218 <\/td> <td>   6101 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Helgelandssykehuset HF <\/td> <td>  38714 <\/td> <td>  40411 <\/td> <td>  40847 <\/td> <td>  39991 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   1958 <\/td> <td>   1667 <\/td> <td>   1664 <\/td> <td>   1763 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>     49 <\/td> <td>     78 <\/td> <td>     72 <\/td> <td>     66 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   8625 <\/td> <td>   5890 <\/td> <td>  12294 <\/td> <td>   8936 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  57851 <\/td> <td>  56858 <\/td> <td>  63145 <\/td> <td>  59285 <\/td> <\/tr>\n  <tr> <td> Mosjøen <\/td> <td> UNN HF <\/td> <td>    942 <\/td> <td>    961 <\/td> <td>    734 <\/td> <td>    879 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>   1806 <\/td> <td>   1669 <\/td> <td>   2132 <\/td> <td>   1869 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Helgelandssykehuset HF <\/td> <td>  27137 <\/td> <td>  28315 <\/td> <td>  28508 <\/td> <td>  27987 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   1403 <\/td> <td>   1322 <\/td> <td>    719 <\/td> <td>   1148 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>     44 <\/td> <td>     82 <\/td> <td>     61 <\/td> <td>     62 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   1047 <\/td> <td>    907 <\/td> <td>   1097 <\/td> <td>   1017 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  32379 <\/td> <td>  33256 <\/td> <td>  33251 <\/td> <td>  32962 <\/td> <\/tr>\n  <tr> <td> Sandnessjøen <\/td> <td> UNN HF <\/td> <td>   1677 <\/td> <td>   1803 <\/td> <td>   1324 <\/td> <td>   1601 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Nordlandssykehuset HF <\/td> <td>   3917 <\/td> <td>   3193 <\/td> <td>   3851 <\/td> <td>   3654 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Helgelandssykehuset HF <\/td> <td>  30726 <\/td> <td>  32384 <\/td> <td>  30278 <\/td> <td>  31129 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> HF utenfor Helse Nord RHF <\/td> <td>   5512 <\/td> <td>   5871 <\/td> <td>   5670 <\/td> <td>   5684 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Private sykehus <\/td> <td>     72 <\/td> <td>    163 <\/td> <td>    196 <\/td> <td>    144 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Avtalespesialister <\/td> <td>   4545 <\/td> <td>   4598 <\/td> <td>   4654 <\/td> <td>   4599 <\/td> <\/tr>\n  <tr> <td>  <\/td> <td> Sum <\/td> <td>  46449 <\/td> <td>  48012 <\/td> <td>  45973 <\/td> <td>  46811 <\/td> <\/tr>\n   <\/tbody> <\/table>",
+    "beh": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"beh\">Behandler<\/label>\n  <div>\n    <select id=\"beh\"><option value=\"1\" selected>Alle<\/option>\n<option value=\"2\">Helse Nord<\/option>\n<option value=\"3\">Finnmarkssykehuset<\/option>\n<option value=\"4\">UNN<\/option>\n<option value=\"5\">Nordlandssykehuset<\/option>\n<option value=\"6\">Helgelandssykehuset<\/option>\n<option value=\"8\">Avtalespesialister<\/option>\n<option value=\"9\">Private sykehus<\/option>\n<option value=\"7\">Utenfor Helse Nord<\/option><\/select>\n    <script type=\"application/json\" data-for=\"beh\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "behandlingsniva": {
+      "html": "<div id=\"behandlingsniva\" class=\"form-group shiny-input-checkboxgroup shiny-input-container\">\n  <label class=\"control-label\" for=\"behandlingsniva\">Behandlingsnivå<\/label>\n  <div class=\"shiny-options-group\">\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Døgnopphold\" checked=\"checked\"/>\n        <span>Døgnopphold<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Dagbehandling\" checked=\"checked\"/>\n        <span>Dagbehandling<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Poliklinikk\" checked=\"checked\"/>\n        <span>Poliklinikk<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"checkbox\">\n      <label>\n        <input type=\"checkbox\" name=\"behandlingsniva\" value=\"Avtalespesialist\" checked=\"checked\"/>\n        <span>Avtalespesialist<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "bo": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"bo\">Opptaksområde<\/label>\n  <div>\n    <select id=\"bo\"><option value=\"1\">Alle<\/option>\n<option value=\"2\" selected>Helse Nord<\/option>\n<option value=\"3\">Finnmarkssykehuset<\/option>\n<option value=\"4\">UNN<\/option>\n<option value=\"5\">Nordlandssykehuset<\/option>\n<option value=\"6\">Helgelandssykehuset<\/option><\/select>\n    <script type=\"application/json\" data-for=\"bo\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "br_datasett": {
+      "html": "<br>",
+      "deps": [
+
+      ]
+    },
+    "datasett": {
+      "html": "<div id=\"datasett\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n  <div class=\"shiny-options-group\">\n    <div class=\"radio\">\n      <label>\n        <input type=\"radio\" name=\"datasett\" value=\"data1\" checked=\"checked\"/>\n        <span>data1<\/span>\n      <\/label>\n    <\/div>\n    <div class=\"radio\">\n      <label>\n        <input type=\"radio\" name=\"datasett\" value=\"data2\"/>\n        <span>data2<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "datasetttekst": {
+      "html": "<h4>Datagrunnlag<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "fag": null,
+    "figurtekst": {
+      "html": "<h4><h1>Pasientstrømmer, Helse Nord RHF<img src=\"skde.png\" align=\"right\" width=\"150\" style=\"padding-right:20px;\"/><\/h1><br/><font size='+1'>Antall kontakter for pasienter bosatt i opptaktsområdet for Helse Nord RHF, behandlet ved ulike HF og bosatt i ulike opptaksområder på sykehusnivå, fordelt på år, for årene  2014 - 2016.<\/font><br><br><ul><li>Annet: <ul><li>Kun aldersgruppene   og <\/li><li>Kun hastegradene   og <\/li><li>Kun døgnopphold, dagbehandlinger, poliklinikk  og avtalespesialist<\/li><\/ul><\/li><\/ul><\/h4>",
+      "deps": [
+
+      ]
+    },
+    "filter": {
+      "html": "<h4>Filter<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "hastegrad1": null,
+    "hastegrad2": null,
+    "hdg": null,
+    "icd10": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"icd10\">ICD10-kapittel<\/label>\n  <div>\n    <select id=\"icd10\"><option value=\"Alle\" selected>Alle<\/option>\n<option value=\"Visse infeksjonssykd og parasittsykd\">Visse infeksjonssykd og parasittsykd<\/option>\n<option value=\"Svulster\">Svulster<\/option>\n<option value=\"Sykd i blod og bloddannende organer\">Sykd i blod og bloddannende organer<\/option>\n<option value=\"Endokrine sykd, ernæringssykd\">Endokrine sykd, ernæringssykd<\/option>\n<option value=\"Psyk lidelser og atferdsforstyrrelser\">Psyk lidelser og atferdsforstyrrelser<\/option>\n<option value=\"Sykd i nervesystemet\">Sykd i nervesystemet<\/option>\n<option value=\"Sykd i øre og ørebensknute\">Sykd i øre og ørebensknute<\/option>\n<option value=\"Sykd i sirkulasjonssystemet\">Sykd i sirkulasjonssystemet<\/option>\n<option value=\"Sykd i åndedrettssystemet\">Sykd i åndedrettssystemet<\/option>\n<option value=\"Sykd i fordøyelsessystemet\">Sykd i fordøyelsessystemet<\/option>\n<option value=\"Sykd i hud og underhud\">Sykd i hud og underhud<\/option>\n<option value=\"Sykd i muskel-skjelettsystemet og bindevev\">Sykd i muskel-skjelettsystemet og bindevev<\/option>\n<option value=\"Sykdo i urin- og kjønnsorganer\">Sykdo i urin- og kjønnsorganer<\/option>\n<option value=\"Svangerskap, fødsel og barseltid\">Svangerskap, fødsel og barseltid<\/option>\n<option value=\"Visse tilstander i perinatalperioden\">Visse tilstander i perinatalperioden<\/option>\n<option value=\"Symptom, tegn, lab.funn, annet\">Symptom, tegn, lab.funn, annet<\/option>\n<option value=\"Skader, forgiftninger mm\">Skader, forgiftninger mm<\/option>\n<option value=\"Faktorer med betydning for helsetilstand\">Faktorer med betydning for helsetilstand<\/option>\n<option value=\"Sykd i øyet og øyets omgivelser\">Sykd i øyet og øyets omgivelser<\/option>\n<option value=\"Misdannelser, deformiteter og kromosomavvik\">Misdannelser, deformiteter og kromosomavvik<\/option>\n<option value=\"Ugyldig diagnosegruppe\">Ugyldig diagnosegruppe<\/option><\/select>\n    <script type=\"application/json\" data-for=\"icd10\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "instilling": {
+      "html": "<h4>Andre instillinger<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "kjonn": null,
+    "knappBeholdNavn": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"keepNames\" type=\"checkbox\"/>\n      <span>Vis alle navn<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "knappForenkling": null,
+    "knappProsent": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"prosent\" type=\"checkbox\"/>\n      <span>Prosent<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "knappSnitt": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <div class=\"checkbox\">\n    <label>\n      <input id=\"snitt\" type=\"checkbox\" checked=\"checked\"/>\n      <span>Vis snitt/sum<\/span>\n    <\/label>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "kolonner": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"ycol\">Kolonner<\/label>\n  <div>\n    <select id=\"ycol\"><option value=\"aar\" selected>År<\/option>\n<option value=\"behandlingsniva\">Behandlingsnivå<\/option>\n<option value=\"icd10kap\">ICD10-kapittel<\/option><\/select>\n    <script type=\"application/json\" data-for=\"ycol\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "lastned": {
+      "html": "<a id=\"downloadData\" class=\"btn btn-default shiny-download-link \" href=\"\" target=\"_blank\" download>\n  <i class=\"fa fa-download\"><\/i>\n  Last ned data\n<\/a>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "5.3.1",
+          "src": {
+            "href": "font-awesome-5.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "rad1": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"xcol1\">Grupperingsvariabel en<\/label>\n  <div>\n    <select id=\"xcol1\"><option value=\"boomr_sykehus\">Opptaksområde Sykehus<\/option>\n<option value=\"boomr_hf\">Opptaksområde HF<\/option>\n<option value=\"boomr_rhf\" selected>Opptaksområde RHF<\/option>\n<option value=\"aar\">År<\/option>\n<option value=\"behandlingsniva\">Behandlingsnivå<\/option>\n<option value=\"icd10kap\">ICD10-kapittel<\/option>\n<option value=\"behandler\">Behandler<\/option>\n<option value=\"behandlende_hf\">Behandlende HF<\/option>\n<option value=\"behandlende_rhf\">Behandlende RHF<\/option><\/select>\n    <script type=\"application/json\" data-for=\"xcol1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "rad2": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"xcol2\">Grupperingsvariabel to<\/label>\n  <div>\n    <select id=\"xcol2\"><option value=\"behandler\">Behandler<\/option>\n<option value=\"behandlende_hf\" selected>Behandlende HF<\/option>\n<option value=\"behandlende_rhf\">Behandlende RHF<\/option>\n<option value=\"aar\">År<\/option>\n<option value=\"behandlingsniva\">Behandlingsnivå<\/option>\n<option value=\"icd10kap\">ICD10-kapittel<\/option>\n<option value=\"boomr_sykehus\">Opptaksområde Sykehus<\/option>\n<option value=\"boomr_hf\">Opptaksområde HF<\/option>\n<option value=\"boomr_rhf\">Opptaksområde RHF<\/option>\n<option value=\"ingen\">Tom<\/option><\/select>\n    <script type=\"application/json\" data-for=\"xcol2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "tabeller": {
+      "html": "<div style=\"position:absolute;cursor:inherit;\">\n  <div class=\"tabbable\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"7420\">\n      <li class=\"active\">\n        <a href=\"#tab-7420-1\" data-toggle=\"tab\" data-value=\"alle\">Alle kontakter<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-7420-2\" data-toggle=\"tab\" data-value=\"dogn\">Døgnopphold<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-7420-3\" data-toggle=\"tab\" data-value=\"dag\">Dagbehandling<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-7420-4\" data-toggle=\"tab\" data-value=\"poli\">Poliklinikk<\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-7420-5\" data-toggle=\"tab\" data-value=\"Informasjon\">Informasjon<\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"7420\">\n      <div class=\"tab-pane active\" data-value=\"alle\" id=\"tab-7420-1\">\n        <div id=\"alle\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"dogn\" id=\"tab-7420-2\">\n        <div id=\"dogn\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"dag\" id=\"tab-7420-3\">\n        <div id=\"dag\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"poli\" id=\"tab-7420-4\">\n        <div id=\"poli\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"Informasjon\" id=\"tab-7420-5\">\n        <div class=\"container-fluid\"><p><br><\/p>\n\n<p>Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle kontakter med somatisk spesialisttjeneste ved sykehusene i Helse Nord RHF, samt alle kontakter for bosatte i Helse Nord RHF sitt opptaksområde.<\/p>\n\n<ul>\n<li>Bakgrunnstallene er hentet fra avdelingsoppholdsfiler fra NPR og er aggregert på ulike nivå.\n\n<ul>\n<li><strong>Sykehusopphold<\/strong>: Avdelingsopphold som er kodet som døgnopphold eller dagbehandlings <em>ved samme sykehus<\/em> som har foregått nært i tid eller samtidig regnes som ett opphold. Nært i tid er mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til et nytt opphold. Antall DRG-poeng hentes fra det bærende oppholdet, som er det oppholdet med høyest DRG-poeng. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.<\/li>\n<li><strong>Justert for overføringer<\/strong>: Ved justering for overføringer er alle døgn- og dagopphold med mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til neste opphold regnet som ett opphold, <em>uavhengig av hvor pasienten er behandlet<\/em>. Liggetiden regnes som tiden fra innskrivelse ved første opphold til utskrivelse fra siste opphold. Behandlingssted og antall DRG-poeng hentes fra det bærende oppholdet, som er det oppholdet med høyest DRG-poeng. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.<\/li>\n<li><strong>Fagområde (sykehusopphold)<\/strong>: Alle kontakter er delt inn i fagområde. Oppholdene er aggregert som <em>Sykehusopphold<\/em> (se over). Kontaktene er ikke delt inn i behandlende sykehus, kjønn, alder og DRGTypeHastegrad, av hensyn til personvernet.<\/li>\n<\/ul><\/li>\n<li>Ratene er beregnet ut i fra befolkningstall fra SSB for hvert opptaktsområde på RHF, HF eller sykehus-nivå, og er justert for kjønns- og alderssammensetningen i opptaktsområdene. Referansepopulasjonen er populasjon i Helse Nord RHF sitt opptaktsområde i 2016.<\/li>\n<li>Det er lagt opp til høy fleksibilitet, som i enkelte tilfeller kan gi ikke-intuitive resultater. Tabellverket burde derfor brukes med omhu.<\/li>\n<li>Hvis antall kontaker eller antall liggedøgn er mindre enn 5 i en celle er tallet erstattet med strek, av hensyn til personvernet.<\/li>\n<li>Tabell som lages kan lagres som en csv-fil, som så kan åpnes i Excel for videre analyse.<\/li>\n<li>Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.<\/li>\n<li>Hvis man opplever feil eller problemer kan man rapportere dette som en <em>issue<\/em> <a href=\"https://github.com/SKDE-Analyse/dynamiskTabellverk/issues\" target=\"_blank\">her<\/a> . Eventuelt kan man sende en mail til <a href=\"mailto:arnfinn.steindal@skde.no\">arnfinn.steindal@skde.no<\/a><\/li>\n<\/ul>\n\n<p>Versjon: 03.06.2019 (<a href=\"https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/tag/v2.5.0\">2.5.0<\/a>)<\/p>\n\n<p>Tidligere versjoner:<\/p>\n\n<ul>\n<li><a href=\"https://skde.shinyapps.io/tabellverk_2018_09_21/\">21.09.2018<\/a><\/li>\n<\/ul>\n\n<p><\/br><\/p>\n<\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "bootstrap",
+          "version": "3.3.7",
+          "src": {
+            "href": "shared/bootstrap"
+          },
+          "meta": {
+            "viewport": "width=device-width, initial-scale=1"
+          },
+          "script": [
+            "js/bootstrap.min.js",
+            "shim/html5shiv.min.js",
+            "shim/respond.min.js"
+          ],
+          "stylesheet": "css/bootstrap.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "valg": {
+      "html": "<h4>Variabler<\/h4>",
+      "deps": [
+
+      ]
+    },
+    "verdi": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"verdi\">Verdi<\/label>\n  <div>\n    <select id=\"verdi\"><option value=\"kontakter\" selected>Kontakter<\/option>\n<option value=\"rate\">Rater<\/option>\n<option value=\"liggetid\">Liggedøgn<\/option>\n<option value=\"liggedognrate\">Liggedøgnsrate<\/option>\n<option value=\"liggedognindex\">Liggedøgn pr. pasient<\/option>\n<option value=\"drg_poeng\">DRG-poeng<\/option>\n<option value=\"drgrate\">DRG-poengrater<\/option>\n<option value=\"drg_index\">DRG-index<\/option><\/select>\n    <script type=\"application/json\" data-for=\"verdi\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

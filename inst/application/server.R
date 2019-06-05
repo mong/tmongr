@@ -13,24 +13,25 @@ shinyServer(
     }
 
     listeDatasett <- NULL
-    if (exists("minedata")){listeDatasett <- names(minedata)}
+    if (exists("minedata")) {
+      listeDatasett <- names(minedata)
+    }
 
-    datasett <- reactiveValues(A=NULL)
+    datasett <- reactiveValues(A = NULL)
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
     output$tabeller <- renderUI({
 
       absolutePanel(
-        (tabsetPanel(type = "tabs", id="tab",
-                     tabPanel("Alle kontakter", tableOutput("alle"), value="alle"),
-                     tabPanel("Døgnopphold", tableOutput("dogn"), value="dogn"),
-                     tabPanel("Dagbehandling", tableOutput("dag"), value="dag"),
-                     tabPanel("Poliklinikk", tableOutput("poli"), value="poli"),
+        (tabsetPanel(type = "tabs", id = "tab",
+                     tabPanel("Alle kontakter", tableOutput("alle"), value = "alle"),
+                     tabPanel("Døgnopphold", tableOutput("dogn"), value = "dogn"),
+                     tabPanel("Dagbehandling", tableOutput("dag"), value = "dag"),
+                     tabPanel("Poliklinikk", tableOutput("poli"), value = "poli"),
                      tabPanel("Informasjon", fluidPage(
                        includeMarkdown("Rmd/info.Rmd")))
-#        )
         )
-        )#, width = 800
+        )
       )
     })
 
@@ -41,27 +42,27 @@ shinyServer(
       meny$fire <- dynamiskTabellverk::definerValgKol(datasett$A, 4)
 
       meny$to_default <<- "behandlende_hf"
-      if("behandler" %in% colnames(datasett$A)){
+      if ("behandler" %in% colnames(datasett$A)){
         if (!("behandlende_hf" %in% colnames(datasett$A)) & !("behandlende_hf_hn" %in% colnames(datasett$A))){
           meny$default <<- "behandler"
         }
-        valgBeh <- c("Alle"=1,
-                      "Helse Nord"=2,
-                      "Eget lokalsykehus"=3,
-                      "UNN Tromsø"=4,
-                      "NLSH Bodø"=5,
-                      "Annet sykehus i eget HF"=6,
-                      "Annet HF i Helse Nord"=7,
-                      "Utenfor Helse Nord"=8)
+        valgBeh <- c("Alle" = 1,
+                      "Helse Nord" = 2,
+                      "Eget lokalsykehus" = 3,
+                      "UNN Tromsø" = 4,
+                      "NLSH Bodø" = 5,
+                      "Annet sykehus i eget HF" = 6,
+                      "Annet HF i Helse Nord" = 7,
+                      "Utenfor Helse Nord" = 8)
         labelBeh <- "Behandlende sykehus"
       } else {
-        valgBeh <- c("Alle"=1,
-                      "Helse Nord"=2,
-                      "Finnmarkssykehuset"=3,
-                      "UNN"=4,
-                      "Nordlandssykehuset"=5,
-                      "Helgelandssykehuset"=6,
-                      "Utenfor Helse Nord"=7)
+        valgBeh <- c("Alle" = 1,
+                      "Helse Nord" = 2,
+                      "Finnmarkssykehuset" = 3,
+                      "UNN" = 4,
+                      "Nordlandssykehuset" = 5,
+                      "Helgelandssykehuset" = 6,
+                      "Utenfor Helse Nord" = 7)
         labelBeh <- "Behandlende foretak"
       }
 
@@ -69,13 +70,13 @@ shinyServer(
     obsB <- observe({
       if (is.null(input$datasett)){
         if (length(minedata) == 1){
-          dsnavn = names(minedata[1])
+          dsnavn <- names(minedata[1])
           datasett$A <- minedata[[dsnavn]]
         } else {
           datasett$A <- NULL
         }
       } else {
-        dsnavn = input$datasett
+        dsnavn <- input$datasett
         datasett$A <- minedata[[dsnavn]]
       }
 
@@ -83,14 +84,17 @@ shinyServer(
 
     makeTable <- reactive({
       verdier <- lageParametere()
-      if (is.null(verdier$forenkling)){verdier$forenkling <- TRUE}
-      if (is.null(datasett$A)){return(NULL)}
+      if (is.null(verdier$forenkling)) {
+        verdier$forenkling <- TRUE
+      }
+      if (is.null(datasett$A)) {
+        return(NULL)
+      }
       pivot <- dynamiskTabellverk::makeDataTabell(datasett$A, input$tab, verdier, input$keepNames, input$snitt)
       return(pivot)
     })
 
     debounced_reactive <- throttle(makeTable, 1000)
-
 
     # valg hoveddiagnosegruppe
     output$hdg <- renderUI({
@@ -127,17 +131,17 @@ shinyServer(
       debounced_reactive()
     })
 
-    # døgn-opphold
+    # døgnopphold
     output$dogn <- renderTable({
       debounced_reactive()
     })
 
-    # dag-opphold
+    # dagopphold
     output$dag <- renderTable({
       debounced_reactive()
     })
 
-    # poli-opphold
+    # poliopphold
     output$poli <- renderTable({
       debounced_reactive()
     })
@@ -199,13 +203,13 @@ shinyServer(
     })
 
     output$datasetttekst <- renderUI({
-      if (length(listeDatasett)>1){
+      if (length(listeDatasett) > 1){
         HTML("<h4>Datagrunnlag</h4>")
       }
     })
 
     output$datasett <- renderUI({
-      if (length(listeDatasett)>1){
+      if (length(listeDatasett) > 1){
         radioButtons("datasett",
                      label = NULL,
                      choices = listeDatasett,
@@ -216,7 +220,7 @@ shinyServer(
 
     output$br_datasett <- renderUI({
       # <br> only if more than one dataset
-      if (length(listeDatasett)>1){
+      if (length(listeDatasett) > 1){
         HTML("<br>")
       }
     })
@@ -255,34 +259,34 @@ shinyServer(
       checkboxGroupInput("ar",
                          label = "År",
                          choices = unique(datasett$A$aar),
-                         selected = tail(unique(datasett$A$aar),3)
+                         selected = tail(unique(datasett$A$aar), 3)
       )
     })
 
     output$bo <- renderUI({
       selectInput("bo",
                   label = "Opptaksområde",
-                  choices = c("Alle"=1,
-                              "Helse Nord"=2,
-                              "Finnmarkssykehuset"=3,
-                              "UNN"=4,
-                              "Nordlandssykehuset"=5,
-                              "Helgelandssykehuset"=6
+                  choices = c("Alle" = 1,
+                              "Helse Nord" = 2,
+                              "Finnmarkssykehuset" = 3,
+                              "UNN" = 4,
+                              "Nordlandssykehuset" = 5,
+                              "Helgelandssykehuset" = 6
                   ),
                   selected = 2)
     })
 
     output$beh <- renderUI({
       selectInput("beh",
-                  choices = c("Alle"=1,
-                              "Helse Nord"=2,
-                              "Finnmarkssykehuset"=3,
-                              "UNN"=4,
-                              "Nordlandssykehuset"=5,
-                              "Helgelandssykehuset"=6,
+                  choices = c("Alle" = 1,
+                              "Helse Nord" = 2,
+                              "Finnmarkssykehuset" = 3,
+                              "UNN" = 4,
+                              "Nordlandssykehuset" = 5,
+                              "Helgelandssykehuset" = 6,
                               "Avtalespesialister" = 8,
                               "Private sykehus" = 9,
-                              "Utenfor Helse Nord"=7),
+                              "Utenfor Helse Nord" = 7),
                   label = "Behandler",
                   selected = 1
       )
@@ -291,8 +295,10 @@ shinyServer(
     output$knappProsent <- renderUI({
       # Prosentknappen
       # Vises ikke hvis man velger drg_index
-      if (is.null(input$verdi)){return()}
-      if(input$verdi != "drg_index"){
+      if (is.null(input$verdi)) {
+        return()
+      }
+      if (input$verdi != "drg_index"){
         checkboxInput("prosent", "Prosent",
                       value = FALSE)
       }
@@ -318,16 +324,18 @@ shinyServer(
     # Download table to cvs file
     output$downloadData <- downloadHandler(
       filename = function() {
-        paste('tabellverk_HN-', Sys.Date(), '.csv', sep='')
+        paste("tabellverk_HN-", Sys.Date(), ".csv", sep = "")
       },
       content = function(file) {
-        write.csv2(makeTable(), file, fileEncoding = "ISO-8859-1", na="", row.names=FALSE)
+        write.csv2(makeTable(), file, fileEncoding = "ISO-8859-1", na = "", row.names = FALSE)
       }
     )
 
     output$figurtekst <- renderUI({
       verdier <- lageParametere()
-      if (is.null(verdier$forenkling)){verdier$forenkling <- FALSE}
+      if (is.null(verdier$forenkling)) {
+        verdier$forenkling <- FALSE
+      }
       hjelpetekst <- dynamiskTabellverk::lagHjelpetekst(
         input$tab,
         verdier$rader,
@@ -342,11 +350,11 @@ shinyServer(
         verdier$kjonn,
         verdier$hastegrad2,
         verdier$forenkling)
-      HTML(paste("<h4>",hjelpetekst,"</h4>",sep=""))
+      HTML(paste("<h4>", hjelpetekst, "</h4>", sep = ""))
     })
 
     output$lastned <- renderUI({
-      downloadButton('downloadData', 'Last ned data')
+      downloadButton("downloadData", "Last ned data")
     })
 
     output$link <- renderUI({
@@ -379,10 +387,12 @@ shinyServer(
 
     lageParametere <- reactive({
 
-      rader = c(input$xcol1, input$xcol2)
-      if (is.null(input$xcol2)){return()}
-      if ( (input$xcol2 == "ingen") | (input$xcol2 == input$xcol1)){
-        rader = c(input$xcol1)
+      rader <- c(input$xcol1, input$xcol2)
+      if (is.null(input$xcol2)) {
+        return()
+      }
+      if ((input$xcol2 == "ingen") | (input$xcol2 == input$xcol1)) {
+        rader <- c(input$xcol1)
       }
 
       forenkling <- parameterDefinert(input$forenkling, NULL)
@@ -400,7 +410,10 @@ shinyServer(
       hdg <- parameterDefinert(input$hdg, "Alle")
       icd10 <- parameterDefinert(input$icd10, "Alle")
       fag <- parameterDefinert(input$fag, "Alle")
-      verdier <- list(forenkling = forenkling, bo = bo, beh = beh, verdi = verdi, rader = rader, prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder, hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva, hdg = hdg, icd10 = icd10, fag = fag)
+      verdier <- list(forenkling = forenkling, bo = bo, beh = beh, verdi = verdi, rader = rader,
+                      prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder,
+                      hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva,
+                      hdg = hdg, icd10 = icd10, fag = fag)
 
       return(verdier)
 

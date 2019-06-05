@@ -2,26 +2,26 @@
 #' @param datasett The data set to be loaded into the application
 #'
 #' @export
-launch_application <- function(datasett = NULL){
-  shinydir <- create_appDir(data = datasett)
-  shiny::runApp(appDir = shinydir)
+launch_application <- function(datasett = NULL) {
+    shinydir <- create_appDir(data = datasett)
+    shiny::runApp(appDir = shinydir)
 }
 
 #' Submit the application to shinyapp.io
 #' @param datasett The data set file (.RData) to be loaded into the application.
 #' The absolute path has to be given
-#' @param name The appName of the deployed shiny application (default = "experimental")
+#' @param name The appName of the deployed shiny application (default = 'experimental')
 #' @param HNproxy If TRUE: deploy app through proxy
-#' @param shiny_account Which shiny account on shinyapps.io (default = "skde")
+#' @param shiny_account Which shiny account on shinyapps.io (default = 'skde')
 #'
 #' @export
-submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde"){
-  if (HNproxy){
-    options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
-    options(shinyapps.http = "rcurl")
-  }
-  shinydir <- create_appDir(data = datasett)
-  rsconnect::deployApp(appDir = shinydir, appName = name, account = shiny_account)
+submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde") {
+    if (HNproxy) {
+        options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
+        options(shinyapps.http = "rcurl")
+    }
+    shinydir <- create_appDir(data = datasett)
+    rsconnect::deployApp(appDir = shinydir, appName = name, account = shiny_account)
 }
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
@@ -34,24 +34,23 @@ submit_application <- function(datasett = NULL, name = "experimental", HNproxy =
 #'
 #' @return The created directory
 #'
-create_appDir <- function(data = NULL){
-  # Name the directory
-  tmpshinydir <- paste0(tempdir(), "/", "shiny")
-  # Delete old content in directory
-  unlink(tmpshinydir, recursive = TRUE, force = TRUE)
-  # Create main directory
-  dir.create(tmpshinydir)
+create_appDir <- function(data = NULL) {
+    # Name the directory
+    tmpshinydir <- paste0(tempdir(), "/", "shiny")
+    # Delete old content in directory
+    unlink(tmpshinydir, recursive = TRUE, force = TRUE)
+    # Create main directory
+    dir.create(tmpshinydir)
 
-  # Copy the application folder from the installed version of the
-  # dynamiskTabellverk package to the directory. This folder contains
-  # ui.R, server.R www/ and Rmd/info.Rmd
-  file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
+    # Copy the application folder from the installed version of the dynamiskTabellverk package to the directory.
+    # This folder contains ui.R, server.R www/ and Rmd/info.Rmd
+    file.copy(system.file("application", package = "dynamiskTabellverk"), tmpshinydir, recursive = TRUE)
 
-  # Create data folder
-  dir.create(paste0(tmpshinydir, "/", "application/data"))
+    # Create data folder
+    dir.create(paste0(tmpshinydir, "/", "application/data"))
 
-  # Save the data to a .RData file
-  save(data, file = paste0(tmpshinydir, "/", "application/data/data.RData"))
-  # Return the name of the main directory
-  return(paste0(tmpshinydir, "/", "application"))
+    # Save the data to a .RData file
+    save(data, file = paste0(tmpshinydir, "/", "application/data/data.RData"))
+    # Return the name of the main directory
+    return(paste0(tmpshinydir, "/", "application"))
 }

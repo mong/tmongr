@@ -3,23 +3,23 @@ context("text")
 test_that("correct text is returned", {
   originalverdier <- list(inpDatasett = testdata,
                           fane = "alle", #?
-                          rad=c("boomr_hf","behandlende_hf"),
-                          kol= "aar",
-                          verdi="kontakter",
-                          aar=2016,
-                          bo=2,
-                          beh=1,
-                          behandlingsniva = c("Døgnopphold","Dagbehandling","Poliklinikk","Avtalespesialist"), #"Poliklinikk",
-                          alder=c("tmp", "tmp", "tmp", "tmp"),
-                          kjonn=c("tmp", "tmp"), #?
-                          hastegrad2=c("tmp", "tmp", "tmp", "tmp", "tmp"),
-                          prosent=F,
-                          forenkling=F,
-                          keepNames=F,
-                          snitt=T,
-                          hdg="Alle",
-                          icd10="Alle")
-  
+                          rad = c("boomr_hf", "behandlende_hf"),
+                          kol = "aar",
+                          verdi ="kontakter",
+                          aar = 2016,
+                          bo = 2,
+                          beh = 1,
+                          behandlingsniva = c("Døgnopphold", "Dagbehandling", "Poliklinikk", "Avtalespesialist"),
+                          alder = c("tmp", "tmp", "tmp", "tmp"),
+                          kjonn = c("tmp", "tmp"), #?
+                          hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
+                          prosent = F,
+                          forenkling = F,
+                          keepNames = F,
+                          snitt = T,
+                          hdg = "Alle",
+                          icd10 = "Alle")
+
   verdier <- originalverdier
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,
@@ -36,8 +36,8 @@ test_that("correct text is returned", {
     hastegrad2 =      verdier$hastegrad2,
     forenkling =      verdier$forenkling)
   expect_equal_to_reference(hjelpetekst, "data/ref_tekst1.rds")
-  
-  verdier$aar <- c(2011,2013,2014,2015)
+
+  verdier$aar <- c(2011, 2013, 2014, 2015)
   verdier$fane <- "menisk"
   verdier$prosent <- T
   verdier$forenkling <- T

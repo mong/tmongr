@@ -10,9 +10,9 @@ filtrerUt(tabell, fane, verdi, aar, bo, beh, behandlingsniva, alder, kjonn,
 \arguments{
 \item{tabell}{The dataset that is going to be filtred.}
 
-\item{fane}{The active tab (effect if "dogn", "dag" or "poli")}
+\item{fane}{The active tab (effect if 'dogn', 'dag' or 'poli')}
 
-\item{verdi}{The value that is going to be tabulated (only an effect if "liggedognindex" or "drg_index")}
+\item{verdi}{The value that is going to be tabulated (only an effect if 'liggedognindex' or 'drg_index')}
 
 \item{aar}{The years to be tabulated}
 

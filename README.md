@@ -19,3 +19,79 @@ Include the following in your `~/.Renviron` file before you install the package:
 http_proxy=http://www-proxy.helsenord.no:8080
 https_proxy=http://www-proxy.helsenord.no:8080
 ```
+
+## Running SAS code
+
+Running the following SAS code will produce the aggregated data used by the shiny app:
+
+```sas
+%let sasfolder = \\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\r-pakke\dynamiskTabellverk\sas;
+
+%include "&sasfolder\formater.sas";
+%include "&sasfolder\macroer.sas";
+%include "&sasfolder\rater_og_aggr.sas";
+%include "&sasfolder\tilrettelegging.sas";
+%include "&sasfolder\tilretteleggInnbyggerfil.sas";
+
+%include "&sasfolder\avd_tabell.sas";
+```
+
+The following data files will be produced:
+
+```
+\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_behandlert19.csv
+\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_justoverft18.csv
+\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_fagt18.csv
+\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_icd10t18.csv
+```
+
+## Convert the data to R
+
+The *csv* files produced by *SAS* have to be converted to `utf-8` and `unix` file ending format by *git bash*:
+
+```bash
+iconv.exe -f CP1252 -t UTF-8 <filename> | dos2unix.exe > unix_<filename>
+```
+
+Then saved as `RDS` files, as follows:
+
+```r
+data <- read.table('../csv_filer/unix_avd_behandlert18.csv', 
+                  sep = ",", 
+                  header=T, 
+                  encoding = 'UTF-8', 
+                  stringsAsFactors = FALSE)
+
+names(data) <- tolower(names(data))
+saveRDS(data, "data/behandler.rds")
+```
+
+## Running the app
+
+The following R code has been run to publish a new version of the shiny app web page:
+```r
+all_data = list()
+
+all_files = c(
+  "data/behandler.rds", 
+  "data/justertoverf.rds", 
+  "data/fag.rds"
+)
+
+all_names = c(
+  "Sykehusopphold",
+  "Justert for overføringer",
+  "Fagområde (sykehusopphold)"
+)
+
+all_data <- lapply(all_files, readRDS)
+
+names(all_data) <- all_names
+
+# Run the following line to test the app locally first
+dynamiskTabellverk::launch_application(datasett = all_data)
+
+# Submit the app to shinyapp.io
+dynamiskTabellverk::submit_application(datasett = all_data, HNproxy = TRUE, name = "tabellverk")
+```
+

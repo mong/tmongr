@@ -1,4 +1,4 @@
-%macro tilretteleggInnbyggerfil();
+%macro tilretteleggInnbyggerfil(just_aar = 2016);
 
 /*
 Returnerer fire datasett:
@@ -6,6 +6,8 @@ Returnerer fire datasett:
 - bohf_innbygg
 - bosh_innbygg
 - ald_just
+
+Variablen `just_aar` bestemmer justeringsår
 */
 
 data innbygg;
@@ -20,7 +22,7 @@ set innbygg;
   %bo_sor;
 run;
 
-/* lage tmp-tabell for kjÃ¸nns- og aldersjustering */
+/* lage tmp-tabell for kjønns- og aldersjustering */
 
 proc sql;
 create table tmp_pop as
@@ -36,7 +38,6 @@ group by
    ermann;
 quit;
 
-
 proc sql;
 create table tmp_pop_tot as
 select distinct
@@ -48,20 +49,33 @@ group by
 quit;
 
 proc sql;
-create table ald_just as
+create table tmp_ald_just as
 select *
 from tmp_pop left join tmp_pop_tot
 on 
 tmp_pop.aar=tmp_pop_tot.aar;
 quit;
 
+data tmp_fakt;
+set tmp_ald_just;
+where aar = &just_aar;
+faktor = innb/innb_tot;
+drop innb_tot innb aar;
+run;
+
+proc sql;
+create table ald_just as
+select *
+from tmp_ald_just left join tmp_fakt
+on
+tmp_ald_just.ald_gr4=tmp_fakt.ald_gr4 and
+tmp_ald_just.ermann=tmp_fakt.ermann;
+quit;
 
 data ald_just;
 set ald_just;
-faktor = innb/innb_tot;
-drop innb_tot innb;
+drop innb innb_tot;
 run;
-
 
 /* Antall innbyggere i bosh*/
 
@@ -130,5 +144,7 @@ quit;
 %slett_datasett(datasett = tmp_pop);
 %slett_datasett(datasett = tmp_pop_tot);
 %slett_datasett(datasett = innbygg);
+%slett_datasett(datasett = tmp_ald_just);
+%slett_datasett(datasett = tmp_fakt);
 
 %mend;

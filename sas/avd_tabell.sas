@@ -62,6 +62,7 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    */
    if (hastegrad eq 5) then hastegrad = 4;
 
+   %boomraader;
 run;
 
 /*
@@ -84,7 +85,7 @@ Normal
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\UNN-Avdelinger\SKDE.avd\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._behandler&taar..csv"
+outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._behandler&taar..csv"
 dbms=csv
 replace;
 run;
@@ -95,7 +96,7 @@ ICD10
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, icd = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\UNN-Avdelinger\SKDE.avd\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._icd10&taar..csv"
+outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._icd10&taar..csv"
 dbms=csv
 replace;
 run;
@@ -106,7 +107,7 @@ fagområde
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, fag = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\UNN-Avdelinger\SKDE.avd\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._fag&taar..csv"
+outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._fag&taar..csv"
 dbms=csv
 replace;
 run;
@@ -135,6 +136,8 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    Meget få kontakter i 2017, så lager bare støy
    */
    if (hastegrad eq 5) then hastegrad = 4;
+
+   %boomraader;
 run;
 
 /*
@@ -156,7 +159,7 @@ Justert for overføringer
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\UNN-Avdelinger\SKDE.avd\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._justoverf&taar..csv"
+outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._justoverf&taar..csv"
 dbms=csv
 replace;
 run;

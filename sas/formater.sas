@@ -1,5 +1,5 @@
 
-%let filbane=\\tos-sas-skde-01\SKDE_SAS\felleskoder\master;
+%let filbane=\\tos-sas-skde-01\SKDE_SAS\felleskoder\tilrettelegging2019;
 options sasautos=("&filbane\Makroer" SASAUTOS);
 
 %include "&filbane\Formater\SKDE_somatikk.sas";
@@ -98,6 +98,9 @@ value behSh
 21='UNN Tromsø'
 22='UNN Harstad'
 23='UNN Narvik'
+24='UNN Tromsø' /* Storslett */
+25='UNN Tromsø' /* Bardu */
+26='UNN Tromsø' /* Finnsnes */
 30='Nordlandssykehuset HF'
 31='Nordlandssykehuset Vesterålen'
 32='Nordlandssykehuset Lofoten'

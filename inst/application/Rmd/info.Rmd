@@ -21,9 +21,10 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
 - Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/SKDE-Analyse/dynamiskTabellverk/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: 03.06.2019 ([2.5.0](https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/tag/v2.5.0))
+Versjon: *midlertidig* ([2.5.1](https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/tag/v2.5.1))
 
 Tidligere versjoner:
 - [21.09.2018](https://skde.shinyapps.io/tabellverk_2018_09_21/)
+- [03.06.2019](https://skde.shinyapps.io/tabellverk_2019_06_03/)
 
 </br>

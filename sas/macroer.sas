@@ -47,7 +47,7 @@ run;
 data &dsn;
 set &dsn;
 
-if episodeFag = "999" and AvtSpes = 1 then do;
+if episodeFag in ("900", "999") and AvtSpes = 1 then do;
     if fag_skde = 1 then episodeFag = "210";  /* Anestesi */
     if fag_skde = 2 then episodeFag = "220";  /* Barn -> Barnesykdommer */
     if fag_skde = 3 then episodeFag = "230";  /* Fysmed -> Fysikalsk medisin og (re) habilitering */

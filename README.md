@@ -16,8 +16,8 @@ devtools::install_github("SKDE-Analyse/dynamiskTabellverk")
 Include the following in your `~/.Renviron` file before you install the package:
 
 ```
-http_proxy=http://www-proxy.helsenord.no:8080
-https_proxy=http://www-proxy.helsenord.no:8080
+http_proxy=<proxy>:<port>
+https_proxy=<proxy>:<port>
 ```
 
 ## Running SAS code
@@ -25,7 +25,7 @@ https_proxy=http://www-proxy.helsenord.no:8080
 Running the following SAS code will produce the aggregated data used by the shiny app:
 
 ```sas
-%let sasfolder = \\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\r-pakke\dynamiskTabellverk\sas;
+%let sasfolder = <folder>\dynamiskTabellverk\sas;
 
 %include "&sasfolder\formater.sas";
 %include "&sasfolder\macroer.sas";
@@ -39,10 +39,10 @@ Running the following SAS code will produce the aggregated data used by the shin
 The following data files will be produced:
 
 ```
-\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_behandlert19.csv
-\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_justoverft18.csv
-\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_fagt18.csv
-\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\avd_icd10t18.csv
+<folder>\csv_filer\avd_behandlert19.csv
+<folder>\csv_filer\avd_justoverft18.csv
+<folder>\csv_filer\avd_fagt18.csv
+<folder>\csv_filer\avd_icd10t18.csv
 ```
 
 ## Convert the data to R

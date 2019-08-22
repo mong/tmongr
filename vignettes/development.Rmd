@@ -49,7 +49,7 @@ git push -u origin feature-2
 ## How to install pkgdown
 
 ```
-httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080)) # Only if behind HN proxy
+httr::set_config(httr::use_proxy(url="<proxy>", port=<port>)) # Only if behind HN proxy
 devtools::install_github("r-lib/pkgdown")
 ```
 -->

@@ -85,7 +85,7 @@ Normal
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._behandler&taar..csv"
+outfile="&prosjekt_filbane\csv_filer\&fil._behandler&taar..csv"
 dbms=csv
 replace;
 run;
@@ -96,7 +96,7 @@ ICD10
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, icd = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._icd10&taar..csv"
+outfile="&prosjekt_filbane\csv_filer\&fil._icd10&taar..csv"
 dbms=csv
 replace;
 run;
@@ -107,7 +107,7 @@ fagområde
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, fag = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._fag&taar..csv"
+outfile="&prosjekt_filbane\csv_filer\&fil._fag&taar..csv"
 dbms=csv
 replace;
 run;
@@ -159,7 +159,7 @@ Justert for overføringer
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 1);
 
 proc export data=&datasett._ut
-outfile="\\hn.helsenord.no\RHF\SKDE\Analyse\Prosjekter\ahs_dynamisk_tabellverk\csv_filer\&fil._justoverf&taar..csv"
+outfile="&prosjekt_filbane\csv_filer\&fil._justoverf&taar..csv"
 dbms=csv
 replace;
 run;

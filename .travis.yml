@@ -50,10 +50,7 @@ deploy:
   skip_cleanup: true                      # Don't remove files
   github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  on: # Only deploy if master branch, xenial build and with latest released version of R.
-    branch: master
-    dist: xenial
-    r: release
+  if: branch = master AND type = push AND os = linux AND dist = xenial AND r = release
 
 notifications:
   email:

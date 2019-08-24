@@ -58,3 +58,4 @@ notifications:
   email:
     on_success: change # default: change
     on_failure: change # default: always 
+

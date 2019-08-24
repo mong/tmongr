@@ -1,7 +1,4 @@
 
-%let filbane=\\tos-sas-skde-01\SKDE_SAS\felleskoder\tilrettelegging2019;
-options sasautos=("&filbane\Makroer" SASAUTOS);
-
 %include "&filbane\Formater\SKDE_somatikk.sas";
 %include "&filbane\Formater\NPR_somatikk.sas";
 

@@ -1,15 +1,15 @@
 /* lage sett for tabellverk-generering */
 
-%let taar = t18;
+%let taar = t19;
 %let fil = avd;
 
 data off_tot;
-set skde18.&taar._magnus_&fil._2013 skde18.&taar._magnus_&fil._2014 skde18.&taar._magnus_&fil._2015 skde18.&taar._magnus_&fil._2016 skde18.&taar._magnus_&fil._2017 ;
+set skde19.&taar._magnus_&fil._2014 skde19.&taar._magnus_&fil._2015 skde19.&taar._magnus_&fil._2016 skde19.&taar._magnus_&fil._2017 skde19.&taar._magnus_&fil._2018;
 where (BehRHF = 1 or BoRHF = 1) and (BoRHF in (1:4));
 run;
 
 data priv_tot;
-set skde18.&taar._magnus_avtspes_2013 skde18.&taar._magnus_avtspes_2014 skde18.&taar._magnus_avtspes_2015 skde18.&taar._magnus_avtspes_2016 skde18.&taar._magnus_avtspes_2017;
+set skde19.&taar._magnus_avtspes_2014 skde19.&taar._magnus_avtspes_2015 skde19.&taar._magnus_avtspes_2016 skde19.&taar._magnus_avtspes_2017 skde19.&taar._magnus_avtspes_2018;
 where (BoRHF = 1) and (alder ne .);
 BehHF = 28;
 BehRHF = 6;
@@ -24,14 +24,14 @@ run;
 Legg på DRGtypeHastegrad og tjenesteenhetKode fra parvus 
 (tjenesteenhetKode for å finne stråleterapienhet ved UNN)
 */
-%varFraParvus(dsnMagnus = off_tot, var_som = DRGtypeHastegrad tjenesteenhetKode, taar = 18);
+%varFraParvus(dsnMagnus = off_tot, var_som = DRGtypeHastegrad tjenesteenhetKode, taar = 19);
 
 /*
 Koble på korrvekt fra sho
 */
 %let fil = sho;
 data sho;
-set skde18.&taar._magnus_&fil._2013 skde18.&taar._magnus_&fil._2014 skde18.&taar._magnus_&fil._2015 skde18.&taar._magnus_&fil._2016 skde18.&taar._magnus_&fil._2017 ;
+set skde19.&taar._magnus_&fil._2014 skde19.&taar._magnus_&fil._2015 skde19.&taar._magnus_&fil._2016 skde19.&taar._magnus_&fil._2017 skde19.&taar._magnus_&fil._2018;
 where (BehRHF = 1 or BoRHF = 1) and (BoRHF in (1:4));
 run;
 %let fil = avd;

@@ -10,18 +10,18 @@ matrix:
       r: release
       env: 
         - DIST=xenial
-        - RUN_LINTR=true
+        - AFTER_JOBS=true
     - os: linux
       dist: xenial
       r: devel
       env: 
         - DIST=xenial
-        - RUN_LINTR=false
+        - AFTER_JOBS=false
     - os: windows
       r: release
       env: 
         - DIST=windows
-        - RUN_LINTR=false
+        - AFTER_JOBS=false
   allow_failures:
     - os: windows
 
@@ -29,31 +29,30 @@ env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
 
-before_install:
-  - Rscript -e "if (!require('covr')) install.packages('covr')"
-  - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
-  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
-  - Rscript -e "if (!require('pkgdown')) devtools::install_github('hadley/pkgdown')"
+r_packages:
+  - covr
+  - lintr
+  - roxygen2
+  - pkgdown
 
 script:
   - R CMD build .
   - R CMD check *tar.gz
 
 after_success:
-  - Rscript -e 'covr::codecov()'
-  - Rscript -e 'devtools::document()'
-  - Rscript -e 'roxygen2::roxygenise()'
-  - Rscript -e 'pkgdown::build_site()'
+  - |
+    if [[ "$AFTER_JOBS" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
+      Rscript -e 'covr::codecov()'
+      Rscript -e 'roxygen2::roxygenise()'
+      Rscript -e 'pkgdown::build_site()'
+    fi
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
   skip_cleanup: true                      # Don't remove files
   github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  on: # Only deploy if master branch, xenial build and with latest released version of R.
-    branch: master
-    dist: xenial
-    r: release
+  if: branch = master AND type = push AND os = linux AND dist = xenial AND r = release
 
 notifications:
   email:

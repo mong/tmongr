@@ -40,9 +40,12 @@ script:
   - R CMD check *tar.gz
 
 after_success:
-  - Rscript -e 'covr::codecov()'
-  - Rscript -e 'roxygen2::roxygenise()'
-  - Rscript -e 'pkgdown::build_site()'
+  - |
+    if [[ "$AFTER_JOBS" == "true" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
+      Rscript -e 'covr::codecov()'
+      Rscript -e 'roxygen2::roxygenise()'
+      Rscript -e 'pkgdown::build_site()'
+    fi
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
@@ -51,6 +54,8 @@ deploy:
   local_dir: docs                         # Deploy the docs folder
   on:
     branch: master
+    condition: "$AFTER_JOBS = true"
+    type: push
 
 notifications:
   email:

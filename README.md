@@ -11,13 +11,13 @@ The data in itself is not included in this package.
 devtools::install_github("SKDE-Analyse/dynamiskTabellverk")
 ```
 
-### If behind Helse-Nord proxy
+### If behind proxy
 
 Include the following in your `~/.Renviron` file before you install the package:
 
 ```
-http_proxy=<proxy>:<port>
-https_proxy=<proxy>:<port>
+http_proxy=<proxy-url>:<port>
+https_proxy=<proxy-url>:<port>
 ```
 
 ## Running SAS code
@@ -92,6 +92,6 @@ names(all_data) <- all_names
 dynamiskTabellverk::launch_application(datasett = all_data)
 
 # Submit the app to shinyapp.io
-dynamiskTabellverk::submit_application(datasett = all_data, HNproxy = TRUE, name = "tabellverk")
+dynamiskTabellverk::submit_application(datasett = all_data, proxy_url = FALSE, name = "tabellverk")
 ```
 

@@ -54,7 +54,7 @@ deploy:
   local_dir: docs                         # Deploy the docs folder
   on:
     branch: master
-    condition: "$AFTER_JOBS = true" AND "$TRAVIS_EVENT_TYPE = "push"
+    condition: "$AFTER_JOBS = true" AND "$TRAVIS_EVENT_TYPE = push"
     type: push
 
 notifications:

@@ -5,15 +5,13 @@
 \title{Submit the application to shinyapp.io}
 \usage{
 submit_application(datasett = NULL, name = "experimental",
-  proxy_url = FALSE, shiny_account = "skde")
+  shiny_account = "skde")
 }
 \arguments{
 \item{datasett}{The data set file (.RData) to be loaded into the application.
 The absolute path has to be given}
 
 \item{name}{The appName of the deployed shiny application (default = 'experimental')}
-
-\item{proxy_url}{If url is given: deploy app through proxy (default = FALSE)}
 
 \item{shiny_account}{Which shiny account on shinyapps.io (default = 'skde')}
 }

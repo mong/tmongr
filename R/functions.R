@@ -10,9 +10,9 @@
 #' @export
 #'
 definerValgKol <- function(datasett, valgnr) {
-    valg_boomr <- c(`Opptaksområde Sykehus` = "boomr_sykehus",
-                    `Opptaksområde HF` = "boomr_hf",
-                    `Opptaksområde RHF` = "boomr_rhf")
+    valg_boomr <- c(`Kommune` = "kommune",
+                    `Opptaksområde Sykehus` = "boomr_sykehus",
+                    `Opptaksområde HF` = "boomr_hf")
 
     valg_aar <- c(År = "aar")
 
@@ -68,9 +68,9 @@ definerValgKol <- function(datasett, valgnr) {
     if ( ("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names) ) {
         valg_behhf <- c(`Behandlende HF` = "behandlende_hf")
     }
-    if ("behandlende_rhf" %in% col_names) {
-        valg_behrhf <- c(`Behandlende RHF` = "behandlende_rhf")
-    }
+#    if ("behandlende_rhf" %in% col_names) {
+#        valg_behrhf <- c(`Behandlende RHF` = "behandlende_rhf")
+#    }
     if ("hoveddiagnosegruppe" %in% col_names) {
         valg_hdg <- c(Hoveddiagnosegruppe = "hoveddiagnosegruppe")
     }

@@ -43,7 +43,7 @@ Kun beholde relevante variabler
 data tabell_alle2;
 set tabell_tmp;
 keep aar alder ermann korrvekt liggetid
-BoShHN BoHF BoRHF BehSh BehHF BehRHF
+BoShHN BoHF BoRHF komnr BehSh BehHF BehRHF
 Aktivitetskategori3 hastegrad ICD10Kap
 DRGtypeHastegrad kontakt hdg episodeFag tjenesteenhetKode fag_skde AvtSpes;
 kontakt = 1;

@@ -77,6 +77,32 @@ set ald_just;
 drop innb innb_tot;
 run;
 
+/* Antall innbyggere i kommuner */
+
+proc sql;
+create table kommune_innbygg as
+select distinct
+          aar,
+          ald_gr4,
+          ermann,
+          BoRHF, 
+          BoHF, 
+          BoShHN,
+          komnr,
+          /* summert innbyggere */
+            (SUM(innbyggere)) as kommune_innb
+from innbygg
+group by
+          aar,
+          ald_gr4,
+          ermann,
+          BoRHF, 
+          BoHF, 
+          BoShHN,
+          komnr;
+quit;
+
+
 /* Antall innbyggere i bosh*/
 
 proc sql;

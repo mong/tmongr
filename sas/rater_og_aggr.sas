@@ -10,19 +10,35 @@ run;
    %definerBehandler(dsn=tmp);
 %end;
 
+/* Legge inn kommune-innbyggertall */
+
+proc sql;
+create table tmp2 as
+select *
+from tmp left join kommune_innbygg
+on 
+   tmp.aar=kommune_innbygg.aar and 
+   tmp.BoRHF=kommune_innbygg.BoRHF and 
+   tmp.BoHF=kommune_innbygg.BoHF and 
+   tmp.BoShHN=kommune_innbygg.BoShHN and
+   tmp.komnr=kommune_innbygg.komnr and
+   tmp.ald_gr4=kommune_innbygg.ald_gr4 and
+   tmp.ermann=kommune_innbygg.ermann;
+quit;
+
 /* Legge inn BOShHN innbyggertall */
 
 proc sql;
 create table tabl as
 select *
-from tmp left join bosh_innbygg
+from tmp2 left join bosh_innbygg
 on 
-   tmp.aar=bosh_innbygg.aar and 
-   tmp.BoRHF=bosh_innbygg.BoRHF and 
-   tmp.BoHF=bosh_innbygg.BoHF and 
-   tmp.BoShHN=bosh_innbygg.BoShHN and
-   tmp.ald_gr4=bosh_innbygg.ald_gr4 and
-   tmp.ermann=bosh_innbygg.ermann;
+   tmp2.aar=bosh_innbygg.aar and 
+   tmp2.BoRHF=bosh_innbygg.BoRHF and 
+   tmp2.BoHF=bosh_innbygg.BoHF and 
+   tmp2.BoShHN=bosh_innbygg.BoShHN and
+   tmp2.ald_gr4=bosh_innbygg.ald_gr4 and
+   tmp2.ermann=bosh_innbygg.ermann;
 quit;
 
 /* Legge inn BOHF innbyggertall */
@@ -63,17 +79,20 @@ quit;
 
 data tabl4;
 set tabl4;
+   komm_rate = 1000*faktor/kommune_innb;
    bosh_rate = 1000*faktor/bosh_innb;
    bohf_rate = 1000*faktor/bohf_innb;
    borhf_rate = 1000*faktor/borhf_innb;
+   komm_drgrate = 1000*faktor*korrvekt/kommune_innb;
    bosh_drgrate = 1000*faktor*korrvekt/bosh_innb;
    bohf_drgrate = 1000*faktor*korrvekt/bohf_innb;
    borhf_drgrate = 1000*faktor*korrvekt/borhf_innb;
+   komm_liggerate = 1000*faktor*liggetid/kommune_innb;
    bosh_liggerate = 1000*faktor*liggetid/bosh_innb;
    bohf_liggerate = 1000*faktor*liggetid/bohf_innb;
    borhf_liggerate = 1000*faktor*liggetid/borhf_innb;
 
-drop bosh_innb bohf_innb borhf_innb;
+drop kommune_innb bosh_innb bohf_innb borhf_innb;
 run;
 
 data tabl4;
@@ -114,25 +133,32 @@ proc sql;
       %end;
       BoRHF, 
       BoHF,
-      BoShHN, 
+      BoShHN,
+      komnr,
       /* summert liggetid */
       (SUM(liggetid)) as liggetid, 
       /* summert korrvekt */
       (SUM(korrvekt)) as drg_poeng, 
       /* antall pasienter */
       (SUM(kontakt)) as kontakter,
+      /* rate kommune */
+      (SUM(komm_rate)) as komm_rate,
       /* rate bosh */
       (SUM(bosh_rate)) as bosh_rate,
       /* rate bohf */
       (SUM(bohf_rate)) as bohf_rate,
       /* rate bohf */
       (SUM(borhf_rate)) as borhf_rate,
+      /* drg-rate kommune */
+      (SUM(komm_drgrate)) as komm_drgrate,
       /* drg-rate bosh */
       (SUM(bosh_drgrate)) as bosh_drgrate,
       /* drg-rate bohf */
       (SUM(bohf_drgrate)) as bohf_drgrate,
       /* drg-rate bohf */
       (SUM(borhf_drgrate)) as borhf_drgrate,
+      /* liggetidsrate kommune */
+      (SUM(komm_liggerate)) as komm_liggerate,
       /* liggetidsrate bosh */
       (SUM(bosh_liggerate)) as bosh_liggerate,
       /* liggetidsrate bohf */
@@ -169,7 +195,8 @@ from tabl4
       %end;
 	  BoRHF,
       BoHF,
-      BoShHN;
+      BoShHN,
+      komnr;
 quit;
 
 /* nye navn */
@@ -191,6 +218,7 @@ set &dsn._ut;
    rename BoRHF = boomr_RHF;
    rename BoHF = boomr_HF;
    rename BoShHN = boomr_sykehus;
+   rename komnr = kommune;
    rename BehRHF = behandlende_RHF;
    format behandlende_RHF BehRHF.;
 run;
@@ -203,6 +231,7 @@ set &dsn._ut;
    format boomr_HF BoHF_kort.;
    format boomr_RHF BoRHF.;
    format boomr_sykehus boshHN.;
+   format kommune komnr.;
    format behandlingsniva BEHANDLINGSNIVA3F.;
    %if &fag ne 0 %then %do;
        format fag_skde Fag_SKDE.;

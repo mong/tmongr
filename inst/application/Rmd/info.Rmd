@@ -8,7 +8,7 @@ runtime: shiny
 
 <br>
 
-Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle kontakter med somatisk spesialisttjeneste ved sykehusene i Helse Nord RHF, samt alle kontakter for bosatte i Helse Nord RHF sitt opptaksområde.
+Dataene som presenteres er fra Norsk pasientregister (NPR) og inneholder alle kontakter med somatisk spesialisttjeneste for bosatte i Helgelandssykehuset HF sitt opptaksområde.
 
 - Bakgrunnstallene er hentet fra avdelingsoppholdsfiler fra NPR og er aggregert på sykehusopphold. Avdelingsopphold som er kodet som døgnopphold eller dagbehandlings *ved samme sykehus* som har foregått nært i tid eller samtidig regnes som ett opphold. Nært i tid er mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til et nytt opphold. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.
 - Ratene er beregnet ut i fra befolkningstall fra SSB for hvert opptaktsområde på HF, sykehus eller kommune-nivå, og er justert for kjønns- og alderssammensetningen i opptaktsområdene. Referansepopulasjonen er populasjon i Helse Nord RHF sitt opptaktsområde i 2016.

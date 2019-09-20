@@ -396,7 +396,7 @@ shinyServer(
       }
 
       forenkling <- parameterDefinert(input$forenkling, NULL)
-      bo <- parameterDefinert(input$bo, 2)
+      bo <- parameterDefinert(input$bo, 6)
       beh <- parameterDefinert(input$beh, 1)
       verdi <- parameterDefinert(input$verdi, "kontakter")
       prosent <- parameterDefinert(input$prosent, FALSE)

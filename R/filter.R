@@ -64,6 +64,10 @@ filtrerUt <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
 
 # Kun se på boområdet man er interessert i
 filterBo <- function(datasett, bo) {
+    if (!("boomr_rhf" %in% colnames(datasett))) {
+        return(datasett)
+    }
+    
     if (bo == 1) {
         return(datasett)
     } else if (bo == 2) {

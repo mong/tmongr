@@ -236,49 +236,22 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
         all_tekst <- paste(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>", sep = "")
         
         extra = F
-        if ((length(alder) < 4) | (length(hastegrad2) < 4) | (length(behandlingsniva) < 3) | (tab %in% c("dag", "dogn", "poli"))) {
+        if ((length(behandlingsniva) < 3) | (tab %in% c("dag", "dogn", "poli"))) {
             extra = T
         }
-        
+
         if ("episodefag" %in% rad | kol == "episodefag") {
             extra = T
         }
-        
+
         if (extra) {
             all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>", sep = "")
         }
-        
+
         if ("episodefag" %in% rad | kol == "episodefag") {
             all_tekst <- paste0(all_tekst, "<li> For en del konsultasjoner hos avtalespesialister er ikke fagområde for episoden rapport inn til NPR. Disse konsultasjonene har fått definert fagområde for episoden basert på fagområde til avtalespesialisten.</li>")
         }
-        
-        if (length(alder) != 4) {
-            if (length(alder) == 1) {
-                tmp1 = "<li>Kun aldersgruppen "
-                alder_tekst = paste(tmp1, alder[length(alder)], "</li>", sep = "")
-            } else {
-                tmp1 = "<li>Kun aldersgruppene"
-                tmp2 = paste(alder[1:length(alder) - 1], collapse = ", ")
-                tmp3 = paste(" og ", alder[length(alder)], "</li>", sep = "")
-                alder_tekst = paste(tmp1, tmp2, tmp3)
-            }
-            all_tekst <- paste(all_tekst, alder_tekst, sep = "")
-        }
-        
-        if (length(hastegrad2) != 5) {
-            hast <- sapply(hastegrad2, tolower)
-            if (length(hast) == 1) {
-                tmp1 = "<li>Kun hastegrad "
-                hastegrad2_tekst = paste(tmp1, hast[length(hast)], "</li>", sep = "")
-            } else {
-                tmp1 = "<li>Kun hastegradene"
-                tmp2 = paste(hast[1:length(hast) - 1], collapse = ", ")
-                tmp3 = paste(" og ", hast[length(hast)], "</li>", sep = "")
-                hastegrad2_tekst = paste(tmp1, tmp2, tmp3)
-            }
-            all_tekst <- paste(all_tekst, hastegrad2_tekst, sep = "")
-        }
-        
+
         if (tab == "dag") {
             all_tekst <- paste0(all_tekst, "<li>Kun dagbehandlinger</li>")
         } else if (tab == "dogn") {

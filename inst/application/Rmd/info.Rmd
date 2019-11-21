@@ -13,7 +13,6 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Bakgrunnstallene er hentet fra avdelingsoppholdsfiler fra NPR og er aggregert på ulike nivå.
   - **Sykehusopphold**: Avdelingsopphold som er kodet som døgnopphold eller dagbehandlings *ved samme sykehus* som har foregått nært i tid eller samtidig regnes som ett opphold. Nært i tid er mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til et nytt opphold. Antall DRG-poeng hentes fra det bærende oppholdet, som er det oppholdet med høyest DRG-poeng. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.
   - **Justert for overføringer**: Ved justering for overføringer er alle døgn- og dagopphold med mindre enn åtte timer mellom utskrivelse fra ett opphold til innskrivelse til neste opphold regnet som ett opphold, *uavhengig av hvor pasienten er behandlet*. Liggetiden regnes som tiden fra innskrivelse ved første opphold til utskrivelse fra siste opphold. Behandlingssted og antall DRG-poeng hentes fra det bærende oppholdet, som er det oppholdet med høyest DRG-poeng. Alle polikliniske konsultasjoner regnes som kontakter, uavhengig av nærhet i tid til andre kontakter.
-  - **Fagområde (sykehusopphold)**: Alle kontakter er delt inn i fagområde. Oppholdene er aggregert som *Sykehusopphold* (se over). Kontaktene er ikke delt inn i behandlende sykehus, kjønn, alder og DRGTypeHastegrad, av hensyn til personvernet.
 - Ratene er beregnet ut i fra befolkningstall fra SSB for hvert opptaktsområde på RHF, HF eller sykehus-nivå, og er justert for kjønns- og alderssammensetningen i opptaktsområdene. Referansepopulasjonen er populasjon i Helse Nord RHF sitt opptaktsområde i 2016.
 - Det er lagt opp til høy fleksibilitet, som i enkelte tilfeller kan gi ikke-intuitive resultater. Tabellverket burde derfor brukes med omhu.
 - Hvis antall kontaker eller antall liggedøgn er mindre enn 5 i en celle er tallet erstattet med strek, av hensyn til personvernet.
@@ -21,10 +20,11 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
 - Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/SKDE-Analyse/dynamiskTabellverk/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: ([2.6.3](https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/tag/v2.6.3))
+Versjon: ([2.7.0](https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/tag/v2.7.0))
 
 Tidligere versjoner:
-- [21.09.2018](https://skde.shinyapps.io/tabellverk_2018_09_21/)
+- [12.09.2019](https://skde.shinyapps.io/tabellverk_2019_09_12/)
 - [03.06.2019](https://skde.shinyapps.io/tabellverk_2019_06_03/)
+- [21.09.2018](https://skde.shinyapps.io/tabellverk_2018_09_21/)
 
 </br>

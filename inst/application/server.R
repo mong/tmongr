@@ -90,7 +90,17 @@ shinyServer(
       if (is.null(datasett$A)) {
         return(NULL)
       }
-      pivot <- dynamiskTabellverk::makeDataTabell(datasett$A, input$tab, verdier, input$keepNames, input$snitt)
+      if (is.null(input$overf)) {
+        input_data <- datasett$A
+      } else {
+        niva_values <- unique(datasett$A$niva)
+        if (input$overf) {
+          input_data <- dplyr::filter(datasett$A, niva == niva_values[1])
+        } else {
+          input_data <- dplyr::filter(datasett$A, niva == niva_values[2])
+        }
+      }
+      pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keepNames, input$snitt)
       return(pivot)
     })
 
@@ -215,6 +225,15 @@ shinyServer(
                      choices = listeDatasett,
                      selected = listeDatasett[1]
         )
+      }
+    })
+
+    output$just_overf <- renderUI({
+      if ("niva" %in% colnames(datasett$A)) {
+        shinyWidgets::materialSwitch(inputId = "overf",
+                                     label = "Juster for overføringer",
+                                     value = FALSE,
+                                     status = "info")
       }
     })
 

@@ -17,13 +17,6 @@ shinyUI(function(request){
             uiOutput("lastned"),
             br(),
             sidebarPanel(
-              uiOutput("datasetttekst"),
-              tags$div(title = "
-Velg hvilket datagrunnlag som skal tabuleres.
-Se informasjonsfane til høyre for forklaring.",
-                       uiOutput("datasett")
-              ),
-              uiOutput("br_datasett"),
               uiOutput("just_overf"),
               uiOutput("valg"),
               uiOutput("rad1"),

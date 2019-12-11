@@ -3,7 +3,6 @@
 \docType{package}
 \name{dynamiskTabellverk}
 \alias{dynamiskTabellverk}
-\alias{dynamiskTabellverk-package}
 \title{dynamiskTabellverk}
 \description{
 Package including functions used by dynamisk tabellverk Helse-Nord RHF

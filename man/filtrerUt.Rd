@@ -4,8 +4,22 @@
 \alias{filtrerUt}
 \title{Filter out data from dataset}
 \usage{
-filtrerUt(tabell, fane, verdi, aar, bo, beh, behandlingsniva, alder, kjonn,
-  hastegrad1, hastegrad2, hdg, icd10, fag)
+filtrerUt(
+  tabell,
+  fane,
+  verdi,
+  aar,
+  bo,
+  beh,
+  behandlingsniva,
+  alder,
+  kjonn,
+  hastegrad1,
+  hastegrad2,
+  hdg,
+  icd10,
+  fag
+)
 }
 \arguments{
 \item{tabell}{The dataset that is going to be filtred.}

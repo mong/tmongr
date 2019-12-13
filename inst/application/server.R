@@ -197,11 +197,8 @@ shinyServer(
 
     output$just_overf <- renderUI({
       if ("niva" %in% colnames(datasett)) {
-        tags$div(title = "
-Juster for overføringer mellom sykehus.
-
-Ved justering for overføringer er alle døgn- og dagopphold nær i tid
-regnet som ett opphold, uavhengig av hvor pasienten er behandlet.",
+        tags$div(title = "Juster for overføringer mellom sykehus.
+Ved justering for overføringer er alle døgn- og dagopphold nær i tid regnet som ett opphold, uavhengig av hvor pasienten er behandlet.",
                  shinyWidgets::materialSwitch(inputId = "overf",
                                               label = "Juster for overføringer",
                                               value = FALSE,
@@ -211,8 +208,7 @@ regnet som ett opphold, uavhengig av hvor pasienten er behandlet.",
 
     output$hastegrad2 <- renderUI({
       if ("drgtypehastegrad" %in% colnames(datasett)){
-        tags$div(title = "
-Velg DRGtypeHastegrad som skal inkluderes.
+        tags$div(title = "Velg DRGtypeHastegrad som skal inkluderes.
 DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
 (om episoden har en kirurgisk eller medisinsk DRG).",
                  checkboxGroupInput("hastegrad2",
@@ -255,7 +251,7 @@ DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
     })
 
     output$bo <- renderUI({
-      tags$div(title = "Velg hvilke pasienter som skal tabuleres, basert på pasientens bosted",
+      tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",
                selectInput("bo",
                            label = "Opptaksområde",
                            choices = c("Alle" = 1,
@@ -269,7 +265,7 @@ DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
     })
 
     output$beh <- renderUI({
-      tags$div(title = "Velg hvilke behandler som skal tabuleres",
+      tags$div(title = "Velg hvilke behandlere som skal inkluderes",
                selectInput("beh",
                            choices = c("Alle" = 1,
                                        "Helse Nord RHF" = 2,
@@ -310,8 +306,7 @@ DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
 
     output$knappBeholdNavn <- renderUI({
       tags$div(title = "Vis repeterende kategori i første kolonne.
-               Hensiktsmessig før nedlasting av data og 
-               videre arbeid i f.eks. Excel.",
+Hensiktsmessig før nedlasting av data og videre arbeid i f.eks. Excel.",
                checkboxInput("keepNames", "Vis alle navn",
                              value = F))
     })

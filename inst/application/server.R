@@ -37,25 +37,25 @@ shinyServer(
           meny$default <<- "behandler"
         }
         valgBeh <- c("Alle" = 1,
-                      "Helse Nord" = 2,
-                      "Eget lokalsykehus" = 3,
-                      "UNN Tromsø" = 4,
-                      "NLSH Bodø" = 5,
-                      "Annet sykehus i eget HF" = 6,
-                      "Annet HF i Helse Nord" = 7,
-                      "Utenfor Helse Nord" = 8)
+                     "Helse Nord" = 2,
+                     "Eget lokalsykehus" = 3,
+                     "UNN Tromsø" = 4,
+                     "NLSH Bodø" = 5,
+                     "Annet sykehus i eget HF" = 6,
+                     "Annet HF i Helse Nord" = 7,
+                     "Utenfor Helse Nord" = 8)
         labelBeh <- "Behandlende sykehus"
       } else {
         valgBeh <- c("Alle" = 1,
-                      "Helse Nord" = 2,
-                      "Finnmarkssykehuset" = 3,
-                      "UNN" = 4,
-                      "Nordlandssykehuset" = 5,
-                      "Helgelandssykehuset" = 6,
-                      "Utenfor Helse Nord" = 7)
+                     "Helse Nord" = 2,
+                     "Finnmarkssykehuset" = 3,
+                     "UNN" = 4,
+                     "Nordlandssykehuset" = 5,
+                     "Helgelandssykehuset" = 6,
+                     "Utenfor Helse Nord" = 7)
         labelBeh <- "Behandlende foretak"
       }
-
+      
     })
 
     makeTable <- reactive({
@@ -85,30 +85,33 @@ shinyServer(
     # valg hoveddiagnosegruppe
     output$hdg <- renderUI({
       if ("hoveddiagnosegruppe" %in% colnames(datasett)){
-        selectInput("hdg",
-                    label = "Hoveddiagnosegruppe",
-                    choices = c("Alle", unique(datasett$hoveddiagnosegruppe)),
-                    selected = "Alle")
+        tags$div(title = "Velg hvilken hoveddiagnosegruppe som skal vises",
+                 selectInput("hdg",
+                             label = "Hoveddiagnosegruppe",
+                             choices = c("Alle", unique(datasett$hoveddiagnosegruppe)),
+                             selected = "Alle"))
       }
     })
 
     # valg ICD10-kapittel
     output$icd10 <- renderUI({
       if ("icd10kap" %in% colnames(datasett)){
-        selectInput("icd10",
-                    label = "ICD10-kapittel",
-                    choices = c("Alle", unique(datasett$icd10kap)),
-                    selected = "Alle")
+        tags$div(title = "Velg hvilket ICD10-kapittel som skal vises",
+                 selectInput("icd10",
+                             label = "ICD10-kapittel",
+                             choices = c("Alle", unique(datasett$icd10kap)),
+                             selected = "Alle"))
       }
     })
 
     # valg fagområde
     output$fag <- renderUI({
       if ("episodefag" %in% colnames(datasett)){
-        selectInput("fag",
-                    label = "Fagområde",
-                    choices = c("Alle", unique(datasett$episodefag)),
-                    selected = "Alle")
+        tags$div(title = "Velg hvilket fagområde (fagområdet for episoden) som skal vises",
+                 selectInput("fag",
+                             label = "Fagområde",
+                             choices = c("Alle", unique(datasett$episodefag)),
+                             selected = "Alle"))
       }
     })
 
@@ -134,163 +137,178 @@ shinyServer(
 
     # valg rader 1
     output$rad1 <- renderUI({
-      selectInput("xcol1",
-                  label = "Grupperingsvariabel en",
-                  choices = meny$en,
-                  selected = "boomr_rhf"
-      )
+      tags$div(title = "Velg første grupperingsvariabel",
+               selectInput("xcol1",
+                           label = "Grupperingsvariabel en",
+                           choices = meny$en,
+                           selected = "boomr_rhf"
+               ))
     })
-
 
     # valg rader 2
     output$rad2 <- renderUI({
-      selectInput("xcol2",
-                  label = "Grupperingsvariabel to",
-                  choices = meny$to,
-                  selected = meny$to_default
-      )
+      tags$div(title = "Velg andre grupperingsvariabel",
+               selectInput("xcol2",
+                           label = "Grupperingsvariabel to",
+                           choices = meny$to,
+                           selected = meny$to_default
+               ))
     })
-
 
     # valg kolonner
     output$kolonner <- renderUI({
-      selectInput("ycol",
-                  label = "Kolonner",
-                  choices = meny$tre,
-                  selected = "aar")
+      tags$div(title = "Velg kolonner",
+               selectInput("ycol",
+                           label = "Kolonner",
+                           choices = meny$tre,
+                           selected = "aar"))
     })
 
     # Velg hva som skal tabuleres
     output$verdi <- renderUI({
-      selectInput("verdi",
-                  label = "Verdi",
-                  choices = meny$fire,
-                  selected = "kontakter")
+      tags$div(title = "Velg hva som skal vises",
+               selectInput("verdi",
+                           label = "Verdi",
+                           choices = meny$fire,
+                           selected = "kontakter"))
     })
 
     output$behandlingsniva <- renderUI({
       if ("behandlingsniva" %in% colnames(datasett)){
-        checkboxGroupInput("behandlingsniva",
-                           label = "Behandlingsnivå",
-                           choices = unique(datasett$behandlingsniva),
-                           selected = unique(datasett$behandlingsniva)
-        )
+        tags$div(title = "Velg hvilke behandlingsnivå som skal inkluderes",
+                 checkboxGroupInput("behandlingsniva",
+                                    label = "Behandlingsnivå",
+                                    choices = unique(datasett$behandlingsniva),
+                                    selected = unique(datasett$behandlingsniva)
+                 ))
       }
     })
 
     output$hastegrad1 <- renderUI({
       if ("hastegrad" %in% colnames(datasett)){
-        checkboxGroupInput("hastegrad1",
-                     label = "Hastegrad",
-                     choices = c(unique(datasett$hastegrad)),
-                     selected = unique(datasett$hastegrad)
-        )
+        tags$div(title = "Velg hvilke hastegrader som skal inkluderes",
+                 checkboxGroupInput("hastegrad1",
+                                    label = "Hastegrad",
+                                    choices = c(unique(datasett$hastegrad)),
+                                    selected = unique(datasett$hastegrad)
+                 ))
       }
     })
 
     output$just_overf <- renderUI({
       if ("niva" %in% colnames(datasett)) {
-        shinyWidgets::materialSwitch(inputId = "overf",
-                                     label = "Juster for overføringer",
-                                     value = FALSE,
-                                     status = "info")
+        tags$div(title = "Juster for overføringer mellom sykehus.
+Ved justering for overføringer er alle døgn- og dagopphold nær i tid regnet som ett opphold, uavhengig av hvor pasienten er behandlet.",
+                 shinyWidgets::materialSwitch(inputId = "overf",
+                                              label = "Juster for overføringer",
+                                              value = FALSE,
+                                              status = "info"))
       }
     })
 
     output$hastegrad2 <- renderUI({
       if ("drgtypehastegrad" %in% colnames(datasett)){
-        checkboxGroupInput("hastegrad2",
-                           label = "DRGtypeHastegrad",
-                           choices = unique(datasett$drgtypehastegrad),
-                           selected = unique(datasett$drgtypehastegrad)
-        )
+        tags$div(title = "Velg DRGtypeHastegrad som skal inkluderes.
+DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
+(om episoden har en kirurgisk eller medisinsk DRG).",
+                 checkboxGroupInput("hastegrad2",
+                                    label = "DRGtypeHastegrad",
+                                    choices = unique(datasett$drgtypehastegrad),
+                                    selected = unique(datasett$drgtypehastegrad)
+                 ))
       }
     })
 
     output$alder <- renderUI({
       if ("alder" %in% colnames(datasett)){
-        checkboxGroupInput("alder",
-                           label = "Alder",
-                           choices = unique(datasett$alder),
-                           selected = unique(datasett$alder)
+        tags$div(title = "Velg aldersgrupper som skal inkluderes",
+                 checkboxGroupInput("alder",
+                                    label = "Alder",
+                                    choices = unique(datasett$alder),
+                                    selected = unique(datasett$alder))
         )
       }
     })
 
     output$kjonn <- renderUI({
       if ("kjonn" %in% colnames(datasett)){
-        checkboxGroupInput("kjonn",
-                           label = "Kjønn",
-                           choices = unique(datasett$kjonn),
-                           selected = unique(datasett$kjonn)
+        tags$div(title = "Velg kjønn som skal inkluderes",
+                 checkboxGroupInput("kjonn",
+                                    label = "Kjønn",
+                                    choices = unique(datasett$kjonn),
+                                    selected = unique(datasett$kjonn))
         )
       }
     })
 
     output$aar <- renderUI({
-      checkboxGroupInput("ar",
-                         label = "År",
-                         choices = unique(datasett$aar),
-                         selected = tail(unique(datasett$aar), 3)
-      )
+      tags$div(title = "Velg år som skal inkluderes",
+               checkboxGroupInput("ar",
+                                  label = "År",
+                                  choices = unique(datasett$aar),
+                                  selected = tail(unique(datasett$aar), 3)
+               ))
     })
 
     output$bo <- renderUI({
-      selectInput("bo",
-                  label = "Opptaksområde",
-                  choices = c("Alle" = 1,
-                              "Helse Nord" = 2,
-                              "Finnmarkssykehuset" = 3,
-                              "UNN" = 4,
-                              "Nordlandssykehuset" = 5,
-                              "Helgelandssykehuset" = 6
-                  ),
-                  selected = 2)
+      tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",
+               selectInput("bo",
+                           label = "Opptaksområde",
+                           choices = c("Alle" = 1,
+                                       "Helse Nord" = 2,
+                                       "Finnmarkssykehuset" = 3,
+                                       "UNN" = 4,
+                                       "Nordlandssykehuset" = 5,
+                                       "Helgelandssykehuset" = 6
+                           ),
+                           selected = 2))
     })
 
     output$beh <- renderUI({
-      selectInput("beh",
-                  choices = c("Alle" = 1,
-                              "Helse Nord" = 2,
-                              "Finnmarkssykehuset" = 3,
-                              "UNN" = 4,
-                              "Nordlandssykehuset" = 5,
-                              "Helgelandssykehuset" = 6,
-                              "Avtalespesialister" = 8,
-                              "Private sykehus" = 9,
-                              "Utenfor Helse Nord" = 7),
-                  label = "Behandler",
-                  selected = 1
-      )
+      tags$div(title = "Velg hvilke behandlere som skal inkluderes",
+               selectInput("beh",
+                           choices = c("Alle" = 1,
+                                       "Helse Nord RHF" = 2,
+                                       "Finnmarkssykehuset HF" = 3,
+                                       "UNN HF" = 4,
+                                       "Nordlandssykehuset HF" = 5,
+                                       "Helgelandssykehuset HF" = 6,
+                                       "Avtalespesialister" = 8,
+                                       "Private sykehus" = 9,
+                                       "Utenfor Helse Nord RHF" = 7),
+                           label = "Behandler",
+                           selected = 1
+               ))
     })
 
     output$knappProsent <- renderUI({
       # Prosentknappen
-      # Vises ikke hvis man velger drg_index
-      if (is.null(input$verdi)) {
-        return()
-      }
-      if (input$verdi != "drg_index"){
-        checkboxInput("prosent", "Prosent",
-                      value = FALSE)
-      }
+      tags$div(title = "Vis prosent (vil ikke ha noen effekt for verdi lik DRG-index).",
+               checkboxInput("prosent", "Prosent",
+                             value = FALSE))
     })
 
     output$knappForenkling <- renderUI({
       if ("behandlende_HF" %in% colnames(datasett)){
-        checkboxInput("forenkling", "Slå sammen HF utenfor Helse Nord",
-                      value = TRUE)
+        tags$div(title = "Slå sammen HF utenfor Helse Nord RHF",
+                 checkboxInput("forenkling",
+                               "Slå sammen HF utenfor Helse Nord",
+                               value = TRUE)
+        )
       }
     })
 
     output$knappSnitt <- renderUI({
-      checkboxInput("snitt", "Vis snitt/sum",
-                    value = TRUE)
+      tags$div(title = "Vis snitt i siste kolonne og sum for hver grupperingsvariabel",
+               checkboxInput("snitt", "Vis snitt/sum",
+                             value = TRUE))
     })
 
     output$knappBeholdNavn <- renderUI({
-      checkboxInput("keepNames", "Vis alle navn",
-                    value = F)
+      tags$div(title = "Vis repeterende kategori i første kolonne.
+Hensiktsmessig før nedlasting av data og videre arbeid i f.eks. Excel.",
+               checkboxInput("keepNames", "Vis alle navn",
+                             value = F))
     })
 
     # Download table to cvs file
@@ -326,7 +344,9 @@ shinyServer(
     })
 
     output$lastned <- renderUI({
-      downloadButton("downloadData", "Last ned data")
+      tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan åpnes i Excel.",
+               downloadButton("downloadData", "Last ned data")
+      )
     })
 
     output$link <- renderUI({
@@ -358,7 +378,6 @@ shinyServer(
     })
 
     lageParametere <- reactive({
-
       rader <- c(input$xcol1, input$xcol2)
       if (is.null(input$xcol2)) {
         return()

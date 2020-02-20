@@ -1,6 +1,6 @@
 
 just_overfUI <- function(id) {
-    ns <- NS(id)
+    ns <- shiny::NS(id)
     uiOutput(ns("just_overf"))
 }
 

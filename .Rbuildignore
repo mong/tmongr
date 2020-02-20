@@ -5,3 +5,4 @@
 ^sas$
 ^codecov\.yml$
 ^_pkgdown\.yml$
+^\.lintr$

@@ -1,9 +1,26 @@
 
+#' Title
+#'
+#' @param id 
+#'
+#' @return
+#' @export
+#'
 just_overfUI <- function(id) {
     ns <- shiny::NS(id)
     uiOutput(ns("just_overf"))
 }
 
+#' Title
+#'
+#' @param input 
+#' @param output 
+#' @param session 
+#' @param colnames 
+#'
+#' @return
+#' @export
+#'
 just_overf <- function(input, output, session, colnames) {
     output$just_overf <- renderUI({
       if ("niva" %in% colnames) {

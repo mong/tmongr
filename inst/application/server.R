@@ -134,43 +134,25 @@ shinyServer(
       debounced_reactive()
     })
 
-    # valg rader 1
-    output$rad1 <- renderUI({
-      tags$div(title = "Velg første grupperingsvariabel",
-               selectInput("xcol1",
-                           label = "Grupperingsvariabel en",
-                           choices = meny$en,
-                           selected = "boomr_rhf"
-               ))
-    })
+    callModule(dynamiskTabellverk:::rad1_server,
+               "rad1",
+               pickable = meny$en,
+               default = "boomr_rhf")
 
-    # valg rader 2
-    output$rad2 <- renderUI({
-      tags$div(title = "Velg andre grupperingsvariabel",
-               selectInput("xcol2",
-                           label = "Grupperingsvariabel to",
-                           choices = meny$to,
-                           selected = meny$to_default
-               ))
-    })
+    callModule(dynamiskTabellverk:::rad2_server,
+               "rad2",
+               pickable = meny$to,
+               default = meny$to_default)
 
-    # valg kolonner
-    output$kolonner <- renderUI({
-      tags$div(title = "Velg kolonner",
-               selectInput("ycol",
-                           label = "Kolonner",
-                           choices = meny$tre,
-                           selected = "aar"))
-    })
+    callModule(dynamiskTabellverk:::kolonner_server,
+               "kolonner",
+               pickable = meny$tre,
+               default = "aar")
 
-    # Velg hva som skal tabuleres
-    output$verdi <- renderUI({
-      tags$div(title = "Velg hva som skal vises",
-               selectInput("verdi",
-                           label = "Verdi",
-                           choices = meny$fire,
-                           selected = "kontakter"))
-    })
+    callModule(dynamiskTabellverk:::verdi_server,
+               "verdi",
+               pickable = meny$fire,
+               default = "kontakter")
 
     callModule(dynamiskTabellverk:::behandlingsniva_server,
                "behandlingsniva",

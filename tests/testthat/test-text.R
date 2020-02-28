@@ -5,7 +5,7 @@ test_that("correct text is returned", {
                           fane = "alle", #?
                           rad = c("boomr_hf", "behandlende_hf"),
                           kol = "aar",
-                          verdi ="kontakter",
+                          verdi = "kontakter",
                           aar = 2016,
                           bo = 2,
                           beh = 1,
@@ -45,7 +45,7 @@ test_that("correct text is returned", {
   verdier$snitt <- F
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,
-    rad =              c("aar","behandlende_rhf","alder"),
+    rad =              c("aar", "behandlende_rhf", "alder"),
     kol =             "hastegrad_drgtype_dogn",
     verdi =           verdier$verdi,
     aar =             verdier$aar,
@@ -58,13 +58,13 @@ test_that("correct text is returned", {
     hastegrad2 =      verdier$hastegrad2,
     forenkling =      verdier$forenkling)
   expect_equal_to_reference(hjelpetekst, "data/ref_tekst2.rds")
-  
+
   verdier <- originalverdier
   verdier$fane <- "random"
-  for (bohf in c(1,2,3,4,5,6)){
+  for (bohf in c(1, 2, 3, 4, 5, 6)) {
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("boomr_sykehus","behandlende_sykehus"),
+      rad =             c("boomr_sykehus", "behandlende_sykehus"),
       kol =             "hastegrad",
       verdi =           verdier$verdi,
       aar =             c("2014", "2015", "2016"),
@@ -78,11 +78,11 @@ test_that("correct text is returned", {
       forenkling =      verdier$forenkling)
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_bo",  bohf, ".rds"))
   }
-  
-  for (behhf in c(1,2,3,4,5,6,7)){
+
+  for (behhf in c(1, 2, 3, 4, 5, 6, 7)) {
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("boomr_rhf","aar"),
+      rad =             c("boomr_rhf", "aar"),
       kol =             "behandlingsniva",
       verdi =           verdier$verdi,
       aar =             "2015",
@@ -96,11 +96,18 @@ test_that("correct text is returned", {
       forenkling =      verdier$forenkling)
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_beh",  behhf, ".rds"))
   }
-  
-  for (verdi in c("rate", "liggetid", "liggedognindex", "liggedognrate", "drg_poeng", "drgrate", "drg_index", "random")){
+
+  for (verdi in c("rate",
+                  "liggetid",
+                  "liggedognindex",
+                  "liggedognrate",
+                  "drg_poeng",
+                  "drgrate",
+                  "drg_index",
+                  "random")) {
     hjelpetekst <- lagHjelpetekst(
       tab =             verdier$fane,
-      rad =             c("behandler","hastegrad"),
+      rad =             c("behandler", "hastegrad"),
       kol =             "kjonn",
       verdi =           verdi,
       aar =             c("2011", "2013", "2014", "2015"),
@@ -114,12 +121,11 @@ test_that("correct text is returned", {
       forenkling =      T)
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_verdi_",  verdi, ".rds"))
   }
-  
-  
-  for (tab in c("dogn","dag","poli","Informasjon")){
+
+  for (tab in c("dogn", "dag", "poli", "Informasjon")) {
     hjelpetekst <- lagHjelpetekst(
       tab =             tab,
-      rad =             c("episodefag","fag_skde","drgtypehastegrad"),
+      rad =             c("episodefag", "fag_skde", "drgtypehastegrad"),
       kol =             "boomr_rhf",
       verdi =           verdier$verdi,
       aar =             verdier$aar,

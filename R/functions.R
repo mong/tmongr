@@ -65,7 +65,7 @@ definerValgKol <- function(datasett, valgnr) {
     if ("behandlende_sykehus" %in% col_names) {
         valg_behsh <- c(`Behandlende sykehus` = "behandlende_sykehus")
     }
-    if ( ("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names) ) {
+    if (("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names)) {
         valg_behhf <- c(`Behandlende HF` = "behandlende_hf")
     }
     if ("behandlende_rhf" %in% col_names) {

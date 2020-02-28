@@ -337,5 +337,3 @@ test_that("keep_names_server", {
     })
 
 })
-
-

@@ -4,7 +4,7 @@ shinyServer(
 
     # The data has to be located in the data folder with the name data.RData
     datasett <- NULL
-    if (file.exists("data/data.RData")){
+    if (file.exists("data/data.RData")) {
       datasett <- get(load("data/data.RData"))
     }
 
@@ -32,8 +32,8 @@ shinyServer(
       meny$fire <- dynamiskTabellverk::definerValgKol(datasett, 4)
 
       meny$to_default <<- "behandlende_hf"
-      if ("behandler" %in% colnames(datasett)){
-        if (!("behandlende_hf" %in% colnames(datasett)) & !("behandlende_hf_hn" %in% colnames(datasett))){
+      if ("behandler" %in% colnames(datasett)) {
+        if (!("behandlende_hf" %in% colnames(datasett)) & !("behandlende_hf_hn" %in% colnames(datasett))) {
           meny$default <<- "behandler"
         }
         valgBeh <- c("Alle" = 1,
@@ -55,7 +55,6 @@ shinyServer(
                      "Utenfor Helse Nord" = 7)
         labelBeh <- "Behandlende foretak"
       }
-      
     })
 
     makeTable <- reactive({
@@ -84,7 +83,7 @@ shinyServer(
 
     # valg hoveddiagnosegruppe
     output$hdg <- renderUI({
-      if ("hoveddiagnosegruppe" %in% colnames(datasett)){
+      if ("hoveddiagnosegruppe" %in% colnames(datasett)) {
         tags$div(title = "Velg hvilken hoveddiagnosegruppe som skal vises",
                  selectInput("hdg",
                              label = "Hoveddiagnosegruppe",
@@ -95,7 +94,7 @@ shinyServer(
 
     # valg ICD10-kapittel
     output$icd10 <- renderUI({
-      if ("icd10kap" %in% colnames(datasett)){
+      if ("icd10kap" %in% colnames(datasett)) {
         tags$div(title = "Velg hvilket ICD10-kapittel som skal vises",
                  selectInput("icd10",
                              label = "ICD10-kapittel",
@@ -106,7 +105,7 @@ shinyServer(
 
     # valg fagområde
     output$fag <- renderUI({
-      if ("episodefag" %in% colnames(datasett)){
+      if ("episodefag" %in% colnames(datasett)) {
         tags$div(title = "Velg hvilket fagområde (fagområdet for episoden) som skal vises",
                  selectInput("fag",
                              label = "Fagområde",
@@ -341,8 +340,8 @@ shinyServer(
 
     })
 
-    parameterDefinert <- function(param, normalverdi){
-      if (is.null(param)){
+    parameterDefinert <- function(param, normalverdi) {
+      if (is.null(param)) {
         return(normalverdi)
       }
       else {

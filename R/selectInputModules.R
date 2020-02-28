@@ -21,9 +21,9 @@ verdi_ui <- function(id) {
 
 rad1_server <- function(input, output, session, pickable, default) {
     # valg rader 1
-    output$rad1 <- renderUI({
-      tags$div(title = "Velg første grupperingsvariabel",
-               selectInput("xcol1",
+    output$rad1 <- shiny::renderUI({
+      shiny::tags$div(title = "Velg første grupperingsvariabel",
+               shiny::selectInput("xcol1",
                            label = "Grupperingsvariabel en",
                            choices = pickable,
                            selected = default
@@ -34,9 +34,9 @@ rad1_server <- function(input, output, session, pickable, default) {
 
 rad2_server <- function(input, output, session, pickable, default) {
     # valg rader 2
-    output$rad2 <- renderUI({
-      tags$div(title = "Velg andre grupperingsvariabel",
-               selectInput("xcol2",
+    output$rad2 <- shiny::renderUI({
+      shiny::tags$div(title = "Velg andre grupperingsvariabel",
+               shiny::selectInput("xcol2",
                            label = "Grupperingsvariabel to",
                            choices = pickable,
                            selected = default
@@ -47,9 +47,9 @@ rad2_server <- function(input, output, session, pickable, default) {
 
 kolonner_server <- function(input, output, session, pickable, default) {
     # valg kolonner
-    output$kolonner <- renderUI({
-      tags$div(title = "Velg kolonner",
-               selectInput("ycol",
+    output$kolonner <- shiny::renderUI({
+      shiny::tags$div(title = "Velg kolonner",
+               shiny::selectInput("ycol",
                            label = "Kolonner",
                            choices = pickable,
                            selected = default
@@ -60,9 +60,9 @@ kolonner_server <- function(input, output, session, pickable, default) {
 
 verdi_server <- function(input, output, session, pickable, default) {
     # Velg hva som skal tabuleres
-    output$verdi <- renderUI({
-      tags$div(title = "Velg hva som skal vises",
-               selectInput("verdi",
+    output$verdi <- shiny::renderUI({
+      shiny::tags$div(title = "Velg hva som skal vises",
+               shiny::selectInput("verdi",
                            label = "Verdi",
                            choices = pickable,
                            selected = default

@@ -233,14 +233,8 @@ DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
       }
     })
 
-    output$aar <- renderUI({
-      tags$div(title = "Velg år som skal inkluderes",
-               checkboxGroupInput("ar",
-                                  label = "År",
-                                  choices = unique(datasett$aar),
-                                  selected = tail(unique(datasett$aar), 3)
-               ))
-    })
+    callModule(dynamiskTabellverk:::aar_server, "aar",
+               pickable = unique(datasett$aar))
 
     output$bo <- renderUI({
       tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",

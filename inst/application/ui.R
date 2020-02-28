@@ -30,7 +30,7 @@ shinyUI(function(request){
               uiOutput("fag"),
               uiOutput("bo"),
               uiOutput("beh"),
-              uiOutput("aar"),
+              dynamiskTabellverk:::aar_ui("aar"),
 
               uiOutput("behandlingsniva"),
               uiOutput("hastegrad1"),

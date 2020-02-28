@@ -76,7 +76,7 @@ shinyServer(
           input_data <- dplyr::filter(datasett, niva == niva_values[1])
         }
       }
-      pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keepNames, input$snitt)
+      pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keep_names, input$snitt)
       return(pivot)
     })
 
@@ -173,74 +173,34 @@ shinyServer(
                            selected = "kontakter"))
     })
 
-    output$behandlingsniva <- renderUI({
-      if ("behandlingsniva" %in% colnames(datasett)){
-        tags$div(title = "Velg hvilke behandlingsnivå som skal inkluderes",
-                 checkboxGroupInput("behandlingsniva",
-                                    label = "Behandlingsnivå",
-                                    choices = unique(datasett$behandlingsniva),
-                                    selected = unique(datasett$behandlingsniva)
-                 ))
-      }
-    })
+    callModule(dynamiskTabellverk:::behandlingsniva_server,
+               "behandlingsniva",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$behandlingsniva))
 
-    output$hastegrad1 <- renderUI({
-      if ("hastegrad" %in% colnames(datasett)){
-        tags$div(title = "Velg hvilke hastegrader som skal inkluderes",
-                 checkboxGroupInput("hastegrad1",
-                                    label = "Hastegrad",
-                                    choices = c(unique(datasett$hastegrad)),
-                                    selected = unique(datasett$hastegrad)
-                 ))
-      }
-    })
+    callModule(dynamiskTabellverk:::hastegrad1_server,
+               "hastegrad1",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$hastegrad))
+
+    callModule(dynamiskTabellverk:::hastegrad2_server,
+               "hastegrad2",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$drgtypehastegrad))
 
     callModule(dynamiskTabellverk:::justOverf, "num1",
                colnames = colnames(datasett))
 
-    output$hastegrad2 <- renderUI({
-      if ("drgtypehastegrad" %in% colnames(datasett)){
-        tags$div(title = "Velg DRGtypeHastegrad som skal inkluderes.
-DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
-(om episoden har en kirurgisk eller medisinsk DRG).",
-                 checkboxGroupInput("hastegrad2",
-                                    label = "DRGtypeHastegrad",
-                                    choices = unique(datasett$drgtypehastegrad),
-                                    selected = unique(datasett$drgtypehastegrad)
-                 ))
-      }
-    })
+    callModule(dynamiskTabellverk:::alder_server, "alder",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$alder))
 
-    output$alder <- renderUI({
-      if ("alder" %in% colnames(datasett)){
-        tags$div(title = "Velg aldersgrupper som skal inkluderes",
-                 checkboxGroupInput("alder",
-                                    label = "Alder",
-                                    choices = unique(datasett$alder),
-                                    selected = unique(datasett$alder))
-        )
-      }
-    })
+    callModule(dynamiskTabellverk:::kjonn_server, "kjonn",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$kjonn))
 
-    output$kjonn <- renderUI({
-      if ("kjonn" %in% colnames(datasett)){
-        tags$div(title = "Velg kjønn som skal inkluderes",
-                 checkboxGroupInput("kjonn",
-                                    label = "Kjønn",
-                                    choices = unique(datasett$kjonn),
-                                    selected = unique(datasett$kjonn))
-        )
-      }
-    })
-
-    output$aar <- renderUI({
-      tags$div(title = "Velg år som skal inkluderes",
-               checkboxGroupInput("ar",
-                                  label = "År",
-                                  choices = unique(datasett$aar),
-                                  selected = tail(unique(datasett$aar), 3)
-               ))
-    })
+    callModule(dynamiskTabellverk:::aar_server, "aar",
+               pickable = unique(datasett$aar))
 
     output$bo <- renderUI({
       tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",
@@ -273,35 +233,14 @@ DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
                ))
     })
 
-    output$knappProsent <- renderUI({
-      # Prosentknappen
-      tags$div(title = "Vis prosent (vil ikke ha noen effekt for verdi lik DRG-index).",
-               checkboxInput("prosent", "Prosent",
-                             value = FALSE))
-    })
+    callModule(dynamiskTabellverk:::prosent_server, "prosent")
 
-    output$knappForenkling <- renderUI({
-      if ("behandlende_HF" %in% colnames(datasett)){
-        tags$div(title = "Slå sammen HF utenfor Helse Nord RHF",
-                 checkboxInput("forenkling",
-                               "Slå sammen HF utenfor Helse Nord",
-                               value = TRUE)
-        )
-      }
-    })
+    callModule(dynamiskTabellverk:::forenkling_server, "forenkling",
+               colnames = colnames(datasett))
 
-    output$knappSnitt <- renderUI({
-      tags$div(title = "Vis snitt i siste kolonne og sum for hver grupperingsvariabel",
-               checkboxInput("snitt", "Vis snitt/sum",
-                             value = TRUE))
-    })
+    callModule(dynamiskTabellverk:::snitt_server, "snitt")
 
-    output$knappBeholdNavn <- renderUI({
-      tags$div(title = "Vis repeterende kategori i første kolonne.
-Hensiktsmessig før nedlasting av data og videre arbeid i f.eks. Excel.",
-               checkboxInput("keepNames", "Vis alle navn",
-                             value = F))
-    })
+    callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
 
     # Download table to cvs file
     output$downloadData <- downloadHandler(

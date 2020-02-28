@@ -15,7 +15,7 @@ test_that("correct text is returned", {
                           hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
                           prosent = F,
                           forenkling = F,
-                          keepNames = F,
+                          keep_names = F,
                           snitt = T,
                           hdg = "Alle",
                           icd10 = "Alle")
@@ -41,7 +41,7 @@ test_that("correct text is returned", {
   verdier$fane <- "menisk"
   verdier$prosent <- T
   verdier$forenkling <- T
-  verdier$keepNames <- T
+  verdier$keep_names <- T
   verdier$snitt <- F
   hjelpetekst <- lagHjelpetekst(
     tab =             verdier$fane,

@@ -114,8 +114,8 @@ kjonn_server <- function(input, output, session, pickable, colnames) {
         shiny::tags$div(title = "Velg kjønn som skal inkluderes",
                  shiny::checkboxGroupInput("kjonn",
                                     label = "Kjønn",
-                                    choices = unique(datasett$kjonn),
-                                    selected = unique(datasett$kjonn))
+                                    choices = pickable,
+                                    selected = pickable)
         )
       }
     })
@@ -136,8 +136,8 @@ alder_server <- function(input, output, session, pickable, colnames) {
         shiny::tags$div(title = "Velg aldersgrupper som skal inkluderes",
                  shiny::checkboxGroupInput("alder",
                                     label = "Alder",
-                                    choices = unique(datasett$alder),
-                                    selected = unique(datasett$alder))
+                                    choices = pickable,
+                                    selected = pickable)
         )
       }
     })

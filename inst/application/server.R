@@ -191,27 +191,13 @@ shinyServer(
     callModule(dynamiskTabellverk:::justOverf, "num1",
                colnames = colnames(datasett))
 
-    output$alder <- renderUI({
-      if ("alder" %in% colnames(datasett)){
-        tags$div(title = "Velg aldersgrupper som skal inkluderes",
-                 checkboxGroupInput("alder",
-                                    label = "Alder",
-                                    choices = unique(datasett$alder),
-                                    selected = unique(datasett$alder))
-        )
-      }
-    })
+    callModule(dynamiskTabellverk:::alder_server, "alder",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$alder))
 
-    output$kjonn <- renderUI({
-      if ("kjonn" %in% colnames(datasett)){
-        tags$div(title = "Velg kjønn som skal inkluderes",
-                 checkboxGroupInput("kjonn",
-                                    label = "Kjønn",
-                                    choices = unique(datasett$kjonn),
-                                    selected = unique(datasett$kjonn))
-        )
-      }
-    })
+    callModule(dynamiskTabellverk:::kjonn_server, "kjonn",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$kjonn))
 
     callModule(dynamiskTabellverk:::aar_server, "aar",
                pickable = unique(datasett$aar))

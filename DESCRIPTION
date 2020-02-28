@@ -10,9 +10,11 @@ Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/SKDE-Analyse/dynamiskTabellverk/issues
 URL: https://skde-analyse.github.io/dynamiskTabellverk
+Remotes:
+    github::rstudio/shiny
 Imports:
-    shiny,
     shinythemes,
+    shinyWidgets,
     rsconnect,
     rmarkdown,
     dplyr,
@@ -20,7 +22,7 @@ Imports:
     lazyeval,
     magrittr,
     knitr
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 Suggests:
     testthat,
     covr

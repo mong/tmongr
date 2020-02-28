@@ -1,6 +1,6 @@
 shinyServer(
 
-  function(input, output) {
+  function(input, output, session) {
 
     # The data has to be located in the data folder with the name data.RData
     datasett <- NULL
@@ -195,16 +195,8 @@ shinyServer(
       }
     })
 
-    output$just_overf <- renderUI({
-      if ("niva" %in% colnames(datasett)) {
-        tags$div(title = "Juster for overføringer mellom sykehus.
-Ved justering for overføringer er alle døgn- og dagopphold nær i tid regnet som ett opphold, uavhengig av hvor pasienten er behandlet.",
-                 shinyWidgets::materialSwitch(inputId = "overf",
-                                              label = "Juster for overføringer",
-                                              value = FALSE,
-                                              status = "info"))
-      }
-    })
+    callModule(dynamiskTabellverk:::justOverf, "num1",
+               colnames = colnames(datasett))
 
     output$hastegrad2 <- renderUI({
       if ("drgtypehastegrad" %in% colnames(datasett)){

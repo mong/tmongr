@@ -4,7 +4,7 @@ lag_pivot <- function(verdier){
   pivot <- makeDataTabell(verdier$inpDatasett,
                           verdier$fane,
                           verdier,
-                          verdier$keepNames,
+                          verdier$keep_names,
                           verdier$snitt
   )
   return(pivot)
@@ -37,7 +37,7 @@ test_that("makeDataTabell returns a pivot table", {
                   hastegrad2="tmp", #?
                   prosent=F,
                   forenkling=F,
-                  keepNames=F,
+                  keep_names=F,
                   snitt=T,
                   hdg="Alle",
                   icd10="Alle",
@@ -80,7 +80,7 @@ test_that("makeDataTabell returns a pivot table", {
 
   verdier <- originalverdier
   verdier$prosent <- T
-  verdier$keepNames <- T
+  verdier$keep_names <- T
   verdier$forenkling <- T
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot3.rds")

@@ -11,6 +11,7 @@
 \alias{prosent_ui}
 \alias{forenkling_ui}
 \alias{snitt_ui}
+\alias{keep_names_ui}
 \title{Module for the year checkbox}
 \usage{
 aar_ui(id)
@@ -30,6 +31,8 @@ prosent_ui(id)
 forenkling_ui(id)
 
 snitt_ui(id)
+
+keep_names_ui(id)
 }
 \arguments{
 \item{id}{Shiny id}
@@ -55,4 +58,6 @@ Module for the knappProsent checkbox
 Module for the knappForenkling checkbox
 
 Module for the knappSnitt checkbox
+
+Module for the keep_name checkbox
 }

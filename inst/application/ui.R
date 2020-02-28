@@ -39,11 +39,7 @@ shinyUI(function(request){
               br(),
               uiOutput("instilling"),
               dynamiskTabellverk:::prosent_ui("prosent"),
-              tags$div(title = "
-Legg på tekst i alle celler i første kolonne.
-Bør gjøres før man laster ned data hvis man vil etterbehandle dataene eksternt (f.eks i Excel).",
-                       uiOutput("knappBeholdNavn")
-              ),
+              dynamiskTabellverk:::keep_names_ui("keep_names"),
               dynamiskTabellverk:::forenkling_ui("forenkling"),
               dynamiskTabellverk:::snitt_ui("snitt"),
               width = 3

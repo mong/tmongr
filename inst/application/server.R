@@ -76,7 +76,7 @@ shinyServer(
           input_data <- dplyr::filter(datasett, niva == niva_values[1])
         }
       }
-      pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keepNames, input$snitt)
+      pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keep_names, input$snitt)
       return(pivot)
     })
 
@@ -240,12 +240,7 @@ shinyServer(
 
     callModule(dynamiskTabellverk:::snitt_server, "snitt")
 
-    output$knappBeholdNavn <- renderUI({
-      tags$div(title = "Vis repeterende kategori i første kolonne.
-Hensiktsmessig før nedlasting av data og videre arbeid i f.eks. Excel.",
-               checkboxInput("keepNames", "Vis alle navn",
-                             value = F))
-    })
+    callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
 
     # Download table to cvs file
     output$downloadData <- downloadHandler(

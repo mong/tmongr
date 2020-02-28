@@ -201,3 +201,22 @@ snitt_server <- function(input, output, session) {
                              value = TRUE))
     })
 }
+
+#' @title Module for the keep_name checkbox
+#'
+#' @rdname checkbox
+#' @export
+keep_names_ui <- function(id) {
+    ns <- shiny::NS(id)
+    shiny::uiOutput(ns("keep_names"))
+}
+
+keep_names_server <- function(input, output, session) {
+    output$keep_names <- shiny::renderUI({
+      shiny::tags$div(title = "Vis repeterende kategori i første kolonne.
+Hensiktsmessig før nedlasting av data og videre arbeid i f.eks. Excel.",
+               shiny::checkboxInput("keep_names",
+                             "Vis alle navn",
+                             value = FALSE))
+    })
+}

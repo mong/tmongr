@@ -110,3 +110,22 @@ test_that("keep_names_ui", {
     expect_error(function_name("test1", "test2"))
 })
 
+test_that("aar_server", {
+
+id <- "aar"
+function_name <- get(paste0(id, "_server"))
+
+shiny::testModule(function_name, {
+  expect_equal_to_reference(output$aar, paste0("data/module_", "aar", "1.rds"))
+}, pickable = c("abc", "def", "ijk", "lmn"))
+
+shiny::testModule(function_name, {
+  expect_equal_to_reference(output$aar, paste0("data/module_", "aar", "2.rds"))
+}, pickable = c("abc", "ijk"))
+
+shiny::testModule(function_name, {
+  expect_error(output$aar)
+})
+
+})
+

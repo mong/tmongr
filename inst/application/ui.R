@@ -34,7 +34,7 @@ shinyUI(function(request){
 
               dynamiskTabellverk:::behandlingsniva_ui("behandlingsniva"),
               dynamiskTabellverk:::hastegrad1_ui("hastegrad1"),
-              uiOutput("hastegrad2"),
+              dynamiskTabellverk:::hastegrad2_ui("hastegrad2"),
               uiOutput("alder"),
               uiOutput("kjonn"),
               br(),

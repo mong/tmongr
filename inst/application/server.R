@@ -183,21 +183,13 @@ shinyServer(
                colnames = colnames(datasett),
                pickable = unique(datasett$hastegrad))
 
+    callModule(dynamiskTabellverk:::hastegrad2_server,
+               "hastegrad2",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$drgtypehastegrad))
+
     callModule(dynamiskTabellverk:::justOverf, "num1",
                colnames = colnames(datasett))
-
-    output$hastegrad2 <- renderUI({
-      if ("drgtypehastegrad" %in% colnames(datasett)){
-        tags$div(title = "Velg DRGtypeHastegrad som skal inkluderes.
-DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
-(om episoden har en kirurgisk eller medisinsk DRG).",
-                 checkboxGroupInput("hastegrad2",
-                                    label = "DRGtypeHastegrad",
-                                    choices = unique(datasett$drgtypehastegrad),
-                                    selected = unique(datasett$drgtypehastegrad)
-                 ))
-      }
-    })
 
     output$alder <- renderUI({
       if ("alder" %in% colnames(datasett)){

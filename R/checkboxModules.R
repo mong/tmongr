@@ -36,6 +36,20 @@ behandlingsniva_ui <- function(id) {
     shiny::uiOutput(ns("behandlingsniva"))
 }
 
+behandlingsniva_server <- function(input, output, session, pickable, colnames) {
+    output$behandlingsniva <- shiny::renderUI({
+      if ("behandlingsniva" %in% colnames) {
+        shiny::tags$div(title = "Velg hvilke behandlingsnivå som skal inkluderes",
+                 shiny::checkboxGroupInput("behandlingsniva",
+                                    label = "Behandlingsnivå",
+                                    choices = pickable,
+                                    selected = pickable
+                 ))
+      }
+    })
+
+}
+
 #' @title Module for the hastegrad1 checkbox
 #'
 #' @rdname checkbox
@@ -44,6 +58,20 @@ hastegrad1_ui <- function(id) {
     ns <- shiny::NS(id)
     shiny::uiOutput(ns("hastegrad1"))
 }
+
+hastegrad1_server <- function(input, output, session, pickable, colnames) {
+    output$hastegrad1 <- shiny::renderUI({
+      if ("hastegrad" %in% colnames) {
+        shiny::tags$div(title = "Velg hvilke hastegrader som skal inkluderes",
+                 shiny::checkboxGroupInput("hastegrad1",
+                                    label = "Hastegrad",
+                                    choices = pickable,
+                                    selected = pickable
+                 ))
+      }
+    })
+}
+
 
 #' @title Module for the hastegrad2 checkbox
 #'
@@ -54,6 +82,23 @@ hastegrad2_ui <- function(id) {
     shiny::uiOutput(ns("hastegrad2"))
 }
 
+hastegrad2_server <- function(input, output, session, pickable, colnames) {
+    output$hastegrad2 <- shiny::renderUI({
+      if ("drgtypehastegrad" %in% colnames){
+        shiny::tags$div(title = "Velg DRGtypeHastegrad som skal inkluderes.
+DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
+(om episoden har en kirurgisk eller medisinsk DRG).",
+                 shiny::checkboxGroupInput("hastegrad2",
+                                    label = "DRGtypeHastegrad",
+                                    choices = pickable,
+                                    selected = pickable
+                 ))
+      }
+    })
+
+}
+
+
 #' @title Module for the kjonn checkbox
 #'
 #' @rdname checkbox
@@ -63,29 +108,96 @@ kjonn_ui <- function(id) {
     shiny::uiOutput(ns("kjonn"))
 }
 
+kjonn_server <- function(input, output, session, pickable, colnames) {
+    output$kjonn <- shiny::renderUI({
+      if ("kjonn" %in% colnames) {
+        shiny::tags$div(title = "Velg kjønn som skal inkluderes",
+                 shiny::checkboxGroupInput("kjonn",
+                                    label = "Kjønn",
+                                    choices = unique(datasett$kjonn),
+                                    selected = unique(datasett$kjonn))
+        )
+      }
+    })
+}
+
+#' @title Module for the alder checkbox
+#'
+#' @rdname checkbox
+#' @export
+alder_ui <- function(id) {
+    ns <- shiny::NS(id)
+    shiny::uiOutput(ns("alder"))
+}
+
+alder_server <- function(input, output, session, pickable, colnames) {
+    output$alder <- shiny::renderUI({
+      if ("alder" %in% colnames) {
+        shiny::tags$div(title = "Velg aldersgrupper som skal inkluderes",
+                 shiny::checkboxGroupInput("alder",
+                                    label = "Alder",
+                                    choices = unique(datasett$alder),
+                                    selected = unique(datasett$alder))
+        )
+      }
+    })
+}
+
+
 #' @title Module for the knappProsent checkbox
 #'
 #' @rdname checkbox
 #' @export
-knappProsent_ui <- function(id) {
+prosent_ui <- function(id) {
     ns <- shiny::NS(id)
-    shiny::uiOutput(ns("knappProsent"))
+    shiny::uiOutput(ns("prosent"))
 }
+
+prosent_server <- function(input, output, session, pickable) {
+    output$prosent <- shiny::renderUI({
+      # Prosentknappen
+      shiny::tags$div(title = "Vis prosent (vil ikke ha noen effekt for verdi lik DRG-index).",
+               shiny::checkboxInput("prosent", "Prosent",
+                             value = FALSE))
+    })
+
+}
+
 
 #' @title Module for the knappForenkling checkbox
 #'
 #' @rdname checkbox
 #' @export
-knappForenkling_ui <- function(id) {
+forenkling_ui <- function(id) {
     ns <- shiny::NS(id)
-    shiny::uiOutput(ns("knappForenkling"))
+    shiny::uiOutput(ns("forenkling"))
+}
+
+forenkling_server <- function(input, output, session, colnames) {
+    output$forenkling <- shiny::renderUI({
+      if ("behandlende_HF" %in% colnames){
+        shiny::tags$div(title = "Slå sammen HF utenfor Helse Nord RHF",
+                 shiny::checkboxInput("forenkling",
+                               "Slå sammen HF utenfor Helse Nord",
+                               value = TRUE)
+        )
+      }
+    })
 }
 
 #' @title Module for the knappSnitt checkbox
 #'
 #' @rdname checkbox
 #' @export
-knappSnitt_ui <- function(id) {
+snitt_ui <- function(id) {
     ns <- shiny::NS(id)
-    shiny::uiOutput(ns("knappSnitt"))
+    shiny::uiOutput(ns("snitt"))
+}
+
+snitt_server <- function(input, output, session) {
+    output$snitt <- shiny::renderUI({
+      shiny::tags$div(title = "Vis snitt i siste kolonne og sum for hver grupperingsvariabel",
+               shiny::checkboxInput("snitt", "Vis snitt/sum",
+                             value = TRUE))
+    })
 }

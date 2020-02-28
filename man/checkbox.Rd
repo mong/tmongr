@@ -7,9 +7,10 @@
 \alias{hastegrad1_ui}
 \alias{hastegrad2_ui}
 \alias{kjonn_ui}
-\alias{knappProsent_ui}
-\alias{knappForenkling_ui}
-\alias{knappSnitt_ui}
+\alias{alder_ui}
+\alias{prosent_ui}
+\alias{forenkling_ui}
+\alias{snitt_ui}
 \title{Module for the year checkbox}
 \usage{
 aar_ui(id)
@@ -22,11 +23,13 @@ hastegrad2_ui(id)
 
 kjonn_ui(id)
 
-knappProsent_ui(id)
+alder_ui(id)
 
-knappForenkling_ui(id)
+prosent_ui(id)
 
-knappSnitt_ui(id)
+forenkling_ui(id)
+
+snitt_ui(id)
 }
 \arguments{
 \item{id}{Shiny id}
@@ -44,6 +47,8 @@ Module for the hastegrad1 checkbox
 Module for the hastegrad2 checkbox
 
 Module for the kjonn checkbox
+
+Module for the alder checkbox
 
 Module for the knappProsent checkbox
 

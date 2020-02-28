@@ -173,16 +173,10 @@ shinyServer(
                            selected = "kontakter"))
     })
 
-    output$behandlingsniva <- renderUI({
-      if ("behandlingsniva" %in% colnames(datasett)){
-        tags$div(title = "Velg hvilke behandlingsnivå som skal inkluderes",
-                 checkboxGroupInput("behandlingsniva",
-                                    label = "Behandlingsnivå",
-                                    choices = unique(datasett$behandlingsniva),
-                                    selected = unique(datasett$behandlingsniva)
-                 ))
-      }
-    })
+    callModule(dynamiskTabellverk:::behandlingsniva_server,
+               "behandlingsniva",
+               colnames = colnames(datasett),
+               pickable = unique(datasett$behandlingsniva))
 
     output$hastegrad1 <- renderUI({
       if ("hastegrad" %in% colnames(datasett)){

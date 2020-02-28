@@ -1,5 +1,5 @@
 
-shinyUI(function(request){
+shinyUI(function(request) {
   fluidPage(theme = shinythemes::shinytheme("cerulean"),
             titlePanel(tags$head(tags$link(rel = "icon", type = "image/png", href = "hn.png"),
                                  tags$title("Pasientstrømmer, Helse Nord RHF"),

@@ -21,10 +21,10 @@ submit_application <- function(datasett = NULL, name = "experimental", shiny_acc
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
 #'
-#' Create a directory in tempdir() where the installed version of 
+#' Create a directory in tempdir() where the installed version of
 #' dynamiskTabellverk package is copied and the data is saved.
 #' This directory, with its content, will be deployd to or ran by shiny.
-#' 
+#'
 #' @param data The data to be saved in the directory, to be used by the app
 #'
 #' @return The created directory

@@ -233,28 +233,12 @@ shinyServer(
                ))
     })
 
-    output$knappProsent <- renderUI({
-      # Prosentknappen
-      tags$div(title = "Vis prosent (vil ikke ha noen effekt for verdi lik DRG-index).",
-               checkboxInput("prosent", "Prosent",
-                             value = FALSE))
-    })
+    callModule(dynamiskTabellverk:::prosent_server, "prosent")
 
-    output$knappForenkling <- renderUI({
-      if ("behandlende_HF" %in% colnames(datasett)){
-        tags$div(title = "Slå sammen HF utenfor Helse Nord RHF",
-                 checkboxInput("forenkling",
-                               "Slå sammen HF utenfor Helse Nord",
-                               value = TRUE)
-        )
-      }
-    })
+    callModule(dynamiskTabellverk:::forenkling_server, "forenkling",
+               colnames = colnames(datasett))
 
-    output$knappSnitt <- renderUI({
-      tags$div(title = "Vis snitt i siste kolonne og sum for hver grupperingsvariabel",
-               checkboxInput("snitt", "Vis snitt/sum",
-                             value = TRUE))
-    })
+    callModule(dynamiskTabellverk:::snitt_server, "snitt")
 
     output$knappBeholdNavn <- renderUI({
       tags$div(title = "Vis repeterende kategori i første kolonne.

@@ -31,7 +31,6 @@ shinyUI(function(request){
               uiOutput("bo"),
               uiOutput("beh"),
               dynamiskTabellverk:::aar_ui("aar"),
-
               dynamiskTabellverk:::behandlingsniva_ui("behandlingsniva"),
               dynamiskTabellverk:::hastegrad1_ui("hastegrad1"),
               dynamiskTabellverk:::hastegrad2_ui("hastegrad2"),
@@ -39,14 +38,14 @@ shinyUI(function(request){
               dynamiskTabellverk:::kjonn_ui("kjonn"),
               br(),
               uiOutput("instilling"),
-              uiOutput("knappProsent"),
+              dynamiskTabellverk:::prosent_ui("prosent"),
               tags$div(title = "
 Legg på tekst i alle celler i første kolonne.
 Bør gjøres før man laster ned data hvis man vil etterbehandle dataene eksternt (f.eks i Excel).",
                        uiOutput("knappBeholdNavn")
               ),
-              uiOutput("knappForenkling"),
-              uiOutput("knappSnitt"),
+              dynamiskTabellverk:::forenkling_ui("forenkling"),
+              dynamiskTabellverk:::snitt_ui("snitt"),
               width = 3
             ),
             mainPanel(

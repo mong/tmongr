@@ -132,156 +132,122 @@ test_that("aar_server", {
 
 })
 
-test_that("aar_server", {
-    id <- "aar"
+test_that("behandlingsniva_server", {
+    id <- "behandlingsniva"
     function_name <- get(paste0(id, "_server"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
+        expect_equal_to_reference(output$behandlingsniva,
+                                  paste0("data/module_", "behandlingsniva", "1.rds")
                                   )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
+    }, pickable = c("abc", "def", "ijk", "lmn"), colnames = c("qwerty", "behandlingsniva"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
+        expect_equal_to_reference(output$behandlingsniva,
+                                  paste0("data/module_", "behandlingsniva", "2.rds")
                                   )
+    }, pickable = c("abc", "ijk"), colnames = c("qwerty", "behandlingsniva"))
+
+    shiny::testModule(function_name, {
+        expect_null(output$behandlingsniva)
+    }, pickable = NULL, colnames = c("qwerty", "behandlingsniva1"))
+
+    shiny::testModule(function_name, {
+        expect_error(output$behandlingsniva)
     }, pickable = c("abc", "ijk"))
 
     shiny::testModule(function_name, {
-        expect_error(output$aar)
+        expect_error(output$behandlingsniva)
     })
 
 })
 
-test_that("aar_server", {
-    id <- "aar"
+test_that("hastegrad1_server", {
+    id <- "hastegrad1"
     function_name <- get(paste0(id, "_server"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
+        expect_equal_to_reference(output$hastegrad1,
+                                  paste0("data/module_", "hastegrad1", "1.rds")
                                   )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
+    }, pickable = c("abc", "def", "ijk", "lmn"), colnames = c("qwerty", "hastegrad"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
+        expect_equal_to_reference(output$hastegrad1,
+                                  paste0("data/module_", "hastegrad1", "2.rds")
                                   )
+    }, pickable = c("abc", "ijk"), colnames = c("qwerty", "hastegrad"))
+
+    shiny::testModule(function_name, {
+        expect_null(output$hastegrad1)
+    }, pickable = NULL, colnames = c("qwerty", "hastegrad1"))
+
+    shiny::testModule(function_name, {
+        expect_error(output$hastegrad1)
     }, pickable = c("abc", "ijk"))
 
     shiny::testModule(function_name, {
-        expect_error(output$aar)
+        expect_error(output$hastegrad1)
     })
 
 })
 
-test_that("aar_server", {
-    id <- "aar"
+test_that("hastegrad2_server", {
+    id <- "hastegrad2"
     function_name <- get(paste0(id, "_server"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
+        expect_equal_to_reference(output$hastegrad2,
+                                  paste0("data/module_", "hastegrad2", "1.rds")
                                   )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
+    }, pickable = c("abc", "def", "ijk", "lmn"), colnames = c("qwerty", "drgtypehastegrad"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
+        expect_equal_to_reference(output$hastegrad2,
+                                  paste0("data/module_", "hastegrad2", "2.rds")
                                   )
+    }, pickable = c("abc", "ijk"), colnames = c("qwerty", "drgtypehastegrad"))
+
+    shiny::testModule(function_name, {
+        expect_null(output$hastegrad2)
+    }, pickable = NULL, colnames = c("qwerty", "drgtypehastegrad1"))
+
+    shiny::testModule(function_name, {
+        expect_error(output$hastegrad2)
     }, pickable = c("abc", "ijk"))
 
     shiny::testModule(function_name, {
-        expect_error(output$aar)
+        expect_error(output$hastegrad2)
     })
 
 })
 
-test_that("aar_server", {
-    id <- "aar"
+test_that("kjonn_server", {
+    id <- "kjonn"
     function_name <- get(paste0(id, "_server"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
+        expect_equal_to_reference(output$kjonn,
+                                  paste0("data/module_", "kjonn", "1.rds")
                                   )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
+    }, pickable = c("abc", "def", "ijk", "lmn"), colnames = c("qwerty", "kjonn"))
 
     shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
+        expect_equal_to_reference(output$kjonn,
+                                  paste0("data/module_", "kjonn", "2.rds")
                                   )
+    }, pickable = c("abc", "ijk"), colnames = c("qwerty", "kjonn"))
+
+    shiny::testModule(function_name, {
+        expect_null(output$kjonn)
+    }, pickable = NULL, colnames = c("qwerty", "kjonn1"))
+
+    shiny::testModule(function_name, {
+        expect_error(output$kjonn)
     }, pickable = c("abc", "ijk"))
 
     shiny::testModule(function_name, {
-        expect_error(output$aar)
-    })
-
-})
-
-test_that("aar_server", {
-    id <- "aar"
-    function_name <- get(paste0(id, "_server"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
-                                  )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
-                                  )
-    }, pickable = c("abc", "ijk"))
-
-    shiny::testModule(function_name, {
-        expect_error(output$aar)
-    })
-
-})
-
-test_that("aar_server", {
-    id <- "aar"
-    function_name <- get(paste0(id, "_server"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
-                                  )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
-                                  )
-    }, pickable = c("abc", "ijk"))
-
-    shiny::testModule(function_name, {
-        expect_error(output$aar)
-    })
-
-})
-
-test_that("aar_server", {
-    id <- "aar"
-    function_name <- get(paste0(id, "_server"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "1.rds")
-                                  )
-    }, pickable = c("abc", "def", "ijk", "lmn"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$aar,
-                                  paste0("data/module_", "aar", "2.rds")
-                                  )
-    }, pickable = c("abc", "ijk"))
-
-    shiny::testModule(function_name, {
-        expect_error(output$aar)
+        expect_error(output$kjonn)
     })
 
 })

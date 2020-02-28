@@ -5,7 +5,7 @@
 #' @return
 #' @export
 #'
-just_overfUI <- function(id) {
+justOverfUI <- function(id) {
     ns <- shiny::NS(id)
     shiny::uiOutput(ns("just_overf"))
 }
@@ -20,7 +20,7 @@ just_overfUI <- function(id) {
 #' @return
 #' @export
 #'
-just_overf <- function(input, output, session, colnames) {
+justOverf <- function(input, output, session, colnames) {
     output$just_overf <- shiny::renderUI({
       if ("niva" %in% colnames) {
         shiny::tags$div(title = "Juster for overføringer mellom sykehus.

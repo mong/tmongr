@@ -195,7 +195,7 @@ shinyServer(
       }
     })
 
-    callModule(dynamiskTabellverk:::just_overf, "num1",
+    callModule(dynamiskTabellverk:::justOverf, "num1",
                colnames = colnames(datasett))
 
     output$hastegrad2 <- renderUI({

@@ -188,7 +188,7 @@ shinyServer(
                colnames = colnames(datasett),
                pickable = unique(datasett$drgtypehastegrad))
 
-    callModule(dynamiskTabellverk:::justOverf, "num1",
+    callModule(dynamiskTabellverk:::just_overf_server, "just_overf",
                colnames = colnames(datasett))
 
     callModule(dynamiskTabellverk:::alder_server, "alder",

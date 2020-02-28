@@ -17,7 +17,7 @@ shinyUI(function(request){
             uiOutput("lastned"),
             br(),
             sidebarPanel(
-              dynamiskTabellverk:::justOverfUI("num1"),
+              dynamiskTabellverk:::just_overf_ui("just_overf"),
               uiOutput("valg"),
               uiOutput("rad1"),
               uiOutput("rad2"),

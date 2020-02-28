@@ -33,7 +33,7 @@ shinyUI(function(request){
               dynamiskTabellverk:::aar_ui("aar"),
 
               dynamiskTabellverk:::behandlingsniva_ui("behandlingsniva"),
-              uiOutput("hastegrad1"),
+              dynamiskTabellverk:::hastegrad1_ui("hastegrad1"),
               uiOutput("hastegrad2"),
               uiOutput("alder"),
               uiOutput("kjonn"),

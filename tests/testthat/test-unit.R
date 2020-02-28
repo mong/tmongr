@@ -54,9 +54,9 @@ test_that("filterHastegrad2 is correct", {
 
 test_that("filterAlder is correct", {
     k <- 0
-    for (alder in list("0 - 17 år", "18 - 49 år", "50 - 74 år", "75 år og over",
-                  list("50 - 74 år", "75 år og over"),
-                  list("0 - 17 år", "18 - 49 år"))) {
+    for (alder in list("0 - 17 \u00E5r", "18 - 49 \u00E5r", "50 - 74 \u00E5r", "75 \u00E5r og over",
+                  list("50 - 74 \u00E5r", "75 \u00E5r og over"),
+                  list("0 - 17 \u00E5r", "18 - 49 \u00E5r"))) {
         k <- k + 1
         expect_equal_to_reference(filterAlder(testdata2, alder), paste0("data/unit_alder_", k, ".rds"))
     }

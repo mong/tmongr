@@ -2,16 +2,6 @@
 #'
 #' @param id Shiny id
 #'
-#' @return
-#' @export
-#'
-just_overf_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("just_overf"))
-}
-
-#' Server side of the "adjust for transfers" button module
-#'
 #' @param input internal
 #' @param output internal
 #' @param session internal

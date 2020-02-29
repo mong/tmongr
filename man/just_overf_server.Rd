@@ -2,7 +2,7 @@
 % Please edit documentation in R/buttonModules.R
 \name{just_overf_server}
 \alias{just_overf_server}
-\title{Server side of the "adjust for transfers" button module}
+\title{Module for the "adjust for transfers" button}
 \usage{
 just_overf_server(input, output, session, colnames)
 }
@@ -14,10 +14,12 @@ just_overf_server(input, output, session, colnames)
 \item{session}{internal}
 
 \item{colnames}{Column names in the data}
+
+\item{id}{Shiny id}
 }
 \value{
 
 }
 \description{
-Server side of the "adjust for transfers" button module
+Module for the "adjust for transfers" button
 }

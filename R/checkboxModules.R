@@ -11,11 +11,6 @@ NULL
 #'
 #' @rdname checkbox
 #' @export
-aar_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("aar"))
-}
-
 aar_server <- function(input, output, session, pickable) {
     output$aar <- shiny::renderUI({
       shiny::tags$div(title = "Velg år som skal inkluderes",
@@ -31,11 +26,6 @@ aar_server <- function(input, output, session, pickable) {
 #'
 #' @rdname checkbox
 #' @export
-behandlingsniva_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("behandlingsniva"))
-}
-
 behandlingsniva_server <- function(input, output, session, pickable, colnames) {
     output$behandlingsniva <- shiny::renderUI({
       if ("behandlingsniva" %in% colnames) {
@@ -54,11 +44,6 @@ behandlingsniva_server <- function(input, output, session, pickable, colnames) {
 #'
 #' @rdname checkbox
 #' @export
-hastegrad1_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("hastegrad1"))
-}
-
 hastegrad1_server <- function(input, output, session, pickable, colnames) {
     output$hastegrad1 <- shiny::renderUI({
       if ("hastegrad" %in% colnames) {
@@ -77,11 +62,6 @@ hastegrad1_server <- function(input, output, session, pickable, colnames) {
 #'
 #' @rdname checkbox
 #' @export
-hastegrad2_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("hastegrad2"))
-}
-
 hastegrad2_server <- function(input, output, session, pickable, colnames) {
     output$hastegrad2 <- shiny::renderUI({
       if ("drgtypehastegrad" %in% colnames) {
@@ -103,11 +83,6 @@ DRGtypeHastegrad er en kombinasjon av hastegrad og type DRG
 #'
 #' @rdname checkbox
 #' @export
-kjonn_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("kjonn"))
-}
-
 kjonn_server <- function(input, output, session, pickable, colnames) {
     output$kjonn <- shiny::renderUI({
       if ("kjonn" %in% colnames) {
@@ -125,11 +100,6 @@ kjonn_server <- function(input, output, session, pickable, colnames) {
 #'
 #' @rdname checkbox
 #' @export
-alder_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("alder"))
-}
-
 alder_server <- function(input, output, session, pickable, colnames) {
     output$alder <- shiny::renderUI({
       if ("alder" %in% colnames) {
@@ -148,11 +118,6 @@ alder_server <- function(input, output, session, pickable, colnames) {
 #'
 #' @rdname checkbox
 #' @export
-prosent_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("prosent"))
-}
-
 prosent_server <- function(input, output, session, pickable) {
     output$prosent <- shiny::renderUI({
       # Prosentknappen
@@ -168,11 +133,6 @@ prosent_server <- function(input, output, session, pickable) {
 #'
 #' @rdname checkbox
 #' @export
-forenkling_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("forenkling"))
-}
-
 forenkling_server <- function(input, output, session, colnames) {
     output$forenkling <- shiny::renderUI({
       if ("behandlende_HF" %in% colnames) {
@@ -189,11 +149,6 @@ forenkling_server <- function(input, output, session, colnames) {
 #'
 #' @rdname checkbox
 #' @export
-snitt_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("snitt"))
-}
-
 snitt_server <- function(input, output, session) {
     output$snitt <- shiny::renderUI({
       shiny::tags$div(title = "Vis snitt i siste kolonne og sum for hver grupperingsvariabel",
@@ -206,11 +161,6 @@ snitt_server <- function(input, output, session) {
 #'
 #' @rdname checkbox
 #' @export
-keep_names_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("keep_names"))
-}
-
 keep_names_server <- function(input, output, session) {
     output$keep_names <- shiny::renderUI({
       shiny::tags$div(title = "Vis repeterende kategori i første kolonne.

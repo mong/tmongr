@@ -45,7 +45,7 @@ shinyUI(function(request) {
               width = 3
             ),
             mainPanel(
-              uiOutput("tabeller"),
+              dynamiskTabellverk:::common_ui("tabeller"),
               width = 9
             )
   )

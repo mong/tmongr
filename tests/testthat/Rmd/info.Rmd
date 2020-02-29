@@ -1,0 +1,11 @@
+---
+title: "For testing"
+author: "Arnfinn Hykkerud Steindal"
+date: "29. februar 2020"
+output: html_document
+runtime: shiny
+---
+
+<br> 
+Hello world
+</br>

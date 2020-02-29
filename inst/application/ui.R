@@ -38,7 +38,6 @@ shinyUI(function(request) {
               uiOutput("instilling"),
               dynamiskTabellverk:::common_ui("prosent"),
               dynamiskTabellverk:::common_ui("keep_names"),
-              dynamiskTabellverk:::common_ui("forenkling"),
               dynamiskTabellverk:::common_ui("snitt"),
               width = 3
             ),

@@ -9,7 +9,6 @@
 \alias{kjonn_server}
 \alias{alder_server}
 \alias{prosent_server}
-\alias{forenkling_server}
 \alias{snitt_server}
 \alias{keep_names_server}
 \title{Module for the year checkbox}
@@ -27,8 +26,6 @@ kjonn_server(input, output, session, pickable, colnames)
 alder_server(input, output, session, pickable, colnames)
 
 prosent_server(input, output, session, pickable)
-
-forenkling_server(input, output, session, colnames)
 
 snitt_server(input, output, session)
 
@@ -54,8 +51,6 @@ Module for the kjonn checkbox
 Module for the alder checkbox
 
 Module for the knappProsent checkbox
-
-Module for the knappForenkling checkbox
 
 Module for the knappSnitt checkbox
 

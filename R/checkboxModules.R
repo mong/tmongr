@@ -128,23 +128,6 @@ prosent_server <- function(input, output, session, pickable) {
 
 }
 
-
-#' @title Module for the knappForenkling checkbox
-#'
-#' @rdname checkbox
-#' @export
-forenkling_server <- function(input, output, session, colnames) {
-    output$forenkling <- shiny::renderUI({
-      if ("behandlende_HF" %in% colnames) {
-        shiny::tags$div(title = "Slå sammen HF utenfor Helse Nord RHF",
-                 shiny::checkboxInput("forenkling",
-                               "Slå sammen HF utenfor Helse Nord",
-                               value = TRUE)
-        )
-      }
-    })
-}
-
 #' @title Module for the knappSnitt checkbox
 #'
 #' @rdname checkbox

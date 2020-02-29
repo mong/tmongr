@@ -16,8 +16,7 @@ lagHjelpetekst(
   behandlingsniva,
   alder,
   kjonn,
-  hastegrad2,
-  forenkling
+  hastegrad2
 )
 }
 \arguments{
@@ -44,8 +43,6 @@ lagHjelpetekst(
 \item{kjonn}{Gender}
 
 \item{hastegrad2}{Degree of urgency}
-
-\item{forenkling}{Merge all health trust outside northern norway}
 }
 \value{
 Tekst Some text that describe the selection made by the user.

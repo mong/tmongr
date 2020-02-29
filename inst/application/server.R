@@ -46,9 +46,6 @@ shinyServer(
 
     makeTable <- reactive({
       verdier <- lageParametere()
-      if (is.null(verdier$forenkling)) {
-        verdier$forenkling <- TRUE
-      }
       if (is.null(datasett)) {
         return(NULL)
       }
@@ -143,9 +140,6 @@ shinyServer(
 
     callModule(dynamiskTabellverk:::prosent_server, "prosent")
 
-    callModule(dynamiskTabellverk:::forenkling_server, "forenkling",
-               colnames = colnames(datasett))
-
     callModule(dynamiskTabellverk:::snitt_server, "snitt")
 
     callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
@@ -162,9 +156,6 @@ shinyServer(
 
     output$figurtekst <- renderUI({
       verdier <- lageParametere()
-      if (is.null(verdier$forenkling)) {
-        verdier$forenkling <- FALSE
-      }
       hjelpetekst <- dynamiskTabellverk::lagHjelpetekst(
         input$tab,
         verdier$rader,
@@ -177,8 +168,7 @@ shinyServer(
         verdier$behandlingsniva,
         verdier$alder,
         verdier$kjonn,
-        verdier$hastegrad2,
-        verdier$forenkling)
+        verdier$hastegrad2)
       HTML(paste("<h4>", hjelpetekst, "</h4>", sep = ""))
     })
 
@@ -225,7 +215,6 @@ shinyServer(
         rader <- c(input$xcol1)
       }
 
-      forenkling <- parameterDefinert(input$forenkling, NULL)
       bo <- parameterDefinert(input$bo, 2)
       beh <- parameterDefinert(input$beh, 1)
       verdi <- parameterDefinert(input$verdi, "kontakter")
@@ -237,7 +226,7 @@ shinyServer(
       hastegrad1 <- parameterDefinert(input$hastegrad1, unique(datasett$hastegrad))
       hastegrad2 <- parameterDefinert(input$hastegrad2, unique(datasett$drgtypehastegrad))
       behandlingsniva <- parameterDefinert(input$behandlingsniva, unique(datasett$behandlingsniva))
-      verdier <- list(forenkling = forenkling, bo = bo, beh = beh, verdi = verdi, rader = rader,
+      verdier <- list(bo = bo, beh = beh, verdi = verdi, rader = rader,
                       prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder,
                       hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva)
 

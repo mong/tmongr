@@ -14,7 +14,6 @@ test_that("correct text is returned", {
                           kjonn = c("tmp", "tmp"), #?
                           hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
                           prosent = F,
-                          forenkling = F,
                           keep_names = F,
                           snitt = T)
 
@@ -31,14 +30,12 @@ test_that("correct text is returned", {
     behandlingsniva = verdier$behandlingsniva,
     alder =           verdier$alder,
     kjonn =           verdier$kjonn,
-    hastegrad2 =      verdier$hastegrad2,
-    forenkling =      verdier$forenkling)
+    hastegrad2 =      verdier$hastegrad2)
   expect_equal_to_reference(hjelpetekst, "data/ref_tekst1.rds")
 
   verdier$aar <- c(2011, 2013, 2014, 2015)
   verdier$fane <- "menisk"
   verdier$prosent <- T
-  verdier$forenkling <- T
   verdier$keep_names <- T
   verdier$snitt <- F
   hjelpetekst <- lagHjelpetekst(
@@ -53,8 +50,7 @@ test_that("correct text is returned", {
     behandlingsniva = verdier$behandlingsniva,
     alder =           verdier$alder,
     kjonn =           verdier$kjonn,
-    hastegrad2 =      verdier$hastegrad2,
-    forenkling =      verdier$forenkling)
+    hastegrad2 =      verdier$hastegrad2)
   expect_equal_to_reference(hjelpetekst, "data/ref_tekst2.rds")
 
   verdier <- originalverdier
@@ -72,8 +68,7 @@ test_that("correct text is returned", {
       behandlingsniva = verdier$behandlingsniva,
       alder =           verdier$alder,
       kjonn =           verdier$kjonn,
-      hastegrad2 =      verdier$hastegrad2,
-      forenkling =      verdier$forenkling)
+      hastegrad2 =      verdier$hastegrad2)
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_bo",  bohf, ".rds"))
   }
 
@@ -90,8 +85,7 @@ test_that("correct text is returned", {
       behandlingsniva = c("dag"),
       alder =           c("1", "2", "3"),
       kjonn =           "mann",
-      hastegrad2 =      "Akutt",
-      forenkling =      verdier$forenkling)
+      hastegrad2 =      "Akutt")
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_beh",  behhf, ".rds"))
   }
 
@@ -115,8 +109,7 @@ test_that("correct text is returned", {
       behandlingsniva = c("dag", "dogn"),
       alder =           "0-16",
       kjonn =           verdier$kjonn,
-      hastegrad2 =      c("en", "to", "tre"),
-      forenkling =      T)
+      hastegrad2 =      c("en", "to", "tre"))
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_verdi_",  verdi, ".rds"))
   }
 
@@ -133,8 +126,7 @@ test_that("correct text is returned", {
       behandlingsniva = verdier$behandlingsniva,
       alder =           verdier$alder,
       kjonn =           verdier$kjonn,
-      hastegrad2 =      verdier$hastegrad2,
-      forenkling =      verdier$forenkling)
+      hastegrad2 =      verdier$hastegrad2)
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_tab_",  tab, ".rds"))
   }
 })

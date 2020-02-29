@@ -137,9 +137,9 @@ shinyServer(
     callModule(dynamiskTabellverk:::aar_server, "aar",
                pickable = unique(datasett$aar))
 
-    callModule(dynamiskTabellverk:::aar_server, "bo")
+    callModule(dynamiskTabellverk:::bo_server, "bo")
 
-    callModule(dynamiskTabellverk:::aar_server, "beh")
+    callModule(dynamiskTabellverk:::beh_server, "beh")
 
     callModule(dynamiskTabellverk:::prosent_server, "prosent")
 

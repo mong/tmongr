@@ -46,6 +46,12 @@ makeDataTabell <- function(input_dataset,
 
   tabell <- input_dataset
 
+  # for å slå sammen helseforetak i sør-norge
+  if ("behandlende_hf_hn" %in% colnames(tabell)) {
+    rad <- gsub("behandlende_hf", "behandlende_hf_hn", rad)
+    kol <- gsub("behandlende_hf", "behandlende_hf_hn", kol)
+  }
+
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2)

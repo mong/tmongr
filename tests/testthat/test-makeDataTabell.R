@@ -25,7 +25,7 @@ test_that("makeDataTabell returns a pivot table", {
 
   originalverdier <- list(inpDatasett = testdata,
                   fane = "tmp", #?
-                  rader = c("boomr_hf", "behandlende_hf_hn"),
+                  rader = c("boomr_hf", "behandlende_hf"),
                   kolonner = "aar",
                   verdi = "kontakter",
                   aar = 2016,
@@ -121,7 +121,7 @@ test_that("makeDataTabell returns a pivot table", {
   expect_equal_to_reference(tmp, "data/ref_pivot6a.rds")
 
   # One too many rad elements
-  verdier$rader <- c("boomr_hf", "behandlende_hf_hn", "behandler")
+  verdier$rader <- c("boomr_hf", "behandlende_hf", "behandler")
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6b.rds")
 
@@ -139,7 +139,7 @@ test_that("makeDataTabell returns a pivot table", {
 
   # Check "aar" %in% kol
   verdier <- originalverdier
-  verdier$rader <- c("aar", "behandlende_hf_hn")
+  verdier$rader <- c("aar", "behandlende_hf")
   verdier$kolonner <- c("aar")
   verdier$aar <- c(2014, 2015, 2016)
   tmp <- lag_pivot(verdier)

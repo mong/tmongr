@@ -28,12 +28,7 @@ makeDataTabell <- function(input_dataset,
   hastegrad1 <- verdier$hastegrad1
   hastegrad2 <- verdier$hastegrad2
   prosent <- verdier$prosent
-  forenkling <- verdier$forenkling
 
-  if (is.null(forenkling)) {
-    # for å unngå feilmelding
-    return(NULL)
-  }
   if (is.null(aar)) {
     # for å unngå feilmelding
     return(NULL)
@@ -52,9 +47,7 @@ makeDataTabell <- function(input_dataset,
   tabell <- input_dataset
 
   # for å slå sammen helseforetak i sør-norge
-  if ((forenkling & ("behandlende_hf" %in% colnames(tabell))) |
-       (!("behandlende_hf" %in% colnames(tabell) & ("behandlende_hf_hn" %in% colnames(tabell))))
-     ) {
+  if ("behandlende_hf_hn" %in% colnames(tabell)) {
     rad <- gsub("behandlende_hf", "behandlende_hf_hn", rad)
     kol <- gsub("behandlende_hf", "behandlende_hf_hn", kol)
   }

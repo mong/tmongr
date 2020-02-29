@@ -39,7 +39,6 @@ test_that("makeDataTabell returns a pivot table", {
                   kjonn = "tmp", #?
                   hastegrad2 = "tmp", #?
                   prosent = F,
-                  forenkling = F,
                   keep_names = F,
                   snitt = T)
 
@@ -81,7 +80,6 @@ test_that("makeDataTabell returns a pivot table", {
   verdier <- originalverdier
   verdier$prosent <- T
   verdier$keep_names <- T
-  verdier$forenkling <- T
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot3.rds")
 

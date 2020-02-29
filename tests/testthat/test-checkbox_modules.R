@@ -181,27 +181,6 @@ test_that("prosent_server", {
                                   paste0("data/module_", "prosent", "1.rds")
                                   )
     })
-
-})
-
-test_that("forenkling_server", {
-    id <- "forenkling"
-    function_name <- get(paste0(id, "_server"))
-
-    shiny::testModule(function_name, {
-        expect_equal_to_reference(output$forenkling,
-                                  paste0("data/module_", "forenkling", "1.rds")
-                                  )
-    }, colnames = c("behandlende_HF", "behandler"))
-
-    shiny::testModule(function_name, {
-        expect_null(output$forenkling)
-    }, colnames = c("tmp", "behandler"))
-
-    shiny::testModule(function_name, {
-        expect_error(output$forenkling)
-    })
-
 })
 
 test_that("snitt_server", {

@@ -11,14 +11,12 @@
 #' @param kjonn Gender
 #' @param hastegrad2 Degree of urgency
 #' @param prosent Show percentage
-#' @param forenkling Merge all health trust outside northern norway
 #'
 #' @return Tekst Some text that describe the selection made by the user.
 #' @export
 #'
 lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
-                           behandlingsniva, alder, kjonn, hastegrad2,
-                           forenkling) {
+                           behandlingsniva, alder, kjonn, hastegrad2) {
 
     tmp_boomr <- "..."
     aar_tekst <- "..."

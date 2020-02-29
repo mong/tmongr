@@ -1,24 +1,3 @@
-
-rad1_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("rad1"))
-}
-
-rad2_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("rad2"))
-}
-
-kolonner_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("kolonner"))
-}
-
-verdi_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("verdi"))
-}
-
 rad1_server <- function(input, output, session, pickable, default) {
     # valg rader 1
     output$rad1 <- shiny::renderUI({
@@ -71,11 +50,6 @@ verdi_server <- function(input, output, session, pickable, default) {
 
 }
 
-bo_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("bo"))
-}
-
 bo_server <- function(input, output, session) {
     output$bo <- shiny::renderUI({
       shiny::tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",
@@ -90,11 +64,6 @@ bo_server <- function(input, output, session) {
                            ),
                            selected = 2))
     })
-}
-
-beh_ui <- function(id) {
-    ns <- shiny::NS(id)
-    shiny::uiOutput(ns("beh"))
 }
 
 beh_server <- function(input, output, session) {

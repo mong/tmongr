@@ -2,37 +2,37 @@
 % Please edit documentation in R/checkboxModules.R
 \name{checkbox}
 \alias{checkbox}
-\alias{aar_ui}
-\alias{behandlingsniva_ui}
-\alias{hastegrad1_ui}
-\alias{hastegrad2_ui}
-\alias{kjonn_ui}
-\alias{alder_ui}
-\alias{prosent_ui}
-\alias{forenkling_ui}
-\alias{snitt_ui}
-\alias{keep_names_ui}
+\alias{aar_server}
+\alias{behandlingsniva_server}
+\alias{hastegrad1_server}
+\alias{hastegrad2_server}
+\alias{kjonn_server}
+\alias{alder_server}
+\alias{prosent_server}
+\alias{forenkling_server}
+\alias{snitt_server}
+\alias{keep_names_server}
 \title{Module for the year checkbox}
 \usage{
-aar_ui(id)
+aar_server(input, output, session, pickable)
 
-behandlingsniva_ui(id)
+behandlingsniva_server(input, output, session, pickable, colnames)
 
-hastegrad1_ui(id)
+hastegrad1_server(input, output, session, pickable, colnames)
 
-hastegrad2_ui(id)
+hastegrad2_server(input, output, session, pickable, colnames)
 
-kjonn_ui(id)
+kjonn_server(input, output, session, pickable, colnames)
 
-alder_ui(id)
+alder_server(input, output, session, pickable, colnames)
 
-prosent_ui(id)
+prosent_server(input, output, session, pickable)
 
-forenkling_ui(id)
+forenkling_server(input, output, session, colnames)
 
-snitt_ui(id)
+snitt_server(input, output, session)
 
-keep_names_ui(id)
+keep_names_server(input, output, session)
 }
 \arguments{
 \item{id}{Shiny id}

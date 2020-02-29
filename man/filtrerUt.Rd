@@ -15,10 +15,7 @@ filtrerUt(
   alder,
   kjonn,
   hastegrad1,
-  hastegrad2,
-  hdg,
-  icd10,
-  fag
+  hastegrad2
 )
 }
 \arguments{
@@ -41,12 +38,6 @@ filtrerUt(
 \item{kjonn}{Gender}
 
 \item{hastegrad2}{Degree of urgency}
-
-\item{hdg}{Main diagnostic group}
-
-\item{icd10}{ICD10 chapter}
-
-\item{fag}{Medical fields}
 }
 \description{
 Filter out data from the dataset that is not going to be tabulated

@@ -12,12 +12,9 @@
 #' @param alder Age group
 #' @param kjonn Gender
 #' @param hastegrad2 Degree of urgency
-#' @param hdg  Main diagnostic group
-#' @param icd10 ICD10 chapter
-#' @param fag Medical fields
 #'
 filtrerUt <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
-                      alder, kjonn, hastegrad1, hastegrad2, hdg, icd10, fag) {
+                      alder, kjonn, hastegrad1, hastegrad2) {
 
     if (fane == "dogn") {
         tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
@@ -26,12 +23,6 @@ filtrerUt <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
     } else if (fane == "poli") {
         tabell <- filterBehandlingsniva(tabell, c("Poliklinikk"))
     }
-
-    tabell <- filterHDG(tabell, hdg)
-
-    tabell <- filterICD10(tabell, icd10)
-
-    tabell <- filterFag(tabell, fag)
 
     tabell <- filterAar(tabell, aar)
 
@@ -169,31 +160,4 @@ filterKjonn <- function(datasett, filter) {
     }
     tabell <- dplyr::filter(datasett, kjonn %in% filter)
     return(tabell)
-}
-
-filterHDG <- function(datasett, filter) {
-    if (filter == "Alle") {
-        return(datasett)
-    } else {
-        tabell <- dplyr::filter(datasett, hoveddiagnosegruppe %in% filter)
-        return(tabell)
-    }
-}
-
-filterICD10 <- function(datasett, filter) {
-    if (filter == "Alle") {
-        return(datasett)
-    } else {
-        tabell <- dplyr::filter(datasett, icd10kap %in% filter)
-        return(tabell)
-    }
-}
-
-filterFag <- function(datasett, filter) {
-    if (filter == "Alle") {
-        return(datasett)
-    } else {
-        tabell <- dplyr::filter(datasett, episodefag %in% filter)
-        return(tabell)
-    }
 }

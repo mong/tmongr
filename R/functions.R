@@ -27,10 +27,6 @@ definerValgKol <- function(datasett, valgnr) {
     valg_behrhf <- c()
     valg_alder <- c()
     valg_alder <- c()
-    valg_hdg <- c()
-    valg_icd10 <- c()
-    valg_fag <- c()
-    valg_fagavtspes <- c()
 
     # Verdier
     valg_kontakter <- c(Kontakter = "kontakter")
@@ -80,30 +76,16 @@ definerValgKol <- function(datasett, valgnr) {
         valg_liggerate <- c(Liggedøgnsrate = "liggedognrate")
     }
 
-    if ("icd10kap" %in% col_names) {
-        valg_icd10 <- c(`ICD10-kapittel` = "icd10kap")
-    }
-
-    if ("episodefag" %in% col_names) {
-        valg_fag <- c(Fagområde = "episodefag")
-    }
-
-    if ("fag_skde" %in% col_names) {
-        valg_fagavtspes <- c(`Fagfelt avtalespesialist` = "fag_skde")
-    }
-
     valg_en <- c(valg_boomr, valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva,
-                 valg_hastegrad, valg_drgtypehastegrad, valg_hdg, valg_icd10, valg_fag,
-                 valg_fagavtspes, valg_behandler, valg_behsh, valg_behhf,
+                 valg_hastegrad, valg_drgtypehastegrad, valg_behandler, valg_behsh, valg_behhf,
         valg_behrhf)
 
     valg_to <- c(valg_behandler, valg_behsh, valg_behhf, valg_behrhf, valg_aar,
                  valg_alder, valg_kjonn, valg_behandlingsniva, valg_hastegrad,
-                 valg_drgtypehastegrad, valg_hdg, valg_icd10, valg_fag, valg_fagavtspes,
-        valg_boomr, Tom = "ingen")
+                 valg_drgtypehastegrad, valg_boomr, Tom = "ingen")
 
     valg_tre <- c(valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva, valg_hastegrad,
-                  valg_drgtypehastegrad, valg_hdg, valg_icd10, valg_fag, valg_fagavtspes)
+                  valg_drgtypehastegrad)
 
     valg_fire <- c(valg_kontakter, valg_rate, valg_liggetid, valg_liggerate, valg_liggeindex,
                    valg_drg, valg_drgrate, valg_drgindex)

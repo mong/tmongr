@@ -68,39 +68,6 @@ shinyServer(
 
     debounced_reactive <- throttle(makeTable, 1000)
 
-    # valg hoveddiagnosegruppe
-    output$hdg <- renderUI({
-      if ("hoveddiagnosegruppe" %in% colnames(datasett)) {
-        tags$div(title = "Velg hvilken hoveddiagnosegruppe som skal vises",
-                 selectInput("hdg",
-                             label = "Hoveddiagnosegruppe",
-                             choices = c("Alle", unique(datasett$hoveddiagnosegruppe)),
-                             selected = "Alle"))
-      }
-    })
-
-    # valg ICD10-kapittel
-    output$icd10 <- renderUI({
-      if ("icd10kap" %in% colnames(datasett)) {
-        tags$div(title = "Velg hvilket ICD10-kapittel som skal vises",
-                 selectInput("icd10",
-                             label = "ICD10-kapittel",
-                             choices = c("Alle", unique(datasett$icd10kap)),
-                             selected = "Alle"))
-      }
-    })
-
-    # valg fagområde
-    output$fag <- renderUI({
-      if ("episodefag" %in% colnames(datasett)) {
-        tags$div(title = "Velg hvilket fagområde (fagområdet for episoden) som skal vises",
-                 selectInput("fag",
-                             label = "Fagområde",
-                             choices = c("Alle", unique(datasett$episodefag)),
-                             selected = "Alle"))
-      }
-    })
-
     # lage pivot-tabell av totalverdier
     output$alle <- renderTable({
       debounced_reactive()
@@ -270,13 +237,9 @@ shinyServer(
       hastegrad1 <- parameterDefinert(input$hastegrad1, unique(datasett$hastegrad))
       hastegrad2 <- parameterDefinert(input$hastegrad2, unique(datasett$drgtypehastegrad))
       behandlingsniva <- parameterDefinert(input$behandlingsniva, unique(datasett$behandlingsniva))
-      hdg <- parameterDefinert(input$hdg, "Alle")
-      icd10 <- parameterDefinert(input$icd10, "Alle")
-      fag <- parameterDefinert(input$fag, "Alle")
       verdier <- list(forenkling = forenkling, bo = bo, beh = beh, verdi = verdi, rader = rader,
                       prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder,
-                      hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva,
-                      hdg = hdg, icd10 = icd10, fag = fag)
+                      hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva)
 
       return(verdier)
 

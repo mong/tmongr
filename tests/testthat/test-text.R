@@ -16,9 +16,7 @@ test_that("correct text is returned", {
                           prosent = F,
                           forenkling = F,
                           keep_names = F,
-                          snitt = T,
-                          hdg = "Alle",
-                          icd10 = "Alle")
+                          snitt = T)
 
   verdier <- originalverdier
   hjelpetekst <- lagHjelpetekst(
@@ -125,7 +123,7 @@ test_that("correct text is returned", {
   for (tab in c("dogn", "dag", "poli", "Informasjon")) {
     hjelpetekst <- lagHjelpetekst(
       tab =             tab,
-      rad =             c("episodefag", "fag_skde", "drgtypehastegrad"),
+      rad =             verdier$rad,
       kol =             "boomr_rhf",
       verdi =           verdier$verdi,
       aar =             verdier$aar,

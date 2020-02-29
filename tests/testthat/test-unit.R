@@ -71,21 +71,3 @@ test_that("filterKjonn is correct", {
     }
     expect_equal(nrow(filterKjonn(testdata2, "random")), 0)
 })
-
-test_that("filterHDG is correct", {
-    expect_equal(filterHDG(testdata, "Alle"), testdata)
-    expect_error(filterHDG(testdata, "random"))
-})
-
-test_that("filterICD10 is correct", {
-    expect_equal(filterICD10(testdata, "Alle"), testdata)
-    expect_error(filterICD10(testdata2, "random"))
-    k <- 0
-    for (icd10 in list("Visse infeksjonssykd og parasittsykd",
-                       "Svulster", "Sykd i blod og bloddannende organer",
-                       "Endokrine sykd, ernæringssykd",
-                       "Psyk lidelser og atferdsforstyrrelser")) {
-        k <- k + 1
-        expect_equal_to_reference(filterICD10(testdata, icd10), paste0("data/unit_icd10_", k, ".rds"))
-    }
-})

@@ -41,10 +41,7 @@ test_that("makeDataTabell returns a pivot table", {
                   prosent = F,
                   forenkling = F,
                   keep_names = F,
-                  snitt = T,
-                  hdg = "Alle",
-                  icd10 = "Alle",
-                  fag = "Alle")
+                  snitt = T)
 
   verdier <- originalverdier
 
@@ -135,13 +132,6 @@ test_that("makeDataTabell returns a pivot table", {
   verdier$kolonner <- "boomr_hf"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot6c.rds")
-
-  # Calculate percentage horizontal
-  verdier$rader <- c("boomr_hf", "aar")
-  verdier$kolonner <- "icd10kap"
-  verdier$prosent <- T
-  tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot6d.rds")
 
   # Check dataset with more variables
   verdier <- originalverdier

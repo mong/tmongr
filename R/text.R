@@ -193,7 +193,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
         }
         if ("drgtypehastegrad" %in% rad | kol == "drgtypehastegrad") {
             k <- k + 1
-            annet$fagskde <- "DRGtypeHastegrad"
+            annet$drgtypehastegrad <- "DRGtypeHastegrad"
         }
 
         if (k > 0) {

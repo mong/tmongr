@@ -28,7 +28,7 @@ shinyUI(function(request) {
               uiOutput("filter"),
               uiOutput("icd10"),
               uiOutput("fag"),
-              uiOutput("bo"),
+              dynamiskTabellverk:::aar_ui("bo"),
               uiOutput("beh"),
               dynamiskTabellverk:::aar_ui("aar"),
               dynamiskTabellverk:::behandlingsniva_ui("behandlingsniva"),

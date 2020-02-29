@@ -155,3 +155,47 @@ test_that("verdi_server", {
     })
 
 })
+
+test_that("bo_ui", {
+    id <- "bo"
+    function_name <- get(paste0(id, "_ui"))
+    expect_error(function_name())
+    expect_equal(function_name("test")$attribs$id, paste0("test-", id))
+    expect_equal(function_name("test")$attribs$class, "shiny-html-output")
+    expect_equal(function_name(id = "test")$attribs$id, paste0("test-", id))
+    expect_equal(function_name("testingMore")$attribs$id, paste0("testingMore-", id))
+    expect_error(function_name("test1", "test2"))
+})
+
+test_that("bo_server", {
+    id <- "bo"
+    function_name <- get(paste0(id, "_server"))
+
+    shiny::testModule(function_name, {
+        expect_equal_to_reference(output$bo,
+                                  paste0("data/module_", "bo", "1.rds")
+        )
+    })
+})
+
+test_that("beh_ui", {
+    id <- "beh"
+    function_name <- get(paste0(id, "_ui"))
+    expect_error(function_name())
+    expect_equal(function_name("test")$attribs$id, paste0("test-", id))
+    expect_equal(function_name("test")$attribs$class, "shiny-html-output")
+    expect_equal(function_name(id = "test")$attribs$id, paste0("test-", id))
+    expect_equal(function_name("testingMore")$attribs$id, paste0("testingMore-", id))
+    expect_error(function_name("test1", "test2"))
+})
+
+test_that("beh_server", {
+    id <- "beh"
+    function_name <- get(paste0(id, "_server"))
+    
+    shiny::testModule(function_name, {
+        expect_equal_to_reference(output$beh,
+                                  paste0("data/module_", "beh", "1.rds")
+        )
+    })
+})

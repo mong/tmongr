@@ -183,36 +183,9 @@ shinyServer(
     callModule(dynamiskTabellverk:::aar_server, "aar",
                pickable = unique(datasett$aar))
 
-    output$bo <- renderUI({
-      tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",
-               selectInput("bo",
-                           label = "Opptaksområde",
-                           choices = c("Alle" = 1,
-                                       "Helse Nord" = 2,
-                                       "Finnmarkssykehuset" = 3,
-                                       "UNN" = 4,
-                                       "Nordlandssykehuset" = 5,
-                                       "Helgelandssykehuset" = 6
-                           ),
-                           selected = 2))
-    })
+    callModule(dynamiskTabellverk:::aar_server, "bo")
 
-    output$beh <- renderUI({
-      tags$div(title = "Velg hvilke behandlere som skal inkluderes",
-               selectInput("beh",
-                           choices = c("Alle" = 1,
-                                       "Helse Nord RHF" = 2,
-                                       "Finnmarkssykehuset HF" = 3,
-                                       "UNN HF" = 4,
-                                       "Nordlandssykehuset HF" = 5,
-                                       "Helgelandssykehuset HF" = 6,
-                                       "Avtalespesialister" = 8,
-                                       "Private sykehus" = 9,
-                                       "Utenfor Helse Nord RHF" = 7),
-                           label = "Behandler",
-                           selected = 1
-               ))
-    })
+    callModule(dynamiskTabellverk:::aar_server, "beh")
 
     callModule(dynamiskTabellverk:::prosent_server, "prosent")
 

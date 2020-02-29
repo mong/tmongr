@@ -13,7 +13,7 @@ create_appDir(data = NULL)
 The created directory
 }
 \description{
-Create a directory in tempdir() where the installed version of 
+Create a directory in tempdir() where the installed version of
 dynamiskTabellverk package is copied and the data is saved.
 This directory, with its content, will be deployd to or ran by shiny.
 }

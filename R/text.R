@@ -191,14 +191,6 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
             k <- k + 1
             annet$hastegrd2 <- "hastegrad, innleggelser"
         }
-        if ("episodefag" %in% rad | kol == "episodefag") {
-            k <- k + 1
-            annet$episodeFag <- "fagområde for episoden"
-        }
-        if ("fag_skde" %in% rad | kol == "fag_skde") {
-            k <- k + 1
-            annet$fagskde <- "fagfelt til avtalespesialist"
-        }
         if ("drgtypehastegrad" %in% rad | kol == "drgtypehastegrad") {
             k <- k + 1
             annet$fagskde <- "DRGtypeHastegrad"
@@ -245,22 +237,8 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
             extra <- T
         }
 
-        if ("episodefag" %in% rad | kol == "episodefag") {
-            extra <- T
-        }
-
         if (extra) {
             all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>", sep = "")
-        }
-
-        if ("episodefag" %in% rad | kol == "episodefag") {
-            all_tekst <- paste0(all_tekst,
-                                "<li> For en del konsultasjoner hos ",
-                                "avtalespesialister er ikke fagområde ",
-                                "for episoden rapport inn til NPR. ",
-                                "Disse konsultasjonene har fått definert ",
-                                "fagområde for episoden basert på fagområde ",
-                                "til avtalespesialisten.</li>")
         }
 
         if (length(alder) != 4) {

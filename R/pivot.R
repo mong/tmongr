@@ -29,9 +29,6 @@ makeDataTabell <- function(input_dataset,
   hastegrad2 <- verdier$hastegrad2
   prosent <- verdier$prosent
   forenkling <- verdier$forenkling
-  hdg <- verdier$hdg
-  icd10 <- verdier$icd10
-  fag <- verdier$fag
 
   if (is.null(forenkling)) {
     # for å unngå feilmelding
@@ -64,7 +61,7 @@ makeDataTabell <- function(input_dataset,
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrerUt(tabell, fane, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, hdg, icd10, fag)
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if (!nrow(tabell)) {
@@ -418,11 +415,7 @@ renameColumns <- function(tabell) {
   names(tabell) <- sub("behandlingsniva", "Behandlingsnivå", names(tabell))
   names(tabell) <- sub("drgtypehastegrad", "DRGtypeHastegrad", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
-  names(tabell) <- sub("hoveddiagnosegruppe", "Hoveddiagnosegruppe", names(tabell))
-  names(tabell) <- sub("icd10kap", "ICD10-kapittel", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
-  names(tabell) <- sub("fag_skde", "Fagfelt avtalespesialist", names(tabell))
-  names(tabell) <- sub("episodefag", "Fagområde for episode", names(tabell))
 
   return(tabell)
 

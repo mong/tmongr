@@ -26,8 +26,6 @@ shinyUI(function(request) {
               dynamiskTabellverk:::common_ui("verdi"),
               br(),
               uiOutput("filter"),
-              uiOutput("icd10"),
-              uiOutput("fag"),
               dynamiskTabellverk:::common_ui("bo"),
               dynamiskTabellverk:::common_ui("beh"),
               dynamiskTabellverk:::common_ui("aar"),

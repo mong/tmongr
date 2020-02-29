@@ -126,7 +126,7 @@ test_that("bo_server", {
 test_that("beh_server", {
     id <- "beh"
     function_name <- get(paste0(id, "_server"))
-    
+
     shiny::testModule(function_name, {
         expect_equal_to_reference(output$beh,
                                   paste0("data/module_", "beh", "1.rds")

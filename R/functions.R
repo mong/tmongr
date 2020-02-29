@@ -67,9 +67,6 @@ definerValgKol <- function(datasett, valgnr) {
     if ("behandlende_rhf" %in% col_names) {
         valg_behrhf <- c(`Behandlende RHF` = "behandlende_rhf")
     }
-    if ("hoveddiagnosegruppe" %in% col_names) {
-        valg_hdg <- c(Hoveddiagnosegruppe = "hoveddiagnosegruppe")
-    }
     if ("bosh_liggerate" %in% col_names &
         "bohf_liggerate" %in% col_names &
         "borhf_liggerate" %in% col_names) {

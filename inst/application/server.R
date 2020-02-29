@@ -10,20 +10,7 @@ shinyServer(
 
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
-    output$tabeller <- renderUI({
-
-      absolutePanel(
-        (tabsetPanel(type = "tabs", id = "tab",
-                     tabPanel("Alle kontakter", tableOutput("alle"), value = "alle"),
-                     tabPanel("Døgnopphold", tableOutput("dogn"), value = "dogn"),
-                     tabPanel("Dagbehandling", tableOutput("dag"), value = "dag"),
-                     tabPanel("Poliklinikk", tableOutput("poli"), value = "poli"),
-                     tabPanel("Informasjon", fluidPage(
-                       includeMarkdown("Rmd/info.Rmd")))
-        )
-        )
-      )
-    })
+    callModule(dynamiskTabellverk:::tab_panel_server, "tabeller")
 
     obsA <- observe({
       meny$en <- dynamiskTabellverk::definerValgKol(datasett, 1)

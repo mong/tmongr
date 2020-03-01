@@ -209,61 +209,8 @@ get_aar_text <- function(aar) {
     return(hjelpetekst)
 }
 
-#' Make caption above the table
-#' @param tab The active tab
-#' @param rad What to tabulate on the row
-#' @param kol What to tabulate on the column
-#' @param verdi The value that is going to be tabulated
-#' @param aar The years to be tabulated
-#' @param bo Living area. Possible values 1:6
-#' @param beh Hospital Health Trust. Possible values 1:7
-#' @param behandlingsniva Type of contact (admissions, outpatient consultations or day patient treatments)
-#' @param alder Age group
-#' @param kjonn Gender
-#' @param hastegrad2 Degree of urgency
-#' @param prosent Show percentage
-#'
-#' @return Tekst Some text that describe the selection made by the user.
-#' @export
-#'
-lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
-                           behandlingsniva, alder, kjonn, hastegrad2) {
-
-    tmp_boomr <- "..."
-    extra <- ""
-
-    if (is.null(rad) | is.null(aar) | is.null(verdi)) {
-        return(NULL)
-    }
-
-    overskrift <- get_heading(tab = tab)
-
-    if (tab == "Informasjon") {
-        # Do not print details about the selection when the user look at the information tab (not relevant).
-        return(paste0(overskrift, "<font size='+1'>", "Informasjonsfane", "</font>", "<br>", "<br>"))
-    }
-
-    type <- get_type(tab = tab)
-
-    verdi_tekst <- get_value_text(verdi, type)
-
-    prs_txt <- ""
-    if (prosent == TRUE) {
-        prs_txt <- ", i prosent, "
-    }
-
-    hjelpetekst <- paste(verdi_tekst, prs_txt, " for pasienter ", sep = "")
-
-    hjelpetekst <- paste0(hjelpetekst, get_bo_text(bo, beh))
-
-    hjelpetekst <- paste0(hjelpetekst, get_beh_text(c(rad, kol), bo))
-
-    hjelpetekst <- paste0(hjelpetekst, get_annet_text(c(rad, kol)))
-
-    hjelpetekst <- paste0(hjelpetekst, get_aar_text(aar))
-
-    all_tekst <- paste(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>", sep = "")
-
+extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
+    all_tekst <- ""
     extra <- F
     if ((length(alder) < 4) |
         (length(hastegrad2) < 4) |
@@ -273,17 +220,17 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
     }
 
     if (extra) {
-        all_tekst <- paste(all_tekst, "<ul><li>Annet: <ul>", sep = "")
+        all_tekst <- paste0(all_tekst, "<ul><li>Annet: <ul>")
     }
 
     if (length(alder) != 4) {
         if (length(alder) == 1) {
             tmp1 <- "<li>Kun aldersgruppen "
-            alder_tekst <- paste(tmp1, alder[length(alder)], "</li>", sep = "")
+            alder_tekst <- paste0(tmp1, alder[length(alder)], "</li>")
         } else {
             tmp1 <- "<li>Kun aldersgruppene"
             tmp2 <- paste(alder[seq_len(length(alder)) - 1], collapse = ", ")
-            tmp3 <- paste(" og ", alder[length(alder)], "</li>", sep = "")
+            tmp3 <- paste0(" og ", alder[length(alder)], "</li>")
             alder_tekst <- paste(tmp1, tmp2, tmp3)
         }
         all_tekst <- paste(all_tekst, alder_tekst, sep = "")
@@ -315,19 +262,77 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
         behnivaa <- gsub("konsultasjon", "konsultasjoner", behnivaa)
         if (length(behnivaa) == 1) {
             tmp1 <- "<li>Kun "
-            behandlingsniva_tekst <- paste(tmp1, behnivaa[length(behnivaa)], "</li>", sep = "")
+            behandlingsniva_tekst <- paste0(tmp1, behnivaa[length(behnivaa)], "</li>")
         } else {
             tmp1 <- "<li>Kun"
             tmp2 <- paste(behnivaa[seq_len(length(behnivaa)) - 1], collapse = ", ")
-            tmp3 <- paste(" og ", behnivaa[length(behnivaa)], "</li>", sep = "")
+            tmp3 <- paste0(" og ", behnivaa[length(behnivaa)], "</li>")
             behandlingsniva_tekst <- paste(tmp1, tmp2, tmp3)
         }
-        all_tekst <- paste(all_tekst, behandlingsniva_tekst, sep = "")
+        all_tekst <- paste0(all_tekst, behandlingsniva_tekst)
     }
 
     if (extra) {
-        all_tekst <- paste(all_tekst, "</ul></li></ul>", sep = "")
+        all_tekst <- paste0(all_tekst, "</ul></li></ul>")
     }
+    return(all_tekst)
+}
+
+#' Make caption above the table
+#' @param tab The active tab
+#' @param rad What to tabulate on the row
+#' @param kol What to tabulate on the column
+#' @param verdi The value that is going to be tabulated
+#' @param aar The years to be tabulated
+#' @param bo Living area. Possible values 1:6
+#' @param beh Hospital Health Trust. Possible values 1:7
+#' @param behandlingsniva Type of contact (admissions, outpatient consultations or day patient treatments)
+#' @param alder Age group
+#' @param kjonn Gender
+#' @param hastegrad2 Degree of urgency
+#' @param prosent Show percentage
+#'
+#' @return Tekst Some text that describe the selection made by the user.
+#' @export
+#'
+lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
+                           behandlingsniva, alder, kjonn, hastegrad2) {
+
+    tmp_boomr <- "..."
+
+    if (is.null(rad) | is.null(aar) | is.null(verdi)) {
+        return(NULL)
+    }
+
+    overskrift <- get_heading(tab = tab)
+
+    if (tab == "Informasjon") {
+        # Do not print details about the selection when the user look at the information tab (not relevant).
+        return(paste0(overskrift, "<font size='+1'>", "Informasjonsfane", "</font>", "<br>", "<br>"))
+    }
+
+    type <- get_type(tab = tab)
+
+    verdi_tekst <- get_value_text(verdi, type)
+
+    prs_txt <- ""
+    if (prosent == TRUE) {
+        prs_txt <- ", i prosent, "
+    }
+
+    hjelpetekst <- paste(verdi_tekst, prs_txt, " for pasienter ", sep = "")
+
+    hjelpetekst <- paste0(hjelpetekst, get_bo_text(bo, beh))
+
+    hjelpetekst <- paste0(hjelpetekst, get_beh_text(c(rad, kol), bo))
+
+    hjelpetekst <- paste0(hjelpetekst, get_annet_text(c(rad, kol)))
+
+    hjelpetekst <- paste0(hjelpetekst, get_aar_text(aar))
+
+    all_tekst <- paste0(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>")
+
+    all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab))
 
     # LEGG INN ADVARSLER
 

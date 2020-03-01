@@ -75,23 +75,117 @@ get_bo_text <- function(bo, beh) {
     }
 
     if (beh == 2) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet av Helse Nord RHF", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, "behandlet av Helse Nord RHF")
     } else if (beh == 3) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet av Finnmarkssykehuset HF", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, "behandlet av Finnmarkssykehuset HF")
     } else if (beh == 4) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet av UNN HF", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, "behandlet av UNN HF")
     } else if (beh == 5) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet av Nordlandsykehuset HF", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, "behandlet av Nordlandsykehuset HF")
     } else if (beh == 6) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet av Helgelandssykehuset HF", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, "behandlet av Helgelandssykehuset HF")
     } else if (beh == 7) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet utenfor Helse Nord RHF", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, "behandlet utenfor Helse Nord RHF")
     }
 
     if (beh %in% c(2, 3, 4, 5, 6, 7)) {
-        hjelpetekst <- paste(hjelpetekst, ", ", sep = "")
+        hjelpetekst <- paste0(hjelpetekst, ", ")
     }
 
+    return(hjelpetekst)
+}
+
+get_beh_text <- function(rad, bo) {
+    tmp_behandl <- FALSE
+    hjelpetekst <- ""
+    if ("behandlende_sykehus" %in% rad) {
+        tmp_beh <- "sykehus"
+        tmp_behandl <- TRUE
+    } else if ("behandlende_hf" %in% rad) {
+        tmp_beh <- "HF"
+        tmp_behandl <- TRUE
+    } else if ("behandlende_rhf" %in% rad) {
+        tmp_beh <- "RHF"
+        tmp_behandl <- TRUE
+    } else if ("behandler" %in% rad) {
+        tmp_beh <- "sykehus"
+        tmp_behandl <- TRUE
+    }
+    if (tmp_behandl) {
+        hjelpetekst <- paste0(hjelpetekst, "behandlet ved ulike ", tmp_beh)
+    }
+
+    tmp_bo <- F
+    if ("boomr_sykehus" %in% rad) {
+        tmp_bo <- T
+        tmp_boomr <- "sykehusnivå"
+    } else if ("boomr_hf" %in% rad) {
+        tmp_bo <- T
+        tmp_boomr <- "HF-nivå"
+    } else if (("boomr_rhf" %in% rad) & (bo == 1)) {
+        tmp_bo <- T
+        tmp_boomr <- "RHF-nivå"
+    }
+
+    if (tmp_bo) {
+        if (tmp_behandl) {
+            hjelpetekst <- paste0(hjelpetekst, " og ")
+        }
+        hjelpetekst <- paste0(hjelpetekst, "bosatt i ulike opptaksområder på ", tmp_boomr, ", ")
+    } else if (tmp_behandl) {
+        hjelpetekst <- paste0(hjelpetekst, ", ")
+    }
+
+    return(hjelpetekst)
+}
+
+get_annet_text <- function(rad) {
+    hjelpetekst <- ""
+    k <- 0
+    annet <- list()
+    if ("aar" %in% rad) {
+        k <- k + 1
+        annet$aar <- "år"
+    }
+    if ("alder" %in% rad) {
+        k <- k + 1
+        annet$alder <- "aldersgrupper"
+    }
+    if ("kjonn" %in% rad) {
+        k <- k + 1
+        annet$kjonn <- "kjønn"
+    }
+    if ("behandlingsniva" %in% rad) {
+        k <- k + 1
+        annet$behandl <- "behandlingsnivå"
+    }
+    if ("hastegrad" %in% rad) {
+        k <- k + 1
+        annet$hastegrd1 <- "hastegrad"
+    }
+    if ("hastegrad_drgtype_dogn" %in% rad) {
+        k <- k + 1
+        annet$hastegrd2 <- "hastegrad, innleggelser"
+    }
+    if ("drgtypehastegrad" %in% rad) {
+        k <- k + 1
+        annet$drgtypehastegrad <- "DRGtypeHastegrad"
+    }
+    
+    if (k > 0) {
+        hjelpetekst <- paste(hjelpetekst, "fordelt på ", sep = "")
+        l <- 0
+        for (i in annet) {
+            l <- l + 1
+            if (l == k & l != 1) {
+                hjelpetekst <- paste(hjelpetekst, i, sep = " og ")
+            } else if (l == 1) {
+                hjelpetekst <- paste(hjelpetekst, i, sep = "")
+            } else {
+                hjelpetekst <- paste(hjelpetekst, i, sep = ", ")
+            }
+        }
+    }
     return(hjelpetekst)
 }
 
@@ -143,90 +237,9 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     hjelpetekst <- paste0(hjelpetekst, get_bo_text(bo, beh))
 
-    tmp_behandl <- FALSE
-    if ("behandlende_sykehus" %in% rad | kol == "behandlende_sykehus") {
-        tmp_beh <- "sykehus"
-        tmp_behandl <- TRUE
-    } else if ("behandlende_hf" %in% rad | kol == "behandlende_hf") {
-        tmp_beh <- "HF"
-        tmp_behandl <- TRUE
-    } else if ("behandlende_rhf" %in% rad | kol == "behandlende_rhf") {
-        tmp_beh <- "RHF"
-        tmp_behandl <- TRUE
-    } else if ("behandler" %in% rad | kol == "behandler") {
-        tmp_beh <- "sykehus"
-        tmp_behandl <- TRUE
-    }
-    if (tmp_behandl) {
-        hjelpetekst <- paste(hjelpetekst, "behandlet ved ulike ", tmp_beh, sep = "")
-    }
+    hjelpetekst <- paste0(hjelpetekst, get_beh_text(c(rad, kol), bo))
 
-    tmp_bo <- F
-    if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
-        tmp_bo <- T
-        tmp_boomr <- "sykehusnivå"
-    } else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
-        tmp_bo <- T
-        tmp_boomr <- "HF-nivå"
-    } else if (("boomr_rhf" %in% rad | kol == "boomr_rhf") & (bo == 1)) {
-        tmp_bo <- T
-        tmp_boomr <- "RHF-nivå"
-    }
-
-    if (tmp_bo) {
-        if (tmp_behandl) {
-            hjelpetekst <- paste(hjelpetekst, " og ", sep = "")
-        }
-        hjelpetekst <- paste(hjelpetekst, "bosatt i ulike opptaksområder på ", tmp_boomr, ", ", sep = "")
-    } else if (tmp_behandl) {
-        hjelpetekst <- paste(hjelpetekst, ", ", sep = "")
-    }
-
-    k <- 0
-    annet <- list()
-    if ("aar" %in% rad | kol == "aar") {
-        k <- k + 1
-        annet$aar <- "år"
-    }
-    if ("alder" %in% rad | kol == "alder") {
-        k <- k + 1
-        annet$alder <- "aldersgrupper"
-    }
-    if ("kjonn" %in% rad | kol == "kjonn") {
-        k <- k + 1
-        annet$kjonn <- "kjønn"
-    }
-    if ("behandlingsniva" %in% rad | kol == "behandlingsniva") {
-        k <- k + 1
-        annet$behandl <- "behandlingsnivå"
-    }
-    if ("hastegrad" %in% rad | kol == "hastegrad") {
-        k <- k + 1
-        annet$hastegrd1 <- "hastegrad"
-    }
-    if ("hastegrad_drgtype_dogn" %in% rad | kol == "hastegrad_drgtype_dogn") {
-        k <- k + 1
-        annet$hastegrd2 <- "hastegrad, innleggelser"
-    }
-    if ("drgtypehastegrad" %in% rad | kol == "drgtypehastegrad") {
-        k <- k + 1
-        annet$drgtypehastegrad <- "DRGtypeHastegrad"
-    }
-
-    if (k > 0) {
-        hjelpetekst <- paste(hjelpetekst, "fordelt på ", sep = "")
-        l <- 0
-        for (i in annet) {
-            l <- l + 1
-            if (l == k & l != 1) {
-                hjelpetekst <- paste(hjelpetekst, i, sep = " og ")
-            } else if (l == 1) {
-                hjelpetekst <- paste(hjelpetekst, i, sep = "")
-            } else {
-                hjelpetekst <- paste(hjelpetekst, i, sep = ", ")
-            }
-        }
-    }
+    hjelpetekst <- paste0(hjelpetekst, get_annet_text(c(rad, kol)))
 
     if (length(aar) > 1) {
         tmp1 <- "årene "

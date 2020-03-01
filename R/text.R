@@ -215,7 +215,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                 tmp2 <- paste(aar[1], aar[length(aar)], sep = " - ")
                 aar_tekst <- paste(tmp1, tmp2)
             } else {
-                tmp2 <- paste(aar[seq_len(aar) - 1], collapse = ", ")
+                tmp2 <- paste(aar[seq_len(length(aar)) - 1], collapse = ", ")
                 tmp3 <- paste(" og ", aar[length(aar)])
                 aar_tekst <- paste(tmp1, tmp2, tmp3)
             }
@@ -245,7 +245,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                 alder_tekst <- paste(tmp1, alder[length(alder)], "</li>", sep = "")
             } else {
                 tmp1 <- "<li>Kun aldersgruppene"
-                tmp2 <- paste(alder[seq_len(alder) - 1], collapse = ", ")
+                tmp2 <- paste(alder[seq_len(length(alder)) - 1], collapse = ", ")
                 tmp3 <- paste(" og ", alder[length(alder)], "</li>", sep = "")
                 alder_tekst <- paste(tmp1, tmp2, tmp3)
             }
@@ -259,7 +259,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                 hastegrad2_tekst <- paste(tmp1, hast[length(hast)], "</li>", sep = "")
             } else {
                 tmp1 <- "<li>Kun hastegradene"
-                tmp2 <- paste(hast[seq_len(hast) - 1], collapse = ", ")
+                tmp2 <- paste(hast[seq_len(length(hast)) - 1], collapse = ", ")
                 tmp3 <- paste(" og ", hast[length(hast)], "</li>", sep = "")
                 hastegrad2_tekst <- paste(tmp1, tmp2, tmp3)
             }
@@ -281,7 +281,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                 behandlingsniva_tekst <- paste(tmp1, behnivaa[length(behnivaa)], "</li>", sep = "")
             } else {
                 tmp1 <- "<li>Kun"
-                tmp2 <- paste(behnivaa[seq_len(behnivaa) - 1], collapse = ", ")
+                tmp2 <- paste(behnivaa[seq_len(length(behnivaa)) - 1], collapse = ", ")
                 tmp3 <- paste(" og ", behnivaa[length(behnivaa)], "</li>", sep = "")
                 behandlingsniva_tekst <- paste(tmp1, tmp2, tmp3)
             }

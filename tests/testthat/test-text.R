@@ -129,4 +129,17 @@ test_that("correct text is returned", {
       hastegrad2 =      verdier$hastegrad2)
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_tab_",  tab, ".rds"))
   }
+
+  expect_null(lagHjelpetekst(rad = NULL, aar = "", verdi = ""))
+  expect_null(lagHjelpetekst(rad = "", aar = NULL, verdi = ""))
+  expect_null(lagHjelpetekst(rad = "", aar = "", verdi = NULL))
+
+  expect_error(lagHjelpetekst())
+
+})
+
+test_that("unit tests of text functions", {
+  expect_equal(get_beh_text("boomr_rhf", 1), "bosatt i ulike opptaksomr\u00E5der på RHF-niv\u00E5, ")
+
+  expect_equal(get_annet_text("drgtypehastegrad"), "fordelt p\u00E5 DRGtypeHastegrad")
 })

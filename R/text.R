@@ -1,3 +1,15 @@
+define_boomr <- function(rad, bo) {
+    if ("boomr_sykehus" %in% rad) {
+        return("sykehusnivå")
+    } else if ("boomr_hf" %in% rad) {
+        return("HF-nivå")
+    } else if (("boomr_rhf" %in% rad) & (bo == 1)) {
+        return("RHF-nivå")
+    } else {
+        return("...")
+    }
+}
+
 get_heading <- function(tab = NULL) {
     overskrift <- ""
 
@@ -128,14 +140,13 @@ get_beh_text <- function(rad, bo) {
     tmp_bo <- F
     if ("boomr_sykehus" %in% rad) {
         tmp_bo <- T
-        tmp_boomr <- "sykehusnivå"
     } else if ("boomr_hf" %in% rad) {
         tmp_bo <- T
-        tmp_boomr <- "HF-nivå"
     } else if (("boomr_rhf" %in% rad) & (bo == 1)) {
         tmp_bo <- T
-        tmp_boomr <- "RHF-nivå"
     }
+
+    tmp_boomr <- define_boomr(rad, bo)
 
     if (tmp_bo) {
         if (tmp_behandl) {
@@ -288,9 +299,10 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
     return(all_tekst)
 }
 
-warning_text <- function(rad, verdi, tmp_boomr, aar, alder, kjonn) {
+warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
     # LEGG INN ADVARSLER
     all_tekst <- ""
+    tmp_boomr <- define_boomr(rad, bo)
     if (verdi %in% c("rate", "drgrate")) {
         if ("alder" %in% rad | length(alder) != 4) {
             warn <- paste0("<font color=#b94a48>",
@@ -342,8 +354,6 @@ warning_text <- function(rad, verdi, tmp_boomr, aar, alder, kjonn) {
 lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                            behandlingsniva, alder, kjonn, hastegrad2) {
 
-    tmp_boomr <- "..."
-
     if (is.null(rad) | is.null(aar) | is.null(verdi)) {
         return(NULL)
     }
@@ -377,7 +387,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab))
 
-    all_tekst <- paste0(all_tekst, warning_text(c(rad, kol), verdi, tmp_boomr, aar, alder, kjonn))
+    all_tekst <- paste0(all_tekst, warning_text(c(rad, kol), verdi, bo, aar, alder, kjonn))
 
     return(all_tekst)
 }

@@ -1,4 +1,6 @@
 get_heading <- function(tab = NULL) {
+    overskrift <- ""
+
     if (tab == "alle") {
         tabell <- "Pasientstrømmer"
     } else if (tab == "menisk") {
@@ -6,12 +8,20 @@ get_heading <- function(tab = NULL) {
     } else {
         tabell <- "Pasientstrømmer"
     }
-    paste0("<h1>", tabell, ", Helse Nord RHF",
-           "<img src=\"skde.png\" ",
-           "align=\"right\" ",
-           "width=\"150\" ",
-           "style=\"padding-right:20px;\"/>",
-           "</h1>", "<br/>")
+
+    overskrift <- paste0("<h1>", tabell, ", Helse Nord RHF",
+                         "<img src=\"skde.png\" ",
+                         "align=\"right\" ",
+                         "width=\"150\" ",
+                         "style=\"padding-right:20px;\"/>",
+                         "</h1>", "<br/>")
+
+    if (tab == "Informasjon") {
+        # Do not print details about the selection when the user look at the information tab (not relevant).
+        overskrift <- paste0(overskrift, "<font size='+1'>", "Informasjonsfane", "</font>", "<br>", "<br>")
+    }
+
+    return(overskrift)
 }
 
 get_type <- function(tab) {
@@ -278,6 +288,40 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
     return(all_tekst)
 }
 
+warning_text <- function(rad, verdi, tmp_boomr, aar, alder, kjonn) {
+    # LEGG INN ADVARSLER
+    all_tekst <- ""
+    if (verdi %in% c("rate", "drgrate")) {
+        if ("alder" %in% rad | length(alder) != 4) {
+            warn <- paste0("<font color=#b94a48>",
+                           "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
+                           "på ", tmp_boomr, ", og ikke for hver aldersgruppe!",
+                           "</font>")
+            all_tekst <- paste0(all_tekst, warn)
+        }
+        if ("kjonn" %in% rad | length(kjonn) == 1) {
+            warn <- paste0("<font color=#b94a48>",
+                           "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
+                           "på ", tmp_boomr, ", og ikke for hvert enkelt kjønn!",
+                           "</font>")
+            all_tekst <- paste0(all_tekst, warn)
+        }
+    }
+    
+    if (("behandler" %in% rad |
+         "behandlende_sykehus" %in% rad) &
+        ("2016" %in% aar)) {
+        warn <- paste0("<font color=#b94a48>", "ADVARSEL: Feil i rapportering ",
+                       "av behandlingssted for innlagte pasienter ved UNN i 2016!",
+                       "</font>", "Se pressemelding fra Helsedirektoratet.</a> ",
+                       "De innlagte pasientene ved UNN HF sine tre sykehus ",
+                       "(Tromsø, Narvik og Harstad) ble alle rapportert som ",
+                       "innlagt ved UNN Tromsø. I tabellen er disse lagt til UNN HF.")
+        all_tekst <- paste0(all_tekst, warn)
+    }
+    return(all_tekst)
+}
+
 #' Make caption above the table
 #' @param tab The active tab
 #' @param rad What to tabulate on the row
@@ -304,14 +348,13 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
         return(NULL)
     }
 
-    overskrift <- get_heading(tab = tab)
+    overskrift <- get_heading(tab)
 
     if (tab == "Informasjon") {
-        # Do not print details about the selection when the user look at the information tab (not relevant).
-        return(paste0(overskrift, "<font size='+1'>", "Informasjonsfane", "</font>", "<br>", "<br>"))
+        return(overskrift)
     }
 
-    type <- get_type(tab = tab)
+    type <- get_type(tab)
 
     verdi_tekst <- get_value_text(verdi, type)
 
@@ -320,7 +363,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
         prs_txt <- ", i prosent, "
     }
 
-    hjelpetekst <- paste(verdi_tekst, prs_txt, " for pasienter ", sep = "")
+    hjelpetekst <- paste0(verdi_tekst, prs_txt, " for pasienter ")
 
     hjelpetekst <- paste0(hjelpetekst, get_bo_text(bo, beh))
 
@@ -334,36 +377,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab))
 
-    # LEGG INN ADVARSLER
+    all_tekst <- paste0(all_tekst, warning_text(c(rad, kol), verdi, tmp_boomr, aar, alder, kjonn))
 
-    if (verdi %in% c("rate", "drgrate")) {
-        if ("alder" %in% rad | "alder" %in% kol | length(alder) != 4) {
-            warn <- paste0("<font color=#b94a48>",
-                           "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
-                           "på ", tmp_boomr, ", og ikke for hver aldersgruppe!",
-                           "</font>")
-            all_tekst <- paste(all_tekst, warn, sep = "")
-        }
-        if ("kjonn" %in% rad | "kjonn" %in% kol | length(kjonn) == 1) {
-            warn <- paste0("<font color=#b94a48>",
-                           "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
-                           "på ", tmp_boomr, ", og ikke for hvert enkelt kjønn!",
-                           "</font>")
-            all_tekst <- paste(all_tekst, warn, sep = "")
-        }
-    }
-
-    if (("behandler" %in% rad | kol == "behandler" |
-         "behandlende_sykehus" %in% rad |
-         kol == "behandlende_sykehus") &
-        ("2016" %in% aar)) {
-        warn <- paste0("<font color=#b94a48>", "ADVARSEL: Feil i rapportering ",
-                       "av behandlingssted for innlagte pasienter ved UNN i 2016!",
-                       "</font>", "Se pressemelding fra Helsedirektoratet.</a> ",
-                       "De innlagte pasientene ved UNN HF sine tre sykehus ",
-                       "(Tromsø, Narvik og Harstad) ble alle rapportert som ",
-                       "innlagt ved UNN Tromsø. I tabellen er disse lagt til UNN HF.")
-        all_tekst <- paste(all_tekst, warn, sep = "")
-    }
     return(all_tekst)
 }

@@ -3,7 +3,7 @@
 #'
 #' @export
 launch_application <- function(datasett = NULL) {
-    shinydir <- create_appDir(data = datasett)
+    shinydir <- create_app_dir(data = datasett)
     shiny::runApp(appDir = shinydir)
 }
 
@@ -15,7 +15,7 @@ launch_application <- function(datasett = NULL) {
 #'
 #' @export
 submit_application <- function(datasett = NULL, name = "experimental", shiny_account = "skde") {
-    shinydir <- create_appDir(data = datasett)
+    shinydir <- create_app_dir(data = datasett)
     rsconnect::deployApp(appDir = shinydir, appName = name, account = shiny_account)
 }
 
@@ -29,7 +29,7 @@ submit_application <- function(datasett = NULL, name = "experimental", shiny_acc
 #'
 #' @return The created directory
 #'
-create_appDir <- function(data = NULL) {
+create_app_dir <- function(data = NULL) {
     # Name the directory
     tmpshinydir <- paste0(tempdir(), "/", "shiny")
     # Delete old content in directory

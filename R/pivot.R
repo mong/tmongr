@@ -156,15 +156,15 @@ makePivot <- function(data, rad, kol, agg) {
 
   # Velge ut verdier. Rater avhengig av boområdet!
   if (agg == "rate") {
-    if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
+    if ("boomr_sykehus" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(bosh_rate))
       tmp <- round_df(tmp, digits = 1)
     }
-    else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
+    else if ("boomr_hf" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(bohf_rate))
       tmp <- round_df(tmp, digits = 1)
     }
-    else if ("boomr_rhf" %in% rad | kol == "boomr_rhf") {
+    else if ("boomr_rhf" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(borhf_rate))
       tmp <- round_df(tmp, digits = 1)
     }
@@ -172,15 +172,15 @@ makePivot <- function(data, rad, kol, agg) {
       return(tomTabell())
     }
   } else if (agg == "drgrate") {
-    if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
+    if ("boomr_sykehus" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(bosh_drgrate))
       tmp <- round_df(tmp, digits = 1)
     }
-    else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
+    else if ("boomr_hf" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(bohf_drgrate))
       tmp <- round_df(tmp, digits = 1)
     }
-    else if ("boomr_rhf" %in% rad | kol == "boomr_rhf") {
+    else if ("boomr_rhf" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(borhf_drgrate))
       tmp <- round_df(tmp, digits = 1)
     }
@@ -188,15 +188,15 @@ makePivot <- function(data, rad, kol, agg) {
       return(tomTabell())
     }
   } else if (agg == "liggedognrate") {
-    if ("boomr_sykehus" %in% rad | kol == "boomr_sykehus") {
+    if ("boomr_sykehus" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(bosh_liggerate))
       tmp <- round_df(tmp, digits = 1)
     }
-    else if ("boomr_hf" %in% rad | kol == "boomr_hf") {
+    else if ("boomr_hf" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(bohf_liggerate))
       tmp <- round_df(tmp, digits = 1)
     }
-    else if ("boomr_rhf" %in% rad | kol == "boomr_rhf") {
+    else if ("boomr_rhf" %in% c(rad, kol)) {
       tmp <- tmp %>% dplyr::summarise(verdi = sum(borhf_liggerate))
       tmp <- round_df(tmp, digits = 1)
     }

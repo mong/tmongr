@@ -171,7 +171,7 @@ get_annet_text <- function(rad) {
         k <- k + 1
         annet$drgtypehastegrad <- "DRGtypeHastegrad"
     }
-    
+
     if (k > 0) {
         hjelpetekst <- paste(hjelpetekst, "fordelt på ", sep = "")
         l <- 0
@@ -186,6 +186,26 @@ get_annet_text <- function(rad) {
             }
         }
     }
+    return(hjelpetekst)
+}
+
+get_aar_text <- function(aar) {
+    hjelpetekst <- ""
+    if (length(aar) > 1) {
+        tmp1 <- "årene "
+        if (length(aar) == (as.numeric(aar[length(aar)]) - as.numeric(aar[1]) + 1)) {
+            tmp2 <- paste(aar[1], aar[length(aar)], sep = " - ")
+            aar_tekst <- paste(tmp1, tmp2)
+        } else {
+            tmp2 <- paste(aar[seq_len(length(aar)) - 1], collapse = ", ")
+            tmp3 <- paste(" og ", aar[length(aar)])
+            aar_tekst <- paste(tmp1, tmp2, tmp3)
+        }
+    } else {
+        aar_tekst <- aar
+    }
+
+    hjelpetekst <- paste0(hjelpetekst, ", for ", aar_tekst, ".")
     return(hjelpetekst)
 }
 
@@ -210,7 +230,6 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                            behandlingsniva, alder, kjonn, hastegrad2) {
 
     tmp_boomr <- "..."
-    aar_tekst <- "..."
     extra <- ""
 
     if (is.null(rad) | is.null(aar) | is.null(verdi)) {
@@ -241,21 +260,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     hjelpetekst <- paste0(hjelpetekst, get_annet_text(c(rad, kol)))
 
-    if (length(aar) > 1) {
-        tmp1 <- "årene "
-        if (length(aar) == (as.numeric(aar[length(aar)]) - as.numeric(aar[1]) + 1)) {
-            tmp2 <- paste(aar[1], aar[length(aar)], sep = " - ")
-            aar_tekst <- paste(tmp1, tmp2)
-        } else {
-            tmp2 <- paste(aar[seq_len(length(aar)) - 1], collapse = ", ")
-            tmp3 <- paste(" og ", aar[length(aar)])
-            aar_tekst <- paste(tmp1, tmp2, tmp3)
-        }
-    } else {
-        aar_tekst <- aar
-    }
-
-    hjelpetekst <- paste(hjelpetekst, ", for ", aar_tekst, ".", sep = "")
+    hjelpetekst <- paste0(hjelpetekst, get_aar_text(aar))
 
     all_tekst <- paste(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>", sep = "")
 

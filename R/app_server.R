@@ -1,12 +1,12 @@
-shinyServer(
-
-  function(input, output, session) {
-
-    # The data has to be located in the data folder with the name data.RData
-    datasett <- NULL
-    if (file.exists("data/data.RData")) {
-      datasett <- get(load("data/data.RData"))
-    }
+#' Server side logic of the application
+#'
+#' @param input shiny input components
+#' @param output shiny output components
+#' @param session the shiny session parameter
+#'
+#' @return ignored
+#' @export
+app_server <- function(input, output, session) {
 
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
@@ -202,9 +202,9 @@ shinyServer(
       includeMarkdown("Rmd/log.Rmd")
     })
 
-    output$info <- renderUI({
-      includeMarkdown("Rmd/info.Rmd")
-    })
+#    output$info <- renderUI({
+#      includeMarkdown("Rmd/info.Rmd")
+#    })
 
     lageParametere <- reactive({
       rader <- c(input$xcol1, input$xcol2)
@@ -242,4 +242,4 @@ shinyServer(
         return(param)
       }
     }
-  })
+}

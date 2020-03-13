@@ -37,6 +37,7 @@ r_packages:
 script:
   - R CMD build .
   - R CMD check *tar.gz
+  - git clone https://gitlab-ci-token:$GL_TOKEN@gitlab.com/skde/tabellverk.git
 
 after_success:
   - |

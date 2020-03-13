@@ -1,7 +1,10 @@
-
-shinyUI(function(request) {
+#' Shiny UI
+#'
+#' @return user interface
+#' @export
+app_ui <- function() {
   fluidPage(theme = shinythemes::shinytheme("cerulean"),
-            titlePanel(tags$head(tags$link(rel = "icon", type = "image/png", href = "hn.png"),
+            titlePanel(tags$head(tags$link(rel = "icon", type = "image/png", href = "www/hn.png"),
                                  tags$title("Pasientstrømmer, Helse Nord RHF"),
                                  # Farge på linker, samt text inaktive faner
                                  tags$style(type = "text/css", "a{color: #808080;}"),
@@ -42,9 +45,14 @@ shinyUI(function(request) {
               width = 3
             ),
             mainPanel(
-              dynamiskTabellverk:::common_ui("tabeller"),
+                shiny::tabsetPanel(type = "tabs", id = "tab",
+                     shiny::tabPanel("Alle kontakter", shiny::tableOutput("alle"), value = "alle"),
+                     shiny::tabPanel("Døgnopphold", shiny::tableOutput("dogn"), value = "dogn"),
+                     shiny::tabPanel("Dagbehandling", shiny::tableOutput("dag"), value = "dag"),
+                     shiny::tabPanel("Poliklinikk", shiny::tableOutput("poli"), value = "poli"),
+                     shiny::tabPanel("Informasjon", shiny::fluidPage(shiny::includeMarkdown(system.file("app/Rmd/info.Rmd", package = getPackageName()))))
+                     ),
               width = 9
             )
   )
 }
-)

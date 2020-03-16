@@ -9,6 +9,9 @@
 app_server <- function(input, output, session) {
   library(shiny)
 
+  if (!exists("datasett")) {
+    datasett <- dynamiskTabellverk::testdata2
+  }
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
     obsA <- observe({

@@ -4,16 +4,20 @@
 #' @export
 app_ui <- function() {
   shiny::fluidPage(theme = shinythemes::shinytheme("cerulean"),
-            shiny::titlePanel(shiny::tags$head(shiny::tags$link(rel = "icon", type = "image/png", href = "www/hn.png"),
-                                 shiny::tags$title("Pasientstrømmer, Helse Nord RHF"),
-                                 # Farge på linker, samt text inaktive faner
-                                 shiny::tags$style(type = "text/css", "a{color: #808080;}"),
-                                 # Farge på tittel
-                                 shiny::tags$style(type = "text/css", "h1{color: #003A8C;}"),
-                                 # max bredde på side
-                                 shiny::tags$style(type = "text/css", ".container-fluid {  max-width: 1200px;}")
-
-            )
+            shiny::titlePanel(
+              shiny::tags$head(
+                shiny::tags$link(rel = "icon",
+                                 type = "image/png",
+                                 href = "www/hn.png"),
+              shiny::tags$title("Pasientstrømmer, Helse Nord RHF"),
+              # Farge på linker, samt text inaktive faner
+              shiny::tags$style(type = "text/css", "a{color: #808080;}"),
+              # Farge på tittel
+              shiny::tags$style(type = "text/css", "h1{color: #003A8C;}"),
+              # max bredde på side
+              shiny::tags$style(type = "text/css",
+                                ".container-fluid {  max-width: 1200px;}")
+              )
             ),
 
             shiny::uiOutput("figurtekst"),

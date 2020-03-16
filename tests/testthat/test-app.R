@@ -1,6 +1,5 @@
 test_that("app_ui", {
   ref_chr <- as.character(purrr::flatten(app_ui()))[4]
-  print(ref_chr)
   expect_true(grepl("www/hn.png", ref_chr, fixed = TRUE))
   expect_true(grepl("color: #003A8C", ref_chr, fixed = TRUE))
   expect_true(grepl("color: #808080", ref_chr, fixed = TRUE))
@@ -21,8 +20,8 @@ test_that("app_ui", {
   expect_true(grepl("Ratene er beregnet ut i fra befolkningstall fra SSB", ref_chr, fixed = TRUE))
 })
 
-#test_that("server_ui", {
-#  shiny::testModule(app_server, {
-#    expect_equal_to_reference(output, "test.rds")
-#  })
-#})
+test_that("server_ui", {
+  shiny::testModule(app_server, {
+    expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
+  })
+})

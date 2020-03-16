@@ -7,6 +7,7 @@
 #' @return ignored
 #' @export
 app_server <- function(input, output, session) {
+  library(shiny)
 
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 

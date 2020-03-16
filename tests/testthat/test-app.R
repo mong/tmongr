@@ -25,3 +25,10 @@ test_that("server_ui", {
     expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
   })
 })
+
+test_that("run_app", {
+  expect_equal(class(run_app()), "shiny.appobj")
+  expect_equal(class(run_app()$httpHandler), "function")
+  expect_equal(class(run_app()$options), "list")
+  expect_equal(class(run_app()$serverFuncSource), "function")
+})

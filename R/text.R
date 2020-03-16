@@ -22,7 +22,7 @@ get_heading <- function(tab = NULL) {
     }
 
     overskrift <- paste0("<h1>", tabell, ", Helse Nord RHF",
-                         "<img src=\"skde.png\" ",
+                         "<img src=\"www/skde.png\" ",
                          "align=\"right\" ",
                          "width=\"150\" ",
                          "style=\"padding-right:20px;\"/>",

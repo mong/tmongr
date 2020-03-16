@@ -1,16 +1,18 @@
-shinyServer(
+#' Server side logic of the application
+#'
+#' @param input shiny input components
+#' @param output shiny output components
+#' @param session the shiny session parameter
+#'
+#' @return ignored
+#' @export
+app_server <- function(input, output, session) {
+  library(shiny)
 
-  function(input, output, session) {
-
-    # The data has to be located in the data folder with the name data.RData
-    datasett <- NULL
-    if (file.exists("data/data.RData")) {
-      datasett <- get(load("data/data.RData"))
-    }
-
+  if (!exists("datasett")) {
+    datasett <- dynamiskTabellverk::testdata2
+  }
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
-
-    callModule(dynamiskTabellverk:::tab_panel_server, "tabeller")
 
     obsA <- observe({
       meny$en <- dynamiskTabellverk::definerValgKol(datasett, 1)
@@ -198,14 +200,6 @@ shinyServer(
       HTML("<h4>Andre instillinger</h4>")
     })
 
-    output$log <- renderUI({
-      includeMarkdown("Rmd/log.Rmd")
-    })
-
-    output$info <- renderUI({
-      includeMarkdown("Rmd/info.Rmd")
-    })
-
     lageParametere <- reactive({
       rader <- c(input$xcol1, input$xcol2)
       if (is.null(input$xcol2)) {
@@ -242,4 +236,4 @@ shinyServer(
         return(param)
       }
     }
-  })
+}

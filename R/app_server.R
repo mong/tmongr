@@ -196,14 +196,6 @@ app_server <- function(input, output, session) {
       HTML("<h4>Andre instillinger</h4>")
     })
 
-    output$log <- renderUI({
-      includeMarkdown("Rmd/log.Rmd")
-    })
-
-#    output$info <- renderUI({
-#      includeMarkdown("Rmd/info.Rmd")
-#    })
-
     lageParametere <- reactive({
       rader <- c(input$xcol1, input$xcol2)
       if (is.null(input$xcol2)) {

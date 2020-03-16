@@ -10,8 +10,6 @@ app_server <- function(input, output, session) {
 
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
-    callModule(dynamiskTabellverk:::tab_panel_server, "tabeller")
-
     obsA <- observe({
       meny$en <- dynamiskTabellverk::definerValgKol(datasett, 1)
       meny$to <- dynamiskTabellverk::definerValgKol(datasett, 2)

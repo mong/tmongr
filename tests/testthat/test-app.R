@@ -22,7 +22,17 @@ test_that("app_ui", {
 
 test_that("server_ui", {
   shiny::testModule(app_server, {
+    expect_equal(class(meny), "reactivevalues")
+    expect_equal(class(output), "shinyoutput")
     expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
+    session$setInputs(rad2 = "ingen")
+    
+    expect_null(output$alle)
+    expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
+    session$setInputs(overf = FALSE)
+    session$setInputs(overf = TRUE)
+    
+    expect_equal_to_reference(output$figurtekst, "data/empty_figurtekst.rds")
   })
 })
 

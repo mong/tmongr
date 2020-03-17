@@ -10,7 +10,7 @@ app_server <- function(input, output, session) {
   library(shiny)
 
   if (!exists("datasett")) {
-    datasett <- dynamiskTabellverk::testdata2
+    datasett <- dynamiskTabellverk::testdata3
   }
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 
@@ -25,9 +25,6 @@ app_server <- function(input, output, session) {
 
     makeTable <- reactive({
       verdier <- lageParametere()
-      if (is.null(datasett)) {
-        return(NULL)
-      }
       if (is.null(input$overf)) {
         input_data <- datasett
       } else {
@@ -155,14 +152,6 @@ app_server <- function(input, output, session) {
       tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan åpnes i Excel.",
                downloadButton("downloadData", "Last ned data")
       )
-    })
-
-    output$link <- renderUI({
-      bookmarkButton("Lag link", title = "Lag en link med nåværende valg")
-    })
-
-    output$linje <- renderUI({
-      hr()
     })
 
     output$valg <- renderUI({

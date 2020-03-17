@@ -412,11 +412,13 @@ addLastColumn <- function(pivot, rad, kol, verdi) {
 
   if (((length(names(pivot)) - length(rad)) != 1)) {
     if ("aar" %in% kol) {
+      # nolint start
       pivot$Snitt <- rowMeans(pivot[, -seq_len(length(rad))], na.rm = TRUE)
       pivot$Snitt <- round(pivot$Snitt, rund)
     } else{
       pivot$Sum <- rowSums(pivot[, -seq_len(length(rad))], na.rm = TRUE)
       pivot$Sum <- round(pivot$Sum, rund)
+      # nolint end
     }
   }
 

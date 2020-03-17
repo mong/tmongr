@@ -50,6 +50,14 @@ test_that("server_ui", {
 
     session$setInputs(xcol2 = "ingen")
     expect_equal_to_reference(lageParametere(), "data/lageParametere2.rds")
+    session$setInputs(xcol2 = "behandlende_rhf")
+    session$setInputs(prosent = FALSE)
+    expect_equal_to_reference(lageParametere(), "data/lageParametere.rds")
+    session$setInputs(prosent = TRUE)
+    expect_equal_to_reference(lageParametere(), "data/lageParametere3.rds")
+    expect_equal_to_reference(makeTable(), "data/makeTable.rds")
+    session$setInputs(prosent = FALSE)
+    expect_equal_to_reference(makeTable(), "data/makeTable2.rds")
   })
 })
 

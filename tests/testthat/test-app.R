@@ -58,6 +58,8 @@ test_that("server_ui", {
     expect_equal_to_reference(makeTable(), "data/makeTable.rds")
     session$setInputs(prosent = FALSE)
     expect_equal_to_reference(makeTable(), "data/makeTable2.rds")
+    session$setInputs(xcol2 = "boomr_rhf")
+    expect_equal_to_reference(makeTable(), "data/makeTable3.rds")
   })
 })
 

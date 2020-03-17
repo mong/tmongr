@@ -4,6 +4,8 @@
 #' @param output shiny output components
 #' @param session the shiny session parameter
 #'
+#' @importFrom rlang .data
+#'
 #' @return ignored
 #' @export
 app_server <- function(input, output, session) {
@@ -12,7 +14,7 @@ app_server <- function(input, output, session) {
   if (!exists("datasett")) {
     datasett <- dynamiskTabellverk::testdata3
   }
-    meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
+    meny <- shiny::reactiveValues(en = NULL, to = NULL, tre = NULL)
 
     obsA <- observe({
       meny$en <- dynamiskTabellverk::definerValgKol(datasett, 1)
@@ -30,9 +32,9 @@ app_server <- function(input, output, session) {
       } else {
         niva_values <- unique(datasett$niva)
         if (input$overf) {
-          input_data <- dplyr::filter(datasett, niva == niva_values[2])
+          input_data <- dplyr::filter(datasett, .data[["niva"]] == niva_values[2])
         } else {
-          input_data <- dplyr::filter(datasett, niva == niva_values[1])
+          input_data <- dplyr::filter(datasett, .data[["niva"]] == niva_values[1])
         }
       }
       pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keep_names, input$snitt)

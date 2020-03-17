@@ -7,6 +7,7 @@
 #' @param snitt Add average/sums to the table
 #'
 #' @return pivot Pivot table
+#' @importFrom rlang .data
 #' @export
 #'
 makeDataTabell <- function(input_dataset,
@@ -155,33 +156,17 @@ makePivot <- function(data, rad, kol, agg) {
   }
 
   # Velge ut verdier. Rater avhengig av boområdet!
-  if (agg == "rate") {
+  if (agg %in% c("rate", "drgrate")) {
     if ("boomr_sykehus" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(bosh_rate))
+      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[paste0("bosh_", agg)]]))
       tmp <- round_df(tmp, digits = 1)
     }
     else if ("boomr_hf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(bohf_rate))
+      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[paste0("bohf_", agg)]]))
       tmp <- round_df(tmp, digits = 1)
     }
     else if ("boomr_rhf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(borhf_rate))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else {
-      return(tomTabell())
-    }
-  } else if (agg == "drgrate") {
-    if ("boomr_sykehus" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(bosh_drgrate))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else if ("boomr_hf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(bohf_drgrate))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else if ("boomr_rhf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(borhf_drgrate))
+      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[paste0("borhf_", agg)]]))
       tmp <- round_df(tmp, digits = 1)
     }
     else {
@@ -189,26 +174,26 @@ makePivot <- function(data, rad, kol, agg) {
     }
   } else if (agg == "liggedognrate") {
     if ("boomr_sykehus" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(bosh_liggerate))
+      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["bosh_liggerate"]]))
       tmp <- round_df(tmp, digits = 1)
     }
     else if ("boomr_hf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(bohf_liggerate))
+      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["bohf_liggerate"]]))
       tmp <- round_df(tmp, digits = 1)
     }
     else if ("boomr_rhf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(borhf_liggerate))
+      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["borhf_liggerate"]]))
       tmp <- round_df(tmp, digits = 1)
     }
     else {
       return(tomTabell())
     }
   } else if (agg == "drg_poeng") {
-    tmp <- tmp %>% dplyr::summarise(verdi = sum(drg_poeng))
+    tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["drg_poeng"]]))
     tmp <- round_df(tmp, digits = 0)
   } else if (agg == "drg_index") {
-    tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(kontakter))
-    tmp <- tmp %>% dplyr::summarise(verdi = sum(drg_poeng))
+    tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(.data[["kontakter"]]))
+    tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["drg_poeng"]]))
     if (kol %in% rad) {
       start <- length(rad) + 1
     }
@@ -220,8 +205,8 @@ makePivot <- function(data, rad, kol, agg) {
       tmp <- round_df(tmp, digits = 3)
     }
   } else if (agg == "liggedognindex") {
-    tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(kontakter))
-    tmp <- tmp %>% dplyr::summarise(verdi = sum(liggetid))
+    tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(.data[["kontakter"]]))
+    tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["liggetid"]]))
     for (i in (length(rad) + 2):length(names(tmp))) {
       tmp[, i] <- tmp[, i] / tmp_kontakt[, i]
       tmp <- round_df(tmp, digits = 1)

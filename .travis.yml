@@ -34,6 +34,9 @@ r_packages:
   - roxygen2
   - pkgdown
 
+r_github_packages:
+  - jimhester/lintr
+
 script:
   - R CMD build .
   - R CMD check *tar.gz
@@ -44,6 +47,7 @@ after_success:
       Rscript -e 'covr::codecov()'
       Rscript -e 'roxygen2::roxygenise()'
       Rscript -e 'pkgdown::build_site()'
+      Rscript -e 'lintr::lint_package()'
     fi
 
 deploy:

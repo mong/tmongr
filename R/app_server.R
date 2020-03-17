@@ -10,7 +10,7 @@ app_server <- function(input, output, session) {
   library(shiny)
 
   if (!exists("datasett")) {
-    datasett <- dynamiskTabellverk::testdata2
+    datasett <- dynamiskTabellverk::testdata3
   }
     meny <- reactiveValues(en = NULL, to = NULL, tre = NULL)
 

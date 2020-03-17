@@ -157,14 +157,6 @@ app_server <- function(input, output, session) {
       )
     })
 
-    output$link <- renderUI({
-      bookmarkButton("Lag link", title = "Lag en link med nåværende valg")
-    })
-
-    output$linje <- renderUI({
-      hr()
-    })
-
     output$valg <- renderUI({
       HTML("<h4>Variabler</h4>")
     })

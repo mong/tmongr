@@ -25,9 +25,6 @@ app_server <- function(input, output, session) {
 
     makeTable <- reactive({
       verdier <- lageParametere()
-      if (is.null(datasett)) {
-        return(NULL)
-      }
       if (is.null(input$overf)) {
         input_data <- datasett
       } else {

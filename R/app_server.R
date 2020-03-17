@@ -4,12 +4,10 @@
 #' @param output shiny output components
 #' @param session the shiny session parameter
 #'
-#' @importFrom rlang .data
-#'
 #' @return ignored
 #' @export
+#' @importFrom rlang .data
 app_server <- function(input, output, session) {
-  library(shiny)
 
   if (!exists("datasett")) {
     datasett <- dynamiskTabellverk::testdata3

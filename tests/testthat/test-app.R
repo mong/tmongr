@@ -26,13 +26,30 @@ test_that("server_ui", {
     expect_equal(class(output), "shinyoutput")
     expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
     session$setInputs(rad2 = "ingen")
-    
+
     expect_null(output$alle)
     expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
     session$setInputs(overf = FALSE)
     session$setInputs(overf = TRUE)
-    
+
     expect_equal_to_reference(output$figurtekst, "data/empty_figurtekst.rds")
+
+    expect_true(grepl("Last ned data", as.character(output$lastned[["html"]])))
+    expect_true(grepl("downloadData", as.character(output$lastned[["html"]]), ))
+    session$setInputs(tab = "dogn")
+    expect_null(output$alle)
+
+    expect_null(lageParametere())
+    session$setInputs(xcol1 = "boomr_rhf")
+    expect_null(lageParametere())
+    session$setInputs(snitt = FALSE)
+    session$setInputs(keep_names = FALSE)
+
+    session$setInputs(xcol2 = "behandlende_rhf")
+    expect_equal_to_reference(lageParametere(), "data/lageParametere.rds")
+
+    session$setInputs(xcol2 = "ingen")
+    expect_equal_to_reference(lageParametere(), "data/lageParametere2.rds")
   })
 })
 

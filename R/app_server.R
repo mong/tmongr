@@ -41,86 +41,86 @@ app_server <- function(input, output, session) {
       return(pivot)
     })
 
-    debounced_reactive <- throttle(makeTable, 1000)
+    debounced_reactive <- shiny::throttle(makeTable, 1000)
 
     # lage pivot-tabell av totalverdier
-    output$alle <- renderTable({
+    output$alle <- shiny::renderTable({
       debounced_reactive()
     })
 
     # døgnopphold
-    output$dogn <- renderTable({
+    output$dogn <- shiny::renderTable({
       debounced_reactive()
     })
 
     # dagopphold
-    output$dag <- renderTable({
+    output$dag <- shiny::renderTable({
       debounced_reactive()
     })
 
     # poliopphold
-    output$poli <- renderTable({
+    output$poli <- shiny::renderTable({
       debounced_reactive()
     })
 
-    callModule(dynamiskTabellverk:::rad1_server,
+    shiny::callModule(dynamiskTabellverk:::rad1_server,
                "rad1",
                pickable = meny$en,
                default = "boomr_rhf")
 
-    callModule(dynamiskTabellverk:::rad2_server,
+    shiny::callModule(dynamiskTabellverk:::rad2_server,
                "rad2",
                pickable = meny$to,
                default = meny$to_default)
 
-    callModule(dynamiskTabellverk:::kolonner_server,
+    shiny::callModule(dynamiskTabellverk:::kolonner_server,
                "kolonner",
                pickable = meny$tre,
                default = "aar")
 
-    callModule(dynamiskTabellverk:::verdi_server,
+    shiny::callModule(dynamiskTabellverk:::verdi_server,
                "verdi",
                pickable = meny$fire,
                default = "kontakter")
 
-    callModule(dynamiskTabellverk:::behandlingsniva_server,
+    shiny::callModule(dynamiskTabellverk:::behandlingsniva_server,
                "behandlingsniva",
                colnames = colnames(datasett),
                pickable = unique(datasett$behandlingsniva))
 
-    callModule(dynamiskTabellverk:::hastegrad1_server,
+    shiny::callModule(dynamiskTabellverk:::hastegrad1_server,
                "hastegrad1",
                colnames = colnames(datasett),
                pickable = unique(datasett$hastegrad))
 
-    callModule(dynamiskTabellverk:::hastegrad2_server,
+    shiny::callModule(dynamiskTabellverk:::hastegrad2_server,
                "hastegrad2",
                colnames = colnames(datasett),
                pickable = unique(datasett$drgtypehastegrad))
 
-    callModule(dynamiskTabellverk:::just_overf_server, "just_overf",
+    shiny::callModule(dynamiskTabellverk:::just_overf_server, "just_overf",
                colnames = colnames(datasett))
 
-    callModule(dynamiskTabellverk:::alder_server, "alder",
+    shiny::callModule(dynamiskTabellverk:::alder_server, "alder",
                colnames = colnames(datasett),
                pickable = unique(datasett$alder))
 
-    callModule(dynamiskTabellverk:::kjonn_server, "kjonn",
+    shiny::callModule(dynamiskTabellverk:::kjonn_server, "kjonn",
                colnames = colnames(datasett),
                pickable = unique(datasett$kjonn))
 
-    callModule(dynamiskTabellverk:::aar_server, "aar",
+    shiny::callModule(dynamiskTabellverk:::aar_server, "aar",
                pickable = unique(datasett$aar))
 
-    callModule(dynamiskTabellverk:::bo_server, "bo")
+    shiny::callModule(dynamiskTabellverk:::bo_server, "bo")
 
-    callModule(dynamiskTabellverk:::beh_server, "beh")
+    shiny::callModule(dynamiskTabellverk:::beh_server, "beh")
 
-    callModule(dynamiskTabellverk:::prosent_server, "prosent")
+    shiny::callModule(dynamiskTabellverk:::prosent_server, "prosent")
 
-    callModule(dynamiskTabellverk:::snitt_server, "snitt")
+    shiny::callModule(dynamiskTabellverk:::snitt_server, "snitt")
 
-    callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
+    shiny::callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
 
     # Download table to cvs file
     output$downloadData <- downloadHandler(
@@ -147,7 +147,7 @@ app_server <- function(input, output, session) {
         verdier$alder,
         verdier$kjonn,
         verdier$hastegrad2)
-      HTML(paste("<h4>", hjelpetekst, "</h4>", sep = ""))
+      shiny::HTML(paste("<h4>", hjelpetekst, "</h4>", sep = ""))
     })
 
     output$lastned <- renderUI({
@@ -157,15 +157,15 @@ app_server <- function(input, output, session) {
     })
 
     output$valg <- renderUI({
-      HTML("<h4>Variabler</h4>")
+      shiny::HTML("<h4>Variabler</h4>")
     })
 
     output$filter <- renderUI({
-      HTML("<h4>Filter</h4>")
+      shiny::HTML("<h4>Filter</h4>")
     })
 
     output$instilling <- renderUI({
-      HTML("<h4>Andre instillinger</h4>")
+      shiny::HTML("<h4>Andre instillinger</h4>")
     })
 
     lageParametere <- reactive({

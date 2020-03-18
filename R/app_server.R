@@ -14,7 +14,7 @@ app_server <- function(input, output, session) {
   }
     meny <- shiny::reactiveValues(en = NULL, to = NULL, tre = NULL)
 
-    obsA <- observe({
+    obsA <- shiny::observe({
       meny$en <- dynamiskTabellverk::definerValgKol(datasett, 1)
       meny$to <- dynamiskTabellverk::definerValgKol(datasett, 2)
       meny$tre <- dynamiskTabellverk::definerValgKol(datasett, 3)
@@ -23,7 +23,7 @@ app_server <- function(input, output, session) {
       meny$to_default <<- "behandlende_hf"
     })
 
-    makeTable <- reactive({
+    makeTable <- shiny::reactive({
       verdier <- lageParametere()
       if (is.null(input$overf)) {
         input_data <- datasett
@@ -121,7 +121,7 @@ app_server <- function(input, output, session) {
     shiny::callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
 
     # Download table to cvs file
-    output$downloadData <- downloadHandler(
+    output$downloadData <- shiny::downloadHandler(
       filename = function() {
         paste("tabellverk_HN-", Sys.Date(), ".csv", sep = "")
       },
@@ -130,7 +130,7 @@ app_server <- function(input, output, session) {
       }
     )
 
-    output$figurtekst <- renderUI({
+    output$figurtekst <- shiny::renderUI({
       verdier <- lageParametere()
       hjelpetekst <- dynamiskTabellverk::lagHjelpetekst(
         input$tab,
@@ -148,25 +148,25 @@ app_server <- function(input, output, session) {
       shiny::HTML(paste("<h4>", hjelpetekst, "</h4>", sep = ""))
     })
 
-    output$lastned <- renderUI({
-      tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan åpnes i Excel.",
+    output$lastned <- shiny::renderUI({
+      shiny::tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan åpnes i Excel.",
                downloadButton("downloadData", "Last ned data")
       )
     })
 
-    output$valg <- renderUI({
+    output$valg <- shiny::renderUI({
       shiny::HTML("<h4>Variabler</h4>")
     })
 
-    output$filter <- renderUI({
+    output$filter <- shiny::renderUI({
       shiny::HTML("<h4>Filter</h4>")
     })
 
-    output$instilling <- renderUI({
+    output$instilling <- shiny::renderUI({
       shiny::HTML("<h4>Andre instillinger</h4>")
     })
 
-    lageParametere <- reactive({
+    lageParametere <- shiny::reactive({
       rader <- c(input$xcol1, input$xcol2)
       if (is.null(input$xcol2)) {
         return()

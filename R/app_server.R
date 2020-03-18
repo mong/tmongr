@@ -5,8 +5,8 @@
 #' @param session the shiny session parameter
 #'
 #' @return ignored
-#' @export
 #' @importFrom rlang .data
+#' @export
 app_server <- function(input, output, session) {
 
   if (!exists("datasett")) {
@@ -150,7 +150,7 @@ app_server <- function(input, output, session) {
 
     output$lastned <- shiny::renderUI({
       shiny::tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan åpnes i Excel.",
-               downloadButton("downloadData", "Last ned data")
+               shiny::downloadButton("downloadData", "Last ned data")
       )
     })
 

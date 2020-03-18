@@ -33,6 +33,7 @@ r_packages:
   - lintr
   - roxygen2
   - pkgdown
+  - lintr
 
 script:
   - R CMD build .
@@ -40,11 +41,12 @@ script:
 
 after_success:
   - |
-    if [[ "$AFTER_JOBS" == "true" ]]; then
+    if [[ "$AFTER_JOBS" == "true" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
       Rscript -e 'covr::codecov()'
-      Rscript -e 'roxygen2::roxygenise()'
-      Rscript -e 'pkgdown::build_site()'
+      Rscript -e 'lintr::lint_package()'
     fi
+  - Rscript -e 'roxygen2::roxygenise()'
+  - Rscript -e 'pkgdown::build_site()'
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method

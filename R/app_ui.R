@@ -50,11 +50,27 @@ app_ui <- function() {
             ),
             shiny::mainPanel(
                 shiny::tabsetPanel(type = "tabs", id = "tab",
-                     shiny::tabPanel("Alle kontakter", shiny::tableOutput("alle"), value = "alle"),
-                     shiny::tabPanel("Døgnopphold", shiny::tableOutput("dogn"), value = "dogn"),
-                     shiny::tabPanel("Dagbehandling", shiny::tableOutput("dag"), value = "dag"),
-                     shiny::tabPanel("Poliklinikk", shiny::tableOutput("poli"), value = "poli"),
-                     shiny::tabPanel("Informasjon", shiny::fluidPage(shiny::includeMarkdown(system.file("app/Rmd/info.Rmd", package = getPackageName()))))
+                     shiny::tabPanel("Alle kontakter",
+                                     shiny::tableOutput("alle"),
+                                     value = "alle"),
+                     shiny::tabPanel("Døgnopphold",
+                                     shiny::tableOutput("dogn"),
+                                     value = "dogn"),
+                     shiny::tabPanel("Dagbehandling",
+                                     shiny::tableOutput("dag"),
+                                     value = "dag"),
+                     shiny::tabPanel("Poliklinikk",
+                                     shiny::tableOutput("poli"),
+                                     value = "poli"),
+                     shiny::tabPanel("Informasjon",
+                                     shiny::fluidPage(
+                                       shiny::includeMarkdown(
+                                         system.file("app/Rmd/info.Rmd",
+                                                     package = getPackageName()
+                                                     )
+                                         )
+                                       )
+                                     )
                      ),
               width = 9
             )

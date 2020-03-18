@@ -319,7 +319,7 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
             all_tekst <- paste0(all_tekst, warn)
         }
     }
-    
+
     if (("behandler" %in% rad |
          "behandlende_sykehus" %in% rad) &
         ("2016" %in% aar)) {

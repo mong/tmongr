@@ -21,6 +21,7 @@ Imports:
     tidyr,
     lazyeval,
     magrittr,
+    rlang,
     knitr
 RoxygenNote: 7.0.2
 Suggests:

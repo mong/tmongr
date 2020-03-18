@@ -9,9 +9,7 @@
 #' @export
 app_server <- function(input, output, session) {
 
-  if (!exists("datasett")) {
-    datasett <- dynamiskTabellverk::testdata3
-  }
+    datasett <- dynamiskTabellverk:::get_data()
     meny <- shiny::reactiveValues(en = NULL, to = NULL, tre = NULL)
 
     obsA <- shiny::observe({

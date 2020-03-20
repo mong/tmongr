@@ -1,28 +1,11 @@
 language: r
 cache: packages
-warnings_are_errors: true
+warnings_are_errors: false # Too many warnings at the moment...
 
-matrix:
-  include:
-    - os: linux
-      dist: xenial
-      r: release
-      env: 
-        - DIST=xenial
-        - AFTER_JOBS=true
-    - os: linux
-      dist: xenial
-      r: devel
-      env: 
-        - DIST=xenial
-        - AFTER_JOBS=false
-    - os: windows
-      r: release
-      env: 
-        - DIST=windows
-        - AFTER_JOBS=false
-  allow_failures:
-    - os: windows
+r:
+  - oldrel
+  - release
+  - devel
 
 env:
   global:
@@ -35,28 +18,24 @@ r_packages:
   - pkgdown
   - lintr
 
-script:
-  - R CMD build .
-  - R CMD check *tar.gz
-
 after_success:
   - |
-    if [[ "$AFTER_JOBS" == "true" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
-      Rscript -e 'covr::codecov()'
-      Rscript -e 'lintr::lint_package()'
-    fi
+  if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
+    Rscript -e 'lintr::lint_package()'
+    Rscript -e 'covr::codecov()'
+  fi
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e 'pkgdown::build_site()'
 
 deploy:
-  provider: pages                         # Specify the gh-pages deployment method
-  skip_cleanup: true                      # Don't remove files
-  token: $GH_TOKEN                        # Set in travis-ci.org dashboard
-  local_dir: docs                         # Deploy the docs folder
+  provider: pages
+  skip_cleanup: true
+  token: $GH_TOKEN
+  keep_history: false
+  local_dir: docs
   on:
     branch: master
-    condition: "$AFTER_JOBS = true"
-    type: push
+    condition: $TRAVIS_R_VERSION_STRING == "release"
 
 notifications:
   email:

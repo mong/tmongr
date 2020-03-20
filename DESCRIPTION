@@ -1,4 +1,4 @@
-Package: dynamiskTabellverk
+Package: tmongr
 Title: Dynamisk tabellverk for Helse Nord RHF
 Version: 2.8.1
 Date: 2019-12-13
@@ -8,8 +8,8 @@ Depends: R (>= 3.2.3)
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-BugReports: https://github.com/SKDE-Analyse/dynamiskTabellverk/issues
-URL: https://skde-analyse.github.io/dynamiskTabellverk
+BugReports: https://github.com/mong/tmongr/issues
+URL: https://mong.github.io/tmongr
 Remotes:
     github::rstudio/shiny
 Imports:

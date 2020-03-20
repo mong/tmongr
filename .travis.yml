@@ -1,6 +1,6 @@
 language: r
 cache: packages
-warnings_are_errors: false # Too many warnings at the moment...
+warnings_are_errors: false
 
 r:
   - oldrel

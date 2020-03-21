@@ -20,6 +20,33 @@ http_proxy=<proxy-url>:<port>
 https_proxy=<proxy-url>:<port>
 ```
 
+## Docker
+
+This R package can be added to a docker image together with all _R_ and system dependencies needed to run the the _tmongr_ web application from any docker host.
+
+### Build
+
+Since the _tmongr_ _R_ package is to be installed into the image please make sure to build the source tarball first. From a system command terminal navigate into the _tmongr_-directory and run:
+```
+R CMD build .
+```
+
+Then, build the docker image:
+```
+docker build -t tmongr .
+```
+
+### Run
+
+To run the docker container from a system command terminal do:
+```
+docker run -p 3838:3838 tmongr
+```
+
+Then, open a web browser window and navigate to [your localhost at port 3838](http://127.0.0.1:3838) to use the _tmongr_ web application.
+
+To stop the docker container hit ```Ctrl + c``` in the system comman terminal.
+
 ## Running SAS code
 
 Running the following SAS code will produce the aggregated data used by the shiny app:

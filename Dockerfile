@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
 RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 
 RUN R -e "remotes::install_github('rstudio/htmltools')"
-RUN R -e "remotes::install_github('SKDE-Analyse/dynamiskTabellverk')"
 
+RUN R -e "remotes::install_github('mong/tmongr')"
 
+EXPOSE 3838
 
-CMD ["R"]
+CMD ["R", "-e", "options(shiny.port=3838,shiny.host='0.0.0.0'); tmongr::run_app()"]

@@ -2,20 +2,26 @@
 
 ## Major changes
 
-* Use one dataset ([#51](https://github.com/mong/tmongr/pull/51))
-  - The app will no longer accept a list with several data sets.
-  - One dataset will contain "niva" value, which is either "justert for overføringer" or not.
-  - Switch button to change between overføringer or not.
-  - All choices will be kept even if changing source.
 * Moved all `R` code from `inst/app` to `R` directory.
 * Run app with `run_app()` function
 
 ## Minor features
 
 * Modularize shiny functions
-* Added hover text on ui elements ([#53](https://github.com/mong/tmongr/pull/53))
 * Removed unused code
 * Lint code
+
+# dynamiskTabellverk 2.8.1
+
+* Added hover text on ui elements ([#53](https://github.com/mong/tmongr/pull/53))
+
+# dynamiskTabellverk 2.8.0
+
+* Use one dataset ([#51](https://github.com/mong/tmongr/pull/51))
+  - The app will no longer accept a list with several data sets.
+  - One dataset will contain "niva" value, which is either "justert for overføringer" or not.
+  - Switch button to change between overføringer or not.
+  - All choices will be kept even if changing source.
 
 # dynamiskTabellverk 2.7.1
 

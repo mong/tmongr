@@ -10,7 +10,7 @@ vignette: >
 
 # How to contribute
 
-Development of the code is done through so called *Pull Requests* (PR) on [github](https://github.com/SKDE-Analyse/dynamiskTabellverk).
+Development of the code is done through so called *Pull Requests* (PR) on [github](https://github.com/mong/tmongr).
 
 # How to make a new release
 
@@ -26,7 +26,7 @@ Go through the points below before tagging a new release
 ```
 roxygen2::roxygenise()
 ```
-5. Build the documentation (to see if it looks ok). This is also done by [Travis CI](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk/builds) after pushing to the master branch on [github](https://github.com/SKDE-Analyse/dynamiskTabellverk).
+5. Build the documentation (to see if it looks ok). This is also done by [Travis CI](https://travis-ci.org/mong/tmongr/builds) after pushing to the master branch on [github](https://github.com/mong/tmongr).
 ```
 pkgdown::build_site()
 ```
@@ -42,7 +42,7 @@ git commit
 git push -u origin feature-2
 ```
 8. Open a PR and wait for it to be squashed into master
-9. Draft a new release on [github](https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/new)
+9. Draft a new release on [github](https://github.com/mong/tmongr/releases/new)
 
 
 <!--

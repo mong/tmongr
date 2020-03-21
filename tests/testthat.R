@@ -1,7 +1,7 @@
 library(testthat)
-library(dynamiskTabellverk)
+library(tmongr)
 
 data("testdata")
 data("testdata2")
 
-test_check("dynamiskTabellverk")
+test_check("tmongr")

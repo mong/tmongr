@@ -1,4 +1,4 @@
-[![Status](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk.svg?branch=master)](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk/builds)[![Coverage Status](https://img.shields.io/codecov/c/github/SKDE-Analyse/dynamiskTabellverk/master.svg)](https://codecov.io/github/SKDE-Analyse/dynamiskTabellverk?branch=master)
+[![Status](https://travis-ci.org/mong/tmongr.svg?branch=master)](https://travis-ci.org/mong/tmongr/builds)[![Coverage Status](https://img.shields.io/codecov/c/github/mong/tmongr/master.svg)](https://codecov.io/github/mong/tmongr?branch=master)
 
 This is a R package to produce *dynamisk tabellverk* web pages. 
 The web page is hosted on www.shinyapps.io and can be found here: https://skde.shinyapps.io/tabellverk/ 
@@ -8,7 +8,7 @@ The data in itself is not included in this package.
 ## How to install the package
 
 ```
-devtools::install_github("SKDE-Analyse/dynamiskTabellverk")
+devtools::install_github("mong/tmongr")
 ```
 
 ### If behind proxy
@@ -25,7 +25,7 @@ https_proxy=<proxy-url>:<port>
 Running the following SAS code will produce the aggregated data used by the shiny app:
 
 ```sas
-%let sasfolder = <folder>\dynamiskTabellverk\sas;
+%let sasfolder = <folder>\tmongr\sas;
 
 %include "&sasfolder\formater.sas";
 %include "&sasfolder\macroer.sas";
@@ -89,9 +89,9 @@ all_data <- lapply(all_files, readRDS)
 names(all_data) <- all_names
 
 # Run the following line to test the app locally first
-dynamiskTabellverk::launch_application(datasett = all_data)
+tmongr::launch_application(datasett = all_data)
 
 # Submit the app to shinyapp.io
-dynamiskTabellverk::submit_application(datasett = all_data, proxy_url = FALSE, name = "tabellverk")
+tmongr::submit_application(datasett = all_data, proxy_url = FALSE, name = "tabellverk")
 ```
 

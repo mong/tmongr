@@ -9,16 +9,14 @@
 #' @export
 app_server <- function(input, output, session) {
 
-  if (!exists("datasett")) {
-    datasett <- dynamiskTabellverk::testdata3
-  }
+    datasett <- tmongr:::get_data()
     meny <- shiny::reactiveValues(en = NULL, to = NULL, tre = NULL)
 
     obsA <- shiny::observe({
-      meny$en <- dynamiskTabellverk::definerValgKol(datasett, 1)
-      meny$to <- dynamiskTabellverk::definerValgKol(datasett, 2)
-      meny$tre <- dynamiskTabellverk::definerValgKol(datasett, 3)
-      meny$fire <- dynamiskTabellverk::definerValgKol(datasett, 4)
+      meny$en <- tmongr::definerValgKol(datasett, 1)
+      meny$to <- tmongr::definerValgKol(datasett, 2)
+      meny$tre <- tmongr::definerValgKol(datasett, 3)
+      meny$fire <- tmongr::definerValgKol(datasett, 4)
 
       meny$to_default <<- "behandlende_hf"
     })
@@ -35,7 +33,7 @@ app_server <- function(input, output, session) {
           input_data <- dplyr::filter(datasett, .data[["niva"]] == niva_values[1])
         }
       }
-      pivot <- dynamiskTabellverk::makeDataTabell(input_data, input$tab, verdier, input$keep_names, input$snitt)
+      pivot <- tmongr::makeDataTabell(input_data, input$tab, verdier, input$keep_names, input$snitt)
       return(pivot)
     })
 
@@ -61,64 +59,64 @@ app_server <- function(input, output, session) {
       debounced_reactive()
     })
 
-    shiny::callModule(dynamiskTabellverk:::rad1_server,
+    shiny::callModule(tmongr:::rad1_server,
                "rad1",
                pickable = meny$en,
                default = "boomr_rhf")
 
-    shiny::callModule(dynamiskTabellverk:::rad2_server,
+    shiny::callModule(tmongr:::rad2_server,
                "rad2",
                pickable = meny$to,
                default = meny$to_default)
 
-    shiny::callModule(dynamiskTabellverk:::kolonner_server,
+    shiny::callModule(tmongr:::kolonner_server,
                "kolonner",
                pickable = meny$tre,
                default = "aar")
 
-    shiny::callModule(dynamiskTabellverk:::verdi_server,
+    shiny::callModule(tmongr:::verdi_server,
                "verdi",
                pickable = meny$fire,
                default = "kontakter")
 
-    shiny::callModule(dynamiskTabellverk:::behandlingsniva_server,
+    shiny::callModule(tmongr:::behandlingsniva_server,
                "behandlingsniva",
                colnames = colnames(datasett),
                pickable = unique(datasett$behandlingsniva))
 
-    shiny::callModule(dynamiskTabellverk:::hastegrad1_server,
+    shiny::callModule(tmongr:::hastegrad1_server,
                "hastegrad1",
                colnames = colnames(datasett),
                pickable = unique(datasett$hastegrad))
 
-    shiny::callModule(dynamiskTabellverk:::hastegrad2_server,
+    shiny::callModule(tmongr:::hastegrad2_server,
                "hastegrad2",
                colnames = colnames(datasett),
                pickable = unique(datasett$drgtypehastegrad))
 
-    shiny::callModule(dynamiskTabellverk:::just_overf_server, "just_overf",
+    shiny::callModule(tmongr:::just_overf_server, "just_overf",
                colnames = colnames(datasett))
 
-    shiny::callModule(dynamiskTabellverk:::alder_server, "alder",
+    shiny::callModule(tmongr:::alder_server, "alder",
                colnames = colnames(datasett),
                pickable = unique(datasett$alder))
 
-    shiny::callModule(dynamiskTabellverk:::kjonn_server, "kjonn",
+    shiny::callModule(tmongr:::kjonn_server, "kjonn",
                colnames = colnames(datasett),
                pickable = unique(datasett$kjonn))
 
-    shiny::callModule(dynamiskTabellverk:::aar_server, "aar",
+    shiny::callModule(tmongr:::aar_server, "aar",
                pickable = unique(datasett$aar))
 
-    shiny::callModule(dynamiskTabellverk:::bo_server, "bo")
+    shiny::callModule(tmongr:::bo_server, "bo")
 
-    shiny::callModule(dynamiskTabellverk:::beh_server, "beh")
+    shiny::callModule(tmongr:::beh_server, "beh")
 
-    shiny::callModule(dynamiskTabellverk:::prosent_server, "prosent")
+    shiny::callModule(tmongr:::prosent_server, "prosent")
 
-    shiny::callModule(dynamiskTabellverk:::snitt_server, "snitt")
+    shiny::callModule(tmongr:::snitt_server, "snitt")
 
-    shiny::callModule(dynamiskTabellverk:::keep_names_server, "keep_names")
+    shiny::callModule(tmongr:::keep_names_server, "keep_names")
 
     # Download table to cvs file
     output$downloadData <- shiny::downloadHandler(
@@ -132,7 +130,7 @@ app_server <- function(input, output, session) {
 
     output$figurtekst <- shiny::renderUI({
       verdier <- lageParametere()
-      hjelpetekst <- dynamiskTabellverk::lagHjelpetekst(
+      hjelpetekst <- tmongr::lagHjelpetekst(
         input$tab,
         verdier$rader,
         verdier$kolonner,

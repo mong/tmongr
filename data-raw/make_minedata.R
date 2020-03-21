@@ -22,13 +22,20 @@ names(all_data) <- all_names
 dir.create("data")
 save(all_data, file = "data/data.RData")
 
+# testdata3 19. mars 2020
 
-tmp1 <- dynamiskTabellverk::testdata2
-tmp1$niva <- "Niva1"
+uten_overf <- readRDS("../tabellverk/data/behandler.rds")
+uten_overf <- uten_overf[(uten_overf$kontakter > 5), ]
+uten_overf$niva <- "Uten overf"
 
-tmp2 <- dynamiskTabellverk::testdata2
-tmp2$niva <- "Niva2"
+med_overf <- readRDS("../tabellverk/data/justertoverf.rds")
+med_overf <- med_overf[(med_overf$kontakter > 5), ]
+med_overf$niva <- "Med overf"
 
-testdata3 <- rbind(tmp1, tmp2)
+uten_overf <- uten_overf[sample(nrow(uten_overf), 1000), ]
+med_overf <- med_overf[sample(nrow(med_overf), 1000), ]
+
+testdata3 <- rbind(uten_overf, med_overf)
 
 usethis::use_data(testdata3, overwrite = TRUE)
+

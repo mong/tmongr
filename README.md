@@ -1,4 +1,6 @@
-[![Status](https://travis-ci.org/mong/tmongr.svg?branch=master)](https://travis-ci.org/mong/tmongr/builds)[![Coverage Status](https://img.shields.io/codecov/c/github/mong/tmongr/master.svg)](https://codecov.io/github/mong/tmongr?branch=master)
+[![Status](https://travis-ci.org/mong/tmongr.svg?branch=master)](https://travis-ci.org/mong/tmongr/builds)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mong/tmongr/master.svg)](https://codecov.io/github/mong/tmongr?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mong/tmongr/badge.svg?branch=master)](https://coveralls.io/github/mong/tmongr?branch=master)
 
 This is a R package to produce *dynamisk tabellverk* web pages. 
 The web page is hosted on www.shinyapps.io and can be found here: https://skde.shinyapps.io/tabellverk/ 

@@ -1,6 +1,7 @@
 FROM rocker/r-base
 
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
+LABEL no.mongr.cd.enable="true"
 
 # system libraries of general use
 RUN apt-get update && apt-get install -y \
@@ -18,6 +19,8 @@ RUN R -e "remotes::install_github('mong/tmongr')"
 COPY *.tar.gz .
 RUN R CMD INSTALL --clean *.tar.gz
 RUN rm *.tar.gz
+COPY tabellverk/data/behandler.rds .
+COPY tabellverk/data/justertoverf.rds .
 
 EXPOSE 3838
 

@@ -1,3 +1,68 @@
+# Unreleased
+
+## Major changes
+
+* Moved all `R` code from `inst/app` to `R` directory.
+* Run app with `run_app()` function
+
+## Minor features
+
+* Modularize shiny functions
+* Removed unused code
+* Lint code
+
+# dynamiskTabellverk 2.8.1
+
+* Added hover text on ui elements ([#53](https://github.com/mong/tmongr/pull/53))
+
+# dynamiskTabellverk 2.8.0
+
+* Use one dataset ([#51](https://github.com/mong/tmongr/pull/51))
+  - The app will no longer accept a list with several data sets.
+  - One dataset will contain "niva" value, which is either "justert for overføringer" or not.
+  - Switch button to change between overføringer or not.
+  - All choices will be kept even if changing source.
+
+# dynamiskTabellverk 2.7.1
+
+# Bugfix
+
+* Revert commit that rewrote `definerValgKol` in `2.7.0`. The drop down menus were broken.
+
+# dynamiskTabellverk 2.7.0
+
+* Do not longer include fagomr. data in app.
+* Rewrite of `definerValgKol`, depending more on the data.
+
+# dynamiskTabellverk 2.6.3
+
+* Skip proxy in `submit_application` all together
+
+# dynamiskTabellverk 2.6.2
+
+* First `tilrettelegging 19` version submitted to `shinyapps.io`.
+
+# dynamiskTabellverk 2.6.1
+
+* Default `proxy_url` argument in `submit_application` set to `FALSE` instead of `NULL`
+* `Travis` updates
+
+# dynamiskTabellverk 2.6.0
+
+* *Tilrettelegging 2019* (new delivery from NPR)
+
+# dynamiskTabellverk 2.5.2
+
+* Update `README`
+
+# dynamiskTabellverk 2.5.1
+
+* `lintr` and `travis` updates
+
+# dynamiskTabellverk 2.5.0
+
+* Mainly `Travis CI` and `SAS` changes
+
 # dynamiskTabellverk 2.4.0
 
 ## Minor Features

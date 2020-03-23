@@ -13,10 +13,12 @@ RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 # Install master version of tmongr from github, including dependencies
 RUN R -e "remotes::install_github('mong/tmongr')"
 
-# Install the current local version of tmongr, including dependencies
+# Install the current local version of tmongr
 COPY *.tar.gz .
 RUN R CMD INSTALL --clean *.tar.gz
 RUN rm *.tar.gz
+
+# Copy the data files
 COPY tabellverk/data/behandler.rds .
 COPY tabellverk/data/justertoverf.rds .
 

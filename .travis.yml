@@ -7,6 +7,9 @@ r:
   - release
   - devel
 
+services:
+  - docker
+
 env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
@@ -19,24 +22,35 @@ r_packages:
   - lintr
 
 after_success:
+  - R CMD INSTALL $PKG_TARBALL
   - |
     if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
       Rscript -e 'covr::codecov()'
       Rscript -e 'covr::coveralls()'
       Rscript -e 'lintr::lint_package()'
     fi
+  - rm -rf qmongr.Rcheck
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e 'pkgdown::build_site()'
+  # get the app data
+  - git clone https://gitlab-ci-token:$GL_TOKEN@gitlab.com/skde/tabellverk.git
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  token: $GH_TOKEN
-  keep_history: false
-  local_dir: docs
-  on:
-    branch: master
-    condition: $TRAVIS_R_VERSION_STRING == "release"
+  - provider: pages
+    skip_cleanup: true
+    token: $GH_TOKEN
+    keep_history: false
+    local_dir: docs
+    on:
+      branch: master
+      condition: $TRAVIS_R_VERSION_STRING == "release"
+  # our image to dockerhub
+  - provider: script
+    script: bash docker_push
+    skip_cleanup: true
+    on:
+      branch: master
+      condition: $TRAVIS_R_VERSION_STRING == "release"
 
 notifications:
   email:

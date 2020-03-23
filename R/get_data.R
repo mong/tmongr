@@ -1,9 +1,9 @@
 get_data <- function() {
   if (exists("datasett")) {
     return(datasett)
-  } else if (file.exists("../tabellverk/data/behandler.rds")) {
-    uten_overf <- readRDS("../tabellverk/data/behandler.rds")
-    med_overf <- readRDS("../tabellverk/data/justertoverf.rds")
+  } else if (file.exists("behandler.rds") && file.exists("justertoverf.rds")) {
+    uten_overf <- readRDS("behandler.rds")
+    med_overf <- readRDS("justertoverf.rds")
 
     uten_overf$niva <- "Uten overf"
     med_overf$niva <- "Med overf"

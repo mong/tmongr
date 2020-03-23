@@ -1,7 +1,7 @@
 test_that("get_data with files on disk", {
 
   saveRDS(testdata, file = "behandler.rds")
-  expect_error(suppressWarnings(get_data()))
+  expect_equal(get_data(), testdata3)
 
   saveRDS(testdata2, file = "justertoverf.rds")
   expect_error(get_data())

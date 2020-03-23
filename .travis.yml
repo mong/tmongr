@@ -24,11 +24,11 @@ r_packages:
 before_install:
   - R CMD build .
   - docker build -t hnskde/tmongr .
-  - rm qmongr_*.tar.gz
+  - rm tmongr_*.tar.gz
   - docker run -d -p 127.0.0.1:3838:3838 --name tmongr hnskde/tmongr
 
 before_script:
-  - docker ps | grep -q qmongr
+  - docker ps | grep -q tmongr
   - curl -IsSf 127.0.0.1:3838 > /dev/null
   
 after_success:

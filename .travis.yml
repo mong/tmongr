@@ -20,10 +20,10 @@ r_packages:
 
 after_success:
   - |
-  if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
-    Rscript -e 'lintr::lint_package()'
-    Rscript -e 'covr::codecov()'
-  fi
+    if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
+      Rscript -e 'lintr::lint_package()'
+      Rscript -e 'covr::codecov()'
+    fi
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e 'pkgdown::build_site()'
 
@@ -41,4 +41,3 @@ notifications:
   email:
     on_success: change # default: change
     on_failure: change # default: always 
-

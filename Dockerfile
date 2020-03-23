@@ -10,8 +10,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
 
-RUN R -e "remotes::install_github('rstudio/htmltools')"
-
 # Install master version of tmongr from github, including dependencies
 RUN R -e "remotes::install_github('mong/tmongr')"
 

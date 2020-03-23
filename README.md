@@ -9,17 +9,25 @@ The data in itself is not included in this package.
 
 ## How to install the package
 
-```
-devtools::install_github("mong/tmongr")
+```R
+remotes::install_github("mong/tmongr")
 ```
 
 ### If behind proxy
 
 Include the following in your `~/.Renviron` file before you install the package:
 
-```
+```R
 http_proxy=<proxy-url>:<port>
 https_proxy=<proxy-url>:<port>
+```
+
+## Development
+
+Functions from the `shiny` package that is not on *cran* are used when running tests. Thus, the github version of `shiny` has to be installed to be able to run the tests locally:
+
+```R
+remotes::install_github("rstudio/shiny")
 ```
 
 ## Docker
@@ -29,19 +37,19 @@ This R package can be added to a docker image together with all _R_ and system d
 ### Build
 
 Since the _tmongr_ _R_ package is to be installed into the image please make sure to build the source tarball first. From a system command terminal navigate into the _tmongr_-directory and run:
-```
+```sh
 R CMD build .
 ```
 
 Then, build the docker image:
-```
+```sh
 docker build -t tmongr .
 ```
 
 ### Run
 
 To run the docker container from a system command terminal do:
-```
+```sh
 docker run -p 3838:3838 tmongr
 ```
 

@@ -57,14 +57,14 @@ after_success:
   - git clone https://gitlab-ci-token:$GL_TOKEN@gitlab.com/skde/tabellverk.git
 
 deploy:
-  provider: pages                         # Specify the gh-pages deployment method
-  skip_cleanup: true                      # Don't remove files
-  token: $GH_TOKEN                        # Set in travis-ci.org dashboard
-  local_dir: docs                         # Deploy the docs folder
-  on:
-    branch: master
-    condition: "$AFTER_JOBS = true"
-    type: push
+  - provider: pages                         # Specify the gh-pages deployment method
+    skip_cleanup: true                      # Don't remove files
+    token: $GH_TOKEN                        # Set in travis-ci.org dashboard
+    local_dir: docs                         # Deploy the docs folder
+    on:
+      branch: master
+      condition: "$AFTER_JOBS = true"
+      type: push
   # our image to dockerhub
   - provider: script
     script: bash docker_push
@@ -72,6 +72,7 @@ deploy:
     on:
       branch: master
       tags: true
+
 notifications:
   email:
     on_success: change # default: change

@@ -8,7 +8,7 @@ test_that("get_data with files on disk", {
   file.remove("justertoverf.rds")
 
   saveRDS(testdata, file = "justertoverf.rds")
-  expect_equal_to_reference(get_data(), "data/get_data.rds")  
+  expect_equal_to_reference(get_data(), "data/get_data.rds")
 
   file.remove("behandler.rds")
   file.remove("justertoverf.rds")

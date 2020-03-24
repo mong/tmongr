@@ -1,7 +1,7 @@
 Package: tmongr
 Title: Dynamisk tabellverk for Helse Nord RHF
-Version: 2.8.1
-Date: 2019-12-13
+Version: 3.0.0
+Date: 2020-03-24
 Authors@R: person("Steindal", "Arnfinn Hykkerud", email = "arnfinn.steindal@skde.no", role = c("aut", "cre"))
 Description: Rshinyapp code to produce https://skde.shinyapps.io/tabellverk/.
 Depends: R (>= 3.2.3)

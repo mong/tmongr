@@ -1,15 +1,20 @@
-# Unreleased
+# tmongr 3.0.0
 
 ## Major changes
 
+* Changed name from `dynamiskTabellverk` to `tmongr`, to be part of the `mongr` family.
 * Moved all `R` code from `inst/app` to `R` directory.
 * Run app with `run_app()` function
 
 ## Minor features
 
 * Modularize shiny functions
+* Docker
 * Removed unused code
 * Lint code
+* Travis CI setup updates
+  * regular `R` setup
+  * build and deploy docker image
 
 # dynamiskTabellverk 2.8.1
 

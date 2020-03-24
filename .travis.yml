@@ -26,6 +26,10 @@ before_install:
   # get the app data
   - git clone https://gitlab-ci-token:$GL_TOKEN@gitlab.com/$GL_ORG
   - docker build -t hnskde/tmongr .
+  - |
+    if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
+      docker build -t hnskde/tmongr_test .
+    fi
   - rm tmongr_*.tar.gz
   - docker run -d -p 127.0.0.1:3838:3838 --name tmongr hnskde/tmongr
 

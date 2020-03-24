@@ -1,3 +1,7 @@
+# tmongr 3.0.1
+
+* Only deploy tags
+
 # tmongr 3.0.0
 
 ## Major changes

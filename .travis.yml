@@ -59,7 +59,7 @@ deploy:
     script: bash docker_push
     skip_cleanup: true
     on:
-      branch: master
+      tags: true
       condition: $TRAVIS_R_VERSION_STRING == "release"
 
 notifications:

@@ -54,12 +54,19 @@ deploy:
     on:
       branch: master
       condition: $TRAVIS_R_VERSION_STRING == "release"
-  # our image to dockerhub
+  # our image to dockerhub for tags
   - provider: script
-    script: bash docker_push
+    script: bash docker_push tmongr
     skip_cleanup: true
     on:
       tags: true
+      condition: $TRAVIS_R_VERSION_STRING == "release"
+  # our image to dockerhub for commits to master
+  - provider: script
+    script: bash docker_push tmongr_test
+    skip_cleanup: true
+    on:
+      branch: master
       condition: $TRAVIS_R_VERSION_STRING == "release"
 
 notifications:

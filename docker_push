@@ -1,15 +1,12 @@
 #!/bin/bash
 
-if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]]; then
+if [[ "$TRAVIS_TAG" == "true" ]]; then
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  if [[ "$TRAVIS_TAG" == "true" ]]; then
-    docker push hnskde/tmongr
-  fi
-
-  if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-    docker tag hnskde/tmongr hnskde/tmongr:test
-    docker push hnskde/tmongr:test
-  fi
+  docker push hnskde/tmongr
+elif [[ "$TRAVIS_BRANCH" == "master" ]]; then
+  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  docker tag hnskde/tmongr hnskde/tmongr:test
+  docker push hnskde/tmongr:test
 else
-  echo "Do not deploy. Neither master branch nor a release."
+  echo "Do not deploy. This is neither the master branch nor a release."
 fi

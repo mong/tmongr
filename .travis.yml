@@ -44,6 +44,12 @@ after_success:
   - rm -rf qmongr.Rcheck
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e 'pkgdown::build_site()'
+  - |
+    if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]]; then
+      export DOCKER_ORG=hnskde
+      export IMAGE_NAME=tmongr
+      wget https://raw.githubusercontent.com/mong/scripts/master/travis/docker_push
+    fi
 
 deploy:
   - provider: pages

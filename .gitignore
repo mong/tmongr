@@ -5,3 +5,4 @@
 .RData
 docs/
 Thumbs.db
+*.tar.gz

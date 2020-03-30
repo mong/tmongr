@@ -1,18 +1,17 @@
-Package: dynamiskTabellverk
+Package: tmongr
 Title: Dynamisk tabellverk for Helse Nord RHF
-Version: 2.8.1
-Date: 2019-12-13
+Version: 3.0.1
+Date: 2020-03-24
 Authors@R: person("Steindal", "Arnfinn Hykkerud", email = "arnfinn.steindal@skde.no", role = c("aut", "cre"))
 Description: Rshinyapp code to produce https://skde.shinyapps.io/tabellverk/.
 Depends: R (>= 3.2.3)
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-BugReports: https://github.com/SKDE-Analyse/dynamiskTabellverk/issues
-URL: https://skde-analyse.github.io/dynamiskTabellverk
-Remotes:
-    github::rstudio/shiny
+BugReports: https://github.com/mong/tmongr/issues
+URL: https://mong.github.io/tmongr
 Imports:
+    shiny,
     shinythemes,
     shinyWidgets,
     rsconnect,

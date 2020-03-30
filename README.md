@@ -1,4 +1,6 @@
-[![Status](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk.svg?branch=master)](https://travis-ci.org/SKDE-Analyse/dynamiskTabellverk/builds)[![Coverage Status](https://img.shields.io/codecov/c/github/SKDE-Analyse/dynamiskTabellverk/master.svg)](https://codecov.io/github/SKDE-Analyse/dynamiskTabellverk?branch=master)
+[![Status](https://travis-ci.org/mong/tmongr.svg?branch=master)](https://travis-ci.org/mong/tmongr/builds)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mong/tmongr/master.svg)](https://codecov.io/github/mong/tmongr?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mong/tmongr/badge.svg?branch=master)](https://coveralls.io/github/mong/tmongr?branch=master)
 
 This is a R package to produce *dynamisk tabellverk* web pages. 
 The web page is hosted on www.shinyapps.io and can be found here: https://skde.shinyapps.io/tabellverk/ 
@@ -7,25 +9,60 @@ The data in itself is not included in this package.
 
 ## How to install the package
 
-```
-devtools::install_github("SKDE-Analyse/dynamiskTabellverk")
+```R
+remotes::install_github("mong/tmongr")
 ```
 
 ### If behind proxy
 
 Include the following in your `~/.Renviron` file before you install the package:
 
-```
+```R
 http_proxy=<proxy-url>:<port>
 https_proxy=<proxy-url>:<port>
 ```
+
+## Development
+
+Functions from the `shiny` package that is not on *cran* are used when running tests. Thus, the github version of `shiny` has to be installed to be able to run the tests locally:
+
+```R
+remotes::install_github("rstudio/shiny")
+```
+
+## Docker
+
+This R package can be added to a docker image together with all _R_ and system dependencies needed to run the the _tmongr_ web application from any docker host.
+
+### Build
+
+Since the _tmongr_ _R_ package is to be installed into the image please make sure to build the source tarball first. From a system command terminal navigate into the _tmongr_-directory and run:
+```sh
+R CMD build .
+```
+
+Then, build the docker image:
+```sh
+docker build -t tmongr .
+```
+
+### Run
+
+To run the docker container from a system command terminal do:
+```sh
+docker run -p 3838:3838 tmongr
+```
+
+Then, open a web browser window and navigate to [your localhost at port 3838](http://127.0.0.1:3838) to use the _tmongr_ web application.
+
+To stop the docker container hit ```Ctrl + c``` in the system comman terminal.
 
 ## Running SAS code
 
 Running the following SAS code will produce the aggregated data used by the shiny app:
 
 ```sas
-%let sasfolder = <folder>\dynamiskTabellverk\sas;
+%let sasfolder = <folder>\tmongr\sas;
 
 %include "&sasfolder\formater.sas";
 %include "&sasfolder\macroer.sas";
@@ -89,9 +126,9 @@ all_data <- lapply(all_files, readRDS)
 names(all_data) <- all_names
 
 # Run the following line to test the app locally first
-dynamiskTabellverk::launch_application(datasett = all_data)
+tmongr::launch_application(datasett = all_data)
 
 # Submit the app to shinyapp.io
-dynamiskTabellverk::submit_application(datasett = all_data, proxy_url = FALSE, name = "tabellverk")
+tmongr::submit_application(datasett = all_data, proxy_url = FALSE, name = "tabellverk")
 ```
 

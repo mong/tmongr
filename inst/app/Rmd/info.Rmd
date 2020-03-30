@@ -18,11 +18,12 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Hvis antall kontaker eller antall liggedøgn er mindre enn 5 i en celle er tallet erstattet med strek, av hensyn til personvernet.
 - Tabell som lages kan lagres som en csv-fil, som så kan åpnes i Excel for videre analyse.
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
-- Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/SKDE-Analyse/dynamiskTabellverk/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
+- Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/mong/tmongr/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: ([2.8.1](https://github.com/SKDE-Analyse/dynamiskTabellverk/releases/tag/v2.8.1))
+Versjon: ([3.0.1](https://github.com/mong/tmongr/releases/tag/v3.0.1))
 
 Tidligere versjoner:
+- [16.12.2019](https://skde.shinyapps.io/tabellverk_2019_12_16/)
 - [22.11.2019](https://skde.shinyapps.io/tabellverk_2019_11_22/)
 - [12.09.2019](https://skde.shinyapps.io/tabellverk_2019_09_12/)
 - [03.06.2019](https://skde.shinyapps.io/tabellverk_2019_06_03/)

@@ -19,15 +19,14 @@ r_packages:
   - lintr
   - roxygen2
   - pkgdown
-  - lintr
 
 before_install:
   - R CMD build .
   # get the app data
   - git clone https://gitlab-ci-token:$GL_TOKEN@gitlab.com/$GL_ORG
-  - docker build -t hnskde/tmongr .
+  - docker build -t $DOCKER_ORG/$IMAGE_NAME .
   - rm tmongr_*.tar.gz
-  - docker run -d -p 127.0.0.1:3838:3838 --name tmongr hnskde/tmongr
+  - docker run -d -p 127.0.0.1:3838:3838 --name $IMAGE_NAME $DOCKER_ORG/$IMAGE_NAME
 
 before_script:
   - docker ps | grep -q tmongr
@@ -44,12 +43,7 @@ after_success:
   - rm -rf qmongr.Rcheck
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e 'pkgdown::build_site()'
-  - |
-    if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]]; then
-      export DOCKER_ORG=hnskde
-      export IMAGE_NAME=tmongr
-      wget https://raw.githubusercontent.com/mong/scripts/master/travis/docker_push
-    fi
+  - wget https://raw.githubusercontent.com/mong/scripts/master/travis/docker_push
 
 deploy:
   - provider: pages

@@ -1,4 +1,4 @@
-sorter_datasett <- function(datasett) {
+sorter_datasett <- function(datasett, rad) {
   # Sortere datasett i forhold til boområdet og behandlingsområdet
 
   # Hvis det kun er en rad, vil denne rutinen "ødelegge" tabellen.
@@ -6,6 +6,13 @@ sorter_datasett <- function(datasett) {
     return(datasett)
   }
 
+#  sort_first <- dplyr::filter(tmongr::sort, variable == rad[1])
+#  sort_second <- dplyr::filter(tmongr::sort, variable == rad[2])
+  
+#  datasett <- as.data.frame(datasett)
+  
+#  datasett <- as.matrix(datasett)
+  
   names1 <- c(
     "Eget lokalsykehus", # 1
     "Annet sykehus i eget HF", # 2

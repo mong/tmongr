@@ -117,7 +117,7 @@ makeDataTabell <- function(input_dataset,
   pivot <- gsub("[.]", ",", pivot)
 
   # sortere ualfabetisk, fra nord til sør
-  pivot <- sorter_datasett(pivot)
+  pivot <- sorter_datasett(pivot, rad)
 
   # Remove rows with only NA
   # Taken from https://stackoverflow.com/questions/6437164/removing-empty-rows-of-a-data-file-in-r

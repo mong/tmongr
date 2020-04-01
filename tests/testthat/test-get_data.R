@@ -16,7 +16,4 @@ test_that("get_data with files on disk", {
 
 test_that("get_data without files on disk", {
   expect_equal(get_data(), testdata3)
-
-  datasett <<- "qwerty"
-  expect_equal(get_data(), "qwerty")
 })

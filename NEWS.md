@@ -1,3 +1,23 @@
+# tmongr 3.1.0
+
+### More robust sorting ([#83](https://github.com/mong/tmongr/pull/83))
+
+* mv sorting code from `pivot.R` to separate `R` file
+* Use `sort.rds` data to sort table, based on order in `sas` formats, instead of hard coded `gsub`.
+
+### Removed one test of `get_data()`
+
+It defined a global variable `datasett`, which stayed in `R` session after tests. Broke the app and tests afterwards.
+
+# tmongr 3.0.3
+
+Use external docker deploy script
+
+# tmongr 3.0.2
+
+- Deploy master commits to `hnskde/tmongr:test`
+- Deploy tags/releases to `hnskde/tmongr:latest`
+
 # tmongr 3.0.1
 
 * Only deploy tags

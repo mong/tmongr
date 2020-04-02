@@ -124,7 +124,7 @@ app_server <- function(input, output, session) {
         paste("tabellverk_HN-", Sys.Date(), ".csv", sep = "")
       },
       content = function(file) {
-        write.csv2(makeTable(), file, fileEncoding = "ISO-8859-1", na = "", row.names = FALSE)
+        utils::write.csv2(makeTable(), file, fileEncoding = "ISO-8859-1", na = "", row.names = FALSE)
       }
     )
 

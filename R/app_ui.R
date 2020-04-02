@@ -66,7 +66,7 @@ app_ui <- function() {
                                      shiny::fluidPage(
                                        shiny::includeMarkdown(
                                          system.file("app/Rmd/info.Rmd",
-                                                     package = getPackageName()
+                                                     package = methods::getPackageName()
                                                      )
                                          )
                                        )

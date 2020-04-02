@@ -12,14 +12,14 @@
 definerValgKol <- function(datasett, valgnr) {
   config <- get_config()$menus
 
-  valg_boomr_sh <- setNames(config$valg_boomr_sh$variable,
+  valg_boomr_sh <- stats::setNames(config$valg_boomr_sh$variable,
                             config$valg_boomr_sh$txt)
-  valg_boomr_hf <- setNames(config$valg_boomr_hf$variable,
+  valg_boomr_hf <- stats::setNames(config$valg_boomr_hf$variable,
                             config$valg_boomr_hf$txt)
-  valg_boomr_rhf <- setNames(config$valg_boomr_rhf$variable,
+  valg_boomr_rhf <- stats::setNames(config$valg_boomr_rhf$variable,
                              config$valg_boomr_rhf$txt)
 
-  valg_aar <- setNames(config$valg_aar$variable,
+  valg_aar <- stats::setNames(config$valg_aar$variable,
                        config$valg_aar$txt)
 
     valg_alder <- c()
@@ -35,64 +35,64 @@ definerValgKol <- function(datasett, valgnr) {
     valg_alder <- c()
 
     # Verdier
-    valg_kontakter <- setNames(config$valg_kontakter$variable,
+    valg_kontakter <- stats::setNames(config$valg_kontakter$variable,
                                config$valg_kontakter$txt)
-    valg_rate <- setNames(config$valg_rate$variable,
+    valg_rate <- stats::setNames(config$valg_rate$variable,
                           config$valg_rate$txt)
-    valg_liggetid <- setNames(config$valg_liggetid$variable,
+    valg_liggetid <- stats::setNames(config$valg_liggetid$variable,
                               config$valg_liggetid$txt)
     valg_liggerate <- c()
-    valg_liggeindex <- setNames(config$valg_liggeindex$variable,
+    valg_liggeindex <- stats::setNames(config$valg_liggeindex$variable,
                                 config$valg_liggeindex$txt)
-    valg_drg <- setNames(config$valg_drg$variable,
+    valg_drg <- stats::setNames(config$valg_drg$variable,
                         config$valg_drg$txt)
-    valg_drgrate <- setNames(config$valg_drgrate$variable,
+    valg_drgrate <- stats::setNames(config$valg_drgrate$variable,
                              config$valg_drgrate$txt)
-    valg_drgindex <- setNames(config$valg_drgindex$variable,
+    valg_drgindex <- stats::setNames(config$valg_drgindex$variable,
                               config$valg_drgindex$txt)
 
     col_names <- tolower(colnames(datasett))
 
     if ("alder" %in% col_names) {
-        valg_alder <- setNames(config$valg_alder$variable,
+        valg_alder <- stats::setNames(config$valg_alder$variable,
                                config$valg_alder$txt)
     }
     if ("kjonn" %in% col_names) {
-        valg_kjonn <- setNames(config$valg_kjonn$variable,
+        valg_kjonn <- stats::setNames(config$valg_kjonn$variable,
                                config$valg_kjonn$txt)
     }
     if ("behandlingsniva" %in% col_names) {
-        valg_behandlingsniva <- setNames(config$valg_behandlingsniva$variable,
+        valg_behandlingsniva <- stats::setNames(config$valg_behandlingsniva$variable,
                                          config$valg_behandlingsniva$txt)
     }
     if ("hastegrad" %in% col_names) {
-        valg_hastegrad <- setNames(config$valg_hastegrad$variable,
+        valg_hastegrad <- stats::setNames(config$valg_hastegrad$variable,
                                    config$valg_hastegrad$txt)
     }
     if ("drgtypehastegrad" %in% col_names) {
-        valg_drgtypehastegrad <- setNames(config$valg_drgtypehastegrad$variable,
+        valg_drgtypehastegrad <- stats::setNames(config$valg_drgtypehastegrad$variable,
                                           config$valg_drgtypehastegrad$txt)
     }
     if ("behandler" %in% col_names) {
-        valg_behandler <- setNames(config$valg_behandler$variable,
+        valg_behandler <- stats::setNames(config$valg_behandler$variable,
                                    config$valg_behandler$txt)
     }
     if ("behandlende_sykehus" %in% col_names) {
-        valg_behsh <- setNames(config$valg_behsh$variable,
+        valg_behsh <- stats::setNames(config$valg_behsh$variable,
                                config$valg_behsh$txt)
     }
     if (("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names)) {
-        valg_behhf <- setNames(config$valg_behhf$variable,
+        valg_behhf <- stats::setNames(config$valg_behhf$variable,
                                config$valg_behhf$txt)
     }
     if ("behandlende_rhf" %in% col_names) {
-        valg_behrhf <- setNames(config$valg_behrhf$variable,
+        valg_behrhf <- stats::setNames(config$valg_behrhf$variable,
                                 config$valg_behrhf$txt)
     }
     if ("bosh_liggerate" %in% col_names &
         "bohf_liggerate" %in% col_names &
         "borhf_liggerate" %in% col_names) {
-        valg_liggerate <- setNames(config$valg_liggerate$variable,
+        valg_liggerate <- stats::setNames(config$valg_liggerate$variable,
                                    config$valg_liggerate$txt)
     }
 

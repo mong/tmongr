@@ -14,7 +14,7 @@ definerValgKol <- function(datasett, valgnr) {
                     `Opptaksområde HF` = "boomr_hf",
                     `Opptaksområde RHF` = "boomr_rhf")
 
-    valg_aar <- c(År = "aar")
+    valg_aar <- c(`År` = "aar")
 
     valg_alder <- c()
     valg_kjonn <- c()
@@ -29,9 +29,9 @@ definerValgKol <- function(datasett, valgnr) {
     valg_alder <- c()
 
     # Verdier
-    valg_kontakter <- c(Kontakter = "kontakter")
-    valg_rate <- c(Rater = "rate")
-    valg_liggetid <- c(Liggedøgn = "liggetid")
+    valg_kontakter <- c(`Kontakter` = "kontakter")
+    valg_rate <- c(`Rater` = "rate")
+    valg_liggetid <- c(`Liggedøgn` = "liggetid")
     valg_liggerate <- c()
     valg_liggeindex <- c(`Liggedøgn pr. pasient` = "liggedognindex")
     valg_drg <- c(`DRG-poeng` = "drg_poeng")
@@ -41,22 +41,22 @@ definerValgKol <- function(datasett, valgnr) {
     col_names <- tolower(colnames(datasett))
 
     if ("alder" %in% col_names) {
-        valg_alder <- c(Alder = "alder")
+        valg_alder <- c(`Alder` = "alder")
     }
     if ("kjonn" %in% col_names) {
-        valg_kjonn <- c(Kjønn = "kjonn")
+        valg_kjonn <- c(`Kjønn` = "kjonn")
     }
     if ("behandlingsniva" %in% col_names) {
-        valg_behandlingsniva <- c(Behandlingsnivå = "behandlingsniva")
+        valg_behandlingsniva <- c(`Behandlingsnivå` = "behandlingsniva")
     }
     if ("hastegrad" %in% col_names) {
-        valg_hastegrad <- c(Hastegrad = "hastegrad")
+        valg_hastegrad <- c(`Hastegrad` = "hastegrad")
     }
     if ("drgtypehastegrad" %in% col_names) {
-        valg_drgtypehastegrad <- c(DRGtypeHastegrad = "drgtypehastegrad")
+        valg_drgtypehastegrad <- c(`DRGtypeHastegrad` = "drgtypehastegrad")
     }
     if ("behandler" %in% col_names) {
-        valg_behandler <- c(Behandler = "behandler")
+        valg_behandler <- c(`Behandler` = "behandler")
     }
     if ("behandlende_sykehus" %in% col_names) {
         valg_behsh <- c(`Behandlende sykehus` = "behandlende_sykehus")
@@ -70,7 +70,7 @@ definerValgKol <- function(datasett, valgnr) {
     if ("bosh_liggerate" %in% col_names &
         "bohf_liggerate" %in% col_names &
         "borhf_liggerate" %in% col_names) {
-        valg_liggerate <- c(Liggedøgnsrate = "liggedognrate")
+        valg_liggerate <- c(`Liggedøgnsrate` = "liggedognrate")
     }
 
     valg_en <- c(valg_boomr, valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva,

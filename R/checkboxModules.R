@@ -1,5 +1,7 @@
 
-#' @param id Shiny id
+#' @param input Shiny input
+#' @param output Shiny output
+#' @param session Shiny session
 #'
 #' @return
 #' @name checkbox

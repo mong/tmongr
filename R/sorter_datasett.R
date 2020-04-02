@@ -13,38 +13,29 @@ sorter_datasett <- function(datasett, rad, kol) {
   column_names <- colnames(datasett)
   colnames(datasett) <- stringi::stri_rand_strings(length(column_names), 5)
 
-  k <- 0
-  if (length(rad) == 1) {
-    datasett$value <- datasett[[1]]
-    datasett <- dplyr::left_join(datasett, sort_list[[1]], by = "value", copy = TRUE)
-    datasett[["sort1"]] <- datasett$sort
-    datasett$sort <- NULL
-    datasett$variable <- NULL
-    datasett$value <- NULL
-    datasett <- dplyr::arrange(datasett, sort1)
-    datasett$sort1 <- NULL
-  } else if (length(rad) == 2 && rad[1] %in% kol) {
-    datasett$value <- datasett[[1]]
+  datasett$value <- datasett[[1]]
+
+  if (rad[1] %in% kol) {
     datasett <- dplyr::left_join(datasett, sort_list[[2]], by = "value", copy = TRUE)
-    datasett[["sort1"]] <- datasett$sort
-    datasett$sort <- NULL
-    datasett$variable <- NULL
-    datasett$value <- NULL
-    datasett <- dplyr::arrange(datasett, sort1)
-    datasett$sort1 <- NULL
-  } else if (length(rad) > 1) {
-    for (i in sort_list) {
-      k <- k + 1
-      datasett$value <- datasett[[k]]
-      datasett <- dplyr::left_join(datasett, i, by = "value", copy = TRUE)
-      datasett[[paste0("sort", k)]] <- datasett$sort
-      datasett$sort <- NULL
-      datasett$variable <- NULL
-      datasett$value <- NULL
-    }
+  } else {
+    datasett <- dplyr::left_join(datasett, sort_list[[1]], by = "value", copy = TRUE)
   }
 
- if (k == 2) {
+  datasett[["sort1"]] <- datasett$sort
+  datasett$sort <- NULL
+  datasett$variable <- NULL
+  datasett$value <- NULL
+
+  if (length(rad) == 1 | rad[1] %in% kol) {
+    datasett <- dplyr::arrange(datasett, sort1)
+    datasett$sort1 <- NULL
+  } else if (length(rad) == 2) {
+    datasett$value <- datasett[[2]]
+    datasett <- dplyr::left_join(datasett, sort_list[[2]], by = "value", copy = TRUE)
+    datasett[["sort2"]] <- datasett$sort
+    datasett$sort <- NULL
+    datasett$variable <- NULL
+    datasett$value <- NULL
     datasett <- dplyr::arrange(datasett, sort1, sort2)
     datasett$sort1 <- NULL
     datasett$sort2 <- NULL

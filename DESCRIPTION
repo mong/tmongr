@@ -21,8 +21,12 @@ Imports:
     lazyeval,
     magrittr,
     rlang,
-    yaml
+    yaml,
+    utils,
+    methods,
+    stats
 Suggests:
     testthat,
     covr,
-    purrr
+    purrr,
+    markdown

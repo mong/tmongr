@@ -17,7 +17,7 @@ aar_server <- function(input, output, session, pickable) {
                shiny::checkboxGroupInput("ar",
                                   label = "År",
                                   choices = pickable,
-                                  selected = tail(pickable, 3)
+                                  selected = utils::tail(pickable, 3)
                ))
     })
 }

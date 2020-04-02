@@ -10,11 +10,17 @@
 #' @export
 #'
 definerValgKol <- function(datasett, valgnr) {
-    valg_boomr <- c(`Opptaksområde Sykehus` = "boomr_sykehus",
-                    `Opptaksområde HF` = "boomr_hf",
-                    `Opptaksområde RHF` = "boomr_rhf")
+  config <- get_config()$menus
 
-    valg_aar <- c(`År` = "aar")
+  valg_boomr_sh <- setNames(config$valg_boomr_sh$variable,
+                            config$valg_boomr_sh$txt)
+  valg_boomr_hf <- setNames(config$valg_boomr_hf$variable,
+                            config$valg_boomr_hf$txt)
+  valg_boomr_rhf <- setNames(config$valg_boomr_rhf$variable,
+                             config$valg_boomr_rhf$txt)
+
+  valg_aar <- setNames(config$valg_aar$variable,
+                       config$valg_aar$txt)
 
     valg_alder <- c()
     valg_kjonn <- c()
@@ -29,57 +35,75 @@ definerValgKol <- function(datasett, valgnr) {
     valg_alder <- c()
 
     # Verdier
-    valg_kontakter <- c(`Kontakter` = "kontakter")
-    valg_rate <- c(`Rater` = "rate")
-    valg_liggetid <- c(`Liggedøgn` = "liggetid")
+    valg_kontakter <- setNames(config$valg_kontakter$variable,
+                               config$valg_kontakter$txt)
+    valg_rate <- setNames(config$valg_rate$variable,
+                          config$valg_rate$txt)
+    valg_liggetid <- setNames(config$valg_liggetid$variable,
+                              config$valg_liggetid$txt)
     valg_liggerate <- c()
-    valg_liggeindex <- c(`Liggedøgn pr. pasient` = "liggedognindex")
-    valg_drg <- c(`DRG-poeng` = "drg_poeng")
-    valg_drgrate <- c(`DRG-poengrater` = "drgrate")
-    valg_drgindex <- c(`DRG-index` = "drg_index")
+    valg_liggeindex <- setNames(config$valg_liggeindex$variable,
+                                config$valg_liggeindex$txt)
+    valg_drg <- setNames(config$valg_drg$variable,
+                        config$valg_drg$txt)
+    valg_drgrate <- setNames(config$valg_drgrate$variable,
+                             config$valg_drgrate$txt)
+    valg_drgindex <- setNames(config$valg_drgindex$variable,
+                              config$valg_drgindex$txt)
 
     col_names <- tolower(colnames(datasett))
 
     if ("alder" %in% col_names) {
-        valg_alder <- c(`Alder` = "alder")
+        valg_alder <- setNames(config$valg_alder$variable,
+                               config$valg_alder$txt)
     }
     if ("kjonn" %in% col_names) {
-        valg_kjonn <- c(`Kjønn` = "kjonn")
+        valg_kjonn <- setNames(config$valg_kjonn$variable,
+                               config$valg_kjonn$txt)
     }
     if ("behandlingsniva" %in% col_names) {
-        valg_behandlingsniva <- c(`Behandlingsnivå` = "behandlingsniva")
+        valg_behandlingsniva <- setNames(config$valg_behandlingsniva$variable,
+                                         config$valg_behandlingsniva$txt)
     }
     if ("hastegrad" %in% col_names) {
-        valg_hastegrad <- c(`Hastegrad` = "hastegrad")
+        valg_hastegrad <- setNames(config$valg_hastegrad$variable,
+                                   config$valg_hastegrad$txt)
     }
     if ("drgtypehastegrad" %in% col_names) {
-        valg_drgtypehastegrad <- c(`DRGtypeHastegrad` = "drgtypehastegrad")
+        valg_drgtypehastegrad <- setNames(config$valg_drgtypehastegrad$variable,
+                                          config$valg_drgtypehastegrad$txt)
     }
     if ("behandler" %in% col_names) {
-        valg_behandler <- c(`Behandler` = "behandler")
+        valg_behandler <- setNames(config$valg_behandler$variable,
+                                   config$valg_behandler$txt)
     }
     if ("behandlende_sykehus" %in% col_names) {
-        valg_behsh <- c(`Behandlende sykehus` = "behandlende_sykehus")
+        valg_behsh <- setNames(config$valg_behsh$variable,
+                               config$valg_behsh$txt)
     }
     if (("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names)) {
-        valg_behhf <- c(`Behandlende HF` = "behandlende_hf")
+        valg_behhf <- setNames(config$valg_behhf$variable,
+                               config$valg_behhf$txt)
     }
     if ("behandlende_rhf" %in% col_names) {
-        valg_behrhf <- c(`Behandlende RHF` = "behandlende_rhf")
+        valg_behrhf <- setNames(config$valg_behrhf$variable,
+                                config$valg_behrhf$txt)
     }
     if ("bosh_liggerate" %in% col_names &
         "bohf_liggerate" %in% col_names &
         "borhf_liggerate" %in% col_names) {
-        valg_liggerate <- c(`Liggedøgnsrate` = "liggedognrate")
+        valg_liggerate <- setNames(config$valg_liggerate$variable,
+                                   config$valg_liggerate$txt)
     }
 
-    valg_en <- c(valg_boomr, valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva,
+    valg_en <- c(valg_boomr_sh, valg_boomr_hf, valg_boomr_rhf, valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva,
                  valg_hastegrad, valg_drgtypehastegrad, valg_behandler, valg_behsh, valg_behhf,
         valg_behrhf)
 
     valg_to <- c(valg_behandler, valg_behsh, valg_behhf, valg_behrhf, valg_aar,
                  valg_alder, valg_kjonn, valg_behandlingsniva, valg_hastegrad,
-                 valg_drgtypehastegrad, valg_boomr, Tom = "ingen")
+                 valg_drgtypehastegrad, valg_boomr_sh, valg_boomr_hf, valg_boomr_rhf,
+                 Tom = "ingen")
 
     valg_tre <- c(valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva, valg_hastegrad,
                   valg_drgtypehastegrad)

@@ -48,11 +48,6 @@ sorter_datasett <- function(datasett, rad, kol) {
     datasett <- dplyr::arrange(datasett, sort1, sort2)
     datasett$sort1 <- NULL
     datasett$sort2 <- NULL
-  } else if (k == 3) {
-    datasett <- dplyr::arrange(datasett, sort1, sort2, sort3)
-    datasett$sort1 <- NULL
-    datasett$sort2 <- NULL
-    datasett$sort3 <- NULL
   }
 
   colnames(datasett) <- column_names

@@ -28,14 +28,14 @@ sorter_datasett <- function(datasett, rad) {
   }
 
   if (k == 1) {
-    datasett <- datasett[with(datasett, order(sort1)), ]
+    datasett <- dplyr::arrange(datasett, sort1)
     datasett$sort1 <- NULL
   } else if (k == 2) {
-    datasett <- datasett[with(datasett, order(sort1, sort2)), ]
+    datasett <- dplyr::arrange(datasett, sort1, sort2)
     datasett$sort1 <- NULL
     datasett$sort2 <- NULL
   } else if (k == 3) {
-    datasett <- datasett[with(datasett, order(sort1, sort2)), ]
+    datasett <- dplyr::arrange(datasett, sort1, sort2, sort3)
     datasett$sort1 <- NULL
     datasett$sort2 <- NULL
     datasett$sort3 <- NULL

@@ -18,6 +18,7 @@ Imports:
     rmarkdown,
     dplyr,
     tidyr,
+    stringi,
     lazyeval,
     magrittr,
     rlang,

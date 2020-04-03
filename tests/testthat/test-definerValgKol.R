@@ -1,11 +1,21 @@
 context("definerValgKol")
 
 test_that("definerValgKol returns correct values", {
+  print("#### testdata 1 ####")
+  print(definerValgKol(testdata, 1))
     expect_equal_to_reference(definerValgKol(testdata, 1), "data/defvalg1.rds")
+    print("#### testdata 2 ####")
+    print(definerValgKol(testdata, 2))
     expect_equal_to_reference(definerValgKol(testdata, 2), "data/defvalg2.rds")
+    print("#### testdata 3 ####")
+    print(definerValgKol(testdata, 3))
     expect_equal_to_reference(definerValgKol(testdata, 3), "data/defvalg3.rds")
+    print("#### testdata 4 ####")
+    print(definerValgKol(testdata, 4))
     expect_equal_to_reference(definerValgKol(testdata, 4), "data/defvalg4.rds")
 
+    print("#### testdata2 1 ####")
+    print(definerValgKol(testdata2, 1))
     expect_equal_to_reference(definerValgKol(testdata2, 1), "data/defvalg1alt.rds")
     expect_equal_to_reference(definerValgKol(testdata2, 2), "data/defvalg2alt.rds")
     expect_equal_to_reference(definerValgKol(testdata2, 3), "data/defvalg3alt.rds")

@@ -11,19 +11,7 @@
 #'
 definerValgKol <- function(datasett, valgnr) {
   config <- get_config()$menus
-  config2 <- get_config()
 
-  print("### Inside definerValgKol start ###")
-  print("raw")
-  print(config$valg_boomr_sh$txt)
-  print(config2$menus$valg_boomr_sh$txt)
-  print("enc2native")
-  print(enc2native(config$valg_boomr_sh$txt))
-  print("stri_unescape_unicode")
-  print(stringi::stri_unescape_unicode(config$valg_boomr_sh$txt))
-  print("enc2utf8")
-  print(enc2utf8(config$valg_boomr_sh$txt))
-  print("### Inside definerValgKol end   ###")
   valg_boomr_sh <- stats::setNames(config$valg_boomr_sh$variable,
                             config$valg_boomr_sh$txt)
   valg_boomr_hf <- stats::setNames(config$valg_boomr_hf$variable,

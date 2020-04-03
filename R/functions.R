@@ -10,11 +10,13 @@
 #' @export
 #'
 definerValgKol <- function(datasett, valgnr) {
-  config <- get_config()$menus
+  config <- tmongr::get_config()$menus
+  config2 <- tmongr::get_config()
 
   print("### Inside definerValgKol start ###")
   print("raw")
   print(config$valg_boomr_sh$txt)
+  print(config2$menus$valg_boomr_sh$txt)
   print("enc2native")
   print(enc2native(config$valg_boomr_sh$txt))
   print("stri_unescape_unicode")

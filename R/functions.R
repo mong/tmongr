@@ -13,7 +13,7 @@ definerValgKol <- function(datasett, valgnr) {
   config <- get_config()$menus
 
   valg_boomr_sh <- stats::setNames(config$valg_boomr_sh$variable,
-                            config$valg_boomr_sh$txt)
+                            enc2utf8(config$valg_boomr_sh$txt))
   valg_boomr_hf <- stats::setNames(config$valg_boomr_hf$variable,
                             config$valg_boomr_hf$txt)
   valg_boomr_rhf <- stats::setNames(config$valg_boomr_rhf$variable,

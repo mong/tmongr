@@ -1,12 +1,12 @@
 menus:
   valg_boomr_sh:
-    txt: Opptaksomr\00e5de Sykehus
+    txt: Opptaksområde Sykehus
     variable: boomr_sykehus
   valg_boomr_hf:
-    txt: Opptaksomr\00e5de HF
+    txt: Opptaksområde HF
     variable: boomr_hf
   valg_boomr_rhf:
-    txt: Opptaksomr\00e5de RHF
+    txt: Opptaksområde RHF
     variable: boomr_rhf
   valg_aar:
     txt: År
@@ -18,7 +18,7 @@ menus:
     txt: Kjønn
     variable: kjonn
   valg_behandlingsniva:
-    txt: Behandlingsniv\00e5
+    txt: Behandlingsnivå
     variable: behandlingsniva
   valg_hastegrad:
     txt: Hastegrad

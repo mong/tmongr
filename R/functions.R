@@ -10,8 +10,8 @@
 #' @export
 #'
 definerValgKol <- function(datasett, valgnr) {
-  config <- tmongr::get_config()$menus
-  config2 <- tmongr::get_config()
+  config <- get_config()$menus
+  config2 <- get_config()
 
   print("### Inside definerValgKol start ###")
   print("raw")

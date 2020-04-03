@@ -1,13 +1,9 @@
 ---
-title: "info"
-author: "Arnfinn Hykkerud Steindal"
-date: "21. september 2018"
-output: html_document
-runtime: shiny
+title:
+output: md_document
 ---
 
 <br>
-
 Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle kontakter med somatisk spesialisttjeneste ved sykehusene i Helse Nord RHF, samt alle kontakter for bosatte i Helse Nord RHF sitt opptaksområde.
 
 - Bakgrunnstallene er hentet fra avdelingsoppholdsfiler fra NPR og er aggregert på ulike nivå.
@@ -18,15 +14,14 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Hvis antall kontaker eller antall liggedøgn er mindre enn 5 i en celle er tallet erstattet med strek, av hensyn til personvernet.
 - Tabell som lages kan lagres som en csv-fil, som så kan åpnes i Excel for videre analyse.
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
-- Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/mong/tmongr/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
+- Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* [her](https://github.com/mong/tmongr/issues). Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: ([3.1.0](https://github.com/mong/tmongr/releases/tag/v3.1.0))
+Versjon `r installed.packages()["tmongr", 3]` av [tmongr](https://github.com/mong/tmongr).
 
-Tidligere versjoner:
+Tidligere versjoner av nettside:
+
 - [16.12.2019](https://skde.shinyapps.io/tabellverk_2019_12_16/)
 - [22.11.2019](https://skde.shinyapps.io/tabellverk_2019_11_22/)
 - [12.09.2019](https://skde.shinyapps.io/tabellverk_2019_09_12/)
 - [03.06.2019](https://skde.shinyapps.io/tabellverk_2019_06_03/)
 - [21.09.2018](https://skde.shinyapps.io/tabellverk_2018_09_21/)
-
-</br>

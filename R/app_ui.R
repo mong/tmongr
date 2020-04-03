@@ -3,18 +3,19 @@
 #' @return user interface
 #' @export
 app_ui <- function() {
+  config <- get_config()
   shiny::fluidPage(theme = shinythemes::shinytheme("cerulean"),
             shiny::titlePanel(
               shiny::tags$head(
                 shiny::tags$link(rel = "icon",
                                  type = "image/png",
                                  href = "www/hn.png"),
-              shiny::tags$title("Pasientstrømmer, Helse Nord RHF"),
-              # Farge på linker, samt text inaktive faner
+              shiny::tags$title(config$title),
+              # Color on links as well as inactive tabs
               shiny::tags$style(type = "text/css", "a{color: #808080;}"),
-              # Farge på tittel
+              # Color title
               shiny::tags$style(type = "text/css", "h1{color: #003A8C;}"),
-              # max bredde på side
+              # max page width
               shiny::tags$style(type = "text/css",
                                 ".container-fluid {  max-width: 1200px;}")
               )
@@ -50,19 +51,19 @@ app_ui <- function() {
             ),
             shiny::mainPanel(
                 shiny::tabsetPanel(type = "tabs", id = "tab",
-                     shiny::tabPanel("Alle kontakter",
+                     shiny::tabPanel(config$tabs$alle,
                                      shiny::tableOutput("alle"),
                                      value = "alle"),
-                     shiny::tabPanel("Døgnopphold",
+                     shiny::tabPanel(config$tabs$dogn,
                                      shiny::tableOutput("dogn"),
                                      value = "dogn"),
-                     shiny::tabPanel("Dagbehandling",
+                     shiny::tabPanel(config$tabs$dag,
                                      shiny::tableOutput("dag"),
                                      value = "dag"),
-                     shiny::tabPanel("Poliklinikk",
+                     shiny::tabPanel(config$tabs$poli,
                                      shiny::tableOutput("poli"),
                                      value = "poli"),
-                     shiny::tabPanel("Informasjon",
+                     shiny::tabPanel(config$tabs$info,
                                      shiny::fluidPage(
                                        shiny::includeMarkdown(rmarkdown::render(
                                          system.file("app/Rmd/info.Rmd",

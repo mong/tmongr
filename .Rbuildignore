@@ -8,3 +8,4 @@
 ^\.lintr$
 ^Dockerfile$
 ^data\-raw$
+^appveyor\.yml$

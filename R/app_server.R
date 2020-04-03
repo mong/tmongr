@@ -39,22 +39,18 @@ app_server <- function(input, output, session) {
 
     debounced_reactive <- shiny::throttle(makeTable, 1000)
 
-    # lage pivot-tabell av totalverdier
     output$alle <- shiny::renderTable({
       debounced_reactive()
     })
 
-    # døgnopphold
     output$dogn <- shiny::renderTable({
       debounced_reactive()
     })
 
-    # dagopphold
     output$dag <- shiny::renderTable({
       debounced_reactive()
     })
 
-    # poliopphold
     output$poli <- shiny::renderTable({
       debounced_reactive()
     })
@@ -147,7 +143,7 @@ app_server <- function(input, output, session) {
     })
 
     output$lastned <- shiny::renderUI({
-      shiny::tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan åpnes i Excel.",
+      shiny::tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan \u00e5pnes i Excel.",
                shiny::downloadButton("downloadData", "Last ned data")
       )
     })

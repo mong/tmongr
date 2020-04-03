@@ -62,3 +62,10 @@ menus:
   valg_drgindex:
     txt: DRG-index
     variable: drg_index
+tabs:
+  alle: "Alle kontakter"
+  dogn: "Døgnopphold"
+  dag: "Dagbehandling"
+  poli: "Poliklinikk"
+  info: "Informasjon"
+title: "Pasientstrømmer, Helse Nord RHF"

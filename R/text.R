@@ -389,5 +389,6 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     all_tekst <- paste0(all_tekst, warning_text(c(rad, kol), verdi, bo, aar, alder, kjonn))
 
-    return(all_tekst)
+
+    return(enc2utf8(all_tekst))
 }

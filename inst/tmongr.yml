@@ -1,24 +1,24 @@
 menus:
   valg_boomr_sh:
-    txt: "Opptaksomr\u00e5de Sykehus"
+    txt: "Opptaksområde Sykehus"
     variable: boomr_sykehus
   valg_boomr_hf:
-    txt: "Opptaksomr\u00e5de HF"
+    txt: "Opptaksområde HF"
     variable: boomr_hf
   valg_boomr_rhf:
-    txt: "Opptaksomr\u00e5de RHF"
+    txt: "Opptaksområde RHF"
     variable: boomr_rhf
   valg_aar:
-    txt: "\u00c5r"
+    txt: "År"
     variable: aar
   valg_alder:
     txt: Alder
     variable: alder
   valg_kjonn:
-    txt: "Kj\u00f8nn"
+    txt: "Kjønn"
     variable: kjonn
   valg_behandlingsniva:
-    txt: "Behandlingsniv\u00e5"
+    txt: "Behandlingsnivå"
     variable: behandlingsniva
   valg_hastegrad:
     txt: Hastegrad
@@ -45,13 +45,13 @@ menus:
     txt: Rater
     variable: rate
   valg_liggetid:
-    txt: "Ligged\u00f8gn"
+    txt: "Liggedøgn"
     variable: liggetid
   valg_liggerate:
-    txt: "Ligged\u00f8gnsrate"
+    txt: "Liggedøgnsrate"
     variable: liggedognrate
   valg_liggeindex:
-    txt: "Ligged\u00f8gn pr. pasient"
+    txt: "Liggedøgn pr. pasient"
     variable: liggedognindex
   valg_drg:
     txt: DRG-poeng

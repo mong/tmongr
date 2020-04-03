@@ -24,28 +24,28 @@ app_ui <- function() {
             shiny::uiOutput("lastned"),
             shiny::br(),
             shiny::sidebarPanel(
-              tmongr:::common_ui("just_overf"),
+              common_ui("just_overf"),
               shiny::uiOutput("valg"),
-              tmongr:::common_ui("rad1"),
-              tmongr:::common_ui("rad2"),
+              common_ui("rad1"),
+              common_ui("rad2"),
               shiny::uiOutput("hdg"),
-              tmongr:::common_ui("kolonner"),
-              tmongr:::common_ui("verdi"),
+              common_ui("kolonner"),
+              common_ui("verdi"),
               shiny::br(),
               shiny::uiOutput("filter"),
-              tmongr:::common_ui("bo"),
-              tmongr:::common_ui("beh"),
-              tmongr:::common_ui("aar"),
-              tmongr:::common_ui("behandlingsniva"),
-              tmongr:::common_ui("hastegrad1"),
-              tmongr:::common_ui("hastegrad2"),
-              tmongr:::common_ui("alder"),
-              tmongr:::common_ui("kjonn"),
+              common_ui("bo"),
+              common_ui("beh"),
+              common_ui("aar"),
+              common_ui("behandlingsniva"),
+              common_ui("hastegrad1"),
+              common_ui("hastegrad2"),
+              common_ui("alder"),
+              common_ui("kjonn"),
               shiny::br(),
               shiny::uiOutput("instilling"),
-              tmongr:::common_ui("prosent"),
-              tmongr:::common_ui("keep_names"),
-              tmongr:::common_ui("snitt"),
+              common_ui("prosent"),
+              common_ui("keep_names"),
+              common_ui("snitt"),
               width = 3
             ),
             shiny::mainPanel(
@@ -66,7 +66,7 @@ app_ui <- function() {
                                      shiny::fluidPage(
                                        shiny::includeMarkdown(
                                          system.file("app/Rmd/info.Rmd",
-                                                     package = getPackageName()
+                                                     package = methods::getPackageName()
                                                      )
                                          )
                                        )

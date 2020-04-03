@@ -1,5 +1,8 @@
 test_that("create_config", {
-  expect_equal(create_config(dir = "data"), "Cannot create data/_tmongr.yml config file: already exists.(run with force = TRUE if you want to overwrite file)")
+  expect_equal(create_config(dir = "data"),
+    paste0("Cannot create data/_tmongr.yml config file: already exists.",
+    "(run with force = TRUE if you want to overwrite file)")
+              )
 
   expect_equal(create_config(), "./_tmongr.yml file created: fill it in")
   file.remove("_tmongr.yml")

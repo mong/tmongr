@@ -6,3 +6,5 @@
 ^codecov\.yml$
 ^_pkgdown\.yml$
 ^\.lintr$
+^Dockerfile$
+^data\-raw$

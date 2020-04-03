@@ -15,7 +15,6 @@ Imports:
     shiny,
     shinythemes,
     shinyWidgets,
-    rmarkdown,
     dplyr,
     tidyr,
     stringi,

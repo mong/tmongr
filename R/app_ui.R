@@ -65,10 +65,10 @@ app_ui <- function() {
                                      value = "poli"),
                      shiny::tabPanel(config$tabs$info,
                                      shiny::fluidPage(
-                                       shiny::includeMarkdown(rmarkdown::render(
+                                       shiny::includeMarkdown(
                                          system.file("app/Rmd/info.Rmd",
                                                      package = methods::getPackageName()
-                                                     ), quiet = TRUE)
+                                                     )
                                          )
                                        )
                                      )

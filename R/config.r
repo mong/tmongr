@@ -32,6 +32,6 @@ get_config <- function(dir = ".") {
     # Use the default if _tmongr.yml does not exist
     config_file <- system.file("tmongr.yml", package = "tmongr")
   }
-  config <- yaml::read_yaml(config_file, fileEncoding = "UTF-8")
+  config <- yaml::read_yaml(config_file)
   return(config)
 }

@@ -5,7 +5,7 @@
 run_app <- function() {
 
   shiny::addResourcePath(
-    "www", system.file("app/www", package = getPackageName())
+    "www", system.file("app/www", package = methods::getPackageName())
   )
 
   shiny::shinyApp(

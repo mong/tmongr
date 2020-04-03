@@ -10,20 +10,23 @@ Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/mong/tmongr/issues
 URL: https://mong.github.io/tmongr
+RoxygenNote: 7.0.2
 Imports:
     shiny,
     shinythemes,
     shinyWidgets,
-    rsconnect,
-    rmarkdown,
     dplyr,
     tidyr,
     stringi,
     lazyeval,
     magrittr,
     rlang,
-    knitr
-RoxygenNote: 7.0.2
+    yaml,
+    utils,
+    methods,
+    stats
 Suggests:
     testthat,
-    covr
+    covr,
+    purrr,
+    markdown

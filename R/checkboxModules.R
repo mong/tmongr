@@ -1,5 +1,7 @@
 
-#' @param id Shiny id
+#' @param input Shiny input
+#' @param output Shiny output
+#' @param session Shiny session
 #'
 #' @return
 #' @name checkbox
@@ -17,7 +19,7 @@ aar_server <- function(input, output, session, pickable) {
                shiny::checkboxGroupInput("ar",
                                   label = "År",
                                   choices = pickable,
-                                  selected = tail(pickable, 3)
+                                  selected = utils::tail(pickable, 3)
                ))
     })
 }

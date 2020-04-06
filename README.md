@@ -15,7 +15,6 @@ This is a R package to produce *dynamisk tabellverk* web pages.
 The web page is hosted on www.shinyapps.io and can be found here: https://skde.shinyapps.io/tabellverk/ 
 The data in itself is not included in this package.
 
-
 ## How to install the package
 
 ```R
@@ -114,30 +113,19 @@ saveRDS(data, "data/behandler.rds")
 
 ## Running the app
 
-The following R code has been run to publish a new version of the shiny app web page:
 ```r
-all_data = list()
+# read the data
+uten_overf <- readRDS("../tabellverk/data/behandler.rds")
+med_overf <- readRDS("../tabellverk/data/justertoverf.rds")
 
-all_files = c(
-  "data/behandler.rds", 
-  "data/justertoverf.rds", 
-  "data/fag.rds"
-)
+# define `niva`
+uten_overf$niva <- "Uten overf"
+med_overf$niva <- "Med overf"
 
-all_names = c(
-  "Sykehusopphold",
-  "Justert for overføringer",
-  "Fagområde (sykehusopphold)"
-)
+# bind the data together
+datasett <- rbind(uten_overf, med_overf)
 
-all_data <- lapply(all_files, readRDS)
-
-names(all_data) <- all_names
-
-# Run the following line to test the app locally first
-tmongr::launch_application(datasett = all_data)
-
-# Submit the app to shinyapp.io
-tmongr::submit_application(datasett = all_data, proxy_url = FALSE, name = "tabellverk")
+# run the app
+run_app()
 ```
 

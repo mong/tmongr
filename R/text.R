@@ -351,7 +351,7 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
 #' @return Tekst Some text that describe the selection made by the user.
 #' @export
 #'
-lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
+lag_hjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                            behandlingsniva, alder, kjonn, hastegrad2) {
 
     if (is.null(rad) | is.null(aar) | is.null(verdi)) {

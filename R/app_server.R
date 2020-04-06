@@ -12,17 +12,17 @@ app_server <- function(input, output, session) {
     datasett <- get_data()
     meny <- shiny::reactiveValues(en = NULL, to = NULL, tre = NULL)
 
-    obsA <- shiny::observe({
-      meny$en <- definerValgKol(datasett, 1)
-      meny$to <- definerValgKol(datasett, 2)
-      meny$tre <- definerValgKol(datasett, 3)
-      meny$fire <- definerValgKol(datasett, 4)
+    obs_a <- shiny::observe({
+      meny$en <- definer_valg_kol(datasett, 1)
+      meny$to <- definer_valg_kol(datasett, 2)
+      meny$tre <- definer_valg_kol(datasett, 3)
+      meny$fire <- definer_valg_kol(datasett, 4)
 
       meny$to_default <<- "behandlende_hf"
     })
 
-    makeTable <- shiny::reactive({
-      verdier <- lageParametere()
+    make_table <- shiny::reactive({
+      verdier <- lage_parametere()
       if (is.null(input$overf)) {
         input_data <- datasett
       } else {
@@ -33,11 +33,11 @@ app_server <- function(input, output, session) {
           input_data <- dplyr::filter(datasett, .data[["niva"]] == niva_values[1])
         }
       }
-      pivot <- makeDataTabell(input_data, input$tab, verdier, input$keep_names, input$snitt)
+      pivot <- make_data_tabell(input_data, input$tab, verdier, input$keep_names, input$snitt)
       return(pivot)
     })
 
-    debounced_reactive <- shiny::throttle(makeTable, 1000)
+    debounced_reactive <- shiny::throttle(make_table, 1000)
 
     output$alle <- shiny::renderTable({
       debounced_reactive()
@@ -115,18 +115,18 @@ app_server <- function(input, output, session) {
     shiny::callModule(keep_names_server, "keep_names")
 
     # Download table to cvs file
-    output$downloadData <- shiny::downloadHandler(
+    output$download_data <- shiny::downloadHandler(
       filename = function() {
         paste("tabellverk_HN-", Sys.Date(), ".csv", sep = "")
       },
       content = function(file) {
-        utils::write.csv2(makeTable(), file, fileEncoding = "ISO-8859-1", na = "", row.names = FALSE)
+        utils::write.csv2(make_table(), file, fileEncoding = "ISO-8859-1", na = "", row.names = FALSE)
       }
     )
 
     output$figurtekst <- shiny::renderUI({
-      verdier <- lageParametere()
-      hjelpetekst <- lagHjelpetekst(
+      verdier <- lage_parametere()
+      hjelpetekst <- lag_hjelpetekst(
         input$tab,
         verdier$rader,
         verdier$kolonner,
@@ -144,7 +144,7 @@ app_server <- function(input, output, session) {
 
     output$lastned <- shiny::renderUI({
       shiny::tags$div(title = "Last ned data i semikolon-delt csv-format. Filen kan \u00e5pnes i Excel.",
-               shiny::downloadButton("downloadData", "Last ned data")
+               shiny::downloadButton("download_data", "Last ned data")
       )
     })
 
@@ -160,7 +160,7 @@ app_server <- function(input, output, session) {
       shiny::HTML("<h4>Andre instillinger</h4>")
     })
 
-    lageParametere <- shiny::reactive({
+    lage_parametere <- shiny::reactive({
       rader <- c(input$xcol1, input$xcol2)
       if (is.null(input$xcol2)) {
         return()
@@ -169,17 +169,17 @@ app_server <- function(input, output, session) {
         rader <- c(input$xcol1)
       }
 
-      bo <- parameterDefinert(input$bo, 2)
-      beh <- parameterDefinert(input$beh, 1)
-      verdi <- parameterDefinert(input$verdi, "kontakter")
-      prosent <- parameterDefinert(input$prosent, FALSE)
-      aar <- parameterDefinert(input$ar, unique(datasett$aar))
-      kolonner <- parameterDefinert(input$ycol, "aar")
-      alder <- parameterDefinert(input$alder, unique(datasett$alder))
-      kjonn <- parameterDefinert(input$kjonn, unique(datasett$kjonn))
-      hastegrad1 <- parameterDefinert(input$hastegrad1, unique(datasett$hastegrad))
-      hastegrad2 <- parameterDefinert(input$hastegrad2, unique(datasett$drgtypehastegrad))
-      behandlingsniva <- parameterDefinert(input$behandlingsniva, unique(datasett$behandlingsniva))
+      bo <- parameter_definert(input$bo, 2)
+      beh <- parameter_definert(input$beh, 1)
+      verdi <- parameter_definert(input$verdi, "kontakter")
+      prosent <- parameter_definert(input$prosent, FALSE)
+      aar <- parameter_definert(input$ar, unique(datasett$aar))
+      kolonner <- parameter_definert(input$ycol, "aar")
+      alder <- parameter_definert(input$alder, unique(datasett$alder))
+      kjonn <- parameter_definert(input$kjonn, unique(datasett$kjonn))
+      hastegrad1 <- parameter_definert(input$hastegrad1, unique(datasett$hastegrad))
+      hastegrad2 <- parameter_definert(input$hastegrad2, unique(datasett$drgtypehastegrad))
+      behandlingsniva <- parameter_definert(input$behandlingsniva, unique(datasett$behandlingsniva))
       verdier <- list(bo = bo, beh = beh, verdi = verdi, rader = rader,
                       prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder,
                       hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva)
@@ -188,7 +188,7 @@ app_server <- function(input, output, session) {
 
     })
 
-    parameterDefinert <- function(param, normalverdi) {
+    parameter_definert <- function(param, normalverdi) {
       if (is.null(param)) {
         return(normalverdi)
       }

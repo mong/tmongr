@@ -14,48 +14,48 @@
 #' @param hastegrad2 Degree of urgency
 #'
 #' @importFrom rlang .data
-filtrerUt <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
+filtrer_ut <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
                       alder, kjonn, hastegrad1, hastegrad2) {
 
     if (fane == "dogn") {
-        tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
+        tabell <- filter_behandlingsniva(tabell, c("Døgnopphold"))
     } else if (fane == "dag") {
-        tabell <- filterBehandlingsniva(tabell, c("Dagbehandling"))
+        tabell <- filter_behandlingsniva(tabell, c("Dagbehandling"))
     } else if (fane == "poli") {
-        tabell <- filterBehandlingsniva(tabell, c("Poliklinikk"))
+        tabell <- filter_behandlingsniva(tabell, c("Poliklinikk"))
     }
 
-    tabell <- filterAar(tabell, aar)
+    tabell <- filter_aar(tabell, aar)
 
     if (verdi == "liggedognindex") {
-        tabell <- filterBehandlingsniva(tabell, c("Døgnopphold"))
+        tabell <- filter_behandlingsniva(tabell, c("Døgnopphold"))
     }
 
     if (verdi == "drg_index") {
         # ta ut avtalespesialistene
-        tabell <- filterBehandlingsniva(tabell, c("Døgnopphold", "Dagbehandling", "Poliklinikk"))
+        tabell <- filter_behandlingsniva(tabell, c("Døgnopphold", "Dagbehandling", "Poliklinikk"))
     }
 
-    tabell <- filterBo(tabell, bo)
+    tabell <- filter_bo(tabell, bo)
 
-    tabell <- filterBeh(tabell, beh)
+    tabell <- filter_beh(tabell, beh)
 
-    tabell <- filterBehandlingsniva(tabell, behandlingsniva)
+    tabell <- filter_behandlingsniva(tabell, behandlingsniva)
 
-    tabell <- filterAlder(tabell, alder)
+    tabell <- filter_alder(tabell, alder)
 
-    tabell <- filterKjonn(tabell, kjonn)
+    tabell <- filter_kjonn(tabell, kjonn)
 
-    tabell <- filterHastegrad1(tabell, hastegrad1)
+    tabell <- filter_hastegrad1(tabell, hastegrad1)
 
-    tabell <- filterHastegrad2(tabell, hastegrad2)
+    tabell <- filter_hastegrad2(tabell, hastegrad2)
 
     return(tabell)
 }
 
 
 # Kun se på boområdet man er interessert i
-filterBo <- function(datasett, bo) {
+filter_bo <- function(datasett, bo) {
     if (bo == 1) {
         return(datasett)
     } else if (bo == 2) {
@@ -77,7 +77,7 @@ filterBo <- function(datasett, bo) {
 }
 
 # Kun se på behandlende foretak man er interessert i
-filterBeh <- function(datasett, beh) {
+filter_beh <- function(datasett, beh) {
     if (beh == 1) {
         # ingen filtrering
         return(datasett)
@@ -111,13 +111,13 @@ filterBeh <- function(datasett, beh) {
 }
 
 # Disse filter-rutinene burde legges sammen til en rutine
-filterAar <- function(datasett, filter) {
+filter_aar <- function(datasett, filter) {
     tabell <- dplyr::filter(datasett, .data[["aar"]] %in% as.numeric(filter))
     return(tabell)
 }
 
 
-filterBehandlingsniva <- function(datasett, filter) {
+filter_behandlingsniva <- function(datasett, filter) {
     if (!("behandlingsniva" %in% colnames(datasett))) {
         return(datasett)
     }
@@ -126,7 +126,7 @@ filterBehandlingsniva <- function(datasett, filter) {
     return(tabell)
 }
 
-filterHastegrad1 <- function(datasett, filter) {
+filter_hastegrad1 <- function(datasett, filter) {
     if (!("hastegrad" %in% colnames(datasett))) {
         return(datasett)
     }
@@ -134,7 +134,7 @@ filterHastegrad1 <- function(datasett, filter) {
     return(tabell)
 }
 
-filterHastegrad2 <- function(datasett, filter) {
+filter_hastegrad2 <- function(datasett, filter) {
     if (!("drgtypehastegrad" %in% colnames(datasett))) {
         return(datasett)
     }
@@ -143,7 +143,7 @@ filterHastegrad2 <- function(datasett, filter) {
     return(tabell)
 }
 
-filterAlder <- function(datasett, filter) {
+filter_alder <- function(datasett, filter) {
     if (!("alder" %in% colnames(datasett))) {
         return(datasett)
     }
@@ -155,7 +155,7 @@ filterAlder <- function(datasett, filter) {
     }
 }
 
-filterKjonn <- function(datasett, filter) {
+filter_kjonn <- function(datasett, filter) {
     if (!("kjonn" %in% colnames(datasett))) {
         return(datasett)
     }

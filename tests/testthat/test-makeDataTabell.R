@@ -1,7 +1,7 @@
-context("makeDataTabell")
+context("make_data_tabell")
 
 lag_pivot <- function(verdier) {
-  pivot <- makeDataTabell(verdier$inpDatasett,
+  pivot <- make_data_tabell(verdier$inp_datasett,
                           verdier$fane,
                           verdier,
                           verdier$keep_names,
@@ -11,19 +11,19 @@ lag_pivot <- function(verdier) {
 }
 
 test_that("makeDataTable returns NULL and error", {
-  expect_error(makeDataTabell())
+  expect_error(make_data_tabell())
   # Error if "verdier" is not defined
-  expect_error(makeDataTabell(NULL, NULL))
-  expect_null(makeDataTabell(NULL, NULL, NULL))
-  expect_null(makeDataTabell(NULL, NULL, NULL, NULL))
+  expect_error(make_data_tabell(NULL, NULL))
+  expect_null(make_data_tabell(NULL, NULL, NULL))
+  expect_null(make_data_tabell(NULL, NULL, NULL, NULL))
   # Too many arguments
-  expect_error(makeDataTabell(NULL, NULL, NULL, NULL, NULL, NULL))
-  expect_null(makeDataTabell(verdier = NULL))
+  expect_error(make_data_tabell(NULL, NULL, NULL, NULL, NULL, NULL))
+  expect_null(make_data_tabell(verdier = NULL))
 })
 
-test_that("makeDataTabell returns a pivot table", {
+test_that("make_data_tabell returns a pivot table", {
 
-  originalverdier <- list(inpDatasett = testdata,
+  originalverdier <- list(inp_datasett = testdata,
                   fane = "tmp", #?
                   rader = c("boomr_hf", "behandlende_hf"),
                   kolonner = "aar",
@@ -133,7 +133,7 @@ test_that("makeDataTabell returns a pivot table", {
 
   # Check dataset with more variables
   verdier <- originalverdier
-  verdier$inpDatasett <- testdata2
+  verdier$inp_datasett <- testdata2
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot7.rds")
 

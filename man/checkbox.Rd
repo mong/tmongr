@@ -32,7 +32,11 @@ snitt_server(input, output, session)
 keep_names_server(input, output, session)
 }
 \arguments{
-\item{id}{Shiny id}
+\item{input}{Shiny input}
+
+\item{output}{Shiny output}
+
+\item{session}{Shiny session}
 }
 \value{
 

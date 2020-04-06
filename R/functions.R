@@ -9,7 +9,7 @@
 #' @return valg_en valg_to valg_tre
 #' @export
 #'
-definerValgKol <- function(datasett, valgnr) {
+definer_valg_kol <- function(datasett, valgnr) {
   config <- get_config()$menus
 
   valg_boomr_sh <- stats::setNames(config$valg_boomr_sh$variable,

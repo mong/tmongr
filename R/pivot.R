@@ -10,7 +10,7 @@
 #' @importFrom rlang .data
 #' @export
 #'
-makeDataTabell <- function(input_dataset,
+make_data_tabell <- function(input_dataset,
                            fane,
                            verdier,
                            keep_names,
@@ -54,7 +54,7 @@ makeDataTabell <- function(input_dataset,
   }
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
-  tabell <- filtrerUt(tabell, fane, verdi,
+  tabell <- filtrer_ut(tabell, fane, verdi,
                       aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
@@ -66,7 +66,7 @@ makeDataTabell <- function(input_dataset,
   tabell[is.na(tabell)] <- 0
 
   # lage pivot-tabell av det som er igjen. Rutinen ligger under.
-  pivot <- makePivot(tabell, rad, kol, verdi)
+  pivot <- make_pivot(tabell, rad, kol, verdi)
   if (!nrow(pivot)) {
     return()
   }
@@ -78,7 +78,7 @@ makeDataTabell <- function(input_dataset,
     return()
   }
 
-  regnetTotal <- FALSE
+  regnet_total <- FALSE
 
   # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognindex?
   if (snitt | prosent) {
@@ -88,27 +88,27 @@ makeDataTabell <- function(input_dataset,
       if (!((verdi %in% c("rate", "drgrate", "liggedognrate")) &
              ("boomr_hf" %in% rad) &
              ("boomr_sykehus" %in% rad))) {
-        regnetTotal <- TRUE
-        pivot <- addTotal(pivot, rad, kol)
+        regnet_total <- TRUE
+        pivot <- add_total(pivot, rad, kol)
       }
     }
   }
 
   # legge inn sum eller snitt i siste kolonne
   if (snitt) {
-    pivot <- addLastColumn(pivot, rad, kol, verdi)
+    pivot <- add_last_column(pivot, rad, kol, verdi)
   }
 
   # Prosent blir 100 på alle, hvis sum ikke er beregnet. Har vi noe alternativ?
-  if (prosent == TRUE && regnetTotal) {
-    pivot <- prosentFunc(pivot, rad, kol)
+  if (prosent == TRUE && regnet_total) {
+    pivot <- prosent_func(pivot, rad, kol)
   }
 
   # fjerne navn på rad (1, 2, 3, etc.)
   row.names(pivot) <- NULL
 
   # bedre navn i kolonneoverskrift
-  pivot <- renameColumns(pivot)
+  pivot <- rename_columns(pivot)
 
   # Hvorfor gjøres den om til matrix?
   pivot <- as.matrix(pivot)
@@ -127,11 +127,11 @@ makeDataTabell <- function(input_dataset,
 
   # Ta bort tekst hvis tekst under er lik
   if (!keep_names & length(rad) != 1) {
-    pivot <- removeDoubleNames(pivot)
+    pivot <- remove_double_names(pivot)
   }
 
   if (verdi %in% c("kontakter", "liggetid")) {
-    pivot <- slashHeltall(pivot)
+    pivot <- slash_heltall(pivot)
   }
 
   return(pivot)
@@ -140,7 +140,7 @@ makeDataTabell <- function(input_dataset,
 
 
 # lager en pivot-tabell av sum av verdien "agg"
-makePivot <- function(data, rad, kol, agg) {
+make_pivot <- function(data, rad, kol, agg) {
 
   #' @importFrom magrittr "%>%"
   # gruppere
@@ -152,7 +152,7 @@ makePivot <- function(data, rad, kol, agg) {
     tmp <- data %>% dplyr::group_by_(rad[1], rad[2], kol)
   }
   else{
-    return(tomTabell())
+    return(tom_tabell())
   }
 
   # Velge ut verdier. Rater avhengig av boområdet!
@@ -170,7 +170,7 @@ makePivot <- function(data, rad, kol, agg) {
       tmp <- round_df(tmp, digits = 1)
     }
     else {
-      return(tomTabell())
+      return(tom_tabell())
     }
   } else if (agg == "liggedognrate") {
     if ("boomr_sykehus" %in% c(rad, kol)) {
@@ -186,7 +186,7 @@ makePivot <- function(data, rad, kol, agg) {
       tmp <- round_df(tmp, digits = 1)
     }
     else {
-      return(tomTabell())
+      return(tom_tabell())
     }
   } else if (agg == "drg_poeng") {
     tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["drg_poeng"]]))
@@ -219,7 +219,7 @@ makePivot <- function(data, rad, kol, agg) {
   tmp2 <- tidyr::spread_(tmp, kol, "verdi")
 
   return(tmp2)
-} # makePivot
+} # make_pivot
 
 
 # rund av alle tall i tabell
@@ -232,7 +232,7 @@ round_df <- function(df, digits) {
   (df)
 }
 
-removeDoubleNames <- function(datasett) {
+remove_double_names <- function(datasett) {
   # Only keep unique names first row of the table.
 
   if (is.null(dim(datasett)[1])) {
@@ -240,15 +240,15 @@ removeDoubleNames <- function(datasett) {
   }
 
   # Find rows with unique names
-  uniqueNames <- match(unique(datasett[, 1]), datasett[, 1])
+  unique_names <- match(unique(datasett[, 1]), datasett[, 1])
   # Use negative index to find cells with non-unique names
-  datasett[-uniqueNames, 1] <- ""
+  datasett[-unique_names, 1] <- ""
 
   return(datasett)
 }
 
-prosentFunc <- function(tabell, rad, kol) {
-  # Må kjøres etter "addTotal"!
+prosent_func <- function(tabell, rad, kol) {
+  # Må kjøres etter "add_total"!
   if (kol != "aar") {
     # beregne prosent bortover
     for (i in (length(rad) + 1):length(names(tabell))) {
@@ -280,7 +280,7 @@ prosentFunc <- function(tabell, rad, kol) {
 }
 
 
-addTotal <- function(tabell, rad, kol) {
+add_total <- function(tabell, rad, kol) {
 
   if ("aar" %in% colnames(tabell)) {
     tabell$aar <- as.character(tabell$aar)
@@ -330,7 +330,7 @@ addTotal <- function(tabell, rad, kol) {
   return(tabell)
 }
 
-renameColumns <- function(tabell) {
+rename_columns <- function(tabell) {
 
   names(tabell) <- sub("behandlende_sykehus", "Behandlende sykehus", names(tabell))
   names(tabell) <- sub("behandlende_hf_hn", "Behandlende HF", names(tabell))
@@ -351,7 +351,7 @@ renameColumns <- function(tabell) {
 
 }
 
-addLastColumn <- function(pivot, rad, kol, verdi) {
+add_last_column <- function(pivot, rad, kol, verdi) {
   if (verdi %in% c("kontakter", "liggetid")) {
     rund <- 0
   } else if (verdi %in% c("drg_poeng")) {
@@ -377,11 +377,11 @@ addLastColumn <- function(pivot, rad, kol, verdi) {
   return(pivot)
 }
 
-tomTabell <- function() {
+tom_tabell <- function() {
   return(data.frame())
 }
 
-slashHeltall <- function(tabell) {
+slash_heltall <- function(tabell) {
   # erstatte tall mellom 1 og 4 med "-"
   tabell[suppressWarnings(as.numeric(tabell)) < 5 & suppressWarnings(as.numeric(tabell)) > 0] <- "-"
   return(tabell)

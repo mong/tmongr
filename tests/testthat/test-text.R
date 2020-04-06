@@ -1,7 +1,7 @@
 context("text")
 
 test_that("correct text is returned", {
-  originalverdier <- list(inpDatasett = testdata,
+  originalverdier <- list(inp_datasett = testdata,
                           fane = "alle", #?
                           rad = c("boomr_hf", "behandlende_hf"),
                           kol = "aar",
@@ -18,7 +18,7 @@ test_that("correct text is returned", {
                           snitt = T)
 
   verdier <- originalverdier
-  hjelpetekst <- lagHjelpetekst(
+  hjelpetekst <- lag_hjelpetekst(
     tab =             verdier$fane,
     rad =             verdier$rad,
     kol =             verdier$kol,
@@ -38,7 +38,7 @@ test_that("correct text is returned", {
   verdier$prosent <- T
   verdier$keep_names <- T
   verdier$snitt <- F
-  hjelpetekst <- lagHjelpetekst(
+  hjelpetekst <- lag_hjelpetekst(
     tab =             verdier$fane,
     rad =              c("aar", "behandlende_rhf", "alder"),
     kol =             "hastegrad_drgtype_dogn",
@@ -56,7 +56,7 @@ test_that("correct text is returned", {
   verdier <- originalverdier
   verdier$fane <- "random"
   for (bohf in c(1, 2, 3, 4, 5, 6)) {
-    hjelpetekst <- lagHjelpetekst(
+    hjelpetekst <- lag_hjelpetekst(
       tab =             verdier$fane,
       rad =             c("boomr_sykehus", "behandlende_sykehus"),
       kol =             "hastegrad",
@@ -73,7 +73,7 @@ test_that("correct text is returned", {
   }
 
   for (behhf in c(1, 2, 3, 4, 5, 6, 7)) {
-    hjelpetekst <- lagHjelpetekst(
+    hjelpetekst <- lag_hjelpetekst(
       tab =             verdier$fane,
       rad =             c("boomr_rhf", "aar"),
       kol =             "behandlingsniva",
@@ -97,7 +97,7 @@ test_that("correct text is returned", {
                   "drgrate",
                   "drg_index",
                   "random")) {
-    hjelpetekst <- lagHjelpetekst(
+    hjelpetekst <- lag_hjelpetekst(
       tab =             verdier$fane,
       rad =             c("behandler", "hastegrad"),
       kol =             "kjonn",
@@ -114,7 +114,7 @@ test_that("correct text is returned", {
   }
 
   for (tab in c("dogn", "dag", "poli", "Informasjon")) {
-    hjelpetekst <- lagHjelpetekst(
+    hjelpetekst <- lag_hjelpetekst(
       tab =             tab,
       rad =             verdier$rad,
       kol =             "boomr_rhf",
@@ -130,11 +130,11 @@ test_that("correct text is returned", {
     expect_equal_to_reference(hjelpetekst, paste0("data/ref_tekst_tab_",  tab, ".rds"))
   }
 
-  expect_null(lagHjelpetekst(rad = NULL, aar = "", verdi = ""))
-  expect_null(lagHjelpetekst(rad = "", aar = NULL, verdi = ""))
-  expect_null(lagHjelpetekst(rad = "", aar = "", verdi = NULL))
+  expect_null(lag_hjelpetekst(rad = NULL, aar = "", verdi = ""))
+  expect_null(lag_hjelpetekst(rad = "", aar = NULL, verdi = ""))
+  expect_null(lag_hjelpetekst(rad = "", aar = "", verdi = NULL))
 
-  expect_error(lagHjelpetekst())
+  expect_error(lag_hjelpetekst())
 
 })
 

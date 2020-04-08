@@ -9,7 +9,7 @@
 #' @return valg_en valg_to valg_tre
 #' @export
 #'
-definer_valg_kol <- function(datasett, valgnr) {
+definer_valg_kol <- function(col_names, valgnr) {
   config <- get_config()$menus
 
   valg_boomr_sh <- stats::setNames(config$valg_boomr_sh$variable,
@@ -50,8 +50,6 @@ definer_valg_kol <- function(datasett, valgnr) {
                              config$valg_drgrate$txt)
     valg_drgindex <- stats::setNames(config$valg_drgindex$variable,
                               config$valg_drgindex$txt)
-
-    col_names <- tolower(colnames(datasett))
 
     if ("alder" %in% col_names) {
         valg_alder <- stats::setNames(config$valg_alder$variable,

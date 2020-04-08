@@ -10,16 +10,11 @@
 app_server <- function(input, output, session) {
 
     datasett <- get_data()
-    meny <- shiny::reactiveValues(en = NULL, to = NULL, tre = NULL)
-
-    obs_a <- shiny::observe({
-      meny$en <- definer_valg_kol(datasett, 1)
-      meny$to <- definer_valg_kol(datasett, 2)
-      meny$tre <- definer_valg_kol(datasett, 3)
-      meny$fire <- definer_valg_kol(datasett, 4)
-
-      meny$to_default <<- "behandlende_hf"
-    })
+    meny <- shiny::reactiveValues(en = definer_valg_kol(tolower(colnames(datasett)), 1),
+                                  to = definer_valg_kol(tolower(colnames(datasett)), 2),
+                                  tre = definer_valg_kol(tolower(colnames(datasett)), 3),
+                                  fire = definer_valg_kol(tolower(colnames(datasett)), 4)
+                                  )
 
     make_table <- shiny::reactive({
       verdier <- lage_parametere()
@@ -63,7 +58,7 @@ app_server <- function(input, output, session) {
     shiny::callModule(rad2_server,
                "rad2",
                pickable = meny$to,
-               default = meny$to_default)
+               default = "behandlende_hf")
 
     shiny::callModule(kolonner_server,
                "kolonner",
@@ -95,14 +90,14 @@ app_server <- function(input, output, session) {
 
     shiny::callModule(alder_server, "alder",
                colnames = colnames(datasett),
-               pickable = unique(datasett$alder))
+               pickable = sort(unique(datasett$alder)))
 
     shiny::callModule(kjonn_server, "kjonn",
                colnames = colnames(datasett),
                pickable = unique(datasett$kjonn))
 
     shiny::callModule(aar_server, "aar",
-               pickable = unique(datasett$aar))
+               pickable = sort(unique(datasett$aar)))
 
     shiny::callModule(bo_server, "bo")
 

@@ -50,64 +50,57 @@ app_server <- function(input, output, session) {
       debounced_reactive()
     })
 
-    shiny::callModule(rad1_server,
-               "rad1",
+    rad1_server("rad1",
                pickable = meny$en,
                default = "boomr_rhf")
 
-    shiny::callModule(rad2_server,
-               "rad2",
+    rad2_server("rad2",
                pickable = meny$to,
                default = "behandlende_hf")
 
-    shiny::callModule(kolonner_server,
-               "kolonner",
+    kolonner_server("kolonner",
                pickable = meny$tre,
                default = "aar")
 
-    shiny::callModule(verdi_server,
-               "verdi",
+    verdi_server("verdi",
                pickable = meny$fire,
                default = "kontakter")
 
-    shiny::callModule(behandlingsniva_server,
-               "behandlingsniva",
+    behandlingsniva_server("behandlingsniva",
                colnames = colnames(datasett),
                pickable = unique(datasett$behandlingsniva))
 
-    shiny::callModule(hastegrad1_server,
-               "hastegrad1",
+    hastegrad1_server("hastegrad1",
                colnames = colnames(datasett),
                pickable = unique(datasett$hastegrad))
 
-    shiny::callModule(hastegrad2_server,
-               "hastegrad2",
+    hastegrad2_server("hastegrad2",
                colnames = colnames(datasett),
                pickable = unique(datasett$drgtypehastegrad))
 
-    shiny::callModule(just_overf_server, "just_overf",
+    just_overf_server("just_overf",
                colnames = colnames(datasett))
 
-    shiny::callModule(alder_server, "alder",
+    alder_server("alder",
                colnames = colnames(datasett),
                pickable = sort(unique(datasett$alder)))
 
-    shiny::callModule(kjonn_server, "kjonn",
+    kjonn_server("kjonn",
                colnames = colnames(datasett),
                pickable = unique(datasett$kjonn))
 
-    shiny::callModule(aar_server, "aar",
+    aar_server("aar",
                pickable = sort(unique(datasett$aar)))
 
-    shiny::callModule(bo_server, "bo")
+    bo_server("bo")
 
-    shiny::callModule(beh_server, "beh")
+    beh_server("beh")
 
-    shiny::callModule(prosent_server, "prosent")
+    prosent_server("prosent")
 
-    shiny::callModule(snitt_server, "snitt")
+    snitt_server("snitt")
 
-    shiny::callModule(keep_names_server, "keep_names")
+    keep_names_server("keep_names")
 
     # Download table to cvs file
     output$download_data <- shiny::downloadHandler(

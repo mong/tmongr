@@ -20,49 +20,6 @@ test_that("app_ui", {
   expect_true(grepl("Ratene er beregnet ut i fra befolkningstall fra SSB", ref_chr, fixed = TRUE))
 })
 
-test_that("server_ui", {
-  shiny::testModule(app_server, {
-    expect_equal(class(meny), "reactivevalues")
-    expect_equal(class(output), "shinyoutput")
-    expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
-    session$setInputs(rad2 = "ingen")
-
-    expect_null(output$alle)
-    expect_equal(as.character(output$instilling[["html"]]), "<h4>Andre instillinger</h4>")
-    session$setInputs(overf = FALSE)
-    session$setInputs(overf = TRUE)
-
-    expect_equal_to_reference(output$figurtekst, "data/empty_figurtekst.rds")
-
-    expect_true(grepl("Last ned data", as.character(output$lastned[["html"]])))
-    expect_true(grepl("download_data", as.character(output$lastned[["html"]]), ))
-    session$setInputs(tab = "dogn")
-    expect_null(output$alle)
-
-    expect_null(lage_parametere())
-    session$setInputs(xcol1 = "boomr_rhf")
-    expect_null(lage_parametere())
-    session$setInputs(snitt = FALSE)
-    session$setInputs(keep_names = FALSE)
-
-    session$setInputs(xcol2 = "behandlende_rhf")
-    expect_equal_to_reference(lage_parametere(), "data/lage_parametere.rds")
-
-    session$setInputs(xcol2 = "ingen")
-    expect_equal_to_reference(lage_parametere(), "data/lage_parametere2.rds")
-    session$setInputs(xcol2 = "behandlende_rhf")
-    session$setInputs(prosent = FALSE)
-    expect_equal_to_reference(lage_parametere(), "data/lage_parametere.rds")
-    session$setInputs(prosent = TRUE)
-    expect_equal_to_reference(lage_parametere(), "data/lage_parametere3.rds")
-    expect_equal_to_reference(make_table(), "data/make_table.rds")
-    session$setInputs(prosent = FALSE)
-    expect_equal_to_reference(make_table(), "data/make_table2.rds")
-    session$setInputs(xcol2 = "boomr_rhf")
-    expect_equal_to_reference(make_table(), "data/make_table3.rds")
-  })
-})
-
 test_that("run_app", {
   expect_equal(class(run_app()), "shiny.appobj")
   expect_equal(class(run_app()$httpHandler), "function")

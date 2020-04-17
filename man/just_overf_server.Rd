@@ -4,18 +4,12 @@
 \alias{just_overf_server}
 \title{Module for the "adjust for transfers" button}
 \usage{
-just_overf_server(input, output, session, colnames)
+just_overf_server(id, colnames)
 }
 \arguments{
-\item{input}{internal}
-
-\item{output}{internal}
-
-\item{session}{internal}
+\item{id}{Shiny id}
 
 \item{colnames}{Column names in the data}
-
-\item{id}{Shiny id}
 }
 \value{
 

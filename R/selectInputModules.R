@@ -1,4 +1,5 @@
-rad1_server <- function(input, output, session, pickable, default) {
+rad1_server <- function(id, pickable, default) {
+  shiny::moduleServer(id, function(input, output, session) {
     # valg rader 1
     output$rad1 <- shiny::renderUI({
       shiny::tags$div(title = "Velg første grupperingsvariabel",
@@ -8,10 +9,11 @@ rad1_server <- function(input, output, session, pickable, default) {
                            selected = default
                ))
     })
-
+})
 }
 
-rad2_server <- function(input, output, session, pickable, default) {
+rad2_server <- function(id, pickable, default) {
+  shiny::moduleServer(id, function(input, output, session) {
     # valg rader 2
     output$rad2 <- shiny::renderUI({
       shiny::tags$div(title = "Velg andre grupperingsvariabel",
@@ -21,10 +23,11 @@ rad2_server <- function(input, output, session, pickable, default) {
                            selected = default
                ))
     })
-
+})
 }
 
-kolonner_server <- function(input, output, session, pickable, default) {
+kolonner_server <- function(id, pickable, default) {
+  shiny::moduleServer(id, function(input, output, session) {
     # valg kolonner
     output$kolonner <- shiny::renderUI({
       shiny::tags$div(title = "Velg kolonner",
@@ -34,10 +37,11 @@ kolonner_server <- function(input, output, session, pickable, default) {
                            selected = default
                            ))
     })
-
+})
 }
 
-verdi_server <- function(input, output, session, pickable, default) {
+verdi_server <- function(id, pickable, default) {
+  shiny::moduleServer(id, function(input, output, session) {
     # Velg hva som skal tabuleres
     output$verdi <- shiny::renderUI({
       shiny::tags$div(title = "Velg hva som skal vises",
@@ -48,9 +52,11 @@ verdi_server <- function(input, output, session, pickable, default) {
                            ))
     })
 
+})
 }
 
-bo_server <- function(input, output, session) {
+bo_server <- function(id) {
+  shiny::moduleServer(id, function(input, output, session) {
     output$bo <- shiny::renderUI({
       shiny::tags$div(title = "Velg hvilke pasienter som skal inkluderes, basert på pasientens bosted",
                shiny::selectInput("bo",
@@ -64,9 +70,11 @@ bo_server <- function(input, output, session) {
                            ),
                            selected = 2))
     })
+})
 }
 
-beh_server <- function(input, output, session) {
+beh_server <- function(id) {
+  shiny::moduleServer(id, function(input, output, session) {
     output$beh <- shiny::renderUI({
       shiny::tags$div(title = "Velg hvilke behandlere som skal inkluderes",
                shiny::selectInput("beh",
@@ -83,4 +91,5 @@ beh_server <- function(input, output, session) {
                            selected = 1
                ))
     })
+})
 }

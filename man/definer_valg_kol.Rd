@@ -4,12 +4,12 @@
 \alias{definer_valg_kol}
 \title{Define the possible selections}
 \usage{
-definer_valg_kol(datasett, valgnr)
+definer_valg_kol(col_names, valgnr)
 }
 \arguments{
-\item{datasett}{Datasett}
-
 \item{valgnr}{Hvilket valg}
+
+\item{datasett}{Datasett}
 }
 \value{
 valg_en valg_to valg_tre

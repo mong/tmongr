@@ -2,15 +2,13 @@
 #'
 #' @param id Shiny id
 #'
-#' @param input internal
-#' @param output internal
-#' @param session internal
 #' @param colnames Column names in the data
 #'
 #' @return
 #' @export
 #'
-just_overf_server <- function(input, output, session, colnames) {
+just_overf_server <- function(id, colnames) {
+  shiny::moduleServer(id, function(input, output, session) {
     output$just_overf <- shiny::renderUI({
       if ("niva" %in% colnames) {
         shiny::tags$div(title = "Juster for overføringer mellom sykehus.
@@ -21,4 +19,5 @@ Ved justering for overføringer er alle døgn- og dagopphold nær i tid regnet s
                                               status = "info"))
       }
     })
+})
 }

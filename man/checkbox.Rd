@@ -13,23 +13,23 @@
 \alias{keep_names_server}
 \title{Module for the year checkbox}
 \usage{
-aar_server(input, output, session, pickable)
+aar_server(id, pickable)
 
-behandlingsniva_server(input, output, session, pickable, colnames)
+behandlingsniva_server(id, pickable, colnames)
 
-hastegrad1_server(input, output, session, pickable, colnames)
+hastegrad1_server(id, pickable, colnames)
 
-hastegrad2_server(input, output, session, pickable, colnames)
+hastegrad2_server(id, pickable, colnames)
 
-kjonn_server(input, output, session, pickable, colnames)
+kjonn_server(id, pickable, colnames)
 
-alder_server(input, output, session, pickable, colnames)
+alder_server(id, pickable, colnames)
 
-prosent_server(input, output, session, pickable)
+prosent_server(id, pickable)
 
-snitt_server(input, output, session)
+snitt_server(id)
 
-keep_names_server(input, output, session)
+keep_names_server(id)
 }
 \arguments{
 \item{input}{Shiny input}

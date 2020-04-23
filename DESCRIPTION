@@ -4,7 +4,7 @@ Version: 3.1.0.9000
 Date: 2020-04-02
 Authors@R: person("Steindal", "Arnfinn Hykkerud", email = "arnfinn.steindal@skde.no", role = c("aut", "cre"))
 Description: Rshinyapp code to produce https://skde.shinyapps.io/tabellverk/.
-Depends: R (>= 3.2.3)
+Depends: R (>= 3.5.0)
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -24,11 +24,11 @@ Imports:
     yaml,
     utils,
     methods,
-    stats
+    stats,
+    markdown
 Suggests:
     testthat,
     covr,
-    purrr,
-    markdown
+    purrr
 Remotes:
     rstudio/shiny

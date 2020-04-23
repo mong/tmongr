@@ -30,3 +30,5 @@ Suggests:
     covr,
     purrr,
     markdown
+Remotes:
+    rstudio/shiny

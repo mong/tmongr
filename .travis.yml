@@ -53,7 +53,7 @@ after_success:
 
 deploy:
   - provider: pages
-    cleanup: false
+    skip_cleanup: true
     token: $GH_TOKEN
     keep_history: false
     local_dir: docs
@@ -63,7 +63,7 @@ deploy:
   # deploy docker image to dockerhub
   - provider: script
     script: bash docker_push
-    cleanup: false
+    skip_cleanup: true
     on:
       all_branches: true
       condition: $TRAVIS_R_VERSION_STRING == "release"

@@ -1,6 +1,8 @@
 language: r
 cache: packages
 warnings_are_errors: false
+os: linux
+dist: xenial
 
 r:
   - 3.5
@@ -51,7 +53,7 @@ after_success:
 
 deploy:
   - provider: pages
-    skip_cleanup: true
+    cleanup: false
     token: $GH_TOKEN
     keep_history: false
     local_dir: docs
@@ -61,7 +63,7 @@ deploy:
   # deploy docker image to dockerhub
   - provider: script
     script: bash docker_push
-    skip_cleanup: true
+    cleanup: false
     on:
       all_branches: true
       condition: $TRAVIS_R_VERSION_STRING == "release"

@@ -20,13 +20,13 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
 - Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/mong/tmongr/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: ([3.1.0](https://github.com/mong/tmongr/releases/tag/v3.1.0))
+Versjon: <a href="https://github.com/mong/tmongr/releases/tag/v3.1.0" target="_blank">3.1.0</a>
 
 Tidligere versjoner:
-- [16.12.2019](https://skde.shinyapps.io/tabellverk_2019_12_16/)
-- [22.11.2019](https://skde.shinyapps.io/tabellverk_2019_11_22/)
-- [12.09.2019](https://skde.shinyapps.io/tabellverk_2019_09_12/)
-- [03.06.2019](https://skde.shinyapps.io/tabellverk_2019_06_03/)
-- [21.09.2018](https://skde.shinyapps.io/tabellverk_2018_09_21/)
+- <a href="https://skde.shinyapps.io/tabellverk_2019_12_16/" target="_blank">16.12.2019</a>
+- <a href="https://skde.shinyapps.io/tabellverk_2019_11_22/" target="_blank">22.11.2019</a>
+- <a href="https://skde.shinyapps.io/tabellverk_2019_09_12/" target="_blank">12.09.2019</a>
+- <a href="https://skde.shinyapps.io/tabellverk_2019_06_03/" target="_blank">03.06.2019</a>
+- <a href="https://skde.shinyapps.io/tabellverk_2018_09_21/" target="_blank">21.09.2018</a>
 
 </br>

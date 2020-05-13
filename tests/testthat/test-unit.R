@@ -9,11 +9,19 @@ test_that("filter_bo is correct", {
 })
 
 test_that("filter_beh is correct", {
-    for (beh in c(1, 2, 3, 4, 5, 6, 7, 8, 9)) {
-        expect_equal_to_reference(filter_beh(testdata, beh), paste0("data/unit_beh_", beh, ".rds"))
+  k <- 0
+    for (beh in c("Alle",
+                  "Helse Nord RHF",
+                  "Finnmarkssykehuset HF",
+                  "UNN HF",
+                  "Nordlandssykehuset HF",
+                  "Helgelandssykehuset HF",
+                  "HF utenfor Helse Nord RHF",
+                  "Avtalespesialister",
+                  "Private sykehus")) {
+      k <- k + 1
+        expect_equal_to_reference(filter_beh(testdata, beh), paste0("data/unit_beh_", k, ".rds"))
     }
-    for (i in 10:24) expect_null(filter_beh(testdata, i))
-    expect_null(filter_beh(testdata, "random_string"))
 })
 
 test_that("filter_aar is correct", {

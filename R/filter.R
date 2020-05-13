@@ -78,33 +78,16 @@ filter_bo <- function(datasett, bo) {
 
 # Kun se på behandlende foretak man er interessert i
 filter_beh <- function(datasett, beh) {
-    if (beh == 1) {
+    if (beh == "Alle") {
         # ingen filtrering
         return(datasett)
     } else {
-        if (beh == 2) {
+
+        if (beh == "Helse Nord RHF") {
             tmpsett <- dplyr::filter(datasett, .data[["behandlende_rhf"]] == "Helse Nord RHF")
             return(tmpsett)
-        } else if (beh == 3) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "Finnmarkssykehuset HF")
-            return(tmpsett)
-        } else if (beh == 4) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "UNN HF")
-            return(tmpsett)
-        } else if (beh == 5) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "Nordlandssykehuset HF")
-            return(tmpsett)
-        } else if (beh == 6) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "Helgelandssykehuset HF")
-            return(tmpsett)
-        } else if (beh == 7) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "HF utenfor Helse Nord RHF")
-            return(tmpsett)
-        } else if (beh == 8) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "Avtalespesialister")
-            return(tmpsett)
-        } else if (beh == 9) {
-            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == "Private sykehus")
+        } else {
+            tmpsett <- dplyr::filter(datasett, .data[["behandlende_hf_hn"]] == beh)
             return(tmpsett)
         }
     }

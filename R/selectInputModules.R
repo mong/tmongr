@@ -73,22 +73,14 @@ bo_server <- function(id) {
 })
 }
 
-beh_server <- function(id) {
+beh_server <- function(id, pickable, default) {
   shiny::moduleServer(id, function(input, output, session) {
     output$beh <- shiny::renderUI({
       shiny::tags$div(title = "Velg hvilke behandlere som skal inkluderes",
                shiny::selectInput("beh",
-                           choices = c("Alle" = 1,
-                                       "Helse Nord RHF" = 2,
-                                       "Finnmarkssykehuset HF" = 3,
-                                       "UNN HF" = 4,
-                                       "Nordlandssykehuset HF" = 5,
-                                       "Helgelandssykehuset HF" = 6,
-                                       "Avtalespesialister" = 8,
-                                       "Private sykehus" = 9,
-                                       "Utenfor Helse Nord RHF" = 7),
+                           choices = pickable,
                            label = "Behandler",
-                           selected = 1
+                           selected = default
                ))
     })
 })

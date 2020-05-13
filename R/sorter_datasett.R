@@ -1,4 +1,4 @@
-sorter_datasett <- function(datasett, rad, kol) {
+sorter_datasett <- function(datasett, rad = NULL, kol = NULL) {
   # Sortere datasett i forhold til boområdet og behandlingsområdet
 
   filter_sort <- function(condition, df) {

@@ -124,12 +124,17 @@ test_that("bo_server", {
 })
 
 test_that("beh_server", {
-    id <- "beh"
-    function_name <- get(paste0(id, "_server"))
-
-    shiny::testServer(function_name, {
+    shiny::testServer(beh_server, args = list(pickable = c("Alle" = 1,
+                                       "Helse Nord RHF" = 2,
+                                       "Finnmarkssykehuset HF" = 3,
+                                       "UNN HF" = 4,
+                                       "Nordlandssykehuset HF" = 5,
+                                       "Helgelandssykehuset HF" = 6,
+                                       "Avtalespesialister" = 8,
+                                       "Private sykehus" = 9,
+                                       "Utenfor Helse Nord RHF" = 7), default = 1), {
         expect_equal_to_reference(output$beh,
-                                  paste0("data/module_", "beh", "1.rds")
+                                  "data/module_beh1.rds"
         )
     })
 })

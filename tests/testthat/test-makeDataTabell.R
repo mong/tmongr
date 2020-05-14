@@ -30,7 +30,7 @@ test_that("make_data_tabell returns a pivot table", {
                   verdi = "kontakter",
                   aar = 2016,
                   bo = 2,
-                  beh = 1,
+                  beh = "Alle",
                   behandlingsniva = c("Døgnopphold",
                                       "Dagbehandling",
                                       "Poliklinikk",
@@ -48,32 +48,32 @@ test_that("make_data_tabell returns a pivot table", {
   expect_equal_to_reference(tmp, "data/ref_pivot1.rds")
 
   verdier$bo <- 1
-  verdier$beh <- 2
+  verdier$beh <- "Helse Nord RHF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2a.rds")
 
   verdier$bo <- 3
-  verdier$beh <- 3
+  verdier$beh <- "Finnmarkssykehuset HF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2b.rds")
 
   verdier$bo <- 4
-  verdier$beh <- 4
+  verdier$beh <- "UNN HF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2c.rds")
 
   verdier$bo <- 5
-  verdier$beh <- 5
+  verdier$beh <- "Nordlandssykehuset HF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2d.rds")
 
   verdier$bo <- 6
-  verdier$beh <- 6
+  verdier$beh <- "Helgelandssykehuset HF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2e.rds")
 
   verdier$bo <- 1
-  verdier$beh <- 7
+  verdier$beh <- "HF utenfor Helse Nord RHF"
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot2f.rds")
 

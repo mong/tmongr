@@ -94,7 +94,14 @@ app_server <- function(input, output, session) {
 
     bo_server("bo")
 
-    beh_server("beh")
+    beh_server("beh",
+               pickable = c("Alle",
+                            "Helse Nord RHF",
+                            sorter_datasett(unique(datasett$behandlende_hf_hn),
+                                            rad = "behandlende_hf_hn"
+                                            )
+                            ),
+               default = "Alle")
 
     prosent_server("prosent")
 
@@ -158,7 +165,7 @@ app_server <- function(input, output, session) {
       }
 
       bo <- parameter_definert(input$bo, 2)
-      beh <- parameter_definert(input$beh, 1)
+      beh <- parameter_definert(input$beh, "Alle")
       verdi <- parameter_definert(input$verdi, "kontakter")
       prosent <- parameter_definert(input$prosent, FALSE)
       aar <- parameter_definert(input$ar, unique(datasett$aar))

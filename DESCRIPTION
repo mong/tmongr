@@ -30,5 +30,3 @@ Suggests:
     testthat,
     covr,
     purrr
-Remotes:
-    rstudio/shiny

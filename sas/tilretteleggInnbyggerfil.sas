@@ -11,8 +11,8 @@ Variablen `just_aar` bestemmer justeringsår
 */
 
 data innbygg;
-set innbygg.innb_2004_2018_bydel_allebyer;
-  where aar in (2014:2018);
+set innbygg.innb_2005_2019_bydel_allebyer;
+  where aar in (2014:2019);
   %boomraader;
 run;
 

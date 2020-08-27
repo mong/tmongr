@@ -1,0 +1,52 @@
+## SHO ##
+rm(list=ls())
+
+uten_overf <- read.table('../tmongrdata/sho_behandlert19.csv', 
+                         sep = ",", 
+                         header=T,
+                         fileEncoding = "LATIN1", 
+                         stringsAsFactors = FALSE)
+
+data_2019 <- read.table('../tmongrdata/sho_behandler_2019.csv', 
+                        sep = ",", 
+                        header=T, 
+                        fileEncoding = "LATIN1", 
+                        stringsAsFactors = FALSE)
+
+uten_overf <- rbind(uten_overf, data_2019)
+
+
+names(uten_overf) <- tolower(names(uten_overf))
+
+
+med_overf <- read.table('../tmongrdata/sho_justoverft19.csv', 
+                        sep = ",", 
+                        header=T, 
+                        fileEncoding = "LATIN1", 
+                        stringsAsFactors = FALSE)
+
+data_2019_overf <- read.table('../tmongrdata/sho_justoverf_2019.csv', 
+                              sep = ",", 
+                              header=T, 
+                              fileEncoding = "LATIN1", 
+                              stringsAsFactors = FALSE)
+
+med_overf <- rbind(med_overf, data_2019_overf)
+
+
+names(med_overf) <- tolower(names(med_overf))
+
+uten_overf$niva <- "Uten overf"
+med_overf$niva <- "Med overf"
+all_data <- rbind(uten_overf, med_overf)
+
+
+# Run the following line to test the app locally first
+dynamiskTabellverk::launch_application(datasett = all_data)
+
+# Submit the app to shinyapp.io
+dynamiskTabellverk::submit_application(datasett = all_data,
+                                       proxy_url = FALSE,
+                                       name = "tabellverk_2019")
+
+

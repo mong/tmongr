@@ -47,6 +47,6 @@ dynamiskTabellverk::launch_application(datasett = all_data)
 # Submit the app to shinyapp.io
 dynamiskTabellverk::submit_application(datasett = all_data,
                                        proxy_url = FALSE,
-                                       name = "tabellverk_2019")
+                                       name = "tabellverk_fag_2019")
 
 

@@ -44,9 +44,10 @@ all_data <- rbind(uten_overf, med_overf)
 # Run the following line to test the app locally first
 dynamiskTabellverk::launch_application(datasett = all_data)
 
+remotes::install_github("mong/tmongr", ref = "v2.8")
+
 # Submit the app to shinyapp.io
 dynamiskTabellverk::submit_application(datasett = all_data,
-                                       proxy_url = FALSE,
-                                       name = "tabellverk_fag_2019")
+                                       name = "tabellverk_fag_2020_08_27")
 
 

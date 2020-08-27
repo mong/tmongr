@@ -22,7 +22,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
     aar_tekst = "..."
     extra = ""
     hjelpetekst = ""
-    
+
     if (!is.null(rad) & !is.null(aar) & !is.null(verdi)) {
         
         if (tab == "alle") {
@@ -236,7 +236,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
         all_tekst <- paste(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>", sep = "")
         
         extra = F
-        if ((length(alder) < 4) | (length(hastegrad2) < 4) | (length(behandlingsniva) < 3) | (tab %in% c("dag", "dogn", "poli"))) {
+        if (((length(alder) < 4) & !is.null(alder)) | ((length(hastegrad2) < 4) & !is.null(hastegrad2)) | (length(behandlingsniva) < 3) | (tab %in% c("dag", "dogn", "poli"))) {
             extra = T
         }
         
@@ -252,7 +252,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
             all_tekst <- paste0(all_tekst, "<li> For en del konsultasjoner hos avtalespesialister er ikke fagområde for episoden rapport inn til NPR. Disse konsultasjonene har fått definert fagområde for episoden basert på fagområde til avtalespesialisten.</li>")
         }
         
-        if (length(alder) != 4) {
+        if (length(alder) != 4 & !is.null(alder)) {
             if (length(alder) == 1) {
                 tmp1 = "<li>Kun aldersgruppen "
                 alder_tekst = paste(tmp1, alder[length(alder)], "</li>", sep = "")
@@ -265,7 +265,7 @@ lagHjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent, behandli
             all_tekst <- paste(all_tekst, alder_tekst, sep = "")
         }
         
-        if (length(hastegrad2) != 5) {
+        if (length(hastegrad2) != 5 & !is.null(hastegrad2)) {
             hast <- sapply(hastegrad2, tolower)
             if (length(hast) == 1) {
                 tmp1 = "<li>Kun hastegrad "

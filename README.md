@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![Version](https://img.shields.io/github/v/release/mong/tmongr?sort=semver)](https://github.com/mong/tmongr/releases)
-[![Travis build status](https://travis-ci.org/mong/tmongr.svg?branch=master)](https://travis-ci.org/mong/tmongr)
+[![Travis build status](https://travis-ci.com/mong/tmongr.svg?branch=master)](https://travis-ci.com/mong/tmongr)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mong/tmongr?branch=master&svg=true)](https://ci.appveyor.com/project/mong/tmongr)
 [![Codecov test coverage](https://codecov.io/gh/mong/tmongr/branch/master/graph/badge.svg)](https://codecov.io/gh/mong/tmongr?branch=master)
 [![Coveralls test coverage](https://coveralls.io/repos/github/mong/tmongr/badge.svg?branch=master)](https://coveralls.io/github/mong/tmongr?branch=master)

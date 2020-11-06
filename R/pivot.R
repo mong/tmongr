@@ -145,13 +145,10 @@ make_pivot <- function(data, rad, kol, agg) {
   #' @importFrom magrittr "%>%"
   # gruppere
   # Burde skrives om, uten if nesting (issue #6)
-  if (length(rad) == 1) {
-    tmp <- data %>% dplyr::group_by_(rad, kol)
-  }
-  else if (length(rad) == 2) {
-    tmp <- data %>% dplyr::group_by_(rad[1], rad[2], kol)
-  }
-  else{
+  group_var <- unique(c(rad, kol))
+  if (length(rad) %in% c(1, 2)) {
+    tmp <- data %>% dplyr::group_by(.dots = group_var)
+  } else{
     return(tom_tabell())
   }
 

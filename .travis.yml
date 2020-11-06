@@ -48,6 +48,9 @@ after_success:
   - Rscript -e 'pkgdown::build_site()'
   - wget https://raw.githubusercontent.com/mong/scripts/master/travis/docker_push
 
+notifications:
+  slack: skde:$SLACK_TOKEN
+
 deploy:
   - provider: pages
     skip_cleanup: true

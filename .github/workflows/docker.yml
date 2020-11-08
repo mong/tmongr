@@ -16,7 +16,6 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Fetch data
         run: git clone https://arnfinn:${GH_TOKEN}@github.com/arnfinn/tabellverk.git
       - name: R setup
         uses: r-lib/actions/setup-r@v1

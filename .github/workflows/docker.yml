@@ -46,6 +46,8 @@ jobs:
           echo GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
       - name: Fetch data
         run: |
+          git config --unset http.proxy 
+          git config --unset https.proxy 
           git clone https://gitlab-ci-token:$GL_TOKEN@gitlab.com/$GL_ORG
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1

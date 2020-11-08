@@ -11,6 +11,6 @@ test_that("create_config", {
 test_that("get_config", {
   expect_equal_to_reference(get_config(dir = "data"), "data/get_config.rds")
 
-  # This will fail if default version of qmongr.yml has been changed.
+  # This will fail if default version of tmongr.yml has been changed.
   expect_equal_to_reference(get_config(), "data/get_config_default.rds")
 })

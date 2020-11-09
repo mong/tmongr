@@ -46,6 +46,7 @@ jobs:
           echo created: $(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo GITHUB_REF: $GITHUB_REF
           echo GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+          echo "TAGS=${TAGS}" >> $GITHUB_ENV
       - name: Print some stuff
         run: |
           echo "xxxxxx Print xxxxxx"

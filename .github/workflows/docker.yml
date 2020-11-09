@@ -51,6 +51,7 @@ jobs:
           echo "xxxxxx Print xxxxxx"
           echo tags: ${{ steps.prep.outputs.tags }}
           echo TAGS: ${{ steps.prep.outputs.TAGS }}
+          echo TAGS2: ${TAGS}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub

@@ -46,6 +46,10 @@ jobs:
           echo created: $(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo GITHUB_REF: $GITHUB_REF
           echo GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+      - name: Print some stuff
+        run: |
+          echo "xxxxxx Print xxxxxx"
+          echo tags: ${{ steps.prep.outputs.tags }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub

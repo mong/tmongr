@@ -53,6 +53,7 @@ jobs:
           echo tags: ${{ steps.prep.outputs.tags }}
           echo TAGS: ${{ steps.prep.outputs.TAGS }}
           echo TAGS2: ${TAGS}
+          echo GITHUB_ENV: $GITHUB_ENV
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub

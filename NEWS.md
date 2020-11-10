@@ -1,3 +1,8 @@
+# tmongr 3.2.0
+
+- Activated github action and deactivated Travis CI
+- Polish of code etc.
+
 # tmongr 3.1.0
 
 ### More robust sorting ([#83](https://github.com/mong/tmongr/pull/83))

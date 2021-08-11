@@ -48,3 +48,22 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
+      - name: Set release variables
+        if: github.event_name == 'release'
+        run: |
+          echo "S3Key='prod-tmongr_dockerrun.json'" >> $GITHUB_ENV
+          echo "env_name=prod-tabellverk" >> $GITHUB_ENV
+          echo "version_label=${GITHUB_REF:10:6}" >> $GITHUB_ENV
+          echo "descr='Release tag deploy'" >> $GITHUB_ENV
+      - name: Set QA variables
+        if: github.event_name == 'push'
+        run: |
+          echo "S3Key='qa-tmongr_dockerrun.json'" >> $GITHUB_ENV
+          echo "env_name=qa-tabellverk" >> $GITHUB_ENV
+          echo "version_label=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
+          echo "descr='Master commits deploy'" >> $GITHUB_ENV
+      - name: Update elasticbeanstalk
+        if: github.event_name != 'pull_request'
+        run: |
+          aws elasticbeanstalk create-application-version --application-name tabellverk --source-bundle S3Bucket="elasticbeanstalk-eu-west-1-247247832514",S3Key=${{ env.S3Key }} --version-label ${{ env.version_label }} --description ${{ env.descr }}
+          aws elasticbeanstalk update-environment --environment-name ${{ env.env_name }} --version-label ${{ env.version_label }}

@@ -1,3 +1,7 @@
+# tmongr 3.3.0
+
+- Make the app ready for Elastic Beanstalk
+
 # tmongr 3.2.0
 
 - Activated github action and deactivated Travis CI

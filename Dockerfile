@@ -12,6 +12,6 @@ RUN rm *.tar.gz
 COPY tabellverk/data/behandler.rds .
 COPY tabellverk/data/justertoverf.rds .
 
-EXPOSE 3838
+EXPOSE 80
 
 CMD ["R", "-e", "options(shiny.port=3838,shiny.host='0.0.0.0'); tmongr::run_app()"]

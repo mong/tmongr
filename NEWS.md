@@ -1,3 +1,7 @@
+# tmongr 3.3.1
+
+- Docker: define `WORKDIR` to fix `hadolint` error.
+
 # tmongr 3.3.0
 
 - Make the app ready for Elastic Beanstalk

@@ -57,10 +57,10 @@ docker build -t tmongr .
 
 To run the docker container from a system command terminal do:
 ```sh
-docker run -p 3838:3838 tmongr
+docker run -p 80:80 tmongr
 ```
 
-Then, open a web browser window and navigate to [your localhost at port 3838](http://127.0.0.1:3838) to use the _tmongr_ web application.
+Then, open a web browser window and navigate to [your localhost at port 80](http://127.0.0.1:80) to use the _tmongr_ web application.
 
 To stop the docker container hit ```Ctrl + c``` in the system comman terminal.
 

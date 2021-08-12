@@ -1,4 +1,4 @@
-FROM hnskde/tmongr-base-r
+FROM hnskde/tmongr-base-r:1.0.0
 
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
 LABEL no.mongr.cd.enable="true"

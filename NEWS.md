@@ -1,3 +1,7 @@
+# tmongr 3.3.2
+
+- Keep the app alive with heartbeats/clock. The websocket connection was lost after 60 sec. before, if the user did not interact with the app.
+
 # tmongr 3.3.1
 
 - Docker: define `WORKDIR` to fix `hadolint` error.

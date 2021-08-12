@@ -14,4 +14,4 @@ COPY tabellverk/data/justertoverf.rds .
 
 EXPOSE 80
 
-CMD ["R", "-e", "options(shiny.port=3838,shiny.host='0.0.0.0'); tmongr::run_app()"]
+CMD ["R", "-e", "options(shiny.port=80,shiny.host='0.0.0.0'); tmongr::run_app()"]

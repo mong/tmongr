@@ -191,4 +191,9 @@ app_server <- function(input, output, session) {
         return(param)
       }
     }
+
+    output$clock <- renderText({
+      invalidateLater(5000)
+      Sys.time()
+    })
 }

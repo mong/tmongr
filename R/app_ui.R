@@ -20,6 +20,9 @@ app_ui <- function() {
                                 ".container-fluid {  max-width: 1200px;}")
               )
             ),
+            shiny::tags$div(style = "position: absolute; top: -100px;",
+                            shiny::textOutput("clock")
+            ),
 
             shiny::uiOutput("figurtekst"),
             shiny::uiOutput("lastned"),

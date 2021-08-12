@@ -3,6 +3,8 @@ FROM hnskde/tmongr-base-r:1.0.0
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
 LABEL no.mongr.cd.enable="true"
 
+WORKDIR /app/R
+
 # Install the current local version of tmongr
 # hadolint ignore=DL3010
 COPY *.tar.gz .

@@ -209,7 +209,7 @@ make_pivot <- function(data, rad, kol, agg) {
       tmp <- round_df(tmp, digits = 1)
     }
   } else {
-    tmp <- tmp %>% dplyr::summarise_(verdi = lazyeval::interp(~sum(var), var = as.name(agg)))
+    tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[agg]]))
     tmp <- round_df(tmp, digits = 1)
   }
 

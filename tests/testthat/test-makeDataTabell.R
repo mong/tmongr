@@ -123,7 +123,7 @@ test_that("make_data_tabell returns a pivot table", {
   # One too many rad elements
   verdier$rader <- c("boomr_hf", "behandlende_hf", "behandler")
   tmp <- lag_pivot(verdier)
-  expect_equal_to_reference(tmp, "data/ref_pivot6b.rds")
+  expect_null(tmp)
 
   # One of the rad elements equal kol
   verdier$rader <- c("boomr_hf", "behandler")

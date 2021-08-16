@@ -8,8 +8,7 @@ WORKDIR /app/R
 # Install the current local version of tmongr
 # hadolint ignore=DL3010
 COPY *.tar.gz .
-RUN R CMD INSTALL --clean ./*.tar.gz
-RUN rm ./*.tar.gz
+RUN R CMD INSTALL --clean ./*.tar.gz && rm ./*.tar.gz
 
 # Copy the data files
 COPY tabellverk/data/behandler.rds .

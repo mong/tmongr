@@ -30,8 +30,9 @@ make_data_tabell <- function(input_dataset,
   hastegrad2 <- verdier$hastegrad2
   prosent <- verdier$prosent
 
-  if (is.null(aar)) {
+  if (is.null(aar) | length(rad) > 2) {
     # for å unngå feilmelding
+    # App not implemented for more than two rad
     return(NULL)
   }
 
@@ -39,11 +40,6 @@ make_data_tabell <- function(input_dataset,
     if (rad == kol) {
       return(NULL)
     }
-  }
-
-  if (length(rad) > 2) {
-    # App not implemented for more than two rad
-    return(NULL)
   }
 
   if (verdi == "drg_index") {
@@ -181,7 +177,7 @@ make_pivot <- function(data, rad, kol, agg) {
 
   # Get the correct agg-variable
   if (agg %in% c("rate", "drgrate", "liggedognrate")) {
-    num_digits = 1
+    num_digits <- 1
     agg <- gsub("liggedognrate", "liggerate", agg)
     if ("boomr_sykehus" %in% c(rad, kol)) {
       agg_var <- paste0("bosh_", agg)

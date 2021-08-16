@@ -21,7 +21,13 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Fetch data
+        if: github.event_name != 'pull_request'
         run: git clone https://gitlab-ci-token:${{ secrets.GL_TOKEN }}@gitlab.com/${{ secrets.GL_ORG }}
+      - name: Create fake data
+        if: github.event_name == 'pull_request'
+        run: |
+          mkdir -p tabellverk/data
+          touch tabellverk/data/behandler.rds tabellverk/data/justertoverf.rds
       - name: R setup
         uses: r-lib/actions/setup-r@v1
       - name: Build package

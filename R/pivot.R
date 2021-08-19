@@ -30,8 +30,9 @@ make_data_tabell <- function(input_dataset,
   hastegrad2 <- verdier$hastegrad2
   prosent <- verdier$prosent
 
-  if (is.null(aar)) {
+  if (is.null(aar) | length(rad) > 2) {
     # for å unngå feilmelding
+    # App not implemented for more than two rad
     return(NULL)
   }
 
@@ -144,51 +145,10 @@ make_pivot <- function(data, rad, kol, agg) {
 
   #' @importFrom magrittr "%>%"
   # gruppere
-  # Burde skrives om, uten if nesting (issue #6)
-  group_var <- unique(c(rad, kol))
-  if (length(rad) %in% c(1, 2)) {
-    tmp <- data %>% dplyr::group_by(.dots = group_var)
-  } else{
-    return(tom_tabell())
-  }
+  tmp <- data %>% dplyr::group_by_at(unique(c(rad, kol)))
 
-  # Velge ut verdier. Rater avhengig av boområdet!
-  if (agg %in% c("rate", "drgrate")) {
-    if ("boomr_sykehus" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[paste0("bosh_", agg)]]))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else if ("boomr_hf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[paste0("bohf_", agg)]]))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else if ("boomr_rhf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[[paste0("borhf_", agg)]]))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else {
-      return(tom_tabell())
-    }
-  } else if (agg == "liggedognrate") {
-    if ("boomr_sykehus" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["bosh_liggerate"]]))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else if ("boomr_hf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["bohf_liggerate"]]))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else if ("boomr_rhf" %in% c(rad, kol)) {
-      tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["borhf_liggerate"]]))
-      tmp <- round_df(tmp, digits = 1)
-    }
-    else {
-      return(tom_tabell())
-    }
-  } else if (agg == "drg_poeng") {
-    tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["drg_poeng"]]))
-    tmp <- round_df(tmp, digits = 0)
-  } else if (agg == "drg_index") {
+  if (agg == "drg_index") {
+    # Have to perform some calculations if drg_index
     tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(.data[["kontakter"]]))
     tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["drg_poeng"]]))
     if (kol %in% rad) {
@@ -201,21 +161,51 @@ make_pivot <- function(data, rad, kol, agg) {
       tmp[, i] <- tmp[, i] / tmp_kontakt[, i]
       tmp <- round_df(tmp, digits = 3)
     }
-  } else if (agg == "liggedognindex") {
+    return(tidyr::spread_(tmp, kol, "verdi"))
+  }
+
+  if (agg == "liggedognindex") {
+    # Have to perform some calculations if liggedognindex
     tmp_kontakt <- tmp %>% dplyr::summarise(verdi = sum(.data[["kontakter"]]))
     tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["liggetid"]]))
     for (i in (length(rad) + 2):length(names(tmp))) {
       tmp[, i] <- tmp[, i] / tmp_kontakt[, i]
       tmp <- round_df(tmp, digits = 1)
     }
-  } else {
-    tmp <- tmp %>% dplyr::summarise_(verdi = lazyeval::interp(~sum(var), var = as.name(agg)))
-    tmp <- round_df(tmp, digits = 1)
+    return(tidyr::spread_(tmp, kol, "verdi"))
   }
 
-  tmp2 <- tidyr::spread_(tmp, kol, "verdi")
+  # Get the correct agg-variable
+  if (agg %in% c("rate", "drgrate", "liggedognrate")) {
+    num_digits <- 1
+    agg <- gsub("liggedognrate", "liggerate", agg)
+    if ("boomr_sykehus" %in% c(rad, kol)) {
+      agg_var <- paste0("bosh_", agg)
+    }
+    else if ("boomr_hf" %in% c(rad, kol)) {
+      agg_var <- paste0("bohf_", agg)
+    }
+    else if ("boomr_rhf" %in% c(rad, kol)) {
+      agg_var <- paste0("borhf_", agg)
+    }
+    else {
+      # Stop here if rate and not bo
+      return(tom_tabell())
+    }
+  } else if (agg == "drg_poeng") {
+    agg_var <- agg
+    num_digits <- 0
+  } else {
+    agg_var <- agg
+    num_digits <- 1
+  }
 
-  return(tmp2)
+  tmp <- tmp %>%
+    dplyr::summarise(verdi = sum(.data[[agg_var]])) %>%
+    round_df(digits = num_digits) %>%
+    tidyr::spread(kol, "verdi")
+
+  return(tmp)
 } # make_pivot
 
 

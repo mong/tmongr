@@ -1,14 +1,18 @@
+# tmongr 3.3.3
+
+Simplify app (#106)
+
 # tmongr 3.3.2
 
-- Keep the app alive with heartbeats/clock. The websocket connection was lost after 60 sec. before, if the user did not interact with the app.
+Keep the app alive with heartbeats/clock. The websocket connection was lost after 60 sec. before, if the user did not interact with the app.
 
 # tmongr 3.3.1
 
-- Docker: define `WORKDIR` to fix `hadolint` error.
+Docker: define `WORKDIR` to fix `hadolint` error.
 
 # tmongr 3.3.0
 
-- Make the app ready for Elastic Beanstalk
+Make the app ready for Elastic Beanstalk
 
 # tmongr 3.2.0
 

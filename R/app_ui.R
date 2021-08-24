@@ -7,6 +7,7 @@ app_ui <- function() {
   shiny::fluidPage(theme = shinythemes::shinytheme("cerulean"),
             shiny::titlePanel(
               shiny::tags$head(
+                shiny::tags$script(src = "www/iframeResizer.contentWindow.min.js"),
                 shiny::tags$link(rel = "icon",
                                  type = "image/png",
                                  href = "www/hn.png"),

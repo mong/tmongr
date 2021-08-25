@@ -133,7 +133,8 @@ app_server <- function(input, output, session) {
         verdier$behandlingsniva,
         verdier$alder,
         verdier$kjonn,
-        verdier$hastegrad2)
+        verdier$hastegrad2,
+        overskrift = FALSE)
       shiny::HTML(paste("<h4>", hjelpetekst, "</h4>", sep = ""))
     })
 

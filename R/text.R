@@ -10,28 +10,13 @@ define_boomr <- function(rad, bo) {
     }
 }
 
-get_heading <- function(tab = NULL) {
-    overskrift <- ""
-
-    if (tab == "alle") {
-        tabell <- "Pasientstrømmer"
-    } else if (tab == "menisk") {
-        tabell <- "Meniskoperasjoner"
-    } else {
-        tabell <- "Pasientstrømmer"
-    }
-
-    overskrift <- paste0("<h1>", tabell, ", Helse Nord RHF",
+get_heading <- function() {
+    overskrift <- paste0("<h1>", "Pasientstrømmer", ", Helse Nord RHF",
                          "<img src=\"www/skde.png\" ",
                          "align=\"right\" ",
                          "width=\"150\" ",
                          "style=\"padding-right:20px;\"/>",
                          "</h1>", "<br/>")
-
-    if (tab == "Informasjon") {
-        # Do not print details about the selection when the user look at the information tab (not relevant).
-        overskrift <- paste0(overskrift, "<font size='+1'>", "Informasjonsfane", "</font>", "<br>", "<br>")
-    }
 
     return(overskrift)
 }
@@ -352,16 +337,24 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
 #' @export
 #'
 lag_hjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
-                           behandlingsniva, alder, kjonn, hastegrad2) {
+                           behandlingsniva, alder, kjonn, hastegrad2,
+                           overskrift = TRUE) {
 
     if (is.null(rad) | is.null(aar) | is.null(verdi)) {
         return(NULL)
     }
 
-    overskrift <- get_heading(tab)
+    if (overskrift) {
+        overskrift <- get_heading()
+    } else {
+        overskrift <- "<h1></h1>"
+    }
 
     if (tab == "Informasjon") {
-        return(overskrift)
+        # Do not show text if on information tab
+        return(paste0(overskrift, "<font size='+1'>",
+                      "Informasjonsfane", "</font>",
+                      "<br>", "<br>"))
     }
 
     type <- get_type(tab)

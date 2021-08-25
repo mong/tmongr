@@ -20,6 +20,6 @@ Dataene som presenteres er fra Norsk pasientregister (NPR), og inneholder alle k
 - Fraskrivelse: Publikasjonen har benyttet data fra NPR. Brukerne er eneansvarlig for tolkning og presentasjon av de utleverte data. NPR har ikke ansvar for analyser eller tolkninger basert på de utleverte data.
 - Hvis man opplever feil eller problemer kan man rapportere dette som en *issue* <a href="https://github.com/mong/tmongr/issues" target="_blank">her</a> . Eventuelt kan man sende en mail til arnfinn.steindal@skde.no
 
-Versjon: <a href="https://github.com/mong/tmongr/releases/tag/v3.4.0" target="_blank">3.4.0</a>
+Versjon: <a href="https://github.com/mong/tmongr/releases/tag/v3.5.0" target="_blank">3.5.0</a>
 
 </br>

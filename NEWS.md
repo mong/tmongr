@@ -1,3 +1,7 @@
+# tmongr 3.5.0
+
+Remove heading. Making it ready for iframe with heading from mongts
+
 # tmongr 3.4.0
 
 Include iframeResizer. Enables automatic resizing of the height and width if the app is inside an iframe.

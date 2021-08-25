@@ -1,3 +1,7 @@
+# tmongr 3.4.0
+
+Include iframeResizer. Enables automatic resizing of the height and width if the app is inside an iframe.
+
 # tmongr 3.3.3
 
 Simplify app (#106)

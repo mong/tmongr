@@ -6,14 +6,14 @@ Behold den linjen pr. EoC med max korrvekt (drg-poeng)
 
 proc sql;
 create table tabell_tmp as
-select *, max(korrvekt) as max_korrvekt
+select *, max(npkOpphold_ISFPoeng) as max_korrvekt
 from &datainn
 group by PID,EoC_nr_pid;
 QUIT;
 
 data tabell_tmp;
 set tabell_tmp;
-where korrvekt = max_korrvekt;
+where npkOpphold_ISFPoeng = max_korrvekt;
 firsteoc = .;
 run;
 

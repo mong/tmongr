@@ -1,4 +1,4 @@
-%macro tilretteleggInnbyggerfil(just_aar = 2016);
+%macro tilretteleggInnbyggerfil(just_aar = 2020);
 
 /*
 Returnerer fire datasett:
@@ -11,10 +11,11 @@ Variablen `just_aar` bestemmer justeringsår
 */
 
 data innbygg;
-set innbygg.innb_2004_2018_bydel_allebyer;
-  where aar in (2014:2018);
-  %boomraader;
+set innbygg.innb_2005_2020_bydel_komnr20;
+  where aar in (2017:2020);
 run;
+
+%boomraader(inndata = innbygg);
 
 data innbygg;
 set innbygg;

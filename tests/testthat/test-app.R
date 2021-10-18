@@ -1,5 +1,5 @@
 test_that("app_ui", {
-  ref_chr <- as.character(purrr::flatten(app_ui()))[4]
+  ref_chr <- as.character(purrr::flatten(app_ui()))[14]
   expect_true(grepl("www/hn.png", ref_chr, fixed = TRUE))
   expect_true(grepl("color: #003A8C", ref_chr, fixed = TRUE))
   expect_true(grepl("color: #808080", ref_chr, fixed = TRUE))
@@ -23,6 +23,6 @@ test_that("app_ui", {
 test_that("run_app", {
   expect_equal(class(run_app()), "shiny.appobj")
   expect_equal(class(run_app()$httpHandler), "function")
-  expect_equal(class(run_app()$options), "list")
+  expect_equal(class(run_app()$options), "numeric")
   expect_equal(class(run_app()$serverFuncSource), "function")
 })

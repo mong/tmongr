@@ -40,6 +40,7 @@ app_ui <- function() {
               shiny::uiOutput("filter"),
               common_ui("bo"),
               common_ui("beh"),
+              shiny::uiOutput("fag"),
               common_ui("aar"),
               common_ui("behandlingsniva"),
               common_ui("hastegrad1"),

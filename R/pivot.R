@@ -29,6 +29,7 @@ make_data_tabell <- function(input_dataset,
   hastegrad1 <- verdier$hastegrad1
   hastegrad2 <- verdier$hastegrad2
   prosent <- verdier$prosent
+  fag <- verdier$fag
 
   if (is.null(aar) | length(rad) > 2) {
     # for å unngå feilmelding
@@ -56,7 +57,7 @@ make_data_tabell <- function(input_dataset,
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
   tabell <- filtrer_ut(tabell, fane, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2)
+                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, fag)
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if (!nrow(tabell)) {
@@ -333,6 +334,8 @@ rename_columns <- function(tabell) {
   names(tabell) <- sub("drgtypehastegrad", "DRGtypeHastegrad", names(tabell))
   names(tabell) <- sub("hastegrad", "Hastegrad", names(tabell))
   names(tabell) <- sub("aar", "År", names(tabell))
+  names(tabell) <- sub("fag_skde", "Fagfelt avtalespesialist", names(tabell))
+  names(tabell) <- sub("episodefag", "Fagområde for episode", names(tabell))
 
   return(tabell)
 

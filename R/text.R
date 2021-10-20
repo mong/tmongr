@@ -173,6 +173,14 @@ get_annet_text <- function(rad) {
         k <- k + 1
         annet$hastegrd2 <- "hastegrad, innleggelser"
     }
+    if ("episodefag" %in% rad) {
+        k <- k + 1
+        annet$episodeFag <- "fagområde for episoden"
+    }
+    if ("fag_skde" %in% rad) {
+        k <- k + 1
+        annet$fagskde <- "fagfelt til avtalespesialist"
+    }
     if ("drgtypehastegrad" %in% rad) {
         k <- k + 1
         annet$drgtypehastegrad <- "DRGtypeHastegrad"
@@ -215,13 +223,17 @@ get_aar_text <- function(aar) {
     return(hjelpetekst)
 }
 
-extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
+extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     all_tekst <- ""
     extra <- F
-    if ((length(alder) < 4) |
-        (length(hastegrad2) < 4) |
+    if ((length(alder) < 4 & "alder" %in% rad) |
+        (length(hastegrad2) < 4 & "hastegrad2" %in% rad) |
         (length(behandlingsniva) < 3) |
         (tab %in% c("dag", "dogn", "poli"))) {
+        extra <- T
+    }
+
+    if ("episodefag" %in% rad) {
         extra <- T
     }
 
@@ -229,7 +241,17 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
         all_tekst <- paste0(all_tekst, "<ul><li>Annet: <ul>")
     }
 
-    if (length(alder) != 4) {
+    if ("episodefag" %in% rad) {
+        all_tekst <- paste0(all_tekst,
+                            "<li> For en del konsultasjoner hos ",
+                            "avtalespesialister er ikke fagområde ",
+                            "for episoden rapport inn til NPR. ",
+                            "Disse konsultasjonene har fått definert ",
+                            "fagområde for episoden basert på fagområde ",
+                            "til avtalespesialisten.</li>")
+    }
+
+    if (length(alder) != 4 & "alder" %in% rad) {
         if (length(alder) == 1) {
             tmp1 <- "<li>Kun aldersgruppen "
             alder_tekst <- paste0(tmp1, alder[length(alder)], "</li>")
@@ -242,7 +264,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
         all_tekst <- paste(all_tekst, alder_tekst, sep = "")
     }
 
-    if (length(hastegrad2) != 5) {
+    if (length(hastegrad2) != 5 & "hastegrad2" %in% rad) {
         hast <- sapply(hastegrad2, tolower)
         if (length(hast) == 1) {
             tmp1 <- "<li>Kun hastegrad "
@@ -378,7 +400,7 @@ lag_hjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     all_tekst <- paste0(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>")
 
-    all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab))
+    all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab, c(rad, kol)))
 
     all_tekst <- paste0(all_tekst, warning_text(c(rad, kol), verdi, bo, aar, alder, kjonn))
 

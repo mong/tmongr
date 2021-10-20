@@ -251,7 +251,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
                             "til avtalespesialisten.</li>")
     }
 
-    if (length(alder) != 4 & "alder" %in% rad) {
+    if (length(alder) != 4) {
         if (length(alder) == 1) {
             tmp1 <- "<li>Kun aldersgruppen "
             alder_tekst <- paste0(tmp1, alder[length(alder)], "</li>")
@@ -264,7 +264,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
         all_tekst <- paste(all_tekst, alder_tekst, sep = "")
     }
 
-    if (length(hastegrad2) != 5 & "hastegrad2" %in% rad) {
+    if (length(hastegrad2) != 5) {
         hast <- sapply(hastegrad2, tolower)
         if (length(hast) == 1) {
             tmp1 <- "<li>Kun hastegrad "

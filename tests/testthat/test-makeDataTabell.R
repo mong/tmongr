@@ -35,12 +35,13 @@ test_that("make_data_tabell returns a pivot table", {
                                       "Dagbehandling",
                                       "Poliklinikk",
                                       "Avtalespesialist"),
-                  alder = "tmp", #?
-                  kjonn = "tmp", #?
-                  hastegrad2 = "tmp", #?
+                  alder = c("tmp", "tmp", "tmp", "tmp"),
+                  kjonn = c("tmp", "tmp"),
+                  hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
                   prosent = F,
                   keep_names = F,
-                  snitt = T)
+                  snitt = T,
+                  fag = "Alle")
 
   verdier <- originalverdier
 

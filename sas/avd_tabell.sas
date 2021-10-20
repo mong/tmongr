@@ -55,6 +55,7 @@ niva
 npkOpphold:
 /*npkOpphold_ISFPoeng*/
 dag_kir
+aggrshoppID_Lnr
 ;
 
 %let magnus_aspes=
@@ -143,7 +144,9 @@ run;
 EoC der hvert sykehus blir behandlet for seg og polikliniske konsultasjoner er egne EoC
 */
 
-%Episode_of_care(dsn=tabell_alle, separer_ut_poli = 1, inndeling = 3);
+%include "&filbane\makroer\sykehusopphold.sas";
+
+%sykehusopphold(dsn=tabell_alle);
 
 
 /*
@@ -158,8 +161,9 @@ Normal
 */
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 1);
 
+filename output "&prosjekt_filbane\tmongrdata\behandler.csv" encoding="utf-8" termstr=lf;
 proc export data=&datasett._ut
-outfile="&prosjekt_filbane\csv_filer\behandler.csv"
+outfile=output
 dbms=csv
 replace;
 run;
@@ -169,8 +173,9 @@ ICD10
 */
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, icd = 1);
 
+filename output "&prosjekt_filbane\tmongrdata\icd10.csv" encoding="utf-8" termstr=lf;
 proc export data=&datasett._ut
-outfile="&prosjekt_filbane\csv_filer\icd10.csv"
+outfile=output
 dbms=csv
 replace;
 run;
@@ -180,8 +185,9 @@ fagområde
 */
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, fag = 1);
 
+filename output "&prosjekt_filbane\tmongrdata\fag.csv" encoding="utf-8" termstr=lf;
 proc export data=&datasett._ut
-outfile="&prosjekt_filbane\csv_filer\fag.csv"
+outfile=output
 dbms=csv
 replace;
 run;

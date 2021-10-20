@@ -97,9 +97,10 @@ definer_valg_kol <- function(col_names, valgnr) {
     }
 
     if ("episodefag" %in% col_names) {
-      valg_fag <- c(Fagområde = "episodefag")
+      valg_fag <- stats::setNames(config$valg_fag$variable,
+                                  config$valg_fag$txt)
     }
-    
+
     if ("fag_skde" %in% col_names) {
       valg_fagavtspes <- c(`Fagfelt avtalespesialist` = "fag_skde")
     }

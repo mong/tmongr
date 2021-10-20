@@ -3,11 +3,9 @@ on:
   release:
     types: [published]
   push:
-    branches:
-      - master
+    branches: [master, 2020_data]
   pull_request:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   push_to_registries:

@@ -173,9 +173,9 @@ get_annet_text <- function(rad) {
         k <- k + 1
         annet$hastegrd2 <- "hastegrad, innleggelser"
     }
-    if ("episodefag" %in% rad) {
+    if ("episode_fag" %in% rad) {
         k <- k + 1
-        annet$episodeFag <- "fagområde for episoden"
+        annet$episode_fag <- "fagområde for episoden"
     }
     if ("fag_skde" %in% rad) {
         k <- k + 1
@@ -233,7 +233,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
         extra <- T
     }
 
-    if ("episodefag" %in% rad) {
+    if ("episode_fag" %in% rad) {
         extra <- T
     }
 
@@ -241,7 +241,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
         all_tekst <- paste0(all_tekst, "<ul><li>Annet: <ul>")
     }
 
-    if ("episodefag" %in% rad) {
+    if ("episode_fag" %in% rad) {
         all_tekst <- paste0(all_tekst,
                             "<li> For en del konsultasjoner hos ",
                             "avtalespesialister er ikke fagområde ",

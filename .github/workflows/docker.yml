@@ -3,7 +3,7 @@ on:
   release:
     types: [published]
   push:
-    branches: [master, 2020_data]
+    branches: [master]
   pull_request:
     branches: [master]
 

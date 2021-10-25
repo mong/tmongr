@@ -81,3 +81,11 @@ test_that("filter_kjonn is correct", {
     }
     expect_equal(nrow(filter_kjonn(testdata2, "random")), 0)
 })
+
+test_that("filter_fag is correct", {
+  test_filter_fag <- testdata %>%
+    dplyr::rename(episodefag = icd10kap)
+  expect_equal(filter_fag(test_filter_fag, "Alle"), test_filter_fag)
+  expect_equal_to_reference(filter_fag(test_filter_fag, c("Svulster")), "data/unit_filter_fag.rds")
+  expect_error(filter_fag(testdata, c("Svulster")))
+})

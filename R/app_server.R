@@ -34,6 +34,17 @@ app_server <- function(input, output, session) {
 
     debounced_reactive <- shiny::throttle(make_table, 1000)
 
+    # valg fagområde
+    output$fag <- renderUI({
+      if ("episodefag" %in% colnames(datasett)) {
+        tags$div(title = "Velg hvilket fagområde (fagområdet for episoden) som skal vises",
+                 selectInput("fag",
+                             label = "Fagområde",
+                             choices = c("Alle", unique(datasett$episodefag)),
+                             selected = "Alle"))
+      }
+    })
+
     output$alle <- shiny::renderTable({
       debounced_reactive()
     })
@@ -176,9 +187,11 @@ app_server <- function(input, output, session) {
       hastegrad1 <- parameter_definert(input$hastegrad1, unique(datasett$hastegrad))
       hastegrad2 <- parameter_definert(input$hastegrad2, unique(datasett$drgtypehastegrad))
       behandlingsniva <- parameter_definert(input$behandlingsniva, unique(datasett$behandlingsniva))
+      fag <- parameter_definert(input$fag, "Alle")
       verdier <- list(bo = bo, beh = beh, verdi = verdi, rader = rader,
                       prosent = prosent, aar = aar, kolonner = kolonner, kjonn = kjonn, alder = alder,
-                      hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva)
+                      hastegrad1 = hastegrad1, hastegrad2 = hastegrad2, behandlingsniva = behandlingsniva,
+                      fag = fag)
 
       return(verdier)
 

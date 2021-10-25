@@ -33,6 +33,8 @@ definer_valg_kol <- function(col_names, valgnr) {
     valg_behrhf <- c()
     valg_alder <- c()
     valg_alder <- c()
+    valg_fag <- c()
+    valg_fagavtspes <- c()
 
     # Verdier
     valg_kontakter <- stats::setNames(config$valg_kontakter$variable,
@@ -94,17 +96,28 @@ definer_valg_kol <- function(col_names, valgnr) {
                                    config$valg_liggerate$txt)
     }
 
+    if ("episodefag" %in% col_names) {
+      valg_fag <- stats::setNames(config$valg_fag$variable,
+                                  config$valg_fag$txt)
+    }
+
+    if ("fag_skde" %in% col_names) {
+      valg_fagavtspes <- c(`Fagfelt avtalespesialist` = "fag_skde")
+    }
+
     valg_en <- c(valg_boomr_sh, valg_boomr_hf, valg_boomr_rhf, valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva,
-                 valg_hastegrad, valg_drgtypehastegrad, valg_behandler, valg_behsh, valg_behhf,
+                 valg_hastegrad, valg_drgtypehastegrad, valg_fag,
+                 valg_fagavtspes, valg_behandler, valg_behsh, valg_behhf,
         valg_behrhf)
 
     valg_to <- c(valg_behandler, valg_behsh, valg_behhf, valg_behrhf, valg_aar,
                  valg_alder, valg_kjonn, valg_behandlingsniva, valg_hastegrad,
-                 valg_drgtypehastegrad, valg_boomr_sh, valg_boomr_hf, valg_boomr_rhf,
+                 valg_drgtypehastegrad, valg_fag,
+                 valg_fagavtspes, valg_boomr_sh, valg_boomr_hf, valg_boomr_rhf,
                  Tom = "ingen")
 
     valg_tre <- c(valg_aar, valg_alder, valg_kjonn, valg_behandlingsniva, valg_hastegrad,
-                  valg_drgtypehastegrad)
+                  valg_drgtypehastegrad, valg_fag, valg_fagavtspes)
 
     valg_fire <- c(valg_kontakter, valg_rate, valg_liggetid, valg_liggerate, valg_liggeindex,
                    valg_drg, valg_drgrate, valg_drgindex)

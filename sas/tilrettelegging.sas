@@ -6,35 +6,35 @@ Behold den linjen pr. EoC med max korrvekt (drg-poeng)
 
 proc sql;
 create table tabell_tmp as
-select *, max(korrvekt) as max_korrvekt
+select *, max(npkOpphold_ISFPoeng) as max_korrvekt
 from &datainn
-group by PID,EoC_nr_pid;
+group by PID,sho_nr_pid;
 QUIT;
 
 data tabell_tmp;
 set tabell_tmp;
-where korrvekt = max_korrvekt;
+where npkOpphold_ISFPoeng = max_korrvekt;
 firsteoc = .;
 run;
 
 proc sort data=tabell_tmp;
-by eoc_id;
+by sho_id;
 run;
 
 data tabell_tmp;
 set tabell_tmp;
-by EoC_id;
-if first.eoc_id then firsteoc = 1;
+by sho_id;
+if first.sho_id then firsteoc = 1;
 run;
 
 data tabell_tmp;
 set tabell_tmp;
 where firsteoc = 1;
-aar = eoc_aar;
-alder = eoc_alder;
-liggetid = eoc_liggetid;
-hastegrad = eoc_hastegrad;
-aktivitetskategori3 = eoc_aktivitetskategori3;
+aar = sho_aar;
+alder = sho_alder;
+liggetid = sho_liggetid;
+hastegrad = sho_hastegrad;
+aktivitetskategori3 = sho_aktivitetskategori3;
 run;
 
 /*

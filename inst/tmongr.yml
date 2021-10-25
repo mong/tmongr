@@ -62,6 +62,9 @@ menus:
   valg_drgindex:
     txt: DRG-index
     variable: drg_index
+  valg_fag:
+    txt: Fagområde
+    variable: episodefag
 tabs:
   alle: "Alle kontakter"
   dogn: "Døgnopphold"

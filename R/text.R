@@ -173,6 +173,14 @@ get_annet_text <- function(rad) {
         k <- k + 1
         annet$hastegrd2 <- "hastegrad, innleggelser"
     }
+    if ("episode_fag" %in% rad) {
+        k <- k + 1
+        annet$episode_fag <- "fagområde for episoden"
+    }
+    if ("fag_skde" %in% rad) {
+        k <- k + 1
+        annet$fagskde <- "fagfelt til avtalespesialist"
+    }
     if ("drgtypehastegrad" %in% rad) {
         k <- k + 1
         annet$drgtypehastegrad <- "DRGtypeHastegrad"
@@ -215,18 +223,32 @@ get_aar_text <- function(aar) {
     return(hjelpetekst)
 }
 
-extra_text <- function(alder, hastegrad2, behandlingsniva, tab) {
+extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     all_tekst <- ""
     extra <- F
-    if ((length(alder) < 4) |
-        (length(hastegrad2) < 4) |
+    if ((length(alder) < 4 & "alder" %in% rad) |
+        (length(hastegrad2) < 4 & "hastegrad2" %in% rad) |
         (length(behandlingsniva) < 3) |
         (tab %in% c("dag", "dogn", "poli"))) {
         extra <- T
     }
 
+    if ("episode_fag" %in% rad) {
+        extra <- T
+    }
+
     if (extra) {
         all_tekst <- paste0(all_tekst, "<ul><li>Annet: <ul>")
+    }
+
+    if ("episode_fag" %in% rad) {
+        all_tekst <- paste0(all_tekst,
+                            "<li> For en del konsultasjoner hos ",
+                            "avtalespesialister er ikke fagområde ",
+                            "for episoden rapport inn til NPR. ",
+                            "Disse konsultasjonene har fått definert ",
+                            "fagområde for episoden basert på fagområde ",
+                            "til avtalespesialisten.</li>")
     }
 
     if (length(alder) != 4) {
@@ -378,7 +400,7 @@ lag_hjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
 
     all_tekst <- paste0(overskrift, "<font size='+1'>", hjelpetekst, "</font>", "<br>", "<br>")
 
-    all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab))
+    all_tekst <- paste0(all_tekst, extra_text(alder, hastegrad2, behandlingsniva, tab, c(rad, kol)))
 
     all_tekst <- paste0(all_tekst, warning_text(c(rad, kol), verdi, bo, aar, alder, kjonn))
 

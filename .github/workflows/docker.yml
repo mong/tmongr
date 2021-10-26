@@ -36,7 +36,7 @@ jobs:
           dockerfile: "Dockerfile"
       - name: Prepare
         id: docker_meta
-        uses: docker/metadata-action@v3.5.0
+        uses: docker/metadata-action@v3.6.0
         with:
           images: hnskde/tmongr
           tags: |

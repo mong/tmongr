@@ -113,11 +113,6 @@ AvtSpes = 1;
 run;
 
 /*
-Lage datasett med innbyggere (brukes i rater_og_aggr)
-*/
-%tilretteleggInnbyggerfil();
-
-/*
 Sette sammen off og priv
 */
 data tabell_alle;
@@ -141,7 +136,8 @@ run;
 %boomraader(inndata = tabell_alle);
 
 /*
-EoC der hvert sykehus blir behandlet for seg og polikliniske konsultasjoner er egne EoC
+Sykehusopphold der hvert sykehus blir behandlet for seg og
+polikliniske konsultasjoner er eget opphold
 */
 
 %include "&filbane\makroer\sykehusopphold.sas";
@@ -155,6 +151,11 @@ Rydde før rater og aggregering
 
 %let datasett = tabell_klargjor;
 %tilrettelegging(datainn = tabell_alle, dataut = &datasett);
+
+/*
+Lage datasett med innbyggere (brukes i rater_og_aggr)
+*/
+%tilretteleggInnbyggerfil();
 
 /*
 Normal

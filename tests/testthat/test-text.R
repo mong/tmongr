@@ -15,7 +15,8 @@ test_that("correct text is returned", {
                           hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
                           prosent = F,
                           keep_names = F,
-                          snitt = T)
+                          snitt = T,
+                          fag = "Alle")
 
   verdier <- originalverdier
   hjelpetekst <- lag_hjelpetekst(

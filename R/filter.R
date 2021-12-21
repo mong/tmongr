@@ -15,7 +15,7 @@
 #'
 #' @importFrom rlang .data
 filtrer_ut <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
-                      alder, kjonn, hastegrad1, hastegrad2) {
+                      alder, kjonn, hastegrad1, hastegrad2, fag) {
 
     if (fane == "dogn") {
         tabell <- filter_behandlingsniva(tabell, c("Døgnopphold"))
@@ -26,6 +26,8 @@ filtrer_ut <- function(tabell, fane, verdi, aar, bo, beh, behandlingsniva,
     }
 
     tabell <- filter_aar(tabell, aar)
+
+    tabell <- filter_fag(tabell, fag)
 
     if (verdi == "liggedognindex") {
         tabell <- filter_behandlingsniva(tabell, c("Døgnopphold"))
@@ -144,4 +146,13 @@ filter_kjonn <- function(datasett, filter) {
     }
     tabell <- dplyr::filter(datasett, .data[["kjonn"]] %in% filter)
     return(tabell)
+}
+
+filter_fag <- function(datasett, filter) {
+    if (filter == "Alle") {
+        return(datasett)
+    } else {
+        tabell <- dplyr::filter(datasett, episodefag %in% filter)
+        return(tabell)
+    }
 }

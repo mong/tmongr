@@ -7,6 +7,7 @@ app_ui <- function() {
   shiny::fluidPage(theme = shinythemes::shinytheme("cerulean"),
             shiny::titlePanel(
               shiny::tags$head(
+                # Make it fully scale inside iframe
                 shiny::tags$script(src = "www/iframeResizer.contentWindow.min.js"),
                 shiny::tags$link(rel = "icon",
                                  type = "image/png",
@@ -40,6 +41,7 @@ app_ui <- function() {
               shiny::uiOutput("filter"),
               common_ui("bo"),
               common_ui("beh"),
+              shiny::uiOutput("fag"),
               common_ui("aar"),
               common_ui("behandlingsniva"),
               common_ui("hastegrad1"),

@@ -3,11 +3,9 @@ on:
   release:
     types: [published]
   push:
-    branches:
-      - master
+    branches: [master]
   pull_request:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   push_to_registries:
@@ -19,15 +17,15 @@ jobs:
       AWS_DEFAULT_REGION: 'eu-west-1'
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2.4.0
       - name: Fetch data
         if: github.event_name != 'pull_request'
-        run: git clone https://gitlab-ci-token:${{ secrets.GL_TOKEN }}@gitlab.com/${{ secrets.GL_ORG }}
+        run: git clone https://gitlab-ci-token:${{ secrets.GL_TOKEN }}@gitlab.com/${{ secrets.GL_ORG2 }}
       - name: Create fake data
         if: github.event_name == 'pull_request'
         run: |
-          mkdir -p tabellverk/data
-          touch tabellverk/data/behandler.rds tabellverk/data/justertoverf.rds
+          mkdir -p tmongrdata
+          touch tmongrdata/fag.csv
       - name: R setup
         uses: r-lib/actions/setup-r@v1
       - name: Build package
@@ -38,7 +36,7 @@ jobs:
           dockerfile: "Dockerfile"
       - name: Prepare
         id: docker_meta
-        uses: docker/metadata-action@v3.5.0
+        uses: docker/metadata-action@v3.6.1
         with:
           images: hnskde/tmongr
           tags: |

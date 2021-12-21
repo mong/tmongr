@@ -113,6 +113,11 @@ AvtSpes = 1;
 run;
 
 /*
+Lage datasett med innbyggere (brukes i rater_og_aggr)
+*/
+%tilretteleggInnbyggerfil();
+
+/*
 Sette sammen off og priv
 */
 data tabell_alle;

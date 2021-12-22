@@ -131,11 +131,15 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    /* Ukjent hastegrad */
    if (hastegrad eq .) then hastegrad = 9;
    /* 
-   Hastegrad "Tilbakeføring av pasient fra annet sykehus" settes til "Planlagt" 
-   Meget få kontakter i 2017, så lager bare støy
+   Hastegrad "TilbakefÃ¸ring av pasient fra annet sykehus" settes til "Planlagt" 
+   Meget fÃ¥ kontakter i 2017, sÃ¥ lager bare stÃ¸y
    */
    if (hastegrad eq 5) then hastegrad = 4;
-
+   if institusjonid = 974116804 then do;
+      behsh = 230;
+	  behhf = 23;
+	  behrhf = 4;
+   end;
 run;
 
 %boomraader(inndata = tabell_alle);
@@ -151,7 +155,7 @@ polikliniske konsultasjoner er eget opphold
 
 
 /*
-Rydde før rater og aggregering
+Rydde fÃ¸r rater og aggregering
 */
 
 %let datasett = tabell_klargjor;
@@ -187,7 +191,7 @@ replace;
 run;
 
 /*
-fagområde
+fagomrÃ¥de
 */
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, fag = 1);
 
@@ -201,9 +205,9 @@ run;
 
 
 /******************************************************
-Kjøre samme kode igjen, med justering for overføringer 
+KjÃ¸re samme kode igjen, med justering for overfÃ¸ringer 
 
-- kjøre EoC makro med inndeling = 0
+- kjÃ¸re EoC makro med inndeling = 0
 *******************************************************/
 
 
@@ -218,8 +222,8 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    /* Ukjent hastegrad */
    if (hastegrad eq .) then hastegrad = 9;
    /* 
-   Hastegrad "Tilbakeføring av pasient fra annet sykehus" settes til "Planlagt" 
-   Meget få kontakter i 2017, så lager bare støy
+   Hastegrad "TilbakefÃ¸ring av pasient fra annet sykehus" settes til "Planlagt" 
+   Meget fÃ¥ kontakter i 2017, sÃ¥ lager bare stÃ¸y
    */
    if (hastegrad eq 5) then hastegrad = 4;
 
@@ -228,20 +232,20 @@ run;
 %boomraader(inndata = tabell_alle);
 
 /*
-EoC justert for overføringer
+EoC justert for overfÃ¸ringer
 */
 
 %Episode_of_care(dsn=tabell_alle, separer_ut_poli = 1, inndeling = 0);
 
 
 /*
-Rydde før rater og aggregering
+Rydde fÃ¸r rater og aggregering
 */
 %let datasett = tabell_klargjor;
 %tilrettelegging(datainn = tabell_alle, dataut = &datasett);
 
 /*
-Justert for overføringer
+Justert for overfÃ¸ringer
 */
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 1);
 

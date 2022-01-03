@@ -66,9 +66,9 @@ set tabl4;
    bosh_rate = 1000*faktor/bosh_innb;
    bohf_rate = 1000*faktor/bohf_innb;
    borhf_rate = 1000*faktor/borhf_innb;
-   bosh_drgrate = 1000*faktor*korrvekt/bosh_innb;
-   bohf_drgrate = 1000*faktor*korrvekt/bohf_innb;
-   borhf_drgrate = 1000*faktor*korrvekt/borhf_innb;
+   bosh_drgrate = 1000*faktor*npkOpphold_ISFPoeng/bosh_innb;
+   bohf_drgrate = 1000*faktor*npkOpphold_ISFPoeng/bohf_innb;
+   borhf_drgrate = 1000*faktor*npkOpphold_ISFPoeng/borhf_innb;
    bosh_liggerate = 1000*faktor*liggetid/bosh_innb;
    bohf_liggerate = 1000*faktor*liggetid/bohf_innb;
    borhf_liggerate = 1000*faktor*liggetid/borhf_innb;
@@ -117,8 +117,8 @@ proc sql;
       BoShHN, 
       /* summert liggetid */
       (SUM(liggetid)) as liggetid, 
-      /* summert korrvekt */
-      (SUM(korrvekt)) as drg_poeng, 
+      /* summert drg-poeng */
+      (SUM(npkOpphold_ISFPoeng)) as drg_poeng, 
       /* antall pasienter */
       (SUM(kontakt)) as kontakter,
       /* rate bosh */

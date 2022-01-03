@@ -224,86 +224,78 @@ get_aar_text <- function(aar) {
 }
 
 extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
-    all_tekst <- ""
-    extra <- F
-    if ((length(alder) < 4 & "alder" %in% rad) |
-        (length(hastegrad2) < 4 & "hastegrad2" %in% rad) |
-        (length(behandlingsniva) < 3) |
-        (tab %in% c("dag", "dogn", "poli"))) {
-        extra <- T
+  all_tekst <- ""
+  extra <- F
+  if ("episode_fag" %in% rad) {
+    extra <- T
+    all_tekst <- paste0(all_tekst,
+                        "<li> For en del konsultasjoner hos ",
+                        "avtalespesialister er ikke fagområde ",
+                        "for episoden rapport inn til NPR. ",
+                        "Disse konsultasjonene har fått definert ",
+                        "fagområde for episoden basert på fagområde ",
+                        "til avtalespesialisten.</li>")
+  }
+  
+  if (length(alder) < 4 & !is.null(alder)) {
+    extra <- T
+    if (length(alder) == 1) {
+      tmp1 <- "<li>Kun aldersgruppen "
+      alder_tekst <- paste0(tmp1, alder[length(alder)], "</li>")
+    } else {
+      tmp1 <- "<li>Kun aldersgruppene"
+      tmp2 <- paste(alder[seq_len(length(alder)) - 1], collapse = ", ")
+      tmp3 <- paste0(" og ", alder[length(alder)], "</li>")
+      alder_tekst <- paste(tmp1, tmp2, tmp3)
     }
-
-    if ("episode_fag" %in% rad) {
-        extra <- T
+    all_tekst <- paste(all_tekst, alder_tekst, sep = "")
+  }
+  
+  if (length(hastegrad2) != 5 & !is.null(hastegrad2)) {
+    extra <- T
+    hast <- sapply(hastegrad2, tolower)
+    if (length(hast) == 1) {
+      tmp1 <- "<li>Kun hastegrad "
+      hastegrad2_tekst <- paste(tmp1, hast[length(hast)], "</li>", sep = "")
+    } else {
+      tmp1 <- "<li>Kun hastegradene"
+      tmp2 <- paste(hast[seq_len(length(hast)) - 1], collapse = ", ")
+      tmp3 <- paste(" og ", hast[length(hast)], "</li>", sep = "")
+      hastegrad2_tekst <- paste(tmp1, tmp2, tmp3)
     }
-
-    if (extra) {
-        all_tekst <- paste0(all_tekst, "<ul><li>Annet: <ul>")
+    all_tekst <- paste(all_tekst, hastegrad2_tekst, sep = "")
+  }
+  
+  if (tab == "dag") {
+    extra <- T
+    all_tekst <- paste0(all_tekst, "<li>Kun dagbehandlinger</li>")
+  } else if (tab == "dogn") {
+    extra <- T
+    all_tekst <- paste0(all_tekst, "<li>Kun døgnopphold</li>")
+  } else if (tab == "poli") {
+    extra <- T
+    all_tekst <- paste0(all_tekst, "<li>Kun polikliniske konsultasjoner</li>")
+  } else if (length(behandlingsniva) != 3) {
+    extra <- T
+    behnivaa <- sapply(behandlingsniva, tolower)
+    behnivaa <- gsub("dagbehandling", "dagbehandlinger", behnivaa)
+    behnivaa <- gsub("konsultasjon", "konsultasjoner", behnivaa)
+    if (length(behnivaa) == 1) {
+      tmp1 <- "<li>Kun "
+      behandlingsniva_tekst <- paste0(tmp1, behnivaa[length(behnivaa)], "</li>")
+    } else {
+      tmp1 <- "<li>Kun"
+      tmp2 <- paste(behnivaa[seq_len(length(behnivaa)) - 1], collapse = ", ")
+      tmp3 <- paste0(" og ", behnivaa[length(behnivaa)], "</li>")
+      behandlingsniva_tekst <- paste(tmp1, tmp2, tmp3)
     }
-
-    if ("episode_fag" %in% rad) {
-        all_tekst <- paste0(all_tekst,
-                            "<li> For en del konsultasjoner hos ",
-                            "avtalespesialister er ikke fagområde ",
-                            "for episoden rapport inn til NPR. ",
-                            "Disse konsultasjonene har fått definert ",
-                            "fagområde for episoden basert på fagområde ",
-                            "til avtalespesialisten.</li>")
-    }
-
-    if (length(alder) != 4 & "alder" %in% rad) {
-        if (length(alder) == 1) {
-            tmp1 <- "<li>Kun aldersgruppen "
-            alder_tekst <- paste0(tmp1, alder[length(alder)], "</li>")
-        } else {
-            tmp1 <- "<li>Kun aldersgruppene"
-            tmp2 <- paste(alder[seq_len(length(alder)) - 1], collapse = ", ")
-            tmp3 <- paste0(" og ", alder[length(alder)], "</li>")
-            alder_tekst <- paste(tmp1, tmp2, tmp3)
-        }
-        all_tekst <- paste(all_tekst, alder_tekst, sep = "")
-    }
-
-    if (length(hastegrad2) != 5 & "hastegrad2" %in% rad) {
-        hast <- sapply(hastegrad2, tolower)
-        if (length(hast) == 1) {
-            tmp1 <- "<li>Kun hastegrad "
-            hastegrad2_tekst <- paste(tmp1, hast[length(hast)], "</li>", sep = "")
-        } else {
-            tmp1 <- "<li>Kun hastegradene"
-            tmp2 <- paste(hast[seq_len(length(hast)) - 1], collapse = ", ")
-            tmp3 <- paste(" og ", hast[length(hast)], "</li>", sep = "")
-            hastegrad2_tekst <- paste(tmp1, tmp2, tmp3)
-        }
-        all_tekst <- paste(all_tekst, hastegrad2_tekst, sep = "")
-    }
-
-    if (tab == "dag") {
-        all_tekst <- paste0(all_tekst, "<li>Kun dagbehandlinger</li>")
-    } else if (tab == "dogn") {
-        all_tekst <- paste0(all_tekst, "<li>Kun døgnopphold</li>")
-    } else if (tab == "poli") {
-        all_tekst <- paste0(all_tekst, "<li>Kun polikliniske konsultasjoner</li>")
-    } else if (length(behandlingsniva) != 3) {
-        behnivaa <- sapply(behandlingsniva, tolower)
-        behnivaa <- gsub("dagbehandling", "dagbehandlinger", behnivaa)
-        behnivaa <- gsub("konsultasjon", "konsultasjoner", behnivaa)
-        if (length(behnivaa) == 1) {
-            tmp1 <- "<li>Kun "
-            behandlingsniva_tekst <- paste0(tmp1, behnivaa[length(behnivaa)], "</li>")
-        } else {
-            tmp1 <- "<li>Kun"
-            tmp2 <- paste(behnivaa[seq_len(length(behnivaa)) - 1], collapse = ", ")
-            tmp3 <- paste0(" og ", behnivaa[length(behnivaa)], "</li>")
-            behandlingsniva_tekst <- paste(tmp1, tmp2, tmp3)
-        }
-        all_tekst <- paste0(all_tekst, behandlingsniva_tekst)
-    }
-
-    if (extra) {
-        all_tekst <- paste0(all_tekst, "</ul></li></ul>")
-    }
-    return(all_tekst)
+    all_tekst <- paste0(all_tekst, behandlingsniva_tekst)
+  }
+  
+  if (extra) {
+    all_tekst <- paste0("<ul><li>Annet: <ul>", all_tekst, "</ul></li></ul>")
+  }
+  return(all_tekst)
 }
 
 warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
@@ -311,7 +303,7 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
     all_tekst <- ""
     tmp_boomr <- define_boomr(rad, bo)
     if (verdi %in% c("rate", "drgrate")) {
-        if ("alder" %in% rad | length(alder) != 4) {
+        if (("alder" %in% rad | length(alder) != 4) & !is.null(alder)) {
             warn <- paste0("<font color=#b94a48>",
                            "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
                            "på ", tmp_boomr, ", og ikke for hver aldersgruppe!",

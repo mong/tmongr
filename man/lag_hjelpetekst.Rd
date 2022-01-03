@@ -16,7 +16,8 @@ lag_hjelpetekst(
   behandlingsniva,
   alder,
   kjonn,
-  hastegrad2
+  hastegrad2,
+  overskrift = TRUE
 )
 }
 \arguments{

@@ -10,7 +10,7 @@ Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/mong/tmongr/issues
 URL: https://mong.github.io/tmongr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports:
     shiny,
     shinythemes,

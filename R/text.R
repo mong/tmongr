@@ -236,7 +236,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
                         "fagområde for episoden basert på fagområde ",
                         "til avtalespesialisten.</li>")
   }
-  
+
   if (length(alder) < 4 & !is.null(alder)) {
     extra <- T
     if (length(alder) == 1) {
@@ -250,7 +250,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     }
     all_tekst <- paste(all_tekst, alder_tekst, sep = "")
   }
-  
+
   if (length(hastegrad2) != 5 & !is.null(hastegrad2)) {
     extra <- T
     hast <- sapply(hastegrad2, tolower)
@@ -265,7 +265,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     }
     all_tekst <- paste(all_tekst, hastegrad2_tekst, sep = "")
   }
-  
+
   if (tab == "dag") {
     extra <- T
     all_tekst <- paste0(all_tekst, "<li>Kun dagbehandlinger</li>")
@@ -291,7 +291,7 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     }
     all_tekst <- paste0(all_tekst, behandlingsniva_tekst)
   }
-  
+
   if (extra) {
     all_tekst <- paste0("<ul><li>Annet: <ul>", all_tekst, "</ul></li></ul>")
   }

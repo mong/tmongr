@@ -211,4 +211,12 @@ app_server <- function(input, output, session) {
       invalidateLater(5000)
       Sys.time()
     })
+
+    output$markdown <- renderUI({
+      rmd_filename <- system.file("app/Rmd/info.Rmd",
+                              package = methods::getPackageName()
+      )
+      md <- knitr::knit(rmd_filename, quiet = TRUE)
+      shiny::withMathJax(shiny::includeMarkdown(md))
+    })
 }

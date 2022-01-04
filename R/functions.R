@@ -135,3 +135,14 @@ definer_valg_kol <- function(col_names, valgnr) {
     }
 
 }
+
+#' Return the version of tmongr as string/url
+#' @export
+#' @examples
+#' version_info()
+version_info <- function() {
+  url <- "https://github.com/mong/tmongr/releases/latest"
+  vpkg <- utils::installed.packages()[c("tmongr"), 3]
+  text <- paste0("[", vpkg, "](", url, ")")
+  return(text)
+}

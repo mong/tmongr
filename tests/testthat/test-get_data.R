@@ -1,5 +1,4 @@
 test_that("get_data with files on disk", {
-
   saveRDS(testdata, file = "behandler.rds")
   expect_equal(get_data(), testdata3)
 

@@ -1,5 +1,5 @@
 
-rm(list=ls())
+rm(list = ls())
 
 getwd()
 
@@ -14,11 +14,12 @@ datasett <- rbind(uten_overf, med_overf)
 run_app()
 
 
-datasett <- read.table('../tmongrdata/fag.csv', 
-                   sep = ",", 
-                   header=T, 
-                   encoding = 'UTF-8', 
-                   stringsAsFactors = FALSE)
+datasett <- read.table("../tmongrdata/fag.csv",
+  sep = ",",
+  header = T,
+  encoding = "UTF-8",
+  stringsAsFactors = FALSE
+)
 
 names(datasett) <- tolower(names(datasett))
 

@@ -1,11 +1,12 @@
 context("make_data_tabell")
 
 lag_pivot <- function(verdier) {
-  pivot <- make_data_tabell(verdier$inp_datasett,
-                          verdier$fane,
-                          verdier,
-                          verdier$keep_names,
-                          verdier$snitt
+  pivot <- make_data_tabell(
+    verdier$inp_datasett,
+    verdier$fane,
+    verdier,
+    verdier$keep_names,
+    verdier$snitt
   )
   return(pivot)
 }
@@ -22,26 +23,29 @@ test_that("makeDataTable returns NULL and error", {
 })
 
 test_that("make_data_tabell returns a pivot table", {
-
-  originalverdier <- list(inp_datasett = testdata,
-                  fane = "tmp", #?
-                  rader = c("boomr_hf", "behandlende_hf"),
-                  kolonner = "aar",
-                  verdi = "kontakter",
-                  aar = 2016,
-                  bo = 2,
-                  beh = "Alle",
-                  behandlingsniva = c("Døgnopphold",
-                                      "Dagbehandling",
-                                      "Poliklinikk",
-                                      "Avtalespesialist"),
-                  alder = c("tmp", "tmp", "tmp", "tmp"),
-                  kjonn = c("tmp", "tmp"),
-                  hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
-                  prosent = F,
-                  keep_names = F,
-                  snitt = T,
-                  fag = "Alle")
+  originalverdier <- list(
+    inp_datasett = testdata,
+    fane = "tmp", # ?
+    rader = c("boomr_hf", "behandlende_hf"),
+    kolonner = "aar",
+    verdi = "kontakter",
+    aar = 2016,
+    bo = 2,
+    beh = "Alle",
+    behandlingsniva = c(
+      "Døgnopphold",
+      "Dagbehandling",
+      "Poliklinikk",
+      "Avtalespesialist"
+    ),
+    alder = c("tmp", "tmp", "tmp", "tmp"),
+    kjonn = c("tmp", "tmp"),
+    hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
+    prosent = F,
+    keep_names = F,
+    snitt = T,
+    fag = "Alle"
+  )
 
   verdier <- originalverdier
 
@@ -145,4 +149,4 @@ test_that("make_data_tabell returns a pivot table", {
   verdier$aar <- c(2014, 2015, 2016)
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot8.rds")
-  })
+})

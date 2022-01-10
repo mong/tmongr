@@ -3,10 +3,11 @@ get_data <- function() {
     return(datasett)
   } else if (file.exists("fag.csv")) {
     datasett <- read.table("fag.csv",
-                           sep = ",",
-                           header = T,
-                           encoding = "UTF-8",
-                           stringsAsFactors = FALSE)
+      sep = ",",
+      header = T,
+      encoding = "UTF-8",
+      stringsAsFactors = FALSE
+    )
 
     names(datasett) <- tolower(names(datasett))
     return(datasett)

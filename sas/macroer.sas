@@ -40,14 +40,14 @@ data &dsn;
 set &dsn;
 
 if episodeFag = "" and tjenesteenhetKode = "3652" and behsh in (20,21) then episodeFag = "853"; /* Onkologi */
-if episodeFag in ("", "Erg", "FYS", "erg", "0") then episodeFag = "999";
+if episodeFag in ("", "Erg", "FYS", "erg", "0", "854") then episodeFag = "999";
 
 run;
 
 data &dsn;
 set &dsn;
 
-if episodeFag in ("900", "999") and AvtSpes = 1 then do;
+if episodeFag in ("900", "999", "  .", "  .", "") and AvtSpes = 1 then do;
     if fag_skde = 1 then episodeFag = "210";  /* Anestesi */
     if fag_skde = 2 then episodeFag = "220";  /* Barn -> Barnesykdommer */
     if fag_skde = 3 then episodeFag = "230";  /* Fysmed -> Fysikalsk medisin og (re) habilitering */
@@ -56,6 +56,7 @@ if episodeFag in ("900", "999") and AvtSpes = 1 then do;
     if fag_skde = 6 then episodeFag = "110";  /* Indremedisin -> Generell indremedisin */
     if fag_skde = 11 then episodeFag = "010"; /* Kirurgi -> Generell kirurgi */
     if fag_skde = 15 then episodeFag = "250"; /* Nevrologi */
+	if fag_skde = 17 then episodeFag = "090"; /* Plastikkirurgi */
     if fag_skde = 18 then episodeFag = "852"; /* Radiologi */
     if fag_skde = 19 then episodeFag = "190"; /* Revmatologi -> Revmatiske sykdommer (revmatologi) */
     if fag_skde = 21 then episodeFag = "290"; /* ØNH -> Øre-nese-hals sykdommer */

@@ -38,4 +38,3 @@ med_overf <- med_overf[sample(nrow(med_overf), 1000), ]
 testdata3 <- rbind(uten_overf, med_overf)
 
 usethis::use_data(testdata3, overwrite = TRUE)
-

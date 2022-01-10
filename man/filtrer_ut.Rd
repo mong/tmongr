@@ -15,7 +15,8 @@ filtrer_ut(
   alder,
   kjonn,
   hastegrad1,
-  hastegrad2
+  hastegrad2,
+  fag
 )
 }
 \arguments{

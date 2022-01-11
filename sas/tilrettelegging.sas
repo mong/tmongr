@@ -1,9 +1,10 @@
-%macro tilrettelegging(datainn = , dataut = );
+%macro tilrettelegging(datainn = , dataut = , sho = 1);
 
 /*
 Behold den linjen pr. EoC med max korrvekt (drg-poeng)
 */
 
+%if &sho = 1 %then %do;
 proc sql;
 create table tabell_tmp as
 select *, max(npkOpphold_ISFPoeng) as max_korrvekt
@@ -36,12 +37,20 @@ liggetid = sho_liggetid;
 hastegrad = sho_hastegrad;
 aktivitetskategori3 = sho_aktivitetskategori3;
 run;
+%end;
+
 
 /*
 Kun beholde relevante variabler
 */
 data tabell_alle2;
+%if  &sho = 1 %then %do;
 set tabell_tmp;
+%end;
+%else %do;
+set &datainn;
+%end;
+
 keep aar alder ermann npkOpphold_ISFPoeng liggetid
 BoShHN BoHF BoRHF BehSh BehHF BehRHF
 Aktivitetskategori3 hastegrad ICD10Kap

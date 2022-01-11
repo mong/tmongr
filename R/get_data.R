@@ -20,7 +20,7 @@ get_data <- function() {
       names(datasett2) <- tolower(names(datasett2))
       datasett2$niva <- "Uten overf"
       datasett$niva <- "Med overf"
-      datasett <- rbind(datasett, datasett2)
+      datasett <- rbind(datasett2, datasett)
     }
     return(datasett)
   } else if (file.exists("behandler.rds") && file.exists("justertoverf.rds")) {

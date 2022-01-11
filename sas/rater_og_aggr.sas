@@ -95,8 +95,8 @@ proc sql;
          hastegrad, 
          DRGtypeHastegrad,
          BehHF,
-         BehSh,
       %end;
+      BehSh,
       Behhf_hn,
 	  %if &hdg ne 0 %then %do;
 	     hdg,
@@ -150,8 +150,8 @@ from tabl4
          hastegrad,
          DRGtypeHastegrad,
          BehHF,
-         BehSh,
       %end;
+      BehSh,
 	  Behhf_hn,
 	  %if &hdg ne 0 %then %do;
 	     hdg,
@@ -180,10 +180,10 @@ set &dsn._ut;
       rename Ald_gr4 = alder;
       rename ermann = kjonn;
       rename Behhf = behandlende_HF;
-      rename BehSh = behandlende_sykehus;
       format drgtypehastegrad drgtypehastegrad.;
       format kjonn ermann.;
    %end;
+   rename BehSh = behandlende_sykehus;
    rename Behhf_hn = behandlende_HF_HN;
    %if &hdg ne 0 %then %do;
       rename hdg = Hoveddiagnosegruppe;

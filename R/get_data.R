@@ -10,6 +10,18 @@ get_data <- function() {
     )
 
     names(datasett) <- tolower(names(datasett))
+    if (file.exists("fag2.csv")) {
+      datasett2 <- read.table("fag2.csv",
+                             sep = ",",
+                             header = T,
+                             encoding = "UTF-8",
+                             stringsAsFactors = FALSE)
+      
+      names(datasett2) <- tolower(names(datasett2))
+      datasett2$niva <- "Uten overf"
+      datasett$niva <- "Med overf"
+      datasett <- rbind(datasett, datasett2)
+    }
     return(datasett)
   } else if (file.exists("behandler.rds") && file.exists("justertoverf.rds")) {
     uten_overf <- readRDS("behandler.rds")

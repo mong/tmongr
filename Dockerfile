@@ -1,4 +1,4 @@
-FROM hnskde/tmongr-base-r:1.0.1
+FROM hnskde/tmongr-base-r:1.1.0
 
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
 LABEL no.mongr.cd.enable="true"
@@ -11,7 +11,7 @@ COPY *.tar.gz .
 RUN R CMD INSTALL --clean ./*.tar.gz && rm ./*.tar.gz
 
 # Copy the data files
-COPY tmongrdata/fag.csv .
+COPY tmongrdata/fag*.csv .
 
 EXPOSE 80
 

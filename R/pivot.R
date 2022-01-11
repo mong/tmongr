@@ -11,12 +11,10 @@
 #' @export
 #'
 make_data_tabell <- function(input_dataset,
-                           fane,
-                           verdier,
-                           keep_names,
-                           snitt) {
-
-
+                             fane,
+                             verdier,
+                             keep_names,
+                             snitt) {
   rad <- verdier$rader
   kol <- verdier$kolonner
   verdi <- verdier$verdi
@@ -56,8 +54,10 @@ make_data_tabell <- function(input_dataset,
   }
 
   # Filtrer ut det som ikke skal tabuleres. Rutinen ligger i filter.R
-  tabell <- filtrer_ut(tabell, fane, verdi,
-                      aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, fag)
+  tabell <- filtrer_ut(
+    tabell, fane, verdi,
+    aar, bo, beh, behandlingsniva, alder, kjonn, hastegrad1, hastegrad2, fag
+  )
 
   # Returnere ingenting hvis hele tabellen filtreres bort
   if (!nrow(tabell)) {
@@ -85,11 +85,11 @@ make_data_tabell <- function(input_dataset,
   # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognindex?
   if (snitt | prosent) {
     if (!("drg_index" %in% verdi | "liggedognindex" %in% verdi) &
-        !(verdi %in% c("rate", "drgrate", "liggedognrate") & length(rad) == 1)) {
+      !(verdi %in% c("rate", "drgrate", "liggedognrate") & length(rad) == 1)) {
       # ikke regn ut total på rater når en rad er bohf og den andre rad er bosh
       if (!((verdi %in% c("rate", "drgrate", "liggedognrate")) &
-             ("boomr_hf" %in% rad) &
-             ("boomr_sykehus" %in% rad))) {
+        ("boomr_hf" %in% rad) &
+        ("boomr_sykehus" %in% rad))) {
         regnet_total <- TRUE
         pivot <- add_total(pivot, rad, kol)
       }
@@ -154,8 +154,7 @@ make_pivot <- function(data, rad, kol, agg) {
     tmp <- tmp %>% dplyr::summarise(verdi = sum(.data[["drg_poeng"]]))
     if (kol %in% rad) {
       start <- length(rad) + 1
-    }
-    else {
+    } else {
       start <- length(rad) + 2
     }
     for (i in start:length(names(tmp))) {
@@ -182,14 +181,11 @@ make_pivot <- function(data, rad, kol, agg) {
     agg <- gsub("liggedognrate", "liggerate", agg)
     if ("boomr_sykehus" %in% c(rad, kol)) {
       agg_var <- paste0("bosh_", agg)
-    }
-    else if ("boomr_hf" %in% c(rad, kol)) {
+    } else if ("boomr_hf" %in% c(rad, kol)) {
       agg_var <- paste0("bohf_", agg)
-    }
-    else if ("boomr_rhf" %in% c(rad, kol)) {
+    } else if ("boomr_rhf" %in% c(rad, kol)) {
       agg_var <- paste0("borhf_", agg)
-    }
-    else {
+    } else {
       # Stop here if rate and not bo
       return(tom_tabell())
     }
@@ -269,7 +265,6 @@ prosent_func <- function(tabell, rad, kol) {
 
 
 add_total <- function(tabell, rad, kol) {
-
   if ("aar" %in% colnames(tabell)) {
     tabell$aar <- as.character(tabell$aar)
   }
@@ -319,7 +314,6 @@ add_total <- function(tabell, rad, kol) {
 }
 
 rename_columns <- function(tabell) {
-
   names(tabell) <- sub("behandlende_sykehus", "Behandlende sykehus", names(tabell))
   names(tabell) <- sub("behandlende_hf_hn", "Behandlende HF", names(tabell))
   names(tabell) <- sub("behandlende_hf", "Behandlende HF", names(tabell))
@@ -338,7 +332,6 @@ rename_columns <- function(tabell) {
   names(tabell) <- sub("episodefag", "Fagområde for episode", names(tabell))
 
   return(tabell)
-
 }
 
 add_last_column <- function(pivot, rad, kol, verdi) {
@@ -357,7 +350,7 @@ add_last_column <- function(pivot, rad, kol, verdi) {
       # nolint start
       pivot$Snitt <- rowMeans(pivot[, -seq_len(length(rad))], na.rm = TRUE)
       pivot$Snitt <- round(pivot$Snitt, rund)
-    } else{
+    } else {
       pivot$Sum <- rowSums(pivot[, -seq_len(length(rad))], na.rm = TRUE)
       pivot$Sum <- round(pivot$Sum, rund)
       # nolint end
@@ -375,5 +368,4 @@ slash_heltall <- function(tabell) {
   # erstatte tall mellom 1 og 4 med "-"
   tabell[suppressWarnings(as.numeric(tabell)) < 5 & suppressWarnings(as.numeric(tabell)) > 0] <- "-"
   return(tabell)
-
 }

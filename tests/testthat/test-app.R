@@ -16,8 +16,6 @@ test_that("app_ui", {
   expect_true(grepl("aar", ref_chr, fixed = TRUE))
   expect_true(grepl("shiny-html-output", ref_chr, fixed = TRUE))
   expect_true(grepl("Informasjon", ref_chr, fixed = TRUE))
-  expect_true(grepl("Dataene som presenteres er fra Norsk pasientregister", ref_chr, fixed = TRUE))
-  expect_true(grepl("Ratene er beregnet ut i fra befolkningstall fra SSB", ref_chr, fixed = TRUE))
 })
 
 test_that("run_app", {

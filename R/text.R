@@ -174,9 +174,9 @@ get_annet_text <- function(rad) {
     k <- k + 1
     annet$hastegrd2 <- "hastegrad, innleggelser"
   }
-  if ("episode_fag" %in% rad) {
+  if ("episodefag" %in% rad) {
     k <- k + 1
-    annet$episode_fag <- "fagområde for episoden"
+    annet$episode_fag <- "fagområdet for episoden"
   }
   if ("fag_skde" %in% rad) {
     k <- k + 1
@@ -227,15 +227,18 @@ get_aar_text <- function(aar) {
 extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
   all_tekst <- ""
   extra <- F
-  if ("episode_fag" %in% rad) {
+  if ("episodefag" %in% rad) {
     extra <- T
     all_tekst <- paste0(
       all_tekst,
+      "<li> Fagområdet for episoden er rapportert av sykehusene og rapporteringspraksis vil variere. ",
+      "Samme type episode vil derfor kunne ha forskjellig fagområde, blant annet avhengig av ved ",
+      "hvilket sykehus eller avdeling episoden fant sted.</li>",
       "<li> For en del konsultasjoner hos ",
-      "avtalespesialister er ikke fagområde ",
+      "avtalespesialister er ikke fagområdet ",
       "for episoden rapport inn til NPR. ",
       "Disse konsultasjonene har fått definert ",
-      "fagområde for episoden basert på fagområde ",
+      "fagområdet for episoden basert på fagområdet ",
       "til avtalespesialisten.</li>"
     )
   }

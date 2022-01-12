@@ -209,7 +209,7 @@ get_aar_text <- function(aar) {
   if (length(aar) > 1) {
     tmp1 <- "årene "
     if (length(aar) == (as.numeric(aar[length(aar)]) - as.numeric(aar[1]) + 1)) {
-      tmp2 <- paste(aar[1], aar[length(aar)], sep = " - ")
+      tmp2 <- paste(aar[1], aar[length(aar)], sep = "–")
       aar_tekst <- paste(tmp1, tmp2)
     } else {
       tmp2 <- paste(aar[seq_len(length(aar)) - 1], collapse = ", ")

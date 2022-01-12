@@ -1,3 +1,9 @@
+# tmongr 3.6.0
+
+* Reintroduce fagområde with "justert for overføringer", including disclaimer.
+* Use RHF-data up to 2020
+* Other small fixes
+
 # tmongr 3.5.0
 
 Remove heading. Making it ready for iframe with heading from mongts

@@ -49,10 +49,8 @@ HDG
 liggetid
 polUtforende_1
 utTilstand 
-intern_kons
 niva
 npkOpphold:
-/*npkOpphold_ISFPoeng*/
 dag_kir
 aggrshoppID_Lnr
 ;
@@ -75,7 +73,6 @@ fodselsar
 dodDato
 institusjonId
 debitor
-Episodefag
 hastegrad
 ICD10Kap
 hdiag3tegn
@@ -86,20 +83,20 @@ AvtSpes
 /* lage sett for tabellverk-generering */
 data off_tot;
 set 
-hnana.sho_2017_t21m07 (keep=&magnus_som)
 hnana.sho_2018_t21m07 (keep=&magnus_som)
 hnana.sho_2019_t21m07 (keep=&magnus_som)
 hnana.sho_2020_t21m07 (keep=&magnus_som)
+hnana.sho_2021_t21t3 (keep=&magnus_som)
 ;
 where (BehRHF = 1 or BoRHF = 1) and (BoRHF in (1:4));
 run;
 
 data priv_tot;
 set
-hnana.aspes_2017_t20t2 (keep=&magnus_aspes)
 hnana.aspes_2018_t20t2 (keep=&magnus_aspes)
 hnana.aspes_2019_t20t2 (keep=&magnus_aspes)
 hnana.aspes_2020_t20t3 (keep=&magnus_aspes)
+hnana.aspes_2021_t21t3 (keep=&magnus_aspes)
 ;
 where (BoRHF = 1) and (alder ne .);
 BehHF = 28;

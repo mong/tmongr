@@ -11,7 +11,7 @@
 <!-- badges: end -->
 
 This is a R package to produce *dynamisk tabellverk* web pages. 
-The web page is hosted on www.shinyapps.io and can be found here: https://skde.shinyapps.io/tabellverk/ 
+The web page can be found here: https://www.skde.no/pasientstrommer/ 
 The data in itself is not included in this package.
 
 ## How to install the package
@@ -20,22 +20,30 @@ The data in itself is not included in this package.
 remotes::install_github("mong/tmongr")
 ```
 
-### If behind proxy
+## Running SAS code
 
-Include the following in your `~/.Renviron` file before you install the package:
+Running the following SAS code will produce the aggregated data used by the shiny app:
 
-```R
-http_proxy=<proxy-url>:<port>
-https_proxy=<proxy-url>:<port>
+```sas
+%let sasmappe = <folder>\tmongr\sas;
+%let filbane = <another_folder>\felleskoder\master;
+
+%let prosjekt_filbane = <folder>;
+
+/* This will run the code */
+%include "&sasmappe\avd_tabell.sas";
 ```
 
-## Development
+The following data files will be produced:
 
-Functions from the `shiny` package that is not on *cran* are used when running tests. Thus, the github version of `shiny` has to be installed to be able to run the tests locally:
-
-```R
-remotes::install_github("rstudio/shiny")
+```sas
+&prosjekt_filbane\tmongrdata\fag.csv
+&prosjekt_filbane\tmongrdata\fag2.csv
 ```
+
+## Running the app
+
+Run the R-code in `data-raw/test-run.R` to run the app locally with newly created data.
 
 ## Docker
 
@@ -63,68 +71,3 @@ docker run -p 80:80 tmongr
 Then, open a web browser window and navigate to [your localhost at port 80](http://127.0.0.1:80) to use the _tmongr_ web application.
 
 To stop the docker container hit ```Ctrl + c``` in the system comman terminal.
-
-## Running SAS code
-
-Running the following SAS code will produce the aggregated data used by the shiny app:
-
-```sas
-%let sasfolder = <folder>\tmongr\sas;
-
-%include "&sasfolder\formater.sas";
-%include "&sasfolder\macroer.sas";
-%include "&sasfolder\rater_og_aggr.sas";
-%include "&sasfolder\tilrettelegging.sas";
-%include "&sasfolder\tilretteleggInnbyggerfil.sas";
-
-%include "&sasfolder\avd_tabell.sas";
-```
-
-The following data files will be produced:
-
-```
-<folder>\csv_filer\avd_behandlert19.csv
-<folder>\csv_filer\avd_justoverft18.csv
-<folder>\csv_filer\avd_fagt18.csv
-<folder>\csv_filer\avd_icd10t18.csv
-```
-
-## Convert the data to R
-
-The *csv* files produced by *SAS* have to be converted to `utf-8` and `unix` file ending format by *git bash*:
-
-```bash
-iconv.exe -f CP1252 -t UTF-8 <filename> | dos2unix.exe > unix_<filename>
-```
-
-Then saved as `RDS` files, as follows:
-
-```r
-data <- read.table('../csv_filer/unix_avd_behandlert18.csv', 
-                  sep = ",", 
-                  header=T, 
-                  encoding = 'UTF-8', 
-                  stringsAsFactors = FALSE)
-
-names(data) <- tolower(names(data))
-saveRDS(data, "data/behandler.rds")
-```
-
-## Running the app
-
-```r
-# read the data
-uten_overf <- readRDS("../tabellverk/data/behandler.rds")
-med_overf <- readRDS("../tabellverk/data/justertoverf.rds")
-
-# define `niva`
-uten_overf$niva <- "Uten overf"
-med_overf$niva <- "Med overf"
-
-# bind the data together
-datasett <- rbind(uten_overf, med_overf)
-
-# run the app
-run_app()
-```
-

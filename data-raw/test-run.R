@@ -22,4 +22,4 @@ datasett2$niva <- "Uten overf"
 datasett$niva <- "Med overf"
 datasett <- rbind(datasett2, datasett)
 
-run_app()
+tmongr::run_app()

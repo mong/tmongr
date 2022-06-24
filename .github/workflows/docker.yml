@@ -65,7 +65,7 @@ jobs:
         run: |
           echo "S3Key='prod-tmongr_dockerrun.json'" >> $GITHUB_ENV
           echo "env_name=prod-tabellverk" >> $GITHUB_ENV
-          echo "version_label=${GITHUB_REF:10:6}" >> $GITHUB_ENV
+          echo "version_label=${GITHUB_REF:10}" >> $GITHUB_ENV
           echo "descr='Release tag deploy'" >> $GITHUB_ENV
       - name: Set QA variables
         if: github.event_name == 'push'

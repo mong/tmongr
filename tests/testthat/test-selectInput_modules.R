@@ -6,21 +6,21 @@ test_that("rad1_server", {
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "def", "ijk", "lmn"), default = "abc"), {
     expect_equal_to_reference(
-      output$rad1,
+      output$rad1[["html"]],
       paste0("data/module_", "rad1", "1.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "abc"), {
     expect_equal_to_reference(
-      output$rad1,
+      output$rad1[["html"]],
       paste0("data/module_", "rad1", "2.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "lmn"), {
     expect_equal_to_reference(
-      output$rad1,
+      output$rad1[["html"]],
       paste0("data/module_", "rad1", "3.rds")
     )
   })
@@ -36,21 +36,21 @@ test_that("rad2_server", {
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "def", "ijk", "lmn"), default = "abc"), {
     expect_equal_to_reference(
-      output$rad2,
+      output$rad2[["html"]],
       paste0("data/module_", "rad2", "1.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "abc"), {
     expect_equal_to_reference(
-      output$rad2,
+      output$rad2[["html"]],
       paste0("data/module_", "rad2", "2.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "lmn"), {
     expect_equal_to_reference(
-      output$rad2,
+      output$rad2[["html"]],
       paste0("data/module_", "rad2", "3.rds")
     )
   })
@@ -66,21 +66,21 @@ test_that("kolonner_server", {
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "def", "ijk", "lmn"), default = "abc"), {
     expect_equal_to_reference(
-      output$kolonner,
+      output$kolonner[["html"]],
       paste0("data/module_", "kolonner", "1.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "abc"), {
     expect_equal_to_reference(
-      output$kolonner,
+      output$kolonner[["html"]],
       paste0("data/module_", "kolonner", "2.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "lmn"), {
     expect_equal_to_reference(
-      output$kolonner,
+      output$kolonner[["html"]],
       paste0("data/module_", "kolonner", "3.rds")
     )
   })
@@ -96,21 +96,21 @@ test_that("verdi_server", {
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "def", "ijk", "lmn"), default = "abc"), {
     expect_equal_to_reference(
-      output$verdi,
+      output$verdi[["html"]],
       paste0("data/module_", "verdi", "1.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "abc"), {
     expect_equal_to_reference(
-      output$verdi,
+      output$verdi[["html"]],
       paste0("data/module_", "verdi", "2.rds")
     )
   })
 
   shiny::testServer(function_name, args = list(pickable = c("abc", "ijk"), default = "lmn"), {
     expect_equal_to_reference(
-      output$verdi,
+      output$verdi[["html"]],
       paste0("data/module_", "verdi", "3.rds")
     )
   })
@@ -126,7 +126,7 @@ test_that("bo_server", {
 
   shiny::testServer(function_name, {
     expect_equal_to_reference(
-      output$bo,
+      output$bo[["html"]],
       paste0("data/module_", "bo", "1.rds")
     )
   })
@@ -145,7 +145,7 @@ test_that("beh_server", {
     "Utenfor Helse Nord RHF" = 7
   ), default = 1), {
     expect_equal_to_reference(
-      output$beh,
+      output$beh[["html"]],
       "data/module_beh1.rds"
     )
   })

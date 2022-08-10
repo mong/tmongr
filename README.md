@@ -3,8 +3,8 @@
 <!-- badges: start -->
 [![Version](https://img.shields.io/github/v/release/mong/tmongr?sort=semver)](https://github.com/mong/tmongr/releases)
 [![R build status](https://github.com/mong/tmongr/workflows/R-CMD-check/badge.svg)](https://github.com/mong/tmongr/actions)
-[![Codecov test coverage](https://codecov.io/gh/mong/tmongr/branch/master/graph/badge.svg)](https://codecov.io/gh/mong/tmongr?branch=master)
-[![Coveralls test coverage](https://coveralls.io/repos/github/mong/tmongr/badge.svg?branch=master)](https://coveralls.io/github/mong/tmongr?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/mong/tmongr/branch/main/graph/badge.svg)](https://codecov.io/gh/mong/tmongr?branch=main)
+[![Coveralls test coverage](https://coveralls.io/repos/github/mong/tmongr/badge.svg?branch=main)](https://coveralls.io/github/mong/tmongr?branch=main)
 [![GitHub open issues](https://img.shields.io/github/issues/mong/tmongr.svg)](https://github.com/mong/tmongr/issues)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://mong.github.io/tmongr/)

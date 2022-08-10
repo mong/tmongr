@@ -1,7 +1,7 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "hnskde/tmongr:master"
+      "Name": "hnskde/tmongr:main"
     },
     "Ports": [
       {

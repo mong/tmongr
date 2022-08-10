@@ -3,9 +3,9 @@ on:
   release:
     types: [published]
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   push_to_registries:
@@ -73,7 +73,7 @@ jobs:
           echo "S3Key='qa-tmongr_dockerrun.json'" >> $GITHUB_ENV
           echo "env_name=qa-tabellverk" >> $GITHUB_ENV
           echo "version_label=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
-          echo "descr='Master commits deploy'" >> $GITHUB_ENV
+          echo "descr='main commits deploy'" >> $GITHUB_ENV
       - name: Update elasticbeanstalk
         if: github.event_name != 'pull_request'
         run: |

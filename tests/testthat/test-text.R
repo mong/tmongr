@@ -14,9 +14,9 @@ test_that("correct text is returned", {
     alder = c("tmp", "tmp", "tmp", "tmp"),
     kjonn = c("tmp", "tmp"), # ?
     hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
-    prosent = F,
-    keep_names = F,
-    snitt = T,
+    prosent = FALSE,
+    keep_names = FALSE,
+    snitt = TRUE,
     fag = "Alle"
   )
 
@@ -39,9 +39,9 @@ test_that("correct text is returned", {
 
   verdier$aar <- c(2011, 2013, 2014, 2015)
   verdier$fane <- "menisk"
-  verdier$prosent <- T
-  verdier$keep_names <- T
-  verdier$snitt <- F
+  verdier$prosent <- TRUE
+  verdier$keep_names <- TRUE
+  verdier$snitt <- FALSE
   hjelpetekst <- lag_hjelpetekst(
     tab = verdier$fane,
     rad = c("aar", "behandlende_rhf", "alder"),
@@ -87,7 +87,7 @@ test_that("correct text is returned", {
       aar = "2015",
       bo = verdier$bo,
       beh = behhf,
-      prosent = T,
+      prosent = TRUE,
       behandlingsniva = c("dag"),
       alder = c("1", "2", "3"),
       kjonn = "mann",

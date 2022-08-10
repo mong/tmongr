@@ -26,7 +26,7 @@ sorter_datasett <- function(datasett, rad = NULL, kol = NULL) {
   datasett$variable <- NULL
   datasett$value <- NULL
 
-  if (length(rad) == 1 | rad[1] %in% kol) {
+  if (length(rad) == 1 || rad[1] %in% kol) {
     datasett <- dplyr::arrange(datasett, sort1)
     datasett$sort1 <- NULL
   } else if (length(rad) == 2) {

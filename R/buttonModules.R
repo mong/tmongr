@@ -4,7 +4,6 @@
 #'
 #' @param colnames Column names in the data
 #'
-#' @return
 #' @export
 #'
 just_overf_server <- function(id, colnames) {

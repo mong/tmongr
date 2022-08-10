@@ -38,9 +38,6 @@ keep_names_server(id)
 
 \item{session}{Shiny session}
 }
-\value{
-
-}
 \description{
 Module for the year checkbox
 

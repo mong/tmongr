@@ -3,7 +3,7 @@ define_boomr <- function(rad, bo) {
     return("sykehusnivå")
   } else if ("boomr_hf" %in% rad) {
     return("HF-nivå")
-  } else if (("boomr_rhf" %in% rad) & (bo == 1)) {
+  } else if (("boomr_rhf" %in% rad) && (bo == 1)) {
     return("RHF-nivå")
   } else {
     return("...")
@@ -123,13 +123,13 @@ get_beh_text <- function(rad, bo) {
     hjelpetekst <- paste0(hjelpetekst, "behandlet ved ulike ", tmp_beh)
   }
 
-  tmp_bo <- F
+  tmp_bo <- FALSE
   if ("boomr_sykehus" %in% rad) {
-    tmp_bo <- T
+    tmp_bo <- TRUE
   } else if ("boomr_hf" %in% rad) {
-    tmp_bo <- T
-  } else if (("boomr_rhf" %in% rad) & (bo == 1)) {
-    tmp_bo <- T
+    tmp_bo <- TRUE
+  } else if (("boomr_rhf" %in% rad) && (bo == 1)) {
+    tmp_bo <- TRUE
   }
 
   tmp_boomr <- define_boomr(rad, bo)
@@ -192,7 +192,7 @@ get_annet_text <- function(rad) {
     l <- 0
     for (i in annet) {
       l <- l + 1
-      if (l == k & l != 1) {
+      if (l == k && l != 1) {
         hjelpetekst <- paste(hjelpetekst, i, sep = " og ")
       } else if (l == 1) {
         hjelpetekst <- paste(hjelpetekst, i, sep = "")
@@ -226,9 +226,9 @@ get_aar_text <- function(aar) {
 
 extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
   all_tekst <- ""
-  extra <- F
+  extra <- FALSE
   if ("episodefag" %in% rad) {
-    extra <- T
+    extra <- TRUE
     all_tekst <- paste0(
       all_tekst,
       "<li> Fagområdet for episoden er rapportert av sykehusene og rapporteringspraksis vil variere. ",
@@ -243,8 +243,8 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     )
   }
 
-  if (length(alder) < 4 & !is.null(alder)) {
-    extra <- T
+  if (length(alder) < 4 && !is.null(alder)) {
+    extra <- TRUE
     if (length(alder) == 1) {
       tmp1 <- "<li>Kun aldersgruppen "
       alder_tekst <- paste0(tmp1, alder[length(alder)], "</li>")
@@ -257,8 +257,8 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
     all_tekst <- paste(all_tekst, alder_tekst, sep = "")
   }
 
-  if (length(hastegrad2) != 5 & !is.null(hastegrad2)) {
-    extra <- T
+  if (length(hastegrad2) != 5 && !is.null(hastegrad2)) {
+    extra <- TRUE
     hast <- sapply(hastegrad2, tolower)
     if (length(hast) == 1) {
       tmp1 <- "<li>Kun hastegrad "
@@ -273,16 +273,16 @@ extra_text <- function(alder, hastegrad2, behandlingsniva, tab, rad) {
   }
 
   if (tab == "dag") {
-    extra <- T
+    extra <- TRUE
     all_tekst <- paste0(all_tekst, "<li>Kun dagbehandlinger</li>")
   } else if (tab == "dogn") {
-    extra <- T
+    extra <- TRUE
     all_tekst <- paste0(all_tekst, "<li>Kun døgnopphold</li>")
   } else if (tab == "poli") {
-    extra <- T
+    extra <- TRUE
     all_tekst <- paste0(all_tekst, "<li>Kun polikliniske konsultasjoner</li>")
   } else if (length(behandlingsniva) != 3) {
-    extra <- T
+    extra <- TRUE
     behnivaa <- sapply(behandlingsniva, tolower)
     behnivaa <- gsub("dagbehandling", "dagbehandlinger", behnivaa)
     behnivaa <- gsub("konsultasjon", "konsultasjoner", behnivaa)
@@ -309,7 +309,7 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
   all_tekst <- ""
   tmp_boomr <- define_boomr(rad, bo)
   if (verdi %in% c("rate", "drgrate")) {
-    if (("alder" %in% rad | length(alder) != 4) & !is.null(alder)) {
+    if (("alder" %in% rad || length(alder) != 4) && !is.null(alder)) {
       warn <- paste0(
         "<font color=#b94a48>",
         "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
@@ -318,7 +318,7 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
       )
       all_tekst <- paste0(all_tekst, warn)
     }
-    if ("kjonn" %in% rad | length(kjonn) == 1) {
+    if ("kjonn" %in% rad || length(kjonn) == 1) {
       warn <- paste0(
         "<font color=#b94a48>",
         "ADVARSEL: ratene er beregnet ut i fra totalbefolkningen ",
@@ -329,8 +329,8 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
     }
   }
 
-  if (("behandler" %in% rad |
-    "behandlende_sykehus" %in% rad) &
+  if (("behandler" %in% rad ||
+    "behandlende_sykehus" %in% rad) &&
     ("2016" %in% aar)) {
     warn <- paste0(
       "<font color=#b94a48>", "ADVARSEL: Feil i rapportering ",
@@ -365,7 +365,7 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
 lag_hjelpetekst <- function(tab, rad, kol, verdi, aar, bo, beh, prosent,
                             behandlingsniva, alder, kjonn, hastegrad2,
                             overskrift = TRUE) {
-  if (is.null(rad) | is.null(aar) | is.null(verdi)) {
+  if (is.null(rad) || is.null(aar) || is.null(verdi)) {
     return(NULL)
   }
 

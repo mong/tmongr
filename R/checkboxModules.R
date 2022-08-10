@@ -3,7 +3,6 @@
 #' @param output Shiny output
 #' @param session Shiny session
 #'
-#' @return
 #' @name checkbox
 NULL
 #> NULL

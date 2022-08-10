@@ -4,7 +4,7 @@ get_data <- function() {
   } else if (file.exists("fag.csv")) {
     datasett <- read.table("fag.csv",
       sep = ",",
-      header = T,
+      header = TRUE,
       encoding = "UTF-8",
       stringsAsFactors = FALSE
     )
@@ -13,10 +13,10 @@ get_data <- function() {
     if (file.exists("fag2.csv")) {
       datasett2 <- read.table("fag2.csv",
                              sep = ",",
-                             header = T,
+                             header = TRUE,
                              encoding = "UTF-8",
                              stringsAsFactors = FALSE)
-      
+
       names(datasett2) <- tolower(names(datasett2))
       datasett2$niva <- "Uten overf"
       datasett$niva <- "Med overf"

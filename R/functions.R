@@ -117,7 +117,7 @@ definer_valg_kol <- function(col_names, valgnr) {
       config$valg_behsh$txt
     )
   }
-  if (("behandlende_hf" %in% col_names) | ("behandlende_hf_hn" %in% col_names)) {
+  if (("behandlende_hf" %in% col_names) || ("behandlende_hf_hn" %in% col_names)) {
     valg_behhf <- stats::setNames(
       config$valg_behhf$variable,
       config$valg_behhf$txt
@@ -129,8 +129,8 @@ definer_valg_kol <- function(col_names, valgnr) {
       config$valg_behrhf$txt
     )
   }
-  if ("bosh_liggerate" %in% col_names &
-    "bohf_liggerate" %in% col_names &
+  if ("bosh_liggerate" %in% col_names &&
+    "bohf_liggerate" %in% col_names &&
     "borhf_liggerate" %in% col_names) {
     valg_liggerate <- stats::setNames(
       config$valg_liggerate$variable,

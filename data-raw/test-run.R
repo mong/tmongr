@@ -4,7 +4,7 @@ getwd()
 
 datasett <- read.table("../tmongrdata/fag.csv",
                        sep = ",",
-                       header = T,
+                       header = TRUE,
                        encoding = "UTF-8",
                        stringsAsFactors = FALSE
 )
@@ -13,7 +13,7 @@ names(datasett) <- tolower(names(datasett))
 
 datasett2 <- read.table("../tmongrdata/fag2.csv",
                         sep = ",",
-                        header = T,
+                        header = TRUE,
                         encoding = "UTF-8",
                         stringsAsFactors = FALSE)
 

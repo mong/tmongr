@@ -10,7 +10,7 @@
 create_config <- function(dir = ".", force = FALSE) {
   ref_file <- system.file("tmongr.yml", package = "tmongr")
   new_file <- paste(dir, "_tmongr.yml", sep = "/")
-  if (!file.exists(new_file) | force) {
+  if (!file.exists(new_file) || force) {
     file.copy(ref_file, to = new_file)
     return(paste0(new_file, " file created: fill it in"))
   } else {

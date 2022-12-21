@@ -35,11 +35,11 @@ app_server <- function(input, output, session) {
   debounced_reactive <- shiny::throttle(make_table, 1000)
 
   # valg fagområde
-  output$fag <- renderUI({
+  output$fag <- shiny::renderUI({
     if ("episodefag" %in% colnames(datasett)) {
-      tags$div(
+      shiny::tags$div(
         title = "Velg hvilket fagområde (fagområdet for episoden) som skal vises",
-        selectInput("fag",
+        shiny::selectInput("fag",
           label = "Fagområde",
           choices = c("Alle", unique(datasett$episodefag)),
           selected = "Alle"
@@ -225,12 +225,12 @@ app_server <- function(input, output, session) {
   }
 
   # Heartbeat every 5 seconds, to avoid app to die when user is inactive.
-  output$clock <- renderText({
-    invalidateLater(5000)
+  output$clock <- shiny::renderText({
+    shiny::invalidateLater(5000)
     Sys.time()
   })
 
-  output$markdown <- renderUI({
+  output$markdown <- shiny::renderUI({
     rmd_filename <- system.file("app/Rmd/info.Rmd",
       package = methods::getPackageName()
     )

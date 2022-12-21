@@ -41,9 +41,9 @@ test_that("make_data_tabell returns a pivot table", {
     alder = c("tmp", "tmp", "tmp", "tmp"),
     kjonn = c("tmp", "tmp"),
     hastegrad2 = c("tmp", "tmp", "tmp", "tmp", "tmp"),
-    prosent = F,
-    keep_names = F,
-    snitt = T,
+    prosent = FALSE,
+    keep_names = FALSE,
+    snitt = TRUE,
     fag = "Alle"
   )
 
@@ -83,8 +83,8 @@ test_that("make_data_tabell returns a pivot table", {
   expect_equal_to_reference(tmp, "data/ref_pivot2f.rds")
 
   verdier <- originalverdier
-  verdier$prosent <- T
-  verdier$keep_names <- T
+  verdier$prosent <- TRUE
+  verdier$keep_names <- TRUE
   tmp <- lag_pivot(verdier)
   expect_equal_to_reference(tmp, "data/ref_pivot3.rds")
 

@@ -29,7 +29,7 @@ make_data_tabell <- function(input_dataset,
   prosent <- verdier$prosent
   fag <- verdier$fag
 
-  if (is.null(aar) | length(rad) > 2) {
+  if (is.null(aar) || length(rad) > 2) {
     # for å unngå feilmelding
     # App not implemented for more than two rad
     return(NULL)
@@ -83,12 +83,12 @@ make_data_tabell <- function(input_dataset,
   regnet_total <- FALSE
 
   # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognindex?
-  if (snitt | prosent) {
-    if (!("drg_index" %in% verdi | "liggedognindex" %in% verdi) &
-      !(verdi %in% c("rate", "drgrate", "liggedognrate") & length(rad) == 1)) {
+  if (snitt || prosent) {
+    if (!("drg_index" %in% verdi || "liggedognindex" %in% verdi) &&
+      !(verdi %in% c("rate", "drgrate", "liggedognrate") && length(rad) == 1)) {
       # ikke regn ut total på rater når en rad er bohf og den andre rad er bosh
-      if (!((verdi %in% c("rate", "drgrate", "liggedognrate")) &
-        ("boomr_hf" %in% rad) &
+      if (!((verdi %in% c("rate", "drgrate", "liggedognrate")) &&
+        ("boomr_hf" %in% rad) &&
         ("boomr_sykehus" %in% rad))) {
         regnet_total <- TRUE
         pivot <- add_total(pivot, rad, kol)
@@ -128,7 +128,7 @@ make_data_tabell <- function(input_dataset,
   }
 
   # Ta bort tekst hvis tekst under er lik
-  if (!keep_names & length(rad) != 1) {
+  if (!keep_names && length(rad) != 1) {
     pivot <- remove_double_names(pivot)
   }
 
@@ -280,7 +280,7 @@ add_total <- function(tabell, rad, kol) {
     if (myname != "tmp") {
       num_val <- num_val + 1
     }
-    if (((new_tab[i, 1] != myname) | (num_val == 0)) & (length(rad) != 1 | (num_val == 0))) {
+    if (((new_tab[i, 1] != myname) || (num_val == 0)) && (length(rad) != 1 || (num_val == 0))) {
       # telle på nytt hvis kolonne 1 er ulik i forrige rad
       for (j in (length(rad) + 1):length(names(new_tab))) {
         new_tab[i, j] <- new_tab[i, j]

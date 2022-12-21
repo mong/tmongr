@@ -11,9 +11,6 @@ just_overf_server(id, colnames)
 
 \item{colnames}{Column names in the data}
 }
-\value{
-
-}
 \description{
 Module for the "adjust for transfers" button
 }

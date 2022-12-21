@@ -150,7 +150,7 @@ filter_fag <- function(datasett, filter) {
   if (filter == "Alle") {
     return(datasett)
   } else {
-    tabell <- dplyr::filter(datasett, episodefag %in% filter)
+    tabell <- dplyr::filter(datasett, .data[["episodefag"]] %in% filter)
     return(tabell)
   }
 }

@@ -1,9 +1,18 @@
-FROM hnskde/tmongr-base-r:1.1.0
+FROM rocker/r-base:4.2.1
 
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
 LABEL no.mongr.cd.enable="true"
 
 WORKDIR /app/R
+
+# system libraries and R packages
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libcurl3-gnutls \
+    libcurl4-gnutls-dev \
+    libssl-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && R -e "install.packages(c('remotes', 'shiny', 'shinythemes', 'shinyWidgets', 'dplyr', 'tidyr', 'stringi', 'lazyeval', 'magrittr', 'rlang', 'yaml', 'knitr', 'markdown'))"
 
 # Install the current local version of tmongr
 # hadolint ignore=DL3010

@@ -5,19 +5,14 @@ LABEL no.mongr.cd.enable="true"
 
 WORKDIR /app/R
 
-# system libraries of general use
+# system libraries and R packages
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libcurl3-gnutls \
     libcurl4-gnutls-dev \
     libssl-dev \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# basic R functionality
-RUN R -e "install.packages(c('remotes'), repos='https://cloud.r-project.org/')"
-
-# install package dependencies
-RUN R -e "install.packages(c('shiny', 'shinythemes', 'shinyWidgets', 'dplyr', 'tidyr', 'stringi', 'lazyeval', 'magrittr', 'rlang', 'yaml', 'knitr', 'markdown'))"
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && R -e "install.packages(c('remotes', 'shiny', 'shinythemes', 'shinyWidgets', 'dplyr', 'tidyr', 'stringi', 'lazyeval', 'magrittr', 'rlang', 'yaml', 'knitr', 'markdown'))"
 
 # Install the current local version of tmongr
 # hadolint ignore=DL3010

@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^docs$
 ^sas$
 ^codecov\.yml$
@@ -8,5 +7,6 @@
 ^\.lintr$
 ^Dockerfile$
 ^data\-raw$
-^appveyor\.yml$
 ^\.github$
+^tmongrdata$
+^tests$

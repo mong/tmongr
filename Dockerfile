@@ -1,4 +1,4 @@
-FROM rocker/r-base:4.2.1
+FROM rocker/r-base:4.2.3
 
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
 LABEL no.mongr.cd.enable="true"

@@ -3,7 +3,7 @@ on:
   release:
     types: [published]
   push:
-    branches: [main]
+    branches: [main, tiny_r_image]
   pull_request:
     branches: [main]
 

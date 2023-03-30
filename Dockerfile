@@ -1,4 +1,4 @@
-FROM rhub/r-minimal:4.4.0 as builder
+FROM rhub/r-minimal:4.2.3 as builder
 
 LABEL maintainer "Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>"
 LABEL no.mongr.cd.enable="true"

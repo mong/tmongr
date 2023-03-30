@@ -8,7 +8,7 @@
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "matchPackagePatterns": [
-        ".github"
+        "action"
       ],
       "matchUpdateTypes": [
         "minor",

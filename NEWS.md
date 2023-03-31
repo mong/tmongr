@@ -1,3 +1,17 @@
+# tmongr 3.8.0
+
+* Build the docker image on [rhub/r-minimal](https://hub.docker.com/r/rhub/r-minimal), which made the image much smaller. The image is now around 350 MB (100 MB compressed), while the size of the previous one was over 1 GB (over 400 MB compressed) using `rocker/r-base`.
+* Skip using [tmongr-base-r](https://github.com/mong/tmongr-base-r) as base image.
+* Cache docker image build on github actions.
+* Simplify github actions (base them on examples from [r-lib/actions](https://github.com/r-lib/actions/)).
+* Use Renovate instead of Dependabot.
+* Update action versions.
+* Change default branch from `master` to `main`.
+
+# tmongr 3.7.0
+
+* 2021-data
+
 # tmongr 3.6.0
 
 * Reintroduce fagområde with "justert for overføringer", including disclaimer.

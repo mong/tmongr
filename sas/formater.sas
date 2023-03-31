@@ -1,17 +1,17 @@
 
-%include "&filbane\Formater\SKDE_somatikk.sas";
-%include "&filbane\Formater\NPR_somatikk.sas";
+%include "&filbane/Formater/SKDE_somatikk.sas";
+%include "&filbane/Formater/NPR_somatikk.sas";
 
 proc format;
 
 value Ald_4Gr
-1='0 - 17 år'
-2='18 - 49 år'
-3='50 - 74 år'
-4='75 år og over';
+1='0 - 17 Ã¥r'
+2='18 - 49 Ã¥r'
+3='50 - 74 Ã¥r'
+4='75 Ã¥r og over';
 
 value erdag
-0 = "døgn"
+0 = "dÃ¸gn"
 1 = "dag";
 
 value INNMATEHAST_2delt
@@ -23,7 +23,7 @@ value INNMATEHAST_2delt
 ;
 
 value BEHANDLINGSNIVA3F
-1 = 'Døgnopphold'  
+1 = 'DÃ¸gnopphold'  
 2 = 'Dagbehandling'  
 3 = 'Poliklinikk'
 4 = 'Avtalespesialist';
@@ -37,8 +37,8 @@ value DRGtypeHastegrad
 
 value behandler
 1="Eget lokalsykehus"
-2="UNN Tromsø"
-3="NLSH Bodø"
+2="UNN TromsÃ¸"
+3="NLSH BodÃ¸"
 4="Annet sykehus i eget HF"
 5="Annet HF i HN"
 6="HF i andre RHF"
@@ -53,10 +53,10 @@ Value BehHF
 2='UNN HF' 
 3='Nordlandssykehuset HF' 
 4='Helgelandssykehuset HF' 
-5='Helse Nord-Trøndelag HF' 
+5='Helse Nord-TrÃ¸ndelag HF' 
 6='St. Olavs Hospital HF' 
-7='Helse Møre og Romsdal HF' 
-9='Helse Førde HF' 
+7='Helse MÃ¸re og Romsdal HF' 
+9='Helse FÃ¸rde HF' 
 10='Helse Bergen HF' 
 11='Helse Fonna HF' 
 12='Helse Stavanger HF' 
@@ -67,12 +67,12 @@ Value BehHF
 17='Sykehuset Innlandet HF' 
 18='Oslo universitetssykehus HF' 
 19='Sunnaas sykehus HF' 
-20='Sykehuset Østfold HF' 
-21='Sørlandet sykehus HF' 
+20='Sykehuset Ã˜stfold HF' 
+21='SÃ¸rlandet sykehus HF' 
 22='Sykehuset i Vestfold HF' 
 23='Diakonhjemmet sykehus'
 24='Lovisenberg diakonale sykehus'
-25='Resterende Helse Sør-Øst RHF' 
+25='Resterende Helse SÃ¸r-Ã˜st RHF' 
 26='Haraldsplass diakonale sykehus'
 27='Private sykehus'
 28='Avtalespesialister'
@@ -83,7 +83,7 @@ value BehRHF
 1='Helse Nord RHF' 
 2='Helse Midt-Norge RHF' 
 3='Helse Vest RHF' 
-4='Helse Sør-Øst RHF'
+4='Helse SÃ¸r-Ã˜st RHF'
 5='Private sykehus'
 6='Avtalespesialister';
 
@@ -92,20 +92,20 @@ value behSh
 11='Klinikk Kirkenes'
 12='Klinikk Hammerfest'
 20='UNN HF'
-21='UNN Tromsø'
+21='UNN TromsÃ¸'
 22='UNN Harstad'
 23='UNN Narvik'
-24='UNN Tromsø' /* Storslett */
-25='UNN Tromsø' /* Bardu */
-26='UNN Tromsø' /* Finnsnes */
+24='UNN TromsÃ¸' /* Storslett */
+25='UNN TromsÃ¸' /* Bardu */
+26='UNN TromsÃ¸' /* Finnsnes */
 30='Nordlandssykehuset HF'
-31='Nordlandssykehuset Vesterålen'
+31='Nordlandssykehuset VesterÃ¥len'
 32='Nordlandssykehuset Lofoten'
-33='Nordlandssykehuset Bodø'
+33='Nordlandssykehuset BodÃ¸'
 40='Helgelandssykehuset HF'
 41='Helgelandssykehuset Mo i Rana'
-42='Helgelandssykehuset Mosjøen'
-43='Helgelandssykehuset Sandnessjøen'
+42='Helgelandssykehuset MosjÃ¸en'
+43='Helgelandssykehuset SandnessjÃ¸en'
 300='Private sykehus'
 400='Andre offentlige sykehus'
 500='Avtalespesialister'
@@ -116,14 +116,14 @@ Value BoHF_kort
 	2='UNN'
 	3='Nordland'
 	4='Helgeland '
-	6='Nord-Trøndelag'
+	6='Nord-TrÃ¸ndelag'
 	7='St. Olavs'
-	8='Møre og Romsdal'
-	10='Førde'
+	8='MÃ¸re og Romsdal'
+	10='FÃ¸rde'
 	11='Bergen'
 	12='Fonna'
 	13='Stavanger'
-	14='Østfold'
+	14='Ã˜stfold'
 	15='Akershus'
 	16='OUS'
 	17='Lovisenberg'
@@ -132,60 +132,60 @@ Value BoHF_kort
 	20='Vestre Viken'
 	21='Vestfold'
 	22='Telemark'
-	23='Sørlandet'
+	23='SÃ¸rlandet'
 	24='Utlandet/Svalbard'
 	25='Bor utenfor Helse Nord'
 	99='Ukjent/ugyldig kommunenr';
 
-* Slik som før ;
+* Slik som fÃ¸r ;
 value BoRHF
 1='Boomr Helse Nord RHF' 
 2='Boomr Helse Midt-Norge RHF' 
 3='Boomr Helse Vest RHF' 
-4='Boomr Helse Sør-Øst RHF' 
+4='Boomr Helse SÃ¸r-Ã˜st RHF' 
 24='Boomr utlandet/Svalbard' 
 99='Ukjent/ugyldig kommunenr';
 
 value BoShHN
 1='Boomr Kirkenes'
 2='Boomr Hammerfest' 
-3='Boomr Tromsø'
+3='Boomr TromsÃ¸'
 4='Boomr Harstad'
 5='Boomr Narvik' 
-6='Boomr Vesterålen'
+6='Boomr VesterÃ¥len'
 7='Boomr Lofoten' 
-8='Boomr Bodø' 
+8='Boomr BodÃ¸' 
 9='Boomr Rana' 
-10='Boomr Mosjøen' 
-11='Boomr Sandnessjøen'
+10='Boomr MosjÃ¸en' 
+11='Boomr SandnessjÃ¸en'
 12='Bor utenfor Helse Nord';
 
    value HDG
       1 = 'Sykdommer i nervesystemet'  
-      2 = 'Øyesykdommer'  
-      3 = 'Øre-, nese- og halssykdommer'  
-      4 = 'Sykdommer i åndedrettsorganene'  
+      2 = 'Ã˜yesykdommer'  
+      3 = 'Ã˜re-, nese- og halssykdommer'  
+      4 = 'Sykdommer i Ã¥ndedrettsorganene'  
       5 = 'Sykdommer i sirkulasjonsorganene'  
-      6 = 'Sykdommer i fordøyelsesorganene'  
+      6 = 'Sykdommer i fordÃ¸yelsesorganene'  
       7 = 'Sykdommer i lever, galleveier og bukspyttkjertel'  
       8 = 'Sykdommer i muskel-, skjelettsystemet og bindevev'  
       9 = 'Sykdommer i hud og underhud'  
-      10 = 'Indresekretoriske-, ernærings- og stoffskiftesykdommer'  
+      10 = 'Indresekretoriske-, ernÃ¦rings- og stoffskiftesykdommer'  
       11 = 'Nyre- og urinveissykdommer'  
-      12 = 'Sykdommer i mannlige kjønnsorganer'  
-      13 = 'Sykdommer i kvinnelige kjønnsorganer'  
-      14 = 'Sykdommer under svangerskap, fødsel og barseltid'  
-      15 = 'Nyfødte med tilstander som har oppstått i perinatalperioden'  
+      12 = 'Sykdommer i mannlige kjÃ¸nnsorganer'  
+      13 = 'Sykdommer i kvinnelige kjÃ¸nnsorganer'  
+      14 = 'Sykdommer under svangerskap, fÃ¸dsel og barseltid'  
+      15 = 'NyfÃ¸dte med tilstander som har oppstÃ¥tt i perinatalperioden'  
       16 = 'Sykdommer i blod, bloddannende organer og immunapparat'  
       17 = 'Myeloproliferative sykdommer og lite differensierte svulster'  
-      18 = 'Infeksiøse og parasittære sykdommer'  
+      18 = 'InfeksiÃ¸se og parasittÃ¦re sykdommer'  
       19 = 'Psykiske lidelser og rusproblemer'  
       21 = 'Skade, forgiftninger og toksiske effekter av medikamenter/andre stoffer, medikamentmisbruk og organiske sinnslidelser fr'  
       22 = 'Forbrenninger'  
-      23 = 'Faktorer som påvirker helsetilstand - andre kontakter med helsetjenesten'
+      23 = 'Faktorer som pÃ¥virker helsetilstand - andre kontakter med helsetjenesten'
       24 = 'Signifikant multitraume'
       30 = 'Sykdommer i bryst'  
-      40 = 'Kategorier på tvers av flere hoveddiagnosegrupper'  
+      40 = 'Kategorier pÃ¥ tvers av flere hoveddiagnosegrupper'  
       99 = 'Kategorier for feil og uvanlige diagnose-prosedyrekombinasjoner'
       999 = 'Ikke registrert hoveddiagnosegruppe';
 
@@ -210,8 +210,8 @@ value FAG_SKDE
       18 = 'Radiologi'  
       19 = 'Revmatologi'  
       20 = 'Urologi'  
-      21 = 'Øre-nese-hals'  
-      22 = 'Øye'  
+      21 = 'Ã˜re-nese-hals'  
+      22 = 'Ã˜ye'  
       23 = 'Onkologi'  
       24 = 'Indremed, nyre'  
       25 = 'Indremed, endokrinologi'  

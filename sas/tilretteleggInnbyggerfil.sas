@@ -7,7 +7,7 @@ Returnerer fire datasett:
 - bosh_innbygg
 - ald_just
 
-Variablen `just_aar` bestemmer justeringsår
+Variablen `just_aar` bestemmer justeringsÃ¥r
 */
 
 data innbygg;
@@ -23,7 +23,7 @@ set innbygg;
   %bo_sor;
 run;
 
-/* lage tmp-tabell for kjønns- og aldersjustering */
+/* lage tmp-tabell for kjÃ¸nns- og aldersjustering */
 
 proc sql;
 create table tmp_pop as

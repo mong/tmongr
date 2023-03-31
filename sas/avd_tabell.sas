@@ -1,17 +1,21 @@
-%include "&filbane\formater\SKDE_somatikk.sas";
-%include "&filbane\formater\NPR_somatikk.sas";
-%include "&filbane\formater\bo.sas";
-%include "&filbane\formater\beh.sas";
+%let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
+%let sasmappe = /sas_smb/skde_analyse/Brukere/Arnfinn/repo/tmongr/sas;
+%let prosjekt_filbane = /sas_smb/skde_analyse/Brukere/Arnfinn/repo;
 
-options sasautos=("&filbane\makroer" SASAUTOS);
+%include "&filbane/formater/SKDE_somatikk.sas";
+%include "&filbane/formater/NPR_somatikk.sas";
+%include "&filbane/formater/bo.sas";
+%include "&filbane/formater/beh.sas";
 
-%include "&sasmappe\formater.sas";
-%include "&sasmappe\macroer.sas";
-%include "&sasmappe\rater_og_aggr.sas";
-%include "&sasmappe\tilrettelegging.sas";
-%include "&sasmappe\tilretteleggInnbyggerfil.sas";
+options sasautos=("&filbane/makroer" SASAUTOS);
 
-%include "&filbane\makroer\boomraader.sas";
+%include "&sasmappe/formater.sas";
+%include "&sasmappe/macroer.sas";
+%include "&sasmappe/rater_og_aggr.sas";
+%include "&sasmappe/tilrettelegging.sas";
+%include "&sasmappe/tilretteleggInnbyggerfil.sas";
+
+%include "&filbane/makroer/boomraader.sas";
 
 %let magnus_som=
 pid
@@ -122,8 +126,8 @@ if length(compress(episodefag)) = 2 then episodefag = compress("0"||episodefag);
    /* Ukjent hastegrad */
    if (hastegrad eq .) then hastegrad = 9;
    /* 
-   Hastegrad "Tilbakeføring av pasient fra annet sykehus" settes til "Planlagt" 
-   Meget få kontakter i 2017, så lager bare støy
+   Hastegrad "TilbakefÃ¸ring av pasient fra annet sykehus" settes til "Planlagt" 
+   Meget fÃ¥ kontakter i 2017, sÃ¥ lager bare stÃ¸y
    */
    if (hastegrad eq 5) then hastegrad = 4;
    if institusjonid = 974116804 then do;
@@ -141,13 +145,13 @@ polikliniske konsultasjoner er eget opphold
 */
 
 
-%include "&filbane\makroer\sykehusopphold.sas";
+%include "&filbane/makroer/sykehusopphold.sas";
 
 %sykehusopphold(dsn=tabell_alle);
 
 
 /*
-Rydde før rater og aggregering
+Rydde fÃ¸r rater og aggregering
 */
 
 %let datasett = tabell_klargjor;
@@ -159,12 +163,12 @@ Lage datasett med innbyggere (brukes i rater_og_aggr)
 %tilretteleggInnbyggerfil();
 
 /*
-fagområde
+fagomrÃ¥de
 */
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, fag = 1);
 
 options nobomfile;
-filename output "&prosjekt_filbane\tmongrdata\fag.csv" encoding="utf-8" termstr=lf;
+filename output "&prosjekt_filbane/tmongrdata/fag.csv" encoding="utf-8" termstr=lf;
 proc export data=&datasett._ut
 outfile=output
 dbms=csv
@@ -183,7 +187,7 @@ Uten "sykehusopphold"
 %rater_og_aggr(dsn = &datasett, behandler = 1, grupperinger = 0, fag = 1);
 
 options nobomfile;
-filename output "&prosjekt_filbane\tmongrdata\fag2.csv" encoding="utf-8" termstr=lf ;
+filename output "&prosjekt_filbane/tmongrdata/fag2.csv" encoding="utf-8" termstr=lf ;
 proc export data=&datasett._ut
 outfile=output
 dbms=csv

@@ -68,7 +68,7 @@ run;
 %definer_episodeFag(dsn = tabell_alle2);
 
 /*
-slå sammen sykehus og HF fra sør-norge, og lag aldersgrupper
+slÃ¥ sammen sykehus og HF fra sÃ¸r-norge, og lag aldersgrupper
 */
 data &dataut;
 set tabell_alle2;

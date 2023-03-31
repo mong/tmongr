@@ -12,7 +12,7 @@ format behhf_hn behhf.;
 %mend;
 
 %macro bo_sor;
-/* Slå sammen alle bohf utenfor Helse Nord */
+/* SlÃ¥ sammen alle bohf utenfor Helse Nord */
 
 if bohf in (6:23) then bohf = 25;
 
@@ -51,7 +51,7 @@ if episodeFag in ("900", "999", "  .", "  .", "") and AvtSpes = 1 then do;
     if fag_skde = 1 then episodeFag = "210";  /* Anestesi */
     if fag_skde = 2 then episodeFag = "220";  /* Barn -> Barnesykdommer */
     if fag_skde = 3 then episodeFag = "230";  /* Fysmed -> Fysikalsk medisin og (re) habilitering */
-    if fag_skde = 4 then episodeFag = "200";  /* Gyn -> Kvinnesykdommer og elektiv fødselshjelp */
+    if fag_skde = 4 then episodeFag = "200";  /* Gyn -> Kvinnesykdommer og elektiv fÃ¸dselshjelp */
     if fag_skde = 5 then episodeFag = "240";  /* Hud -> Hud og veneriske sykdommer */
     if fag_skde = 6 then episodeFag = "110";  /* Indremedisin -> Generell indremedisin */
     if fag_skde = 11 then episodeFag = "010"; /* Kirurgi -> Generell kirurgi */
@@ -59,8 +59,8 @@ if episodeFag in ("900", "999", "  .", "  .", "") and AvtSpes = 1 then do;
 	if fag_skde = 17 then episodeFag = "090"; /* Plastikkirurgi */
     if fag_skde = 18 then episodeFag = "852"; /* Radiologi */
     if fag_skde = 19 then episodeFag = "190"; /* Revmatologi -> Revmatiske sykdommer (revmatologi) */
-    if fag_skde = 21 then episodeFag = "290"; /* ØNH -> Øre-nese-hals sykdommer */
-    if fag_skde = 22 then episodeFag = "300"; /* Øye -> Øyesykdommer */
+    if fag_skde = 21 then episodeFag = "290"; /* Ã˜NH -> Ã˜re-nese-hals sykdommer */
+    if fag_skde = 22 then episodeFag = "300"; /* Ã˜ye -> Ã˜yesykdommer */
 end;
 
 run;
@@ -78,17 +78,17 @@ run;
 %macro unik_pasient(datasett = , variabel =);
 
 /* 
-Macro for å markere unike pasienter 
+Macro for Ã¥ markere unike pasienter 
 
 Ny variabel, &variabel._unik, lages i samme datasett
 */
 
-/*1. Sorter på år, aktuell hendelse (merkevariabel), PID, InnDato, UtDato;*/
+/*1. Sorter pÃ¥ Ã¥r, aktuell hendelse (merkevariabel), PID, InnDato, UtDato;*/
 proc sort data=&datasett;
 by aar pid;
 run;
 
-/*2. By-statement sørger for at riktig opphold med hendelse velges i kombinasjon med First.-funksjonen og betingelse på hendelse*/
+/*2. By-statement sÃ¸rger for at riktig opphold med hendelse velges i kombinasjon med First.-funksjonen og betingelse pÃ¥ hendelse*/
 data &datasett;
 set &datasett;
 &variabel._unik = .;
@@ -152,8 +152,8 @@ quit;
 
 /*
 1="Eget lokalsykehus"
-2="UNN Tromsø"
-3="NLSH Bodø"
+2="UNN TromsÃ¸"
+3="NLSH BodÃ¸"
 4="Annet sykehus i eget HF"
 5="Annet HF i HN"
 6="HF i andre RHF"
@@ -199,7 +199,7 @@ If BoSHHN=2 then do;
 end;
 
 /*
-Tromsø
+TromsÃ¸
 */
 If BoSHHN=3 then do;
 	If BehSh in (21,24,25,26) then Behandler=1;
@@ -247,7 +247,7 @@ If BoSHHN=5 then do;
 end;
 
 /*
-Vesterålen
+VesterÃ¥len
 */
 If BoSHHN=6 then do;
 	If BehSh in (31) then Behandler=1;
@@ -279,7 +279,7 @@ If BoSHHN=7 then do;
 end;
 
 /*
-Bodø
+BodÃ¸
 */
 If BoSHHN=8 then do;
 	If BehSh in (33) then Behandler=1;
@@ -311,7 +311,7 @@ If BoSHHN=9 then do;
 end;
 
 /*
-Mosjøen
+MosjÃ¸en
 */
 If BoSHHN=10 then do;
 	If BehSh in (40,42) then Behandler=1;
@@ -327,7 +327,7 @@ If BoSHHN=10 then do;
 end;
 
 /*
-Sandnessjøen
+SandnessjÃ¸en
 */
 If BoSHHN=11 then do;
 	If BehSh in (40,43) then Behandler=1;

@@ -43,7 +43,7 @@ InnTid
 UtTid
 aktivitetskategori3
 aktivitetskategori
-behandlingsstedkode2
+/*behandlingsstedkode2*/
 BehHF
 BehRHF
 behSh
@@ -81,26 +81,26 @@ hastegrad
 ICD10Kap
 hdiag3tegn
 fag_skde
-AvtSpes
+/*AvtSpes*/
 ;
 
 /* lage sett for tabellverk-generering */
 data off_tot;
 set 
-hnana.sho_2018_t21m07 (keep=&magnus_som)
-hnana.sho_2019_t21m07 (keep=&magnus_som)
-hnana.sho_2020_t21m07 (keep=&magnus_som)
-hnana.sho_2021_t21t3 (keep=&magnus_som)
+HNANA.SHO_2019_T22M08 (keep=&magnus_som)
+HNANA.SHO_2020_T22M08 (keep=&magnus_som)
+HNANA.SHO_2021_T22M08 (keep=&magnus_som)
+HNANA.SHO_2022_T22T3 (keep=&magnus_som)
 ;
 where (BehRHF = 1 or BoRHF = 1) and (BoRHF in (1:4));
 run;
 
 data priv_tot;
 set
-hnana.aspes_2018_t20t2 (keep=&magnus_aspes)
-hnana.aspes_2019_t20t2 (keep=&magnus_aspes)
-hnana.aspes_2020_t20t3 (keep=&magnus_aspes)
-hnana.aspes_2021_t21t3 (keep=&magnus_aspes)
+HNANA.ASPES_2019_T20T2 (keep=&magnus_aspes)
+HNANA.ASPES_2020_T20T3 (keep=&magnus_aspes)
+HNANA.ASPES_2021_T21T3 (keep=&magnus_aspes)
+HNANA.ASPES_2022_T22T3 (keep=&magnus_aspes)
 ;
 where (BoRHF = 1) and (alder ne .);
 BehHF = 28;

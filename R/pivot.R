@@ -10,7 +10,7 @@
 #' @importFrom rlang .data
 #' @export
 #'
-make_data_tabell <- function(input_dataset,
+make_data_tabell <- function(input_dataset, # nolint: cyclocomp_linter
                              fane,
                              verdier,
                              keep_names,

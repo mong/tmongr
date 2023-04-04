@@ -3,7 +3,7 @@ sorter_datasett <- function(datasett, rad = NULL, kol = NULL) {
 
   filter_sort <- function(condition, df) {
     output <- df %>%
-      dplyr::filter(variable == condition)
+      dplyr::filter(.data$variable == condition)
     return(output)
   }
 
@@ -27,7 +27,7 @@ sorter_datasett <- function(datasett, rad = NULL, kol = NULL) {
   datasett$value <- NULL
 
   if (length(rad) == 1 || rad[1] %in% kol) {
-    datasett <- dplyr::arrange(datasett, sort1)
+    datasett <- dplyr::arrange(datasett, .data$sort1)
     datasett$sort1 <- NULL
   } else if (length(rad) == 2) {
     datasett$value <- datasett[[2]]
@@ -36,7 +36,7 @@ sorter_datasett <- function(datasett, rad = NULL, kol = NULL) {
     datasett$sort <- NULL
     datasett$variable <- NULL
     datasett$value <- NULL
-    datasett <- dplyr::arrange(datasett, sort1, sort2)
+    datasett <- dplyr::arrange(datasett, .data$sort1, .data$sort2)
     datasett$sort1 <- NULL
     datasett$sort2 <- NULL
   }

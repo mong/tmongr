@@ -1,6 +1,9 @@
 get_data <- function() {
   if (exists("datasett")) {
     return(datasett)
+  } else if (file.exists("fag.rds")) {
+    datasett <- readRDS("fag.rds")
+    return(datasett)
   } else if (file.exists("fag.csv")) {
     datasett <- read.table("fag.csv",
       sep = ",",

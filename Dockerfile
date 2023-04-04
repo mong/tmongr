@@ -24,7 +24,7 @@ RUN R CMD INSTALL --clean ./*.tar.gz && rm ./*.tar.gz
 FROM packages
 
 # Copy the data files
-COPY tmongrdata/fag*.csv .
+COPY tmongrdata/fag.rds .
 
 EXPOSE 80
 

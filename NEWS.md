@@ -1,3 +1,13 @@
+# tmongr 3.10.0
+
+* Use one rds-data file instead of two csv files, going from 22 MB to 4 MB. The rds-file is created in the data repository.
+
+# tmongr 3.9.0
+
+* 2022 data
+* Running on SAS grid
+* Clone specific tag without history in github actions
+
 # tmongr 3.8.0
 
 * Build the docker image on [rhub/r-minimal](https://hub.docker.com/r/rhub/r-minimal), which made the image much smaller. The image is now around 350 MB (100 MB compressed), while the size of the previous one was over 1 GB (over 400 MB compressed) using `rocker/r-base`.

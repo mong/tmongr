@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+
+  dev:
+    image: hnskde/mongr-dev-rstudio:latest
+    restart: "no"
+    volumes:
+      - ~/.ssh:/home/rstudio/.ssh
+      - ~/.gitconfig:/home/rstudio/.gitconfig
+      - .:/home/rstudio/tmongr
+    ports:
+      - 8787:8787
+    environment:
+      PASSWORD: password
+
+  code-server:
+    image: hnskde/mongr-dev-code-server:latest
+    restart: "no"
+    volumes:
+      - ~/.ssh:/home/coder/.ssh
+      - ~/.gitconfig:/home/coder/.gitconfig
+      - .:/home/coder/tmongr
+    ports:
+      - 8080:8080
+    environment:
+      PASSWORD: password
+
+  app:
+    image: hnskde/tmongr:latest
+    ports:
+      - 3838:80
+
+

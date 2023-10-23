@@ -226,7 +226,7 @@ test_that("prosent_server", {
 
   shiny::testServer(function_name, {
     expect_equal_to_reference(
-      output$prosent,
+      strsplit(output$prosent[["html"]], "\n")[[1]][1],
       paste0("data/module_", "prosent", "1.rds")
     )
   })
@@ -238,7 +238,7 @@ test_that("snitt_server", {
 
   shiny::testServer(function_name, {
     expect_equal_to_reference(
-      output$snitt,
+      strsplit(output$snitt[["html"]], "\n")[[1]][1],
       paste0("data/module_", "snitt", "1.rds")
     )
   })
@@ -250,7 +250,7 @@ test_that("keep_names_server", {
 
   shiny::testServer(function_name, {
     expect_equal_to_reference(
-      output$keep_names,
+      strsplit(output$keep_names[["html"]], "\n")[[1]][1],
       paste0("data/module_", "keep_names", "1.rds")
     )
   })

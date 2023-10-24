@@ -14,11 +14,13 @@ get_data <- function() {
 
     names(datasett) <- tolower(names(datasett))
     if (file.exists("fag2.csv")) {
-      datasett2 <- read.table("fag2.csv",
-                             sep = ",",
-                             header = TRUE,
-                             encoding = "UTF-8",
-                             stringsAsFactors = FALSE)
+      datasett2 <- read.table(
+        "fag2.csv",
+        sep = ",",
+        header = TRUE,
+        encoding = "UTF-8",
+        stringsAsFactors = FALSE
+      )
 
       names(datasett2) <- tolower(names(datasett2))
       datasett2$niva <- "Uten overf"

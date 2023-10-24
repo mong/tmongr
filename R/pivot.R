@@ -85,11 +85,11 @@ make_data_tabell <- function(input_dataset, # nolint: cyclocomp_linter
   # Burde vi legge inn snitt i steden for total for de to tilfellene index og liggedognindex?
   if (snitt || prosent) {
     if (!("drg_index" %in% verdi || "liggedognindex" %in% verdi) &&
-      !(verdi %in% c("rate", "drgrate", "liggedognrate") && length(rad) == 1)) {
+          !(verdi %in% c("rate", "drgrate", "liggedognrate") && length(rad) == 1)) {
       # ikke regn ut total på rater når en rad er bohf og den andre rad er bosh
       if (!((verdi %in% c("rate", "drgrate", "liggedognrate")) &&
-        ("boomr_hf" %in% rad) &&
-        ("boomr_sykehus" %in% rad))) {
+              ("boomr_hf" %in% rad) &&
+              ("boomr_sykehus" %in% rad))) {
         regnet_total <- TRUE
         pivot <- add_total(pivot, rad, kol)
       }

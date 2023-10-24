@@ -2,20 +2,23 @@ rm(list = ls())
 
 getwd()
 
-datasett <- read.table("../tmongrdata/fag.csv",
-                       sep = ",",
-                       header = TRUE,
-                       encoding = "UTF-8",
-                       stringsAsFactors = FALSE
+datasett <- read.table(
+  "../tmongrdata/fag.csv",
+  sep = ",",
+  header = TRUE,
+  encoding = "UTF-8",
+  stringsAsFactors = FALSE
 )
 
 names(datasett) <- tolower(names(datasett))
 
-datasett2 <- read.table("../tmongrdata/fag2.csv",
-                        sep = ",",
-                        header = TRUE,
-                        encoding = "UTF-8",
-                        stringsAsFactors = FALSE)
+datasett2 <- read.table(
+  "../tmongrdata/fag2.csv",
+  sep = ",",
+  header = TRUE,
+  encoding = "UTF-8",
+  stringsAsFactors = FALSE
+)
 
 names(datasett2) <- tolower(names(datasett2))
 datasett2$niva <- "Uten overf"

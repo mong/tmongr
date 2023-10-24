@@ -12,7 +12,7 @@ services:
     ports:
       - 8787:8787
     environment:
-      PASSWORD: password
+      DISABLE_AUTH: "true"
 
   code-server:
     image: hnskde/mongr-dev-code-server:latest

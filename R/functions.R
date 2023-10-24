@@ -129,9 +129,11 @@ definer_valg_kol <- function(col_names, valgnr) {
       config$valg_behrhf$txt
     )
   }
-  if ("bosh_liggerate" %in% col_names &&
-    "bohf_liggerate" %in% col_names &&
-    "borhf_liggerate" %in% col_names) {
+  if (
+    "bosh_liggerate" %in% col_names &&
+      "bohf_liggerate" %in% col_names &&
+      "borhf_liggerate" %in% col_names
+  ) {
     valg_liggerate <- stats::setNames(
       config$valg_liggerate$variable,
       config$valg_liggerate$txt

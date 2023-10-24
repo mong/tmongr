@@ -329,9 +329,11 @@ warning_text <- function(rad, verdi, bo, aar, alder, kjonn) {
     }
   }
 
-  if (("behandler" %in% rad ||
-    "behandlende_sykehus" %in% rad) &&
-    ("2016" %in% aar)) {
+  if (
+    ("behandler" %in% rad ||
+       "behandlende_sykehus" %in% rad) &&
+      ("2016" %in% aar)
+  ) {
     warn <- paste0(
       "<font color=#b94a48>", "ADVARSEL: Feil i rapportering ",
       "av behandlingssted for innlagte pasienter ved UNN i 2016!",

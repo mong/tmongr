@@ -25,6 +25,7 @@ Imports:
     methods,
     stats,
     knitr,
+    markdown,
 Suggests:
     testthat,
     covr,

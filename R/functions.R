@@ -195,6 +195,6 @@ definer_valg_kol <- function(col_names, valgnr) {
 version_info <- function() {
   url <- "https://github.com/mong/tmongr/releases/latest"
   vpkg <- utils::installed.packages()[c("tmongr"), 3]
-  text <- paste0("[", vpkg, "](", url, ")")
+  text <- paste0('<a href="', url, '" target="_blank">', vpkg, "</a>")
   return(text)
 }

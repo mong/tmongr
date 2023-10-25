@@ -101,3 +101,7 @@ test_that("filter_fag is correct", {
   expect_equal_to_reference(filter_fag(test_filter_fag, c("Svulster")), "data/unit_filter_fag.rds")
   expect_error(filter_fag(testdata, c("Svulster")))
 })
+
+test_that("version_info returns text", {
+  expect_gt(nchar(version_info()), 50)
+})

@@ -7,7 +7,7 @@ sorter_datasett <- function(datasett, rad = NULL, kol = NULL) {
     return(output)
   }
 
-  sort_list <- lapply(rad, filter_sort, tmongr::sort)
+  sort_list <- lapply(rad, filter_sort, tmongr::sortdataset)
 
   datasett <- as.data.frame(datasett, stringsAsFactors = FALSE)
   column_names <- colnames(datasett)

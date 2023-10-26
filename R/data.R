@@ -6,8 +6,7 @@
 #'   \item{sort}{Integer for sorting}
 #' }
 #'
-"sort"
-
+"sortdataset"
 
 #' Some test data
 "testdata"

@@ -10,3 +10,6 @@
 ^\.github$
 ^tmongrdata$
 ^tests$
+^\.config$
+^docker-compose\.yml$
+^renovate\.json$

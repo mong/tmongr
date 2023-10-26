@@ -9,6 +9,7 @@ services:
       - ~/.ssh:/home/rstudio/.ssh
       - ~/.gitconfig:/home/rstudio/.gitconfig
       - .:/home/rstudio/tmongr
+      - ./.config/rstudio-prefs.json:/home/rstudio/.config/rstudio/rstudio-prefs.json
     ports:
       - 8787:8787
     environment:
@@ -21,6 +22,7 @@ services:
       - ~/.ssh:/home/coder/.ssh
       - ~/.gitconfig:/home/coder/.gitconfig
       - .:/home/coder/tmongr
+      - ./.config/code-server-settings.json:/home/coder/.local/share/code-server/User/settings.json
     ports:
       - 8080:8080
     environment:

@@ -5,7 +5,7 @@ get_data <- function() {
     datasett <- readRDS("fag.rds")
     return(datasett)
   } else if (file.exists("fag.csv")) {
-    datasett <- read.table("fag.csv",
+    datasett <- utils::read.table("fag.csv",
       sep = ",",
       header = TRUE,
       encoding = "UTF-8",
@@ -14,7 +14,7 @@ get_data <- function() {
 
     names(datasett) <- tolower(names(datasett))
     if (file.exists("fag2.csv")) {
-      datasett2 <- read.table(
+      datasett2 <- utils::read.table(
         "fag2.csv",
         sep = ",",
         header = TRUE,

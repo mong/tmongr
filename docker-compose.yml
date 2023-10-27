@@ -29,7 +29,7 @@ services:
       PASSWORD: password
 
   app:
-    image: hnskde/tmongr:latest
+    image: hnskde/tmongr:main
     ports:
       - 3838:80
 

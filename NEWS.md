@@ -113,8 +113,6 @@ Use external docker deploy script
 
 # dynamiskTabellverk 2.7.1
 
-# Bugfix
-
 * Revert commit that rewrote `definerValgKol` in `2.7.0`. The drop down menus were broken.
 
 # dynamiskTabellverk 2.7.0

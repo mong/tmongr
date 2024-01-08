@@ -38,7 +38,7 @@ jobs:
           dockerfile: "Dockerfile"
       - name: Prepare
         id: docker_meta
-        uses: docker/metadata-action@v5.0.0
+        uses: docker/metadata-action@v5.5.0
         with:
           images: hnskde/tmongr
           tags: |
@@ -55,7 +55,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push to Docker Hub
-        uses: docker/build-push-action@v5.0.0
+        uses: docker/build-push-action@v5.1.0
         with:
           context: .
           file: ./Dockerfile

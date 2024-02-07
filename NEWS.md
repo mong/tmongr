@@ -1,3 +1,10 @@
+# tmongr 3.11.0
+
+- Renamed function `sort` to `sortdataset`, to avoid clash with function from `base R`
+- Added `docker-compose` file for development
+- Simplify docker image file
+- Some general cleaning and updates
+
 # tmongr 3.10.0
 
 * Use one rds-data file instead of two csv files, going from 22 MB to 4 MB. The rds-file is created in the data repository.

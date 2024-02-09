@@ -2,8 +2,21 @@
 % Please edit documentation in R/dynamiskTabellverk-package.R
 \docType{package}
 \name{tmongr}
+\alias{tmongr-package}
 \alias{tmongr}
 \title{tmongr}
 \description{
 Package including functions used by dynamisk tabellverk Helse-Nord RHF
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://mong.github.io/tmongr}
+  \item Report bugs at \url{https://github.com/mong/tmongr/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Steindal Arnfinn Hykkerud \email{arnfinn.steindal@skde.no}
+
 }

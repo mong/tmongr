@@ -1,3 +1,7 @@
+# tmongr 3.12.0
+
+- Bruk 2023-data
+
 # tmongr 3.11.1
 
 ## Oppdatert iframe-resizer

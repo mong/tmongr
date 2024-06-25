@@ -12,7 +12,7 @@ Variablen `just_aar` bestemmer justeringsår
 
 data innbygg;
 set innbygg.innb_skde_bydel;
-  where aar > 2017;
+  where aar > 2016;
 run;
 
 %boomraader(inndata = innbygg);

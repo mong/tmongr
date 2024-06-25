@@ -87,20 +87,26 @@ fag_skde
 /* lage sett for tabellverk-generering */
 data off_tot;
 set 
-HNANA.SHO_2019_T22M08 (keep=&magnus_som)
-HNANA.SHO_2020_T22M08 (keep=&magnus_som)
-HNANA.SHO_2021_T22M08 (keep=&magnus_som)
-HNANA.SHO_2022_T22T3 (keep=&magnus_som)
+HNANA.SHO_2017_T3 (keep=&magnus_som)
+HNANA.SHO_2018_T3 (keep=&magnus_som)
+HNANA.SHO_2019_T3 (keep=&magnus_som)
+HNANA.SHO_2020_T3 (keep=&magnus_som)
+HNANA.SHO_2021_T3 (keep=&magnus_som)
+HNANA.SHO_2022_T3 (keep=&magnus_som)
+HNANA.SHO_2023_T3 (keep=&magnus_som)
 ;
 where (BehRHF = 1 or BoRHF = 1) and (BoRHF in (1:4));
 run;
 
 data priv_tot;
 set
-HNANA.ASPES_2019_T20T2 (keep=&magnus_aspes)
-HNANA.ASPES_2020_T20T3 (keep=&magnus_aspes)
-HNANA.ASPES_2021_T21T3 (keep=&magnus_aspes)
-HNANA.ASPES_2022_T22T3 (keep=&magnus_aspes)
+HNANA.ASPES_2017_T3 (keep=&magnus_aspes)
+HNANA.ASPES_2018_T3 (keep=&magnus_aspes)
+HNANA.ASPES_2019_T3 (keep=&magnus_aspes)
+HNANA.ASPES_2020_T3 (keep=&magnus_aspes)
+HNANA.ASPES_2021_T3 (keep=&magnus_aspes)
+HNANA.ASPES_2022_T3 (keep=&magnus_aspes)
+HNANA.ASPES_2023_T3 (keep=&magnus_aspes)
 ;
 where (BoRHF = 1) and (alder ne .);
 BehHF = 28;

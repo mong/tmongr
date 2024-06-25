@@ -1,3 +1,21 @@
+# tmongr 3.11.1
+
+## Oppdatert iframe-resizer
+
+* Oppdater iframe-resizer til 5.1.0 by @arnfinn in https://github.com/mong/tmongr/pull/251
+* Oppdater iframe-resizer til 5.1.4 by @arnfinn in https://github.com/mong/tmongr/pull/252
+
+## Oppdatert docker image versjon
+
+* Update rhub/r-minimal Docker tag to v4.5.0 by @renovate in https://github.com/mong/tmongr/pull/248
+
+## Andre oppdateringer
+
+* Update all non-major dependencies by @renovate in https://github.com/mong/tmongr/pull/245
+* Update all non-major dependencies by @renovate in https://github.com/mong/tmongr/pull/247
+* Update docker/build-push-action action to v6 by @renovate in https://github.com/mong/tmongr/pull/249
+
+
 # tmongr 3.11.0
 
 - Renamed function `sort` to `sortdataset`, to avoid clash with function from `base R`

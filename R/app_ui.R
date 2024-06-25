@@ -9,7 +9,7 @@ app_ui <- function() {
     shiny::titlePanel(
       shiny::tags$head(
         # Make it fully scale inside iframe
-        shiny::tags$script(src = "www/iframeResizer.contentWindow.min.js"),
+        shiny::tags$script(src = "www/iframe-resizer.child.js"),
         shiny::tags$link(
           rel = "icon",
           type = "image/png",

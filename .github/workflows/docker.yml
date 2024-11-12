@@ -12,7 +12,7 @@ on:
 jobs:
   push_to_registries:
     name: Push Docker image to docker hub
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

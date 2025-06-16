@@ -13,10 +13,6 @@ jobs:
   push_to_registries:
     name: Push Docker image to docker hub
     runs-on: ubuntu-24.04
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: 'eu-west-1'
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -64,22 +60,3 @@ jobs:
           labels: ${{ steps.docker_meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Set release variables
-        if: github.event_name == 'release'
-        run: |
-          echo "S3Key='prod-tmongr_dockerrun.json'" >> $GITHUB_ENV
-          echo "env_name=prod-tabellverk" >> $GITHUB_ENV
-          echo "version_label=${GITHUB_REF:10}" >> $GITHUB_ENV
-          echo "descr='Release tag deploy'" >> $GITHUB_ENV
-      - name: Set QA variables
-        if: github.event_name == 'push'
-        run: |
-          echo "S3Key='qa-tmongr_dockerrun.json'" >> $GITHUB_ENV
-          echo "env_name=qa-tabellverk" >> $GITHUB_ENV
-          echo "version_label=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
-          echo "descr='main commits deploy'" >> $GITHUB_ENV
-      - name: Update elasticbeanstalk
-        if: github.event_name != 'pull_request'
-        run: |
-          aws elasticbeanstalk create-application-version --application-name tabellverk --source-bundle S3Bucket="elasticbeanstalk-eu-west-1-247247832514",S3Key=${{ env.S3Key }} --version-label ${{ env.version_label }} --description ${{ env.descr }}
-          aws elasticbeanstalk update-environment --environment-name ${{ env.env_name }} --version-label ${{ env.version_label }}

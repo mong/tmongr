@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Fetch data
         if: github.event_name != 'pull_request'
         run: git clone --depth 1 --branch 2023.0 https://gitlab-ci-token:${{ secrets.GL_TOKEN }}@gitlab.com/${{ secrets.GL_ORG2 }}
